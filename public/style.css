@@ -11,9 +11,7 @@
   --near: #c9a227;
   --miss: #2a3342;
   --radius: 12px;
-}
-:root[data-theme="light"] {
-  --bg: #f4f6f9; --panel: #ffffff; --panel-2: #eef1f5; --line: #d6dce5; --text: #141a22; --muted: #5d6878; --miss: #dfe4eb;
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
@@ -23,13 +21,14 @@ body {
   min-height: 100vh; display: flex; flex-direction: column;
 }
 a { color: var(--accent-2); }
-.wrap { width: 100%; max-width: 920px; margin: 0 auto; padding: 0 16px; }
+.wrap { width: 100%; max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 main.wrap { flex: 1; }
 .muted { color: var(--muted); }
 .small { font-size: 13px; }
 
 /* header */
-.top { border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 5; }
+.top { border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel); }
 .top-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; }
 .logo { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-size: 19px; letter-spacing: .3px; }
 .logo b { color: var(--accent); }
@@ -142,7 +141,7 @@ main.wrap { flex: 1; }
 .site-footer p { margin: 4px 0; }
 
 @media (max-width: 560px) {
-  .top-inner { height: auto; padding: 10px 16px; flex-wrap: wrap; }
+  .top-inner { height: auto; padding-block: 10px; flex-wrap: wrap; }
   .mode-tab { flex-direction: column; gap: 2px; padding: 10px 6px; font-size: 14px; }
   .mode-root { padding: 12px; }
   .grid-board { gap: 5px; }
@@ -152,3 +151,6 @@ main.wrap { flex: 1; }
   .chain-card { min-width: 0; padding: 8px 10px; }
   .chain-card .big { font-size: 16px; }
 }
+
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

@@ -18,13 +18,13 @@ const sourceNote = document.getElementById('source-note');
 let endlessSeed = null;
 
 function parseHash() {
-  const [g, m, e] = location.hash.replace('#', '').split('/');
+  const [g, m, e] = location.hash.replace('#', '').split(/[-/]/);
   return { game: GAMES[g] ? g : 'cs', mode: MODES[m] ? m : 'grid', endless: e === 'free' };
 }
 
 function nav(game, mode, endless) {
   endlessSeed = null;
-  location.hash = `${game}/${mode}${endless ? '/free' : ''}`;
+  location.hash = `${game}-${mode}${endless ? '-free' : ''}`;
 }
 
 async function render() {
