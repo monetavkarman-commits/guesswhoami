@@ -58,7 +58,9 @@ async function supabaseBackend() {
     const { data } = await sb.from('profiles').select('id,name').in('id', [...new Set(ids)].slice(0, 500));
     return Object.fromEntries((data || []).map((p) => [p.id, { name: p.name }]));
   };
-  return { db, user: { profiles }, uid: user ? user.id : null };
+  // scores are written by a server function that checks them (supabase/scores.sql); the old direct write stays as a fallback until that is installed
+  const rpc = (fn, args) => sb.rpc(fn, args);
+  return { db, user: { profiles }, uid: user ? user.id : null, rpc };
 }
 // logging in or out changes who writes, so the backend is rebuilt
 document.addEventListener('gwai:auth', () => { ready = null; });
