@@ -2,6 +2,9 @@ import { loadGame, today, h, GAMES, filtersFor, store } from './core.js';
 import * as grid from './grid.js';
 import * as whoami from './whoami.js';
 import * as chain from './chain.js';
+import { openProfile } from './achievements.js';
+
+document.getElementById('profile-btn').addEventListener('click', openProfile);
 
 const MODES = {
   grid: { title: 'Сетка', icon: '▦', mod: grid },

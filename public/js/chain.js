@@ -61,7 +61,7 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
   const save = () => saveKey && store.set(saveKey, state);
   const finish = () => {
     state.done = true;
-    if (daily) recordResult(data.game, 'chain', day, { won: !state.gaveUp, score: chainScore(state, game.par), detail: { links: state.path.length - 2 } });
+    if (daily) recordResult(data.game, 'chain', day, { won: !state.gaveUp, score: chainScore(state, game.par), detail: { links: state.path.length - 2, par: game.par - 1 } });
   };
   const last = () => data.players[state.path[state.path.length - 1]];
 

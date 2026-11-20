@@ -169,3 +169,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hint-box { display: flex; justify-content: center; }
 .bar-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .select { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font: inherit; }
+.top-right { display: flex; align-items: center; gap: 8px; }
+.icon-pill { background: var(--panel-2); border: 1px solid var(--line); color: var(--text); border-radius: 10px; height: 38px; min-width: 38px; font-size: 17px; cursor: pointer; }
+.modal.wide { max-width: 680px; max-height: 80vh; overflow: auto; }
+.modal h4 { margin: 4px 0 0; font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.profile-table { overflow-x: auto; }
+.pt-row { display: grid; grid-template-columns: 1.8fr repeat(6, minmax(52px, 1fr)); gap: 6px; padding: 6px 0; border-bottom: 1px solid var(--line); min-width: 520px; font-variant-numeric: tabular-nums; }
+.pt-row.head { color: var(--muted); font-size: 12px; }
+.pt-row div:not(:first-child) { text-align: center; }
+.ach-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 8px; }
+.ach { display: flex; gap: 10px; align-items: center; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; opacity: .55; }
+.ach.got { opacity: 1; border-color: var(--accent-2); }
+.ach-icon { font-size: 22px; width: 28px; text-align: center; filter: grayscale(1); }
+.ach.got .ach-icon { filter: none; }
+.ach b { display: block; }
+.ach small { color: var(--muted); }

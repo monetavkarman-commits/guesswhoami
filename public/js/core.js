@@ -174,11 +174,11 @@ export function playerSearch(data, { placeholder = 'Введите ник игр
   return { el: wrap, focus: () => input.focus(), input };
 }
 
-export function modal(title, body, onClose) {
+export function modal(title, body, onClose, cls = '') {
   const close = () => { back.remove(); document.removeEventListener('keydown', esc); onClose && onClose(); };
   const esc = (e) => { if (e.key === 'Escape') close(); };
   const back = h('div', { class: 'modal-back', onclick: (e) => { if (e.target === back) close(); } },
-    h('div', { class: 'modal' }, h('div', { class: 'modal-head' }, h('h3', {}, title), h('button', { class: 'icon-btn', onclick: close, 'aria-label': 'Закрыть' }, '×')), body));
+    h('div', { class: 'modal ' + cls }, h('div', { class: 'modal-head' }, h('h3', {}, title), h('button', { class: 'icon-btn', onclick: close, 'aria-label': 'Закрыть' }, '×')), body));
   document.addEventListener('keydown', esc);
   document.body.append(back);
   return close;
