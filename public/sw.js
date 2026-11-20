@@ -1,5 +1,5 @@
-// Offline support: app shell is cache-first, player data is network-first (falls back to cache offline).
-const VERSION = 'gwai-v25';
+// Offline support: everything is network-first, so a new release shows up on the next visit; the cache is only the fallback when offline.
+const VERSION = 'gwai-v26';
 const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'js/app.js', 'js/core.js', 'js/core-store.js', 'js/i18n.js',
   'js/grid.js', 'js/whoami.js', 'js/chain.js', 'js/stats.js', 'js/achievements.js', 'js/online.js', 'js/items.js', 'js/account.js', 'js/config.js', 'icons/icon-192.png', 'icons/icon-512.png'];
 
@@ -15,6 +15,7 @@ self.addEventListener('fetch', (e) => {
     e.respondWith(fetch(e.request).then((r) => { const copy = r.clone(); caches.open(VERSION).then((c) => c.put(e.request, copy)); return r; })
       .catch(() => caches.match(e.request)));
   } else {
-    e.respondWith(caches.match(e.request).then((hit) => hit || fetch(e.request)));
+    e.respondWith(fetch(e.request).then((r) => { if (r.ok) { const copy = r.clone(); caches.open(VERSION).then((c) => c.put(e.request, copy)); } return r; })
+      .catch(() => caches.match(e.request)));
   }
 });
