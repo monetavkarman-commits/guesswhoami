@@ -3,7 +3,7 @@ import { tr } from './i18n.js';
 import { store, h, modal, toast, GAMES } from './core.js';
 import { getStats } from './stats.js';
 
-const MODES = { grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка') };
+const MODES = { grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы') };
 
 function allStats() {
   const out = [];
@@ -23,7 +23,7 @@ export const ACHIEVEMENTS = [
   { id: 'streak7', icon: '📅', title: tr('Неделя без пропусков'), desc: tr('Серия из 7 побед подряд'), test: (e, all) => all.some((x) => x.s.best >= 7) },
   { id: 'streak30', icon: '👑', title: tr('Легенда'), desc: tr('Серия из 30 побед подряд'), test: (e, all) => all.some((x) => x.s.best >= 30) },
   { id: 'trio', icon: '🎲', title: tr('Хет-трик'), desc: tr('Сыграть все три режима одной игры за день'),
-    test: (e) => Object.keys(MODES).every((m) => getStats(e.game, m).days[e.day]) },
+    test: (e) => ['grid', 'whoami', 'chain'].every((m) => getStats(e.game, m).days[e.day]) },
   { id: 'both', icon: '🌍', title: tr('Универсал'), desc: tr('Сыграть ежедневки и в CS, и в Dota 2'), test: (e, all) => Object.keys(GAMES).every((g) => all.some((x) => x.g === g && x.s.played)) },
   { id: 'fifty', icon: '🎖', title: tr('Завсегдатай'), desc: tr('Сыграть 50 ежедневных игр'), test: (e, all) => all.reduce((n, x) => n + x.s.played, 0) >= 50 },
 ];

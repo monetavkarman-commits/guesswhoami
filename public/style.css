@@ -208,3 +208,4 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .board li.me { outline: 1px solid var(--accent-2); }
 .board .rank { width: 22px; color: var(--muted); }
 .board .who { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; }
+.who-row.items { grid-template-columns: 1.1fr repeat(var(--cols, 5), 1fr); }

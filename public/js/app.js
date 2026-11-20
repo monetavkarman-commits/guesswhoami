@@ -4,6 +4,7 @@ import { lang, setLang } from './i18n.js';
 import * as grid from './grid.js';
 import * as whoami from './whoami.js';
 import * as chain from './chain.js';
+import * as items from './items.js';
 import { openProfile } from './achievements.js';
 import { openLeaderboard, duelPanel, newDuelId } from './online.js';
 
@@ -40,6 +41,7 @@ const MODES = {
   grid: { title: tr('Сетка'), icon: '▦', mod: grid },
   whoami: { title: tr('Кто я?'), icon: '?', mod: whoami },
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
+  items: { title: tr('Предметы'), icon: '◆', mod: items, gameTitle: { cs: tr('Оружие'), dota: tr('Герои') } },
 };
 
 const root = document.getElementById('mode-root');
@@ -55,7 +57,8 @@ function parseHash() {
   const [g, m, e, id, ...rest] = location.hash.replace('#', '').split(/[-/]/);
   const duel = e === 'duel' && /^[a-z0-9]{4,16}$/.test(id || '') ? id : null;
   const s = rest.find((x) => /^s\d+$/.test(x)); const f = rest.find((x) => /^f\w+$/.test(x));
-  return { game: GAMES[g] ? g : 'cs', mode: MODES[m] ? m : 'grid', endless: e === 'free' || !!duel, duel,
+  const game = GAMES[g] ? g : 'cs';
+  return { game, mode: MODES[m] && (!MODES[m].gameTitle || MODES[m].gameTitle[game]) ? m : 'grid', endless: e === 'free' || !!duel, duel,
     rival: s ? +s.slice(1) : null, duelFilter: f ? f.slice(1) : null };
 }
 
@@ -85,7 +88,8 @@ async function render() {
   }
   modeTabs.innerHTML = '';
   for (const [k, m] of Object.entries(MODES)) {
-    modeTabs.append(h('button', { class: 'mode-tab' + (k === mode ? ' active' : ''), onclick: () => nav(game, k, endless) }, h('span', { class: 'mode-icon' }, m.icon), m.title));
+    if (m.gameTitle && !m.gameTitle[game]) continue;
+    modeTabs.append(h('button', { class: 'mode-tab' + (k === mode ? ' active' : ''), onclick: () => nav(game, k, endless) }, h('span', { class: 'mode-icon' }, m.icon), m.gameTitle ? m.gameTitle[game] : m.title));
   }
 
   const { key, num } = today();
@@ -97,7 +101,7 @@ async function render() {
       h('button', { class: endless ? '' : 'active', onclick: () => nav(game, mode, false) }, tr('Ежедневная №{0}', [num])),
       h('button', { class: endless && !duel ? 'active' : '', onclick: () => nav(game, mode, true) }, tr('Бесконечная')),
       duel ? h('button', { class: 'active' }, '⚔ ', tr('Дуэль')) : ''),
-    h('div', { class: 'bar-right' }, duel ? '' : filterSelect(game),
+    h('div', { class: 'bar-right' }, duel || mode === 'items' ? '' : filterSelect(game),
       endless ? h('button', { class: 'btn small', onclick: () => { if (duel) nav(game, mode, true); else { endlessSeed = null; render(); } } }, tr('Новая игра')) : ''));
 
   root.innerHTML = tr('<div class="loading">Загрузка игроков…</div>');

@@ -4,7 +4,7 @@
 import { tr } from './i18n.js';
 import { h, modal, toast, GAMES } from './core.js';
 
-const MODE_NAMES = () => ({ grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка') });
+const MODE_NAMES = () => ({ grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы') });
 // claude.ai link of the published artifact, used for challenge links when the page runs inside it
 const ARTIFACT_URL = 'https://claude.ai/artifact/XEQV83uqdWp7RRhgZFTYHa';
 
@@ -72,7 +72,7 @@ export async function openLeaderboard(game, day) {
       sub ? h('small', { class: 'muted' }, sub(r)) : null, h('b', {}, String(r[field])))))
     : h('p', { class: 'muted' }, tr('Пока никого. Сыграйте ежедневку, и вы будете первым.')));
 
-  body.append(h('h4', {}, tr('Сегодня · {0} · все три режима', [GAMES[game].short])), table(todayRows, 'score'),
+  body.append(h('h4', {}, tr('Сегодня · {0} · все режимы', [GAMES[game].short])), table(todayRows, 'score'),
     h('h4', {}, tr('За всё время')), table(allRows, 'total', (r) => tr('{0} игр', [r.games || 0])));
 }
 
