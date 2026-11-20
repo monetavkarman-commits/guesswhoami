@@ -65,6 +65,17 @@ const gameTabs = document.getElementById('game-tabs');
 // section switch (esports / sports) goes right before the game tabs
 const sectionTabs = h('div', { class: 'seg section-tabs', role: 'tablist', 'aria-label': tr('Раздел') });
 gameTabs.before(sectionTabs);
+// the game tabs scroll sideways; arrows on both ends show and scroll when they do not fit
+const tabsWrap = h('div', { class: 'tabs-wrap' });
+const arrowL = h('button', { class: 'tabs-arrow left', type: 'button', 'aria-label': tr('Назад'), onclick: () => gameTabs.scrollBy({ left: -240, behavior: 'smooth' }) }, '‹');
+const arrowR = h('button', { class: 'tabs-arrow right', type: 'button', 'aria-label': tr('Вперёд'), onclick: () => gameTabs.scrollBy({ left: 240, behavior: 'smooth' }) }, '›');
+gameTabs.before(tabsWrap); tabsWrap.append(arrowL, gameTabs, arrowR);
+const updateArrows = () => {
+  arrowL.style.display = gameTabs.scrollLeft > 4 ? '' : 'none';
+  arrowR.style.display = gameTabs.scrollLeft + gameTabs.clientWidth < gameTabs.scrollWidth - 4 ? '' : 'none';
+};
+gameTabs.addEventListener('scroll', updateArrows, { passive: true });
+window.addEventListener('resize', updateArrows);
 const modeTabs = document.getElementById('mode-tabs');
 const dayBar = document.getElementById('day-bar');
 const sourceNote = document.getElementById('source-note');
@@ -128,6 +139,7 @@ async function render() {
     if (!!g.sport !== (section === 'sport')) continue;
     gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), title: g.title, onclick: () => nav(k, mode, endless) }, gameBadge(k), h('span', { class: 'full' }, g.tab || g.title), h('span', { class: 'short' }, g.short)));
   }
+  requestAnimationFrame(() => { gameTabs.querySelector('.tab.active')?.scrollIntoView({ inline: 'center', block: 'nearest' }); updateArrows(); });
   modeTabs.innerHTML = '';
   for (const [k, m] of Object.entries(MODES)) {
     if ((m.gameTitle && !m.gameTitle[game]) || (GAMES[game].itemsOnly && !m.set)) continue;

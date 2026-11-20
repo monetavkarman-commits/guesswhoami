@@ -410,3 +410,8 @@ body.is-home .mode-root { background: none; border: 0; box-shadow: none; padding
 .lineup-team .muted { margin-left: 8px; }
 .flag-img { height: 1em; width: 1.33em; object-fit: cover; border-radius: 2px; vertical-align: -0.12em; box-shadow: 0 0 0 1px rgba(128,128,128,.35); }
 .slot-country { font-size: .85rem; text-align: center; }
+.tabs-wrap { position: relative; display: flex; align-items: center; flex: 1; min-width: 0; }
+.tabs-wrap .tabs { flex: 1; min-width: 0; scroll-behavior: smooth; }
+.tabs-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 30px; height: 34px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--text); font-size: 22px; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.35); padding: 0 0 3px; }
+.tabs-arrow.left { left: 0; } .tabs-arrow.right { right: 0; }
+.tabs-arrow:hover { background: var(--accent); color: #fff; }
