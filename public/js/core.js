@@ -22,12 +22,34 @@ export const GAMES = {
     teamNote: tr('* Команда — с последнего турнира игрока в базе (Champions / Masters).'),
   },
   lol: {
-    title: 'League of Legends', short: 'LoL', kind: 'pos',
+    title: 'League of Legends', tab: 'LoL', short: 'LoL', kind: 'pos',
     posLabels: { 1: tr('Топ'), 2: tr('Лесник'), 3: tr('Мид'), 4: tr('Бот'), 5: tr('Саппорт') },
     teamLabel: tr('Команда*'), ev3: '3+ Worlds', ev1: tr('Не больше 1 Worlds'), topMin: 2, chainMin: 2, minTeam: [5, 3],
     eras: { early: 'Worlds 2021–2023', late: 'Worlds 2024–2026' }, activeEra: 'late',
     teamNote: tr('* Команда — с последнего турнира игрока в базе (Worlds / MSI).'),
   },
+  // sports (Wikidata): no event counts, so "top" means well-known (many Wikipedia articles), "events" = number of clubs
+  football: {
+    title: tr('Футбол'), short: '⚽', sport: true, kind: 'pos',
+    posLabels: { 1: tr('Вратарь'), 2: tr('Защитник'), 3: tr('Полузащитник'), 4: tr('Нападающий') },
+    teamLabel: tr('Клуб'), ev3: tr('6+ клубов'), ev1: tr('Один клуб за карьеру'), evHi: 6, evLo: 1, topMin: null, minTeam: [8, 5],
+    eras: { early: tr('Играли до 2010'), late: tr('Играли с 2016') }, activeEra: 'late',
+    teamNote: tr('* Клубы и даты переходов — из Wikidata, там бывают пробелы.'),
+  },
+  basket: {
+    title: tr('Баскетбол'), short: '🏀', sport: true, kind: 'pos',
+    posLabels: { 1: tr('Разыгрывающий'), 2: tr('Атакующий защитник'), 3: tr('Лёгкий форвард'), 4: tr('Тяжёлый форвард'), 5: tr('Центровой') },
+    teamLabel: tr('Клуб'), ev3: tr('5+ клубов'), ev1: tr('Один клуб за карьеру'), evHi: 5, evLo: 1, topMin: null, minTeam: [6, 4],
+    eras: { early: tr('Играли до 2010'), late: tr('Играли с 2016') }, activeEra: 'late',
+    teamNote: tr('* Клубы и даты переходов — из Wikidata, там бывают пробелы.'),
+  },
+  f1: {
+    title: tr('Формула-1'), short: 'F1', sport: true, kind: null,
+    teamLabel: tr('Команда'), ev3: tr('10+ сезонов'), ev1: tr('Один сезон'), evHi: 10, evLo: 1, topMin: null, minTeam: [5, 3],
+    eras: { early: tr('Сезоны до 2010'), late: tr('Гибридная эра (2014+)') }, activeEra: 'late',
+    teamNote: tr('* Команда — в последнем сезоне, только у действующих пилотов.'),
+  },
+  tennis: { title: tr('Теннис'), short: '🎾', sport: true, itemsOnly: true, eras: {} },
 };
 
 // Difficulty / era filters: they narrow who can be the answer, any matching player is still accepted.
@@ -35,7 +57,7 @@ export function filtersFor(game) {
   const cfg = GAMES[game];
   return {
     all: { label: tr('Все игроки'), test: () => true },
-    top: { label: tr('Только звёзды'), test: (p) => p.events >= cfg.topMin },
+    top: { label: tr('Только звёзды'), test: (p) => (cfg.topMin == null ? p.top : p.events >= cfg.topMin) },
     active: { label: tr('Актуальные составы'), era: cfg.activeEra, test: (p) => p.status === 'active' && !!p.team && p.era.includes(cfg.activeEra) },
     ...Object.fromEntries(Object.entries(cfg.eras).map(([k, label]) => [k, { label, era: k, test: (p) => p.era.includes(k) }])),
   };

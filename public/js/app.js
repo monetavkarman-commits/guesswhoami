@@ -29,8 +29,8 @@ applyTheme(theme);
 themeBtn.addEventListener('click', () => { theme = THEMES[(THEMES.indexOf(theme) + 1) % 3]; store.set('theme', theme); applyTheme(theme); });
 
 if (lang === 'en') {
-  document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Not affiliated with Liquipedia, Valve, Riot Games or tournament organisers.';
-  document.title = 'GuessWhoAmI — guess the esports pro';
+  document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Athletes from <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a> (CC0). Not affiliated with Liquipedia, Valve, Riot Games, leagues or tournament organisers.';
+  document.title = 'GuessWhoAmI — guess the player';
 }
 
 if ('serviceWorker' in navigator && location.protocol.startsWith('http') && !location.hostname.endsWith('claude.ai') && !location.hostname.endsWith('claudeusercontent.com')) {
@@ -41,7 +41,7 @@ const MODES = {
   grid: { title: tr('Сетка'), icon: '▦', mod: grid },
   whoami: { title: tr('Кто я?'), icon: '?', mod: whoami },
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
-  items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои') } },
+  items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), tennis: tr('Теннисисты') } },
   maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
 };
 
@@ -59,7 +59,8 @@ function parseHash() {
   const duel = e === 'duel' && /^[a-z0-9]{4,16}$/.test(id || '') ? id : null;
   const s = rest.find((x) => /^s\d+$/.test(x)); const f = rest.find((x) => /^f\w+$/.test(x));
   const game = GAMES[g] ? g : 'cs';
-  return { game, mode: MODES[m] && (!MODES[m].gameTitle || MODES[m].gameTitle[game]) ? m : 'grid', endless: e === 'free' || !!duel, duel,
+  const okMode = (k) => MODES[k] && (!MODES[k].gameTitle || MODES[k].gameTitle[game]) && (!GAMES[game].itemsOnly || MODES[k].set);
+  return { game, mode: okMode(m) ? m : GAMES[game].itemsOnly ? 'items' : 'grid', endless: e === 'free' || !!duel, duel,
     rival: s ? +s.slice(1) : null, duelFilter: f ? f.slice(1) : null };
 }
 
@@ -85,11 +86,12 @@ async function render() {
   const { game, mode, endless, duel, rival, duelFilter } = parseHash();
   gameTabs.innerHTML = '';
   for (const [k, g] of Object.entries(GAMES)) {
-    gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), title: g.title, onclick: () => nav(k, mode, endless) }, h('span', { class: 'full' }, g.title), h('span', { class: 'short' }, g.short)));
+    if (g.sport && !gameTabs.querySelector('.tab-sep')) gameTabs.append(h('span', { class: 'tab-sep' }));
+    gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), title: g.title, onclick: () => nav(k, mode, endless) }, h('span', { class: 'full' }, g.tab || g.title), h('span', { class: 'short' }, g.short)));
   }
   modeTabs.innerHTML = '';
   for (const [k, m] of Object.entries(MODES)) {
-    if (m.gameTitle && !m.gameTitle[game]) continue;
+    if ((m.gameTitle && !m.gameTitle[game]) || (GAMES[game].itemsOnly && !m.set)) continue;
     modeTabs.append(h('button', { class: 'mode-tab' + (k === mode ? ' active' : ''), onclick: () => nav(game, k, endless) }, h('span', { class: 'mode-icon' }, m.icon), m.gameTitle ? m.gameTitle[game] : m.title));
   }
 
@@ -107,9 +109,9 @@ async function render() {
 
   root.innerHTML = tr('<div class="loading">Загрузка игроков…</div>');
   try {
-    const data = await loadGame(game);
-    sourceNote.textContent = tr('{0}. Обновлено {1}. {2} игроков.', [tr(data.sourceNote), data.generated, data.players.length]);
-    const fid = duel ? (filtersFor(game)[duelFilter] ? duelFilter : 'all') : currentFilter(game);
+    const data = GAMES[game].itemsOnly ? { game, cfg: GAMES[game] } : await loadGame(game);
+    sourceNote.textContent = data.players ? tr('{0}. Обновлено {1}. {2} игроков.', [tr(data.sourceNote), data.generated, data.players.length]) : '';
+    const fid = GAMES[game].itemsOnly ? 'all' : duel ? (filtersFor(game)[duelFilter] ? duelFilter : 'all') : currentFilter(game);
     const suffix = fid === 'all' ? '' : `:${fid}`;
     const seed = (endless ? `${game}:${mode}:free:${endlessSeed}` : `${game}:${mode}:${key}`) + suffix;
     const id = endlessSeed;

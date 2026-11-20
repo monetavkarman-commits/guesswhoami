@@ -25,7 +25,7 @@ function pathTo(prev, from, to) {
 export function generateChain(data, seed, filter = () => true) {
   const r = rng(seed);
   const minEvents = data.cfg.chainMin;
-  let pool = data.players.filter((p) => p.events >= minEvents && filter(p)).map((p) => p.idx);
+  let pool = data.players.filter((p) => (data.cfg.topMin == null ? p.top : p.events >= minEvents) && filter(p)).map((p) => p.idx);
   if (pool.length < 20) pool = data.players.filter(filter).map((p) => p.idx);
   for (const s of shuffle(r, pool)) {
     const { dist } = bfs(data, s);

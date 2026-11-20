@@ -18,7 +18,8 @@ function buildCriteria(data, era) {
 
   // only teams with enough well-known players (2+ big events) become criteria, so grids stay fair
   const teamCounts = new Map();
-  P.filter((p) => p.events >= 2).forEach((p) => tset(p).forEach((t) => teamCounts.set(t, (teamCounts.get(t) || 0) + 1)));
+  const known = (p) => (data.cfg.topMin == null ? p.top : p.events >= 2);
+  P.filter(known).forEach((p) => tset(p).forEach((t) => teamCounts.set(t, (teamCounts.get(t) || 0) + 1)));
   for (const [t, n] of teamCounts) if (n >= minTeam) {
     out.push({ key: 't' + t, kind: 'team', label: data.teams[t], sub: era ? tr('играл за в эту эру') : tr('играл за'), test: (p) => tset(p).has(t) });
   }
@@ -42,8 +43,12 @@ function buildCriteria(data, era) {
   } else if (data.cfg.kind === 'pos') {
     for (const pos of [1, 2, 3, 4, 5]) out.push({ key: 'p' + pos, kind: 'pos', label: data.cfg.posLabels[pos], sub: tr('позиция'), test: (p) => p.pos === pos });
   }
-  out.push({ key: 'e3', kind: 'events', label: data.cfg.ev3, sub: tr('турниры'), test: (p) => p.events >= 3 });
-  out.push({ key: 'e1', kind: 'events', label: data.cfg.ev1, sub: tr('турниры'), test: (p) => p.events <= 1 });
+  out.push({ key: 'e3', kind: 'events', label: data.cfg.ev3, sub: data.cfg.sport ? tr('карьера') : tr('турниры'), test: (p) => p.events >= (data.cfg.evHi ?? 3) });
+  out.push({ key: 'e1', kind: 'events', label: data.cfg.ev1, sub: data.cfg.sport ? tr('карьера') : tr('турниры'), test: (p) => p.events <= (data.cfg.evLo ?? 1) });
+  if (P.some((p) => p.titles)) { // F1
+    out.push({ key: 'wc', kind: 'titles', label: tr('Чемпион мира'), sub: tr('титулы'), test: (p) => p.titles > 0 });
+    out.push({ key: 'w1', kind: 'wins', label: tr('Побеждал в гонке'), sub: tr('победы'), test: (p) => p.wins > 0 });
+  }
   out.push({ key: 'a95', kind: 'age', label: tr('Родился до 1995'), sub: tr('возраст'), test: (p) => p.byear && p.byear < 1995 });
   out.push({ key: 'a00', kind: 'age', label: tr('Родился в 2000+'), sub: tr('возраст'), test: (p) => p.byear && p.byear >= 2000 });
   out.push({ key: 'sr', kind: 'status', label: tr('Завершил карьеру'), sub: tr('статус'), test: (p) => p.status === 'retired' });
@@ -88,8 +93,9 @@ export function generateGrid(data, seed, filter = () => true, era = null) {
 }
 
 function rarity(data, cellAnswers, idx) {
-  const evs = cellAnswers.map((i) => data.players[i].events);
-  const mine = data.players[idx].events;
+  const fame = (p) => p.fame ?? p.events; // sports: how well-known the player is
+  const evs = cellAnswers.map((i) => fame(data.players[i]));
+  const mine = fame(data.players[idx]);
   const more = evs.filter((e) => e > mine).length;
   return Math.round(10 + 90 * (more / Math.max(1, evs.length - 1)));
 }
@@ -193,7 +199,7 @@ export function mount(root, data, { seed, daily, label, day, filter, era, onFini
   function giveUp() { finish(); save(); render(); }
 
   function showAnswers(k) {
-    const list = grid.answers[k].map((i) => data.players[i]).sort((a, b) => b.events - a.events);
+    const list = grid.answers[k].map((i) => data.players[i]).sort((a, b) => (b.fame ?? b.events) - (a.fame ?? a.events));
     modal(tr('Возможные ответы'), h('ul', { class: 'answer-list' }, list.map((p) => h('li', {}, flag(p.cc), playerLink(p), h('span', { class: 'muted' }, `${roleText(data, p)} · ${p.events} ${tr(data.eventLabel).toLowerCase()}`)))));
   }
 

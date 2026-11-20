@@ -44,7 +44,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .tabs { display: flex; gap: 4px; background: var(--panel-2); padding: 4px; border-radius: 10px; }
 .tab .short { display: none; }
 .tab { background: none; border: 0; color: var(--muted); padding: 7px 14px; border-radius: 7px; cursor: pointer; font: inherit; font-weight: 600; }
-@media (max-width: 760px) { .tab .full { display: none; } .tab .short { display: inline; } .tab { padding: 7px 10px; white-space: nowrap; } }
 .tab.active { background: var(--accent); color: #fff; }
 
 /* mode tabs */
@@ -211,4 +210,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .board .rank { width: 22px; color: var(--muted); }
 .board .who { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; }
 .who-row.items { grid-template-columns: 1.1fr repeat(var(--cols, 5), 1fr); min-width: calc(120px + var(--cols, 5) * 92px); }
-@media (max-width: 560px) { .top-right { flex-wrap: wrap; width: 100%; } .top-right .tabs { flex: 1 1 100%; justify-content: space-between; } }
+
+/* game picker: its own row under the header, scrolls sideways when there are many games */
+.game-row { padding-top: 12px; }
+.game-row .tabs { overflow-x: auto; scrollbar-width: none; flex-wrap: nowrap; }
+.game-row .tabs::-webkit-scrollbar { display: none; }
+.game-row .tab { white-space: nowrap; flex: 1 0 auto; }
+.game-row .tab-sep { flex: 0 0 1px; background: var(--line, rgba(127,127,127,.3)); margin: 6px 2px; }
+@media (max-width: 760px) { .tab .full { display: none; } .tab .short { display: inline; } .game-row .tab { padding: 7px 9px; } }

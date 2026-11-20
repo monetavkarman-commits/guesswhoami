@@ -24,7 +24,8 @@ function cmp(col, g, t) {
     if (A.length === B.length && A.every((x) => B.includes(x))) return { res: 'hit', arrow: '' };
     return { res: A.some((x) => B.includes(x)) ? 'near' : 'miss', arrow: '' };
   }
-  return { res: a === b ? 'hit' : 'miss', arrow: '' };
+  if (a != null && a === b) return { res: 'hit', arrow: '' };
+  return { res: col.nearKey && g[col.nearKey] && g[col.nearKey] === t[col.nearKey] ? 'near' : 'miss', arrow: '' };
 }
 const show = (col, v) => (Array.isArray(v) ? v.map((x) => tr(x)).join(', ') : v == null ? '—' : col.type === 'num' && col.unit ? (col.unit === '$' ? `$${v}` : `${v}${col.unit}`) : tr(String(v)));
 
@@ -32,7 +33,8 @@ export const itemScore = (st) => (st.won ? Math.max(100, 1000 - 125 * (st.guesse
 
 export async function mount(root, gameData, { seed, daily, label, day, onFinish, mode = 'items', set = 'items' }) {
   const data = await loadItems(gameData.game, set);
-  const target = pick(rng(seed), data.items);
+  // optional: only the best-known items can be the answer (all of them can be guessed)
+  const target = pick(rng(seed), data.pool === 'top' ? data.items.slice(0, data.topCount || 100) : data.items);
   const saveKey = daily ? `${mode}:${seed}` : null;
   const state = (saveKey && store.get(saveKey)) || { guesses: [], done: false, won: false };
   const save = () => saveKey && store.set(saveKey, state);

@@ -32,6 +32,8 @@ function columns(data) {
       arrow: (g, t) => (g.age == null || t.age == null || g.age === t.age ? '' : t.age > g.age ? '↑' : '↓'), view: (g) => (g.age ?? '?') },
     { title: tr(data.eventLabel), cmp: (g, t) => (g.events === t.events ? 'hit' : Math.abs(g.events - t.events) <= 1 ? 'near' : 'miss'),
       arrow: (g, t) => (g.events === t.events ? '' : t.events > g.events ? '↑' : '↓'), view: (g) => g.events },
+    data.players.some((p) => p.wins != null) ? { title: tr('Побед'), cmp: (g, t) => (g.wins === t.wins ? 'hit' : Math.abs(g.wins - t.wins) <= 3 ? 'near' : 'miss'),
+      arrow: (g, t) => (g.wins === t.wins ? '' : t.wins > g.wins ? '↑' : '↓'), view: (g) => g.wins } : null,
   ].filter(Boolean);
 }
 
@@ -45,7 +47,7 @@ export function mount(root, data, { seed, daily, label, day, filter = () => true
 
   root.innerHTML = '';
   const intro = h('p', { class: 'mode-intro' }, tr('Угадайте загаданного игрока за {0} попыток. ', [MAX]),
-    h('span', { class: 'chip hit' }, tr('зелёный')), tr(' — совпадает, '), h('span', { class: 'chip near' }, tr('жёлтый')), tr(' — близко (тот же регион, бывшая команда, ±2 года, ±1 турнир), стрелка показывает, больше или меньше.'));
+    h('span', { class: 'chip hit' }, tr('зелёный')), tr(' — совпадает, '), h('span', { class: 'chip near' }, tr('жёлтый')), data.cfg.sport ? tr(' — близко (тот же регион, бывшая команда, ±2 года, ±1 клуб или сезон), стрелка показывает, больше или меньше.') : tr(' — близко (тот же регион, бывшая команда, ±2 года, ±1 турнир), стрелка показывает, больше или меньше.'));
   const searchWrap = h('div', { class: 'who-search' });
   const table = h('div', { class: 'who-table' });
   table.style.setProperty('--cols', cols.length);
