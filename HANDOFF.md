@@ -1,7 +1,7 @@
 # GuessWhoAmI: где остановились (20.11.2026)
 
-- Живой сайт: https://claude.ai/artifact/XEQV83uqdWp7RRhgZFTYHa (Claude Artifact, рейтинг в его базе).
-- Код: эта папка, git только локально (не пушился никуда). Сайт целиком в `public/`, данные собираются скриптами в `scripts/`.
+- Живой сайт: https://monetavkarman-commits.github.io/guesswhoami/ (GitHub Pages, деплой из `public/` по пушу в main) и https://claude.ai/artifact/XEQV83uqdWp7RRhgZFTYHa (Claude Artifact, там работает рейтинг).
+- Код: эта папка и GitHub monetavkarman-commits/guesswhoami (публичный). Сайт целиком в `public/`, данные собираются скриптами в `scripts/`.
 - Публикация: скопировать `public/.` в папку артефакта и опубликовать `artifact.html` по ссылке выше, поднять VERSION в `public/sw.js`.
 - Тесты: `cd public && python3 -m http.server 8765`, затем Playwright-скрипты (фазз сеток и цепочек по всем играм, 60 сидов на фильтр).
 - Внешние данные (Liquipedia, Wikidata) качаются через браузер на Mac Арта: контейнерный прокси их блокирует. Liquipedia: не чаще раза в 5–6 с, ≤50 страниц за запрос, без list=search.

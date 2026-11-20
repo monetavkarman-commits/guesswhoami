@@ -23,6 +23,9 @@ function init() {
   return ready;
 }
 
+// true when the shared database is available (inside the Claude artifact); on plain hosting the leaderboard is hidden
+export const onlineReady = () => init().then(Boolean);
+
 // ---------- leaderboard: board/<uid> holds one player's recent daily scores ----------
 let writing = Promise.resolve();
 export function submitDaily({ game, mode, day, score }) {

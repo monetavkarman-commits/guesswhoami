@@ -6,9 +6,10 @@ import * as whoami from './whoami.js';
 import * as chain from './chain.js';
 import * as items from './items.js';
 import { openProfile } from './achievements.js';
-import { openLeaderboard, duelPanel, newDuelId } from './online.js';
+import { openLeaderboard, duelPanel, newDuelId, onlineReady } from './online.js';
 
 document.getElementById('profile-btn').addEventListener('click', openProfile);
+onlineReady().then((ok) => { if (!ok) document.getElementById('board-btn').style.display = 'none'; });
 document.getElementById('board-btn').addEventListener('click', () => openLeaderboard(parseHash().game, today().num));
 
 // language, theme, footer and offline support
