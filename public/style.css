@@ -406,3 +406,5 @@ body.is-home .mode-root { background: none; border: 0; box-shadow: none; padding
 .lineup-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border-radius: 10px; background: var(--panel-2); border: 1px solid var(--line, #2a3144); min-height: 86px; justify-content: center; }
 .lineup-slot.hit { background: var(--hit); color: #fff; } .lineup-slot.hit small { color: #fff; }
 .lineup-slot.miss { opacity: .85; border-color: var(--miss, #5b6275); }
+.lineup-team .select { margin-left: auto; font-size: .9rem; }
+.lineup-team .muted { margin-left: 8px; }
