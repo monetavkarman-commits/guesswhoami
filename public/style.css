@@ -373,3 +373,8 @@ body.is-home .mode-root { background: none; border: 0; box-shadow: none; padding
 .hero-links { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
 .howto-row { display: flex; gap: 12px; align-items: flex-start; } .howto-row p { margin: 2px 0 0; }
 .howto-ic { width: 38px; height: 38px; flex: none; border-radius: 12px; display: grid; place-items: center; background: var(--panel-2); font-size: 18px; font-weight: 800; }
+/* game badges */
+.gico { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; margin-right: 7px; border-radius: 7px; background: var(--gc); color: #fff; font-size: 11px; font-weight: 900; letter-spacing: -.3px; vertical-align: -5px; box-shadow: inset 0 -2px 0 rgba(0,0,0,.22); }
+.tab.active .gico { background: #fff; color: var(--gc); box-shadow: none; }
+.gico.big { min-width: 34px; height: 34px; font-size: 15px; border-radius: 10px; margin: 0; }
+.gc-icon:has(.gico) { background: none; box-shadow: none; }

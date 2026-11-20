@@ -1,5 +1,5 @@
 import { tr } from './i18n.js';
-import { loadGame, today, h, GAMES, filtersFor, store, modal, toast } from './core.js';
+import { loadGame, today, h, GAMES, filtersFor, store, modal, toast, gameBadge } from './core.js';
 import { lang, setLang } from './i18n.js';
 import * as grid from './grid.js';
 import * as whoami from './whoami.js';
@@ -122,7 +122,7 @@ async function render() {
   gameTabs.classList.toggle('sport', section === 'sport');
   for (const [k, g] of Object.entries(GAMES)) {
     if (!!g.sport !== (section === 'sport')) continue;
-    gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), title: g.title, onclick: () => nav(k, mode, endless) }, h('span', { class: 'full' }, g.tab || g.title), h('span', { class: 'short' }, g.short)));
+    gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), title: g.title, onclick: () => nav(k, mode, endless) }, gameBadge(k), h('span', { class: 'full' }, g.tab || g.title), h('span', { class: 'short' }, g.short)));
   }
   modeTabs.innerHTML = '';
   for (const [k, m] of Object.entries(MODES)) {

@@ -1,6 +1,6 @@
 // Home hub: pick a game, see today's progress at a glance.
 import { tr } from './i18n.js';
-import { h, store, modal } from './core.js';
+import { h, store, modal, gameBadge } from './core.js';
 import { getStats } from './stats.js';
 
 const LOOK = {
@@ -49,7 +49,7 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
     c.style.setProperty('--gc', color);
     c.append(
       h('button', { class: 'gc-head', type: 'button', onclick: () => nav(game, modes[0][0], false) },
-        h('span', { class: 'gc-icon' }, icon),
+        h('span', { class: 'gc-icon' }, gameBadge(game, 'gico big') || icon),
         h('span', { class: 'gc-title' }, g.title),
         h('span', { class: 'gc-left' + (left ? '' : ' all') }, left ? tr('ещё {0}', [left]) : '✓')),
       h('div', { class: 'gc-modes' }, modes.map(([k, m]) =>

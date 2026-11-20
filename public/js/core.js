@@ -50,6 +50,13 @@ export const GAMES = {
   tennis: { title: tr('Теннис'), tab: '🎾 ' + tr('Теннис'), short: '🎾 ' + tr('Теннис'), sport: true, itemsOnly: true, eras: {} },
 };
 
+// small badge for the esports games (own monogram in the game's colour; sports use an emoji instead)
+export const GAME_BADGE = { cs: ['CS', '#f5a524'], dota: ['D2', '#e0463a'], valorant: ['V', '#ff4655'], lol: ['LoL', '#c89b3c'], deadlock: ['DL', '#8b6cff'] };
+export function gameBadge(game, cls = 'gico') {
+  const b = GAME_BADGE[game]; if (!b) return null;
+  const el = h('span', { class: cls, 'aria-hidden': 'true' }, b[0]); el.style.setProperty('--gc', b[1]); return el;
+}
+
 // Difficulty / era filters: they narrow who can be the answer, any matching player is still accepted.
 export function filtersFor(game) {
   const cfg = GAMES[game];
