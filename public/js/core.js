@@ -204,11 +204,14 @@ export function teamText(p) {
   return tr('на пенсии');
 }
 
+// Flags are small SVG files of our own (public/flags): emoji flags show up as plain letters on Windows
 export function flag(cc) {
-  if (!cc || cc.length !== 2 || cc === 'XK') return h('span', { class: 'flag flag-text' }, cc || '?');
-  const emoji = String.fromCodePoint(...[...cc].map((c) => 0x1f1a5 + c.charCodeAt(0)));
-  return h('span', { class: 'flag', title: cc }, emoji);
+  if (!cc || cc.length !== 2 || !FLAGS.test(cc)) return h('span', { class: 'flag flag-text' }, cc || '?');
+  const img = h('img', { class: 'flag-img', src: `flags/${cc.toLowerCase()}.svg`, alt: cc, loading: 'lazy', decoding: 'async' });
+  img.addEventListener('error', () => img.replaceWith(h('span', { class: 'flag flag-text' }, cc)));
+  return h('span', { class: 'flag', title: cc }, img);
 }
+const FLAGS = /^(?!YU|XK)[A-Za-z]{2}$/;
 
 export function toast(msg) {
   const t = h('div', { class: 'toast' }, msg);

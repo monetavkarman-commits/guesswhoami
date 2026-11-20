@@ -1,6 +1,6 @@
 // "Угадай состав": a team is shown, its best players are hidden behind flag and role; name them all with at most 5 mistakes.
 import { tr } from './i18n.js';
-import { rng, pick, h, flag, store, share, playerSearch, roleText, photo, logoAt, toast } from './core.js';
+import { countryName, rng, pick, h, flag, store, share, playerSearch, roleText, photo, logoAt, toast } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const MISTAKES = 5;
@@ -81,7 +81,7 @@ export function mount(root, data, opts) {
       const ok = state.found.includes(p.idx);
       const open = ok || state.done;
       slots.append(h('div', { class: 'lineup-slot ' + (ok ? 'hit' : state.done ? 'miss' : '') },
-        open ? photo(p) : null, flag(p.cc), h('b', {}, open ? p.id : '?'),
+        open ? photo(p) : null, h('span', { class: 'slot-country' }, flag(p.cc), ' ', countryName(p)), h('b', {}, open ? p.id : '?'),
         h('small', { class: 'muted' }, roleText(data, p) || '')));
     });
     wrongBox.innerHTML = '';

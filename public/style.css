@@ -408,3 +408,5 @@ body.is-home .mode-root { background: none; border: 0; box-shadow: none; padding
 .lineup-slot.miss { opacity: .85; border-color: var(--miss, #5b6275); }
 .lineup-team .select { margin-left: auto; font-size: .9rem; }
 .lineup-team .muted { margin-left: 8px; }
+.flag-img { height: 1em; width: 1.33em; object-fit: cover; border-radius: 2px; vertical-align: -0.12em; box-shadow: 0 0 0 1px rgba(128,128,128,.35); }
+.slot-country { font-size: .85rem; text-align: center; }
