@@ -2,7 +2,7 @@
 // (public/data/*.json). Never touches the network: run fetch-liquipedia.mjs first to refresh raw data.
 //
 //   node scripts/build-dataset.mjs
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { COUNTRIES, REGIONS } from './countries.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -46,9 +46,32 @@ function buildCS() {
   const teams = new TeamTable({ 'mousesports': 'MOUZ', 'Team EnVyUs': 'Team Envy', 'Heroic': 'HEROIC', 'Complexity': 'Complexity Gaming' });
   const PLAYER_ROLES = ['awp', 'igl', 'rifle', 'entry', 'lurker', 'support'];
 
+  // Team history with stint notes (data/raw/cs-th.json, {{TH|dates|team|note}} per player page).
+  // Benched ("Inactive") stints are dropped: a benched player did not play for the team then.
+  const th = existsSync(ROOT + 'data/raw/cs-th.json') ? JSON.parse(readFileSync(ROOT + 'data/raw/cs-th.json', 'utf8')) : {};
+  const pd = (s, end) => {
+    s = (s || '').trim(); if (/present/i.test(s)) return 0;
+    const m = s.match(/(\d{4})-(\d\d|\?\?)/); if (!m) return end ? 0 : null;
+    return +m[1] * 100 + (m[2] === '??' ? (end ? 12 : 1) : +m[2]);
+  };
+  let benched = 0;
+  const history = (p) => {
+    const lines = th[p.p]; if (!lines) return p.h.map(([t, s, e]) => [raw.teams[t], s, e]);
+    const out = [];
+    for (const line of lines) {
+      const [dates, team, ...rest] = line.split('|');
+      const note = rest.join('|').replace(/^link=[^|]*\|?/, '').trim().toLowerCase();
+      const link = (rest.join('|').match(/^link=([^|]+)/) || [])[1];
+      if (!['', 'loan', 'substitute', 'sub'].includes(note)) { if (note.includes('inactive')) benched++; continue; }
+      const [a, b] = dates.split('—'); const st = pd(a, false); if (st === null) continue;
+      out.push([(link || team).trim(), st, pd(b, true)]);
+    }
+    return out;
+  };
+
   const seen = new Set();
   const players = raw.players.filter((p) => !seen.has(p.p) && seen.add(p.p)).map((p) => {
-    const stints = p.h.map(([t, s, e]) => [teams.id(raw.teams[t]), s, e || 209912]);
+    const stints = history(p).map(([t, s, e]) => [teams.id(t), s, e || 209912]);
     let roles = p.r.filter((r) => PLAYER_ROLES.includes(r));
     if (!roles.length && p.r.some((r) => r.includes('coach'))) roles = ['coach'];
     return {
@@ -68,19 +91,20 @@ function buildCS() {
       if (hit) a.mates.push([j, hit[0]]);
     });
   });
-  // eras: CS:GO up to Sep 2023, CS2 from Oct 2023 (only real playing stints count)
+  // eras: CS:GO up to Sep 2023, CS2 from Oct 2023 (a stint must last past October 2023 to count for CS2) (only real playing stints count)
   players.forEach((p) => {
     p.era = [];
     if (p._stints.some(([, st]) => st <= 202309)) p.era.push('csgo');
-    if (p._stints.some(([, , e]) => e >= 202310)) p.era.push('cs2');
+    if (p._stints.some(([, , e]) => e >= 202311)) p.era.push('cs2');
     // teams per era, so era filters only ask about teams the player was on during that era
     p.eraTeams = {
       csgo: [...new Set(p._stints.filter(([, st]) => st <= 202309).map(([t]) => t))],
-      cs2: [...new Set(p._stints.filter(([, , e]) => e >= 202310).map(([t]) => t))],
+      cs2: [...new Set(p._stints.filter(([, , e]) => e >= 202311).map(([t]) => t))],
     };
     p.top = p.events >= 2; delete p._stints;
   });
 
+  console.log('cs: dropped', benched, 'benched stints;', Object.keys(th).length, 'histories with notes');
   return { missing, out: {
     game: 'cs', title: 'Counter-Strike', eventLabel: 'Мэйджоры', generated: today, source: SOURCE,
     sourceNote: 'Игроки 9 мэйджоров CS:GO/CS2 (Бостон 2018 – Остин 2025)', regions: REGIONS,
