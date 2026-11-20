@@ -1,0 +1,2495 @@
+{
+ "modeTitle": "Герои",
+ "nameTitle": "Герой",
+ "placeholder": "Имя героя…",
+ "intro": "Угадайте героя Dota 2 по атрибуту, типу атаки, ролям и характеристикам. Зелёный — совпало, жёлтый — близко (роли пересекаются, скорость ±10, дальность ±100, год ±2), стрелка — больше или меньше.",
+ "source": "Liquipedia, инфобоксы героев (2026-11-20)",
+ "columns": [
+  {
+   "key": "attr",
+   "title": "Атрибут",
+   "type": "cat"
+  },
+  {
+   "key": "atk",
+   "title": "Атака",
+   "type": "cat"
+  },
+  {
+   "key": "roles",
+   "title": "Роли",
+   "type": "set"
+  },
+  {
+   "key": "complexity",
+   "title": "Сложность",
+   "type": "num",
+   "near": 0
+  },
+  {
+   "key": "speed",
+   "title": "Скорость",
+   "type": "num",
+   "near": 10
+  },
+  {
+   "key": "range",
+   "title": "Дальность",
+   "type": "num",
+   "near": 100
+  },
+  {
+   "key": "year",
+   "title": "Год выхода",
+   "type": "num",
+   "near": 2
+  }
+ ],
+ "items": [
+  {
+   "id": "abaddon",
+   "name": "Abaddon",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Керри",
+    "Танк"
+   ],
+   "complexity": 1,
+   "speed": 325,
+   "range": 150,
+   "year": 2013,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Abaddon"
+  },
+  {
+   "id": "alchemist",
+   "name": "Alchemist",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Поддержка",
+    "Танк",
+    "Контроль",
+    "Инициатор",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Alchemist"
+  },
+  {
+   "id": "ancient-apparition",
+   "name": "Ancient Apparition",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 285,
+   "range": 675,
+   "year": 2011,
+   "alias": [
+    "aa"
+   ],
+   "url": "https://liquipedia.net/dota2/Ancient_Apparition"
+  },
+  {
+   "id": "anti-mage",
+   "name": "Anti-Mage",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 315,
+   "range": 150,
+   "year": 2010,
+   "alias": [
+    "am"
+   ],
+   "url": "https://liquipedia.net/dota2/Anti-Mage"
+  },
+  {
+   "id": "arc-warden",
+   "name": "Arc Warden",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Нюкер"
+   ],
+   "complexity": 3,
+   "speed": 300,
+   "range": 625,
+   "year": 2015,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Arc_Warden"
+  },
+  {
+   "id": "axe",
+   "name": "Axe",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Танк",
+    "Контроль",
+    "Керри"
+   ],
+   "complexity": 1,
+   "speed": 315,
+   "range": 150,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Axe"
+  },
+  {
+   "id": "bane",
+   "name": "Bane",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Нюкер",
+    "Танк"
+   ],
+   "complexity": 2,
+   "speed": 305,
+   "range": 425,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Bane"
+  },
+  {
+   "id": "batrider",
+   "name": "Batrider",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Инициатор",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 310,
+   "range": 400,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Batrider"
+  },
+  {
+   "id": "beastmaster",
+   "name": "Beastmaster",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Контроль",
+    "Танк",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 305,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Beastmaster"
+  },
+  {
+   "id": "bloodseeker",
+   "name": "Bloodseeker",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Контроль",
+    "Нюкер",
+    "Инициатор"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Bloodseeker"
+  },
+  {
+   "id": "bounty-hunter",
+   "name": "Bounty Hunter",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Побег",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 325,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Bounty_Hunter"
+  },
+  {
+   "id": "brewmaster",
+   "name": "Brewmaster",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Инициатор",
+    "Танк",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 3,
+   "speed": 310,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Brewmaster"
+  },
+  {
+   "id": "bristleback",
+   "name": "Bristleback",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Танк",
+    "Инициатор",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 295,
+   "range": 150,
+   "year": 2013,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Bristleback"
+  },
+  {
+   "id": "broodmother",
+   "name": "Broodmother",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Побег",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 285,
+   "range": 175,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Broodmother"
+  },
+  {
+   "id": "centaur-warrunner",
+   "name": "Centaur Warrunner",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Танк",
+    "Инициатор",
+    "Контроль",
+    "Нюкер",
+    "Побег"
+   ],
+   "complexity": 1,
+   "speed": 295,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Centaur_Warrunner"
+  },
+  {
+   "id": "chaos-knight",
+   "name": "Chaos Knight",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Контроль",
+    "Танк",
+    "Пушер",
+    "Инициатор"
+   ],
+   "complexity": 1,
+   "speed": 325,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Chaos_Knight"
+  },
+  {
+   "id": "chen",
+   "name": "Chen",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Пушер"
+   ],
+   "complexity": 3,
+   "speed": 305,
+   "range": 650,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Chen"
+  },
+  {
+   "id": "clinkz",
+   "name": "Clinkz",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Пушер"
+   ],
+   "complexity": 2,
+   "speed": 285,
+   "range": 600,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Clinkz"
+  },
+  {
+   "id": "clockwerk",
+   "name": "Clockwerk",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Контроль",
+    "Танк",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 310,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Clockwerk"
+  },
+  {
+   "id": "crystal-maiden",
+   "name": "Crystal Maiden",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 280,
+   "range": 600,
+   "year": 2010,
+   "alias": [
+    "cm"
+   ],
+   "url": "https://liquipedia.net/dota2/Crystal_Maiden"
+  },
+  {
+   "id": "dark-seer",
+   "name": "Dark Seer",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Побег",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 295,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Dark_Seer"
+  },
+  {
+   "id": "dark-willow",
+   "name": "Dark Willow",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 475,
+   "year": 2017,
+   "alias": [
+    "dw"
+   ],
+   "url": "https://liquipedia.net/dota2/Dark_Willow"
+  },
+  {
+   "id": "dawnbreaker",
+   "name": "Dawnbreaker",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Танк"
+   ],
+   "complexity": 1,
+   "speed": 300,
+   "range": 150,
+   "year": 2021,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Dawnbreaker"
+  },
+  {
+   "id": "dazzle",
+   "name": "Dazzle",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 305,
+   "range": 575,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Dazzle"
+  },
+  {
+   "id": "death-prophet",
+   "name": "Death Prophet",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 600,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Death_Prophet"
+  },
+  {
+   "id": "disruptor",
+   "name": "Disruptor",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Нюкер",
+    "Инициатор"
+   ],
+   "complexity": 2,
+   "speed": 300,
+   "range": 625,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Disruptor"
+  },
+  {
+   "id": "doom",
+   "name": "Doom",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Контроль",
+    "Инициатор",
+    "Танк",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 175,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Doom"
+  },
+  {
+   "id": "dragon-knight",
+   "name": "Dragon Knight",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Танк",
+    "Контроль",
+    "Инициатор",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 310,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Dragon_Knight"
+  },
+  {
+   "id": "drow-ranger",
+   "name": "Drow Ranger",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Контроль",
+    "Пушер"
+   ],
+   "complexity": 1,
+   "speed": 310,
+   "range": 625,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Drow_Ranger"
+  },
+  {
+   "id": "earth-spirit",
+   "name": "Earth Spirit",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Нюкер",
+    "Побег",
+    "Контроль",
+    "Инициатор",
+    "Танк"
+   ],
+   "complexity": 3,
+   "speed": 290,
+   "range": 150,
+   "year": 2013,
+   "alias": [
+    "es"
+   ],
+   "url": "https://liquipedia.net/dota2/Earth_Spirit"
+  },
+  {
+   "id": "earthshaker",
+   "name": "Earthshaker",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Инициатор",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 315,
+   "range": 150,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Earthshaker"
+  },
+  {
+   "id": "elder-titan",
+   "name": "Elder Titan",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Контроль",
+    "Нюкер",
+    "Танк"
+   ],
+   "complexity": 2,
+   "speed": 305,
+   "range": 150,
+   "year": 2013,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Elder_Titan"
+  },
+  {
+   "id": "ember-spirit",
+   "name": "Ember Spirit",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Нюкер",
+    "Контроль",
+    "Инициатор"
+   ],
+   "complexity": 2,
+   "speed": 295,
+   "range": 150,
+   "year": 2013,
+   "alias": [
+    "ember"
+   ],
+   "url": "https://liquipedia.net/dota2/Ember_Spirit"
+  },
+  {
+   "id": "enchantress",
+   "name": "Enchantress",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Пушер",
+    "Танк",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 320,
+   "range": 575,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Enchantress"
+  },
+  {
+   "id": "enigma",
+   "name": "Enigma",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Контроль",
+    "Инициатор",
+    "Пушер"
+   ],
+   "complexity": 2,
+   "speed": 280,
+   "range": 500,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Enigma"
+  },
+  {
+   "id": "faceless-void",
+   "name": "Faceless Void",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Инициатор",
+    "Контроль",
+    "Побег",
+    "Танк"
+   ],
+   "complexity": 2,
+   "speed": 300,
+   "range": 150,
+   "year": 2011,
+   "alias": [
+    "fv"
+   ],
+   "url": "https://liquipedia.net/dota2/Faceless_Void"
+  },
+  {
+   "id": "grimstroke",
+   "name": "Grimstroke",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 600,
+   "year": 2018,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Grimstroke"
+  },
+  {
+   "id": "gyrocopter",
+   "name": "Gyrocopter",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 315,
+   "range": 365,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Gyrocopter"
+  },
+  {
+   "id": "hoodwink",
+   "name": "Hoodwink",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Побег",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 315,
+   "range": 575,
+   "year": 2020,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Hoodwink"
+  },
+  {
+   "id": "huskar",
+   "name": "Huskar",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Танк",
+    "Инициатор"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 400,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Huskar"
+  },
+  {
+   "id": "invoker",
+   "name": "Invoker",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Контроль",
+    "Побег",
+    "Пушер"
+   ],
+   "complexity": 3,
+   "speed": 280,
+   "range": 600,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Invoker"
+  },
+  {
+   "id": "io",
+   "name": "Io",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Побег",
+    "Нюкер"
+   ],
+   "complexity": 3,
+   "speed": 320,
+   "range": 500,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Io"
+  },
+  {
+   "id": "jakiro",
+   "name": "Jakiro",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Пушер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 400,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Jakiro"
+  },
+  {
+   "id": "juggernaut",
+   "name": "Juggernaut",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Побег"
+   ],
+   "complexity": 1,
+   "speed": 305,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Juggernaut"
+  },
+  {
+   "id": "keeper-of-the-light",
+   "name": "Keeper of the Light",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 310,
+   "range": 600,
+   "year": 2012,
+   "alias": [
+    "kotl"
+   ],
+   "url": "https://liquipedia.net/dota2/Keeper_of_the_Light"
+  },
+  {
+   "id": "kez",
+   "name": "Kez",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Контроль"
+   ],
+   "complexity": 3,
+   "speed": 310,
+   "range": 150,
+   "year": 2024,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Kez"
+  },
+  {
+   "id": "kunkka",
+   "name": "Kunkka",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Поддержка",
+    "Контроль",
+    "Инициатор",
+    "Танк",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 315,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Kunkka"
+  },
+  {
+   "id": "largo",
+   "name": "Largo",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Танк"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 150,
+   "year": 2025,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Largo"
+  },
+  {
+   "id": "legion-commander",
+   "name": "Legion Commander",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Контроль",
+    "Инициатор",
+    "Танк",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 325,
+   "range": 150,
+   "year": 2013,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Legion_Commander"
+  },
+  {
+   "id": "leshrac",
+   "name": "Leshrac",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Поддержка",
+    "Нюкер",
+    "Пушер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 325,
+   "range": 575,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Leshrac"
+  },
+  {
+   "id": "lich",
+   "name": "Lich",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 550,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Lich"
+  },
+  {
+   "id": "lifestealer",
+   "name": "Lifestealer",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Танк",
+    "Побег",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 320,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Lifestealer"
+  },
+  {
+   "id": "lina",
+   "name": "Lina",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Керри",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 670,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Lina"
+  },
+  {
+   "id": "lion",
+   "name": "Lion",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Нюкер",
+    "Инициатор"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 600,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Lion"
+  },
+  {
+   "id": "lone-druid",
+   "name": "Lone Druid",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Танк"
+   ],
+   "complexity": 3,
+   "speed": 300,
+   "range": 550,
+   "year": 2012,
+   "alias": [
+    "ld"
+   ],
+   "url": "https://liquipedia.net/dota2/Lone_Druid"
+  },
+  {
+   "id": "luna",
+   "name": "Luna",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Пушер"
+   ],
+   "complexity": 1,
+   "speed": 325,
+   "range": 330,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Luna"
+  },
+  {
+   "id": "lycan",
+   "name": "Lycan",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Танк",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 305,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Lycan"
+  },
+  {
+   "id": "magnus",
+   "name": "Magnus",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Контроль",
+    "Нюкер",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 305,
+   "range": 200,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Magnus"
+  },
+  {
+   "id": "marci",
+   "name": "Marci",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Керри",
+    "Инициатор",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 315,
+   "range": 150,
+   "year": 2021,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Marci"
+  },
+  {
+   "id": "mars",
+   "name": "Mars",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Инициатор",
+    "Контроль",
+    "Танк"
+   ],
+   "complexity": 1,
+   "speed": 310,
+   "range": 250,
+   "year": 2019,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Mars"
+  },
+  {
+   "id": "medusa",
+   "name": "Medusa",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Контроль",
+    "Танк"
+   ],
+   "complexity": 1,
+   "speed": 275,
+   "range": 600,
+   "year": 2013,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Medusa"
+  },
+  {
+   "id": "meepo",
+   "name": "Meepo",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Нюкер",
+    "Контроль",
+    "Инициатор",
+    "Пушер"
+   ],
+   "complexity": 3,
+   "speed": 310,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Meepo"
+  },
+  {
+   "id": "mirana",
+   "name": "Mirana",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Поддержка",
+    "Побег",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 630,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Mirana"
+  },
+  {
+   "id": "monkey-king",
+   "name": "Monkey King",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Контроль",
+    "Инициатор"
+   ],
+   "complexity": 2,
+   "speed": 300,
+   "range": 300,
+   "year": 2016,
+   "alias": [
+    "mk"
+   ],
+   "url": "https://liquipedia.net/dota2/Monkey_King"
+  },
+  {
+   "id": "morphling",
+   "name": "Morphling",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Танк",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 3,
+   "speed": 285,
+   "range": 350,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Morphling"
+  },
+  {
+   "id": "muerta",
+   "name": "Muerta",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 295,
+   "range": 575,
+   "year": 2023,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Muerta"
+  },
+  {
+   "id": "naga-siren",
+   "name": "Naga Siren",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Поддержка",
+    "Пушер",
+    "Контроль",
+    "Инициатор",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 330,
+   "range": 150,
+   "year": 2012,
+   "alias": [
+    "naga"
+   ],
+   "url": "https://liquipedia.net/dota2/Naga_Siren"
+  },
+  {
+   "id": "nature-s-prophet",
+   "name": "Nature's Prophet",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Побег",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 295,
+   "range": 620,
+   "year": 2011,
+   "alias": [
+    "np",
+    "furion"
+   ],
+   "url": "https://liquipedia.net/dota2/Nature's_Prophet"
+  },
+  {
+   "id": "necrophos",
+   "name": "Necrophos",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Танк",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 280,
+   "range": 500,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Necrophos"
+  },
+  {
+   "id": "night-stalker",
+   "name": "Night Stalker",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Инициатор",
+    "Танк",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 295,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Night_Stalker"
+  },
+  {
+   "id": "nyx-assassin",
+   "name": "Nyx Assassin",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Контроль",
+    "Нюкер",
+    "Инициатор",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 310,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Nyx_Assassin"
+  },
+  {
+   "id": "ogre-magi",
+   "name": "Ogre Magi",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль",
+    "Танк",
+    "Инициатор"
+   ],
+   "complexity": 1,
+   "speed": 290,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Ogre_Magi"
+  },
+  {
+   "id": "omniknight",
+   "name": "Omniknight",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Танк",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 310,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Omniknight"
+  },
+  {
+   "id": "oracle",
+   "name": "Oracle",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 3,
+   "speed": 295,
+   "range": 625,
+   "year": 2015,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Oracle"
+  },
+  {
+   "id": "outworld-destroyer",
+   "name": "Outworld Destroyer",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 315,
+   "range": 450,
+   "year": 2012,
+   "alias": [
+    "od"
+   ],
+   "url": "https://liquipedia.net/dota2/Outworld_Destroyer"
+  },
+  {
+   "id": "pangolier",
+   "name": "Pangolier",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Контроль",
+    "Танк",
+    "Побег",
+    "Инициатор"
+   ],
+   "complexity": 2,
+   "speed": 300,
+   "range": 150,
+   "year": 2017,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Pangolier"
+  },
+  {
+   "id": "phantom-assassin",
+   "name": "Phantom Assassin",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег"
+   ],
+   "complexity": 1,
+   "speed": 310,
+   "range": 150,
+   "year": 2012,
+   "alias": [
+    "pa"
+   ],
+   "url": "https://liquipedia.net/dota2/Phantom_Assassin"
+  },
+  {
+   "id": "phantom-lancer",
+   "name": "Phantom Lancer",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Пушер",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 285,
+   "range": 225,
+   "year": 2012,
+   "alias": [
+    "pl"
+   ],
+   "url": "https://liquipedia.net/dota2/Phantom_Lancer"
+  },
+  {
+   "id": "phoenix",
+   "name": "Phoenix",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Инициатор",
+    "Побег",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 280,
+   "range": 500,
+   "year": 2014,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Phoenix"
+  },
+  {
+   "id": "primal-beast",
+   "name": "Primal Beast",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Танк",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 305,
+   "range": 150,
+   "year": 2022,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Primal_Beast"
+  },
+  {
+   "id": "puck",
+   "name": "Puck",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Инициатор",
+    "Контроль",
+    "Побег",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 550,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Puck"
+  },
+  {
+   "id": "pudge",
+   "name": "Pudge",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Контроль",
+    "Инициатор",
+    "Танк",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 280,
+   "range": 175,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Pudge"
+  },
+  {
+   "id": "pugna",
+   "name": "Pugna",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Нюкер",
+    "Пушер"
+   ],
+   "complexity": 2,
+   "speed": 325,
+   "range": 630,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Pugna"
+  },
+  {
+   "id": "queen-of-pain",
+   "name": "Queen of Pain",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 550,
+   "year": 2011,
+   "alias": [
+    "qop"
+   ],
+   "url": "https://liquipedia.net/dota2/Queen_of_Pain"
+  },
+  {
+   "id": "razor",
+   "name": "Razor",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Танк",
+    "Нюкер",
+    "Пушер"
+   ],
+   "complexity": 1,
+   "speed": 280,
+   "range": 475,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Razor"
+  },
+  {
+   "id": "riki",
+   "name": "Riki",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 315,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Riki"
+  },
+  {
+   "id": "ringmaster",
+   "name": "Ringmaster",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Побег",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 310,
+   "range": 575,
+   "year": 2024,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Ringmaster"
+  },
+  {
+   "id": "rubick",
+   "name": "Rubick",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 3,
+   "speed": 290,
+   "range": 550,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Rubick"
+  },
+  {
+   "id": "sand-king",
+   "name": "Sand King",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Контроль",
+    "Поддержка",
+    "Нюкер",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 150,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Sand_King"
+  },
+  {
+   "id": "shadow-demon",
+   "name": "Shadow Demon",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Инициатор",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 500,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Shadow_Demon"
+  },
+  {
+   "id": "shadow-fiend",
+   "name": "Shadow Fiend",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 305,
+   "range": 525,
+   "year": 2011,
+   "alias": [
+    "sf"
+   ],
+   "url": "https://liquipedia.net/dota2/Shadow_Fiend"
+  },
+  {
+   "id": "shadow-shaman",
+   "name": "Shadow Shaman",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Пушер",
+    "Контроль",
+    "Нюкер",
+    "Инициатор"
+   ],
+   "complexity": 1,
+   "speed": 285,
+   "range": 400,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Shadow_Shaman"
+  },
+  {
+   "id": "silencer",
+   "name": "Silencer",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Поддержка",
+    "Контроль",
+    "Инициатор",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 300,
+   "range": 600,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Silencer"
+  },
+  {
+   "id": "skywrath-mage",
+   "name": "Skywrath Mage",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 325,
+   "range": 625,
+   "year": 2013,
+   "alias": [
+    "sky"
+   ],
+   "url": "https://liquipedia.net/dota2/Skywrath_Mage"
+  },
+  {
+   "id": "slardar",
+   "name": "Slardar",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Танк",
+    "Инициатор",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 1,
+   "speed": 300,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Slardar"
+  },
+  {
+   "id": "slark",
+   "name": "Slark",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 300,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Slark"
+  },
+  {
+   "id": "snapfire",
+   "name": "Snapfire",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 1,
+   "speed": 300,
+   "range": 400,
+   "year": 2019,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Snapfire"
+  },
+  {
+   "id": "sniper",
+   "name": "Sniper",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 285,
+   "range": 550,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Sniper"
+  },
+  {
+   "id": "spectre",
+   "name": "Spectre",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Танк",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 295,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Spectre"
+  },
+  {
+   "id": "spirit-breaker",
+   "name": "Spirit Breaker",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Инициатор",
+    "Контроль",
+    "Танк",
+    "Побег"
+   ],
+   "complexity": 1,
+   "speed": 295,
+   "range": 170,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Spirit_Breaker"
+  },
+  {
+   "id": "storm-spirit",
+   "name": "Storm Spirit",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Нюкер",
+    "Инициатор",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 285,
+   "range": 480,
+   "year": 2010,
+   "alias": [
+    "storm"
+   ],
+   "url": "https://liquipedia.net/dota2/Storm_Spirit"
+  },
+  {
+   "id": "sven",
+   "name": "Sven",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Контроль",
+    "Инициатор",
+    "Танк",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 325,
+   "range": 150,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Sven"
+  },
+  {
+   "id": "techies",
+   "name": "Techies",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 310,
+   "range": 600,
+   "year": 2014,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Techies"
+  },
+  {
+   "id": "templar-assassin",
+   "name": "Templar Assassin",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 315,
+   "range": 250,
+   "year": 2012,
+   "alias": [
+    "ta"
+   ],
+   "url": "https://liquipedia.net/dota2/Templar_Assassin"
+  },
+  {
+   "id": "terrorblade",
+   "name": "Terrorblade",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 315,
+   "range": 150,
+   "year": 2014,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Terrorblade"
+  },
+  {
+   "id": "tidehunter",
+   "name": "Tidehunter",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Танк",
+    "Контроль",
+    "Нюкер",
+    "Керри"
+   ],
+   "complexity": 1,
+   "speed": 300,
+   "range": 150,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Tidehunter"
+  },
+  {
+   "id": "timbersaw",
+   "name": "Timbersaw",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Нюкер",
+    "Танк",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 280,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Timbersaw"
+  },
+  {
+   "id": "tinker",
+   "name": "Tinker",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Пушер"
+   ],
+   "complexity": 2,
+   "speed": 305,
+   "range": 500,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Tinker"
+  },
+  {
+   "id": "tiny",
+   "name": "Tiny",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Нюкер",
+    "Пушер",
+    "Инициатор",
+    "Танк",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 275,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Tiny"
+  },
+  {
+   "id": "treant-protector",
+   "name": "Treant Protector",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Инициатор",
+    "Танк",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 280,
+   "range": 150,
+   "year": 2012,
+   "alias": [
+    "treant"
+   ],
+   "url": "https://liquipedia.net/dota2/Treant_Protector"
+  },
+  {
+   "id": "troll-warlord",
+   "name": "Troll Warlord",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Пушер",
+    "Контроль",
+    "Танк"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 500,
+   "year": 2013,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Troll_Warlord"
+  },
+  {
+   "id": "tusk",
+   "name": "Tusk",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Инициатор",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 310,
+   "range": 150,
+   "year": 2013,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Tusk"
+  },
+  {
+   "id": "underlord",
+   "name": "Underlord",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Танк",
+    "Нюкер",
+    "Контроль",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 200,
+   "year": 2016,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Underlord"
+  },
+  {
+   "id": "undying",
+   "name": "Undying",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Поддержка",
+    "Танк",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 1,
+   "speed": 295,
+   "range": 150,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Undying"
+  },
+  {
+   "id": "ursa",
+   "name": "Ursa",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Танк",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 310,
+   "range": 150,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Ursa"
+  },
+  {
+   "id": "vengeful-spirit",
+   "name": "Vengeful Spirit",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Инициатор",
+    "Контроль",
+    "Нюкер",
+    "Побег"
+   ],
+   "complexity": 1,
+   "speed": 300,
+   "range": 400,
+   "year": 2010,
+   "alias": [
+    "vs"
+   ],
+   "url": "https://liquipedia.net/dota2/Vengeful_Spirit"
+  },
+  {
+   "id": "venomancer",
+   "name": "Venomancer",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Инициатор",
+    "Пушер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 280,
+   "range": 450,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Venomancer"
+  },
+  {
+   "id": "viper",
+   "name": "Viper",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Танк",
+    "Инициатор",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 275,
+   "range": 575,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Viper"
+  },
+  {
+   "id": "visage",
+   "name": "Visage",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Танк",
+    "Контроль",
+    "Пушер"
+   ],
+   "complexity": 3,
+   "speed": 285,
+   "range": 600,
+   "year": 2012,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Visage"
+  },
+  {
+   "id": "void-spirit",
+   "name": "Void Spirit",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Побег",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 2,
+   "speed": 290,
+   "range": 200,
+   "year": 2019,
+   "alias": [
+    "void"
+   ],
+   "url": "https://liquipedia.net/dota2/Void_Spirit"
+  },
+  {
+   "id": "warlock",
+   "name": "Warlock",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Инициатор",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 300,
+   "range": 600,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Warlock"
+  },
+  {
+   "id": "weaver",
+   "name": "Weaver",
+   "sub": "Ловкость",
+   "attr": "Ловкость",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Побег"
+   ],
+   "complexity": 2,
+   "speed": 275,
+   "range": 425,
+   "year": 2011,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Weaver"
+  },
+  {
+   "id": "windranger",
+   "name": "Windranger",
+   "sub": "Универсал",
+   "attr": "Универсал",
+   "atk": "Дальний бой",
+   "roles": [
+    "Керри",
+    "Поддержка",
+    "Контроль",
+    "Побег",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 285,
+   "range": 600,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Windranger"
+  },
+  {
+   "id": "winter-wyvern",
+   "name": "Winter Wyvern",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Контроль",
+    "Нюкер"
+   ],
+   "complexity": 2,
+   "speed": 285,
+   "range": 450,
+   "year": 2015,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Winter_Wyvern"
+  },
+  {
+   "id": "witch-doctor",
+   "name": "Witch Doctor",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Поддержка",
+    "Нюкер",
+    "Контроль"
+   ],
+   "complexity": 1,
+   "speed": 300,
+   "range": 550,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Witch_Doctor"
+  },
+  {
+   "id": "wraith-king",
+   "name": "Wraith King",
+   "sub": "Сила",
+   "attr": "Сила",
+   "atk": "Ближний бой",
+   "roles": [
+    "Керри",
+    "Поддержка",
+    "Танк",
+    "Контроль",
+    "Инициатор"
+   ],
+   "complexity": 1,
+   "speed": 310,
+   "range": 150,
+   "year": 2011,
+   "alias": [
+    "wk"
+   ],
+   "url": "https://liquipedia.net/dota2/Wraith_King"
+  },
+  {
+   "id": "zeus",
+   "name": "Zeus",
+   "sub": "Интеллект",
+   "attr": "Интеллект",
+   "atk": "Дальний бой",
+   "roles": [
+    "Нюкер",
+    "Керри"
+   ],
+   "complexity": 1,
+   "speed": 305,
+   "range": 365,
+   "year": 2010,
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Zeus"
+  }
+ ]
+}

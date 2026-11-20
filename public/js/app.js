@@ -41,7 +41,8 @@ const MODES = {
   grid: { title: tr('Сетка'), icon: '▦', mod: grid },
   whoami: { title: tr('Кто я?'), icon: '?', mod: whoami },
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
-  items: { title: tr('Предметы'), icon: '◆', mod: items, gameTitle: { cs: tr('Оружие') } },
+  items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои') } },
+  maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
 };
 
 const root = document.getElementById('mode-root');
@@ -101,7 +102,7 @@ async function render() {
       h('button', { class: endless ? '' : 'active', onclick: () => nav(game, mode, false) }, tr('Ежедневная №{0}', [num])),
       h('button', { class: endless && !duel ? 'active' : '', onclick: () => nav(game, mode, true) }, tr('Бесконечная')),
       duel ? h('button', { class: 'active' }, '⚔ ', tr('Дуэль')) : ''),
-    h('div', { class: 'bar-right' }, duel || mode === 'items' ? '' : filterSelect(game),
+    h('div', { class: 'bar-right' }, duel || MODES[mode].set ? '' : filterSelect(game),
       endless ? h('button', { class: 'btn small', onclick: () => { if (duel) nav(game, mode, true); else { endlessSeed = null; render(); } } }, tr('Новая игра')) : ''));
 
   root.innerHTML = tr('<div class="loading">Загрузка игроков…</div>');
@@ -113,7 +114,7 @@ async function render() {
     const seed = (endless ? `${game}:${mode}:free:${endlessSeed}` : `${game}:${mode}:${key}`) + suffix;
     const id = endlessSeed;
     MODES[mode].mod.mount(root, data, {
-      seed, daily: !endless, day: num, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test, era: filtersFor(game)[fid].era,
+      seed, daily: !endless, day: num, mode, set: MODES[mode].set, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test, era: filtersFor(game)[fid].era,
       // endless and duel games end with a challenge link carrying the same puzzle id
       onFinish: endless ? ({ score }) => {
         root.querySelector('.duel')?.remove();

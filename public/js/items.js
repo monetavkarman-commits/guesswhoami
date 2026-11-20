@@ -6,9 +6,10 @@ import { recordResult, resultCard } from './stats.js';
 
 const MAX = 7;
 const cache = {};
-export async function loadItems(game) {
-  if (!cache[game]) cache[game] = fetch(`data/${game}-items.json`).then((r) => { if (!r.ok) throw new Error(`data/${game}-items.json`); return r.json(); });
-  return cache[game];
+export async function loadItems(game, set = 'items') {
+  const f = `data/${game}-${set}.json`;
+  if (!cache[f]) cache[f] = fetch(f).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
+  return cache[f];
 }
 
 function cmp(col, g, t) {
@@ -29,10 +30,10 @@ const show = (col, v) => (Array.isArray(v) ? v.map((x) => tr(x)).join(', ') : v 
 
 export const itemScore = (st) => (st.won ? Math.max(100, 1000 - 125 * (st.guesses.length - 1)) : 0);
 
-export async function mount(root, gameData, { seed, daily, label, day, onFinish }) {
-  const data = await loadItems(gameData.game);
+export async function mount(root, gameData, { seed, daily, label, day, onFinish, mode = 'items', set = 'items' }) {
+  const data = await loadItems(gameData.game, set);
   const target = pick(rng(seed), data.items);
-  const saveKey = daily ? `items:${seed}` : null;
+  const saveKey = daily ? `${mode}:${seed}` : null;
   const state = (saveKey && store.get(saveKey)) || { guesses: [], done: false, won: false };
   const save = () => saveKey && store.set(saveKey, state);
   const byId = new Map(data.items.map((x) => [x.id, x]));
@@ -68,7 +69,7 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish 
     state.guesses.push(it.id);
     if (it.id === target.id) { state.done = true; state.won = true; } else if (state.guesses.length >= MAX) state.done = true;
     if (state.done) {
-      if (daily) recordResult(gameData.game, 'items', day, { won: state.won, score: itemScore(state), detail: { guesses: state.guesses.length } });
+      if (daily) recordResult(gameData.game, mode, day, { won: state.won, score: itemScore(state), detail: { guesses: state.guesses.length } });
       setTimeout(() => onFinish?.({ won: state.won, score: itemScore(state) }), 0);
     }
     save(); render();
@@ -88,8 +89,8 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish 
     if (state.done) {
       footer.append(resultCard({
         title: state.won ? tr('Угадано за {0}!', [state.guesses.length]) : tr('Не угадали'),
-        score: itemScore(state), daily, game: gameData.game, mode: 'items',
-        lines: [h('span', {}, tr('Ответ: '), target.url ? h('a', { href: target.url, target: '_blank', rel: 'noopener' }, target.name) : target.name)],
+        score: itemScore(state), daily, game: gameData.game, mode,
+        lines: [h('span', {}, tr('Ответ: '), target.url ? h('a', { href: target.url, target: '_blank', rel: 'noopener' }, target.name) : target.name), data.source ? h('span', { class: 'muted' }, tr(data.source)) : null].filter(Boolean),
         onShare: () => share(shareText()),
       }));
     } else footer.append(h('span', { class: 'muted' }, tr('Попытка {0} из {1}', [state.guesses.length + 1, MAX])));

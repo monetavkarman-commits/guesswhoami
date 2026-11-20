@@ -3,7 +3,7 @@ import { tr } from './i18n.js';
 import { store, h, modal, toast, GAMES } from './core.js';
 import { getStats } from './stats.js';
 
-const MODES = { grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы') };
+const MODES = { grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы'), maps: tr('Карты') };
 
 function allStats() {
   const out = [];

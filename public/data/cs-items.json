@@ -2,8 +2,8 @@
  "modeTitle": "Оружие",
  "nameTitle": "Оружие",
  "placeholder": "Название оружия…",
- "intro": "Угадайте оружие CS2 по типу, стороне, цене, магазину и награде за убийство. Зелёный — совпало, жёлтый — близко (цена ±$300, магазин ±5, награда ±$300), стрелка — больше или меньше.",
- "source": "Значения из CS2 (соревновательный режим)",
+ "intro": "Угадайте оружие CS2 по типу, стороне, цене, магазину, награде за убийство и стране-производителю. Зелёный — совпало, жёлтый — близко (цена ±$300, магазин ±5, награда ±$300), стрелка — больше или меньше.",
+ "source": "Liquipedia, инфобоксы оружия (2026-11-20)",
  "columns": [
   {
    "key": "type",
@@ -34,6 +34,11 @@
    "type": "num",
    "near": 300,
    "unit": "$"
+  },
+  {
+   "key": "origin",
+   "title": "Страна",
+   "type": "cat"
   }
  ],
  "items": [
@@ -49,7 +54,8 @@
    "alias": [
     "glock"
    ],
-   "url": "https://liquipedia.net/counterstrike/Glock-18"
+   "url": "https://liquipedia.net/counterstrike/Glock-18",
+   "origin": "Австрия"
   },
   {
    "id": "usp-s",
@@ -63,7 +69,8 @@
    "alias": [
     "usp"
    ],
-   "url": "https://liquipedia.net/counterstrike/USP-S"
+   "url": "https://liquipedia.net/counterstrike/USP-S",
+   "origin": "Германия"
   },
   {
    "id": "p2000",
@@ -75,7 +82,8 @@
    "mag": 13,
    "reward": 300,
    "alias": [],
-   "url": "https://liquipedia.net/counterstrike/P2000"
+   "url": "https://liquipedia.net/counterstrike/P2000",
+   "origin": "Германия"
   },
   {
    "id": "p250",
@@ -87,7 +95,8 @@
    "mag": 13,
    "reward": 300,
    "alias": [],
-   "url": "https://liquipedia.net/counterstrike/P250"
+   "url": "https://liquipedia.net/counterstrike/P250",
+   "origin": "Германия"
   },
   {
    "id": "dual-berettas",
@@ -102,7 +111,8 @@
     "dualies",
     "элиты"
    ],
-   "url": "https://liquipedia.net/counterstrike/Dual_Berettas"
+   "url": "https://liquipedia.net/counterstrike/Dual_Berettas",
+   "origin": "Италия"
   },
   {
    "id": "cz75-auto",
@@ -112,11 +122,12 @@
    "side": "Обе",
    "price": 500,
    "mag": 12,
-   "reward": 100,
+   "reward": 300,
    "alias": [
     "cz"
    ],
-   "url": "https://liquipedia.net/counterstrike/CZ75-Auto"
+   "url": "https://liquipedia.net/counterstrike/CZ75-Auto",
+   "origin": "Чехия"
   },
   {
    "id": "five-seven",
@@ -131,7 +142,8 @@
     "five seven",
     "фив"
    ],
-   "url": "https://liquipedia.net/counterstrike/Five-SeveN"
+   "url": "https://liquipedia.net/counterstrike/Five-SeveN",
+   "origin": "Бельгия"
   },
   {
    "id": "tec-9",
@@ -145,7 +157,8 @@
    "alias": [
     "tec"
    ],
-   "url": "https://liquipedia.net/counterstrike/Tec-9"
+   "url": "https://liquipedia.net/counterstrike/Tec-9",
+   "origin": "Швеция"
   },
   {
    "id": "desert-eagle",
@@ -160,7 +173,8 @@
     "deagle",
     "дигл"
    ],
-   "url": "https://liquipedia.net/counterstrike/Desert_Eagle"
+   "url": "https://liquipedia.net/counterstrike/Desert_Eagle",
+   "origin": "Израиль"
   },
   {
    "id": "r8-revolver",
@@ -175,7 +189,8 @@
     "revolver",
     "револьвер"
    ],
-   "url": "https://liquipedia.net/counterstrike/R8_Revolver"
+   "url": "https://liquipedia.net/counterstrike/R8_Revolver",
+   "origin": "США"
   },
   {
    "id": "mac-10",
@@ -189,7 +204,8 @@
    "alias": [
     "mac"
    ],
-   "url": "https://liquipedia.net/counterstrike/MAC-10"
+   "url": "https://liquipedia.net/counterstrike/MAC-10",
+   "origin": "США"
   },
   {
    "id": "mp9",
@@ -201,7 +217,8 @@
    "mag": 30,
    "reward": 600,
    "alias": [],
-   "url": "https://liquipedia.net/counterstrike/MP9"
+   "url": "https://liquipedia.net/counterstrike/MP9",
+   "origin": "Швейцария"
   },
   {
    "id": "mp7",
@@ -209,11 +226,12 @@
    "sub": "ПП",
    "type": "ПП",
    "side": "Обе",
-   "price": 1500,
+   "price": 1400,
    "mag": 30,
    "reward": 600,
    "alias": [],
-   "url": "https://liquipedia.net/counterstrike/MP7"
+   "url": "https://liquipedia.net/counterstrike/MP7",
+   "origin": "Германия"
   },
   {
    "id": "mp5-sd",
@@ -227,7 +245,8 @@
    "alias": [
     "mp5"
    ],
-   "url": "https://liquipedia.net/counterstrike/MP5-SD"
+   "url": "https://liquipedia.net/counterstrike/MP5-SD",
+   "origin": "Германия"
   },
   {
    "id": "ump-45",
@@ -241,7 +260,8 @@
    "alias": [
     "ump"
    ],
-   "url": "https://liquipedia.net/counterstrike/UMP-45"
+   "url": "https://liquipedia.net/counterstrike/UMP-45",
+   "origin": "Германия"
   },
   {
    "id": "p90",
@@ -255,7 +275,8 @@
    "alias": [
     "п90"
    ],
-   "url": "https://liquipedia.net/counterstrike/P90"
+   "url": "https://liquipedia.net/counterstrike/P90",
+   "origin": "Бельгия"
   },
   {
    "id": "pp-bizon",
@@ -263,14 +284,15 @@
    "sub": "ПП",
    "type": "ПП",
    "side": "Обе",
-   "price": 1400,
+   "price": 1300,
    "mag": 64,
    "reward": 600,
    "alias": [
     "bizon",
     "бизон"
    ],
-   "url": "https://liquipedia.net/counterstrike/PP-Bizon"
+   "url": "https://liquipedia.net/counterstrike/PP-Bizon",
+   "origin": "Россия"
   },
   {
    "id": "nova",
@@ -284,7 +306,8 @@
    "alias": [
     "нова"
    ],
-   "url": "https://liquipedia.net/counterstrike/Nova"
+   "url": "https://liquipedia.net/counterstrike/Nova",
+   "origin": "Италия"
   },
   {
    "id": "xm1014",
@@ -299,7 +322,8 @@
     "xm",
     "автошотган"
    ],
-   "url": "https://liquipedia.net/counterstrike/XM1014"
+   "url": "https://liquipedia.net/counterstrike/XM1014",
+   "origin": "Италия"
   },
   {
    "id": "sawed-off",
@@ -313,7 +337,8 @@
    "alias": [
     "обрез"
    ],
-   "url": "https://liquipedia.net/counterstrike/Sawed-Off"
+   "url": "https://liquipedia.net/counterstrike/Sawed-Off",
+   "origin": "США"
   },
   {
    "id": "mag-7",
@@ -327,7 +352,8 @@
    "alias": [
     "mag"
    ],
-   "url": "https://liquipedia.net/counterstrike/MAG-7"
+   "url": "https://liquipedia.net/counterstrike/MAG-7",
+   "origin": "ЮАР"
   },
   {
    "id": "m249",
@@ -341,7 +367,8 @@
    "alias": [
     "пулемет"
    ],
-   "url": "https://liquipedia.net/counterstrike/M249"
+   "url": "https://liquipedia.net/counterstrike/M249",
+   "origin": "Бельгия"
   },
   {
    "id": "negev",
@@ -355,7 +382,8 @@
    "alias": [
     "негев"
    ],
-   "url": "https://liquipedia.net/counterstrike/Negev"
+   "url": "https://liquipedia.net/counterstrike/Negev",
+   "origin": "Израиль"
   },
   {
    "id": "galil-ar",
@@ -370,7 +398,8 @@
     "galil",
     "галиль"
    ],
-   "url": "https://liquipedia.net/counterstrike/Galil_AR"
+   "url": "https://liquipedia.net/counterstrike/Galil_AR",
+   "origin": "Израиль"
   },
   {
    "id": "famas",
@@ -378,13 +407,14 @@
    "sub": "Винтовка",
    "type": "Винтовка",
    "side": "CT",
-   "price": 2050,
+   "price": 1950,
    "mag": 25,
    "reward": 300,
    "alias": [
     "фамас"
    ],
-   "url": "https://liquipedia.net/counterstrike/FAMAS"
+   "url": "https://liquipedia.net/counterstrike/FAMAS",
+   "origin": "Франция"
   },
   {
    "id": "ak-47",
@@ -399,7 +429,8 @@
     "ak",
     "калаш"
    ],
-   "url": "https://liquipedia.net/counterstrike/AK-47"
+   "url": "https://liquipedia.net/counterstrike/AK-47",
+   "origin": "СССР"
   },
   {
    "id": "m4a4",
@@ -407,13 +438,14 @@
    "sub": "Винтовка",
    "type": "Винтовка",
    "side": "CT",
-   "price": 3100,
+   "price": 2900,
    "mag": 30,
    "reward": 300,
    "alias": [
     "m4"
    ],
-   "url": "https://liquipedia.net/counterstrike/M4A4"
+   "url": "https://liquipedia.net/counterstrike/M4A4",
+   "origin": "США"
   },
   {
    "id": "m4a1-s",
@@ -428,7 +460,8 @@
     "m4a1",
     "эмка"
    ],
-   "url": "https://liquipedia.net/counterstrike/M4A1-S"
+   "url": "https://liquipedia.net/counterstrike/M4A1-S",
+   "origin": "США"
   },
   {
    "id": "sg-553",
@@ -443,7 +476,8 @@
     "sg",
     "krieg"
    ],
-   "url": "https://liquipedia.net/counterstrike/SG_553"
+   "url": "https://liquipedia.net/counterstrike/SG_553",
+   "origin": "Швейцария"
   },
   {
    "id": "aug",
@@ -457,7 +491,8 @@
    "alias": [
     "ауг"
    ],
-   "url": "https://liquipedia.net/counterstrike/AUG"
+   "url": "https://liquipedia.net/counterstrike/AUG",
+   "origin": "Австрия"
   },
   {
    "id": "ssg-08",
@@ -472,7 +507,8 @@
     "scout",
     "скаут"
    ],
-   "url": "https://liquipedia.net/counterstrike/SSG_08"
+   "url": "https://liquipedia.net/counterstrike/SSG_08",
+   "origin": "Австрия"
   },
   {
    "id": "awp",
@@ -487,7 +523,8 @@
     "авп",
     "слон"
    ],
-   "url": "https://liquipedia.net/counterstrike/AWP"
+   "url": "https://liquipedia.net/counterstrike/AWP",
+   "origin": "Великобритания"
   },
   {
    "id": "g3sg1",
@@ -502,7 +539,8 @@
     "autosniper",
     "автоснайп"
    ],
-   "url": "https://liquipedia.net/counterstrike/G3SG1"
+   "url": "https://liquipedia.net/counterstrike/G3SG1",
+   "origin": "Германия"
   },
   {
    "id": "scar-20",
@@ -517,7 +555,8 @@
     "scar",
     "автоснайп"
    ],
-   "url": "https://liquipedia.net/counterstrike/SCAR-20"
+   "url": "https://liquipedia.net/counterstrike/SCAR-20",
+   "origin": "Бельгия"
   }
  ]
 }
