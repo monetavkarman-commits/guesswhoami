@@ -46,6 +46,7 @@ function buildCS() {
   const missing = new Set();
   const teams = new TeamTable({ 'mousesports': 'MOUZ', 'Team EnVyUs': 'Team Envy', 'Heroic': 'HEROIC', 'Complexity': 'Complexity Gaming' });
   const PLAYER_ROLES = ['awp', 'igl', 'rifle', 'entry', 'lurker', 'support'];
+  const FORMER_IGL = new Set(['Gla1ve', 'Xizt', 'TaZ', 'NBK-', 'AZR', 'Snappi', 'Gade', 'TiziaN']);
 
   // Team history with stint notes (data/raw/cs-th.json, {{TH|dates|team|note}} per player page).
   // Benched ("Inactive") stints are dropped: a benched player did not play for the team then.
@@ -75,6 +76,8 @@ function buildCS() {
     const stints = history(p).map(([t, s, e]) => [teams.id(t), s, e || 209912]);
     let roles = p.r.filter((r) => PLAYER_ROLES.includes(r));
     if (!roles.length && p.r.some((r) => r.includes('coach'))) roles = ['coach'];
+    // Liquipedia lists only the CURRENT role, so famous in-game leaders who moved to coaching lost their IGL role
+    if (roles.includes('coach') && FORMER_IGL.has(p.p)) roles = ['igl', 'coach'];
     return {
       id: p.id, name: clean(p.n), url: 'https://liquipedia.net/counterstrike/' + encodeURI(p.p.replace(/ /g, '_')),
       ...countryOf(p.c, missing), birth: normBirth(p.b), status: status(p.s),
