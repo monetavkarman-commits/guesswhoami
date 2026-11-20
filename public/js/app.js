@@ -41,7 +41,7 @@ const MODES = {
   grid: { title: tr('Сетка'), icon: '▦', mod: grid },
   whoami: { title: tr('Кто я?'), icon: '?', mod: whoami },
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
-  items: { title: tr('Предметы'), icon: '◆', mod: items, gameTitle: { cs: tr('Оружие'), dota: tr('Герои') } },
+  items: { title: tr('Предметы'), icon: '◆', mod: items, gameTitle: { cs: tr('Оружие') } },
 };
 
 const root = document.getElementById('mode-root');
@@ -113,7 +113,7 @@ async function render() {
     const seed = (endless ? `${game}:${mode}:free:${endlessSeed}` : `${game}:${mode}:${key}`) + suffix;
     const id = endlessSeed;
     MODES[mode].mod.mount(root, data, {
-      seed, daily: !endless, day: num, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test,
+      seed, daily: !endless, day: num, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test, era: filtersFor(game)[fid].era,
       // endless and duel games end with a challenge link carrying the same puzzle id
       onFinish: endless ? ({ score }) => {
         root.querySelector('.duel')?.remove();

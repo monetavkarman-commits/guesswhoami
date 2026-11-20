@@ -43,7 +43,7 @@ class TeamTable {
 function buildCS() {
   const raw = JSON.parse(readFileSync(ROOT + 'data/raw/cs.json', 'utf8'));
   const missing = new Set();
-  const teams = new TeamTable({ 'mousesports': 'MOUZ', 'Team EnVyUs': 'Team Envy', 'Heroic': 'HEROIC' });
+  const teams = new TeamTable({ 'mousesports': 'MOUZ', 'Team EnVyUs': 'Team Envy', 'Heroic': 'HEROIC', 'Complexity': 'Complexity Gaming' });
   const PLAYER_ROLES = ['awp', 'igl', 'rifle', 'entry', 'lurker', 'support'];
 
   const seen = new Set();
@@ -73,6 +73,11 @@ function buildCS() {
     p.era = [];
     if (p._stints.some(([, st]) => st <= 202309)) p.era.push('csgo');
     if (p._stints.some(([, , e]) => e >= 202310)) p.era.push('cs2');
+    // teams per era, so era filters only ask about teams the player was on during that era
+    p.eraTeams = {
+      csgo: [...new Set(p._stints.filter(([, st]) => st <= 202309).map(([t]) => t))],
+      cs2: [...new Set(p._stints.filter(([, , e]) => e >= 202310).map(([t]) => t))],
+    };
     p.top = p.events >= 2; delete p._stints;
   });
 
@@ -91,7 +96,7 @@ const EVENT_ORDER = { 'The International/2019': 201908, 'The International/2021'
 function buildDota() {
   const raw = JSON.parse(readFileSync(ROOT + 'data/raw/dota.json', 'utf8'));
   const missing = new Set();
-  const teams = new TeamTable({});
+  const teams = new TeamTable({ 'nouns': 'Nouns Esports', 'PVISION': 'PARIVISION' });
   const byFrom = new Map(raw.players.filter((p) => !p.missing && p.id).map((p) => [p.from, p]));
   const apps = raw.appearances.filter((a) => byFrom.has(a.pl))
     .map((a) => ({ ...a, t: teams.id(a.team), when: EVENT_ORDER[a.ev] || a.yr * 100 }));
@@ -113,6 +118,10 @@ function buildDota() {
       events: new Set(mine.filter((a) => a.ev.startsWith('The International')).map((a) => a.ev)).size,
       teams: [...new Set(mine.map((a) => a.t))],
       era: [...new Set(mine.map((a) => (a.yr <= 2022 ? 'early' : 'late')))],
+      eraTeams: {
+        early: [...new Set(mine.filter((a) => a.yr <= 2022).map((a) => a.t))],
+        late: [...new Set(mine.filter((a) => a.yr > 2022).map((a) => a.t))],
+      },
       mates: [],
     };
   });

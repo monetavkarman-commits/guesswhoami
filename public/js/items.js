@@ -25,7 +25,7 @@ function cmp(col, g, t) {
   }
   return { res: a === b ? 'hit' : 'miss', arrow: '' };
 }
-const show = (col, v) => (Array.isArray(v) ? v.map((x) => tr(x)).join(', ') : v == null ? '—' : col.type === 'num' && col.unit ? `${v}${col.unit}` : tr(String(v)));
+const show = (col, v) => (Array.isArray(v) ? v.map((x) => tr(x)).join(', ') : v == null ? '—' : col.type === 'num' && col.unit ? (col.unit === '$' ? `$${v}` : `${v}${col.unit}`) : tr(String(v)));
 
 export const itemScore = (st) => (st.won ? Math.max(100, 1000 - 125 * (st.guesses.length - 1)) : 0);
 

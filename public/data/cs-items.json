@@ -1,0 +1,523 @@
+{
+ "modeTitle": "Оружие",
+ "nameTitle": "Оружие",
+ "placeholder": "Название оружия…",
+ "intro": "Угадайте оружие CS2 по типу, стороне, цене, магазину и награде за убийство. Зелёный — совпало, жёлтый — близко (цена ±$300, магазин ±5, награда ±$300), стрелка — больше или меньше.",
+ "source": "Значения из CS2 (соревновательный режим)",
+ "columns": [
+  {
+   "key": "type",
+   "title": "Тип",
+   "type": "cat"
+  },
+  {
+   "key": "side",
+   "title": "Сторона",
+   "type": "cat"
+  },
+  {
+   "key": "price",
+   "title": "Цена",
+   "type": "num",
+   "near": 300,
+   "unit": "$"
+  },
+  {
+   "key": "mag",
+   "title": "Магазин",
+   "type": "num",
+   "near": 5
+  },
+  {
+   "key": "reward",
+   "title": "Награда за убийство",
+   "type": "num",
+   "near": 300,
+   "unit": "$"
+  }
+ ],
+ "items": [
+  {
+   "id": "glock-18",
+   "name": "Glock-18",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "T",
+   "price": 200,
+   "mag": 20,
+   "reward": 300,
+   "alias": [
+    "glock"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Glock-18"
+  },
+  {
+   "id": "usp-s",
+   "name": "USP-S",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "CT",
+   "price": 200,
+   "mag": 12,
+   "reward": 300,
+   "alias": [
+    "usp"
+   ],
+   "url": "https://liquipedia.net/counterstrike/USP-S"
+  },
+  {
+   "id": "p2000",
+   "name": "P2000",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "CT",
+   "price": 200,
+   "mag": 13,
+   "reward": 300,
+   "alias": [],
+   "url": "https://liquipedia.net/counterstrike/P2000"
+  },
+  {
+   "id": "p250",
+   "name": "P250",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "Обе",
+   "price": 300,
+   "mag": 13,
+   "reward": 300,
+   "alias": [],
+   "url": "https://liquipedia.net/counterstrike/P250"
+  },
+  {
+   "id": "dual-berettas",
+   "name": "Dual Berettas",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "Обе",
+   "price": 300,
+   "mag": 30,
+   "reward": 300,
+   "alias": [
+    "dualies",
+    "элиты"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Dual_Berettas"
+  },
+  {
+   "id": "cz75-auto",
+   "name": "CZ75-Auto",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "Обе",
+   "price": 500,
+   "mag": 12,
+   "reward": 100,
+   "alias": [
+    "cz"
+   ],
+   "url": "https://liquipedia.net/counterstrike/CZ75-Auto"
+  },
+  {
+   "id": "five-seven",
+   "name": "Five-SeveN",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "CT",
+   "price": 500,
+   "mag": 20,
+   "reward": 300,
+   "alias": [
+    "five seven",
+    "фив"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Five-SeveN"
+  },
+  {
+   "id": "tec-9",
+   "name": "Tec-9",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "T",
+   "price": 500,
+   "mag": 18,
+   "reward": 300,
+   "alias": [
+    "tec"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Tec-9"
+  },
+  {
+   "id": "desert-eagle",
+   "name": "Desert Eagle",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "Обе",
+   "price": 700,
+   "mag": 7,
+   "reward": 300,
+   "alias": [
+    "deagle",
+    "дигл"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Desert_Eagle"
+  },
+  {
+   "id": "r8-revolver",
+   "name": "R8 Revolver",
+   "sub": "Пистолет",
+   "type": "Пистолет",
+   "side": "Обе",
+   "price": 600,
+   "mag": 8,
+   "reward": 300,
+   "alias": [
+    "revolver",
+    "револьвер"
+   ],
+   "url": "https://liquipedia.net/counterstrike/R8_Revolver"
+  },
+  {
+   "id": "mac-10",
+   "name": "MAC-10",
+   "sub": "ПП",
+   "type": "ПП",
+   "side": "T",
+   "price": 1050,
+   "mag": 30,
+   "reward": 600,
+   "alias": [
+    "mac"
+   ],
+   "url": "https://liquipedia.net/counterstrike/MAC-10"
+  },
+  {
+   "id": "mp9",
+   "name": "MP9",
+   "sub": "ПП",
+   "type": "ПП",
+   "side": "CT",
+   "price": 1250,
+   "mag": 30,
+   "reward": 600,
+   "alias": [],
+   "url": "https://liquipedia.net/counterstrike/MP9"
+  },
+  {
+   "id": "mp7",
+   "name": "MP7",
+   "sub": "ПП",
+   "type": "ПП",
+   "side": "Обе",
+   "price": 1500,
+   "mag": 30,
+   "reward": 600,
+   "alias": [],
+   "url": "https://liquipedia.net/counterstrike/MP7"
+  },
+  {
+   "id": "mp5-sd",
+   "name": "MP5-SD",
+   "sub": "ПП",
+   "type": "ПП",
+   "side": "Обе",
+   "price": 1500,
+   "mag": 30,
+   "reward": 600,
+   "alias": [
+    "mp5"
+   ],
+   "url": "https://liquipedia.net/counterstrike/MP5-SD"
+  },
+  {
+   "id": "ump-45",
+   "name": "UMP-45",
+   "sub": "ПП",
+   "type": "ПП",
+   "side": "Обе",
+   "price": 1200,
+   "mag": 25,
+   "reward": 600,
+   "alias": [
+    "ump"
+   ],
+   "url": "https://liquipedia.net/counterstrike/UMP-45"
+  },
+  {
+   "id": "p90",
+   "name": "P90",
+   "sub": "ПП",
+   "type": "ПП",
+   "side": "Обе",
+   "price": 2350,
+   "mag": 50,
+   "reward": 300,
+   "alias": [
+    "п90"
+   ],
+   "url": "https://liquipedia.net/counterstrike/P90"
+  },
+  {
+   "id": "pp-bizon",
+   "name": "PP-Bizon",
+   "sub": "ПП",
+   "type": "ПП",
+   "side": "Обе",
+   "price": 1400,
+   "mag": 64,
+   "reward": 600,
+   "alias": [
+    "bizon",
+    "бизон"
+   ],
+   "url": "https://liquipedia.net/counterstrike/PP-Bizon"
+  },
+  {
+   "id": "nova",
+   "name": "Nova",
+   "sub": "Дробовик",
+   "type": "Дробовик",
+   "side": "Обе",
+   "price": 1050,
+   "mag": 8,
+   "reward": 900,
+   "alias": [
+    "нова"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Nova"
+  },
+  {
+   "id": "xm1014",
+   "name": "XM1014",
+   "sub": "Дробовик",
+   "type": "Дробовик",
+   "side": "Обе",
+   "price": 2000,
+   "mag": 7,
+   "reward": 600,
+   "alias": [
+    "xm",
+    "автошотган"
+   ],
+   "url": "https://liquipedia.net/counterstrike/XM1014"
+  },
+  {
+   "id": "sawed-off",
+   "name": "Sawed-Off",
+   "sub": "Дробовик",
+   "type": "Дробовик",
+   "side": "T",
+   "price": 1100,
+   "mag": 7,
+   "reward": 900,
+   "alias": [
+    "обрез"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Sawed-Off"
+  },
+  {
+   "id": "mag-7",
+   "name": "MAG-7",
+   "sub": "Дробовик",
+   "type": "Дробовик",
+   "side": "CT",
+   "price": 1300,
+   "mag": 5,
+   "reward": 900,
+   "alias": [
+    "mag"
+   ],
+   "url": "https://liquipedia.net/counterstrike/MAG-7"
+  },
+  {
+   "id": "m249",
+   "name": "M249",
+   "sub": "Пулемёт",
+   "type": "Пулемёт",
+   "side": "Обе",
+   "price": 5200,
+   "mag": 100,
+   "reward": 300,
+   "alias": [
+    "пулемет"
+   ],
+   "url": "https://liquipedia.net/counterstrike/M249"
+  },
+  {
+   "id": "negev",
+   "name": "Negev",
+   "sub": "Пулемёт",
+   "type": "Пулемёт",
+   "side": "Обе",
+   "price": 1700,
+   "mag": 150,
+   "reward": 300,
+   "alias": [
+    "негев"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Negev"
+  },
+  {
+   "id": "galil-ar",
+   "name": "Galil AR",
+   "sub": "Винтовка",
+   "type": "Винтовка",
+   "side": "T",
+   "price": 1800,
+   "mag": 35,
+   "reward": 300,
+   "alias": [
+    "galil",
+    "галиль"
+   ],
+   "url": "https://liquipedia.net/counterstrike/Galil_AR"
+  },
+  {
+   "id": "famas",
+   "name": "FAMAS",
+   "sub": "Винтовка",
+   "type": "Винтовка",
+   "side": "CT",
+   "price": 2050,
+   "mag": 25,
+   "reward": 300,
+   "alias": [
+    "фамас"
+   ],
+   "url": "https://liquipedia.net/counterstrike/FAMAS"
+  },
+  {
+   "id": "ak-47",
+   "name": "AK-47",
+   "sub": "Винтовка",
+   "type": "Винтовка",
+   "side": "T",
+   "price": 2700,
+   "mag": 30,
+   "reward": 300,
+   "alias": [
+    "ak",
+    "калаш"
+   ],
+   "url": "https://liquipedia.net/counterstrike/AK-47"
+  },
+  {
+   "id": "m4a4",
+   "name": "M4A4",
+   "sub": "Винтовка",
+   "type": "Винтовка",
+   "side": "CT",
+   "price": 3100,
+   "mag": 30,
+   "reward": 300,
+   "alias": [
+    "m4"
+   ],
+   "url": "https://liquipedia.net/counterstrike/M4A4"
+  },
+  {
+   "id": "m4a1-s",
+   "name": "M4A1-S",
+   "sub": "Винтовка",
+   "type": "Винтовка",
+   "side": "CT",
+   "price": 2900,
+   "mag": 20,
+   "reward": 300,
+   "alias": [
+    "m4a1",
+    "эмка"
+   ],
+   "url": "https://liquipedia.net/counterstrike/M4A1-S"
+  },
+  {
+   "id": "sg-553",
+   "name": "SG 553",
+   "sub": "Винтовка",
+   "type": "Винтовка",
+   "side": "T",
+   "price": 3000,
+   "mag": 30,
+   "reward": 300,
+   "alias": [
+    "sg",
+    "krieg"
+   ],
+   "url": "https://liquipedia.net/counterstrike/SG_553"
+  },
+  {
+   "id": "aug",
+   "name": "AUG",
+   "sub": "Винтовка",
+   "type": "Винтовка",
+   "side": "CT",
+   "price": 3300,
+   "mag": 30,
+   "reward": 300,
+   "alias": [
+    "ауг"
+   ],
+   "url": "https://liquipedia.net/counterstrike/AUG"
+  },
+  {
+   "id": "ssg-08",
+   "name": "SSG 08",
+   "sub": "Снайперская",
+   "type": "Снайперская",
+   "side": "Обе",
+   "price": 1700,
+   "mag": 10,
+   "reward": 300,
+   "alias": [
+    "scout",
+    "скаут"
+   ],
+   "url": "https://liquipedia.net/counterstrike/SSG_08"
+  },
+  {
+   "id": "awp",
+   "name": "AWP",
+   "sub": "Снайперская",
+   "type": "Снайперская",
+   "side": "Обе",
+   "price": 4750,
+   "mag": 5,
+   "reward": 100,
+   "alias": [
+    "авп",
+    "слон"
+   ],
+   "url": "https://liquipedia.net/counterstrike/AWP"
+  },
+  {
+   "id": "g3sg1",
+   "name": "G3SG1",
+   "sub": "Снайперская",
+   "type": "Снайперская",
+   "side": "T",
+   "price": 5000,
+   "mag": 20,
+   "reward": 300,
+   "alias": [
+    "autosniper",
+    "автоснайп"
+   ],
+   "url": "https://liquipedia.net/counterstrike/G3SG1"
+  },
+  {
+   "id": "scar-20",
+   "name": "SCAR-20",
+   "sub": "Снайперская",
+   "type": "Снайперская",
+   "side": "CT",
+   "price": 5000,
+   "mag": 20,
+   "reward": 300,
+   "alias": [
+    "scar",
+    "автоснайп"
+   ],
+   "url": "https://liquipedia.net/counterstrike/SCAR-20"
+  }
+ ]
+}

@@ -8,17 +8,19 @@ import { recordResult, resultCard } from './stats.js';
 const GUESSES = 9;
 const SAME_KIND_FORBIDDEN = new Set(['country', 'age', 'events', 'status', 'pos']);
 
-function buildCriteria(data) {
+function buildCriteria(data, era) {
+  // with an era filter, "played for" only counts stints inside that era
+  const tset = (p) => (era ? p.eraSets[era] || new Set() : p.teamSet);
   const out = [];
   const P = data.players;
   const count = (test) => P.filter(test).length;
-  const minTeam = data.game === 'cs' ? 8 : 5;
+  const minTeam = era ? (data.game === 'cs' ? 5 : 3) : (data.game === 'cs' ? 8 : 5);
 
   // only teams with enough well-known players (2+ big events) become criteria, so grids stay fair
   const teamCounts = new Map();
-  P.filter((p) => p.events >= 2).forEach((p) => p.teams.forEach((t) => teamCounts.set(t, (teamCounts.get(t) || 0) + 1)));
+  P.filter((p) => p.events >= 2).forEach((p) => tset(p).forEach((t) => teamCounts.set(t, (teamCounts.get(t) || 0) + 1)));
   for (const [t, n] of teamCounts) if (n >= minTeam) {
-    out.push({ key: 't' + t, kind: 'team', label: data.teams[t], sub: tr('играл за'), test: (p) => p.teamSet.has(t) });
+    out.push({ key: 't' + t, kind: 'team', label: data.teams[t], sub: era ? tr('играл за в эту эру') : tr('играл за'), test: (p) => tset(p).has(t) });
   }
   const countries = new Map();
   P.forEach((p) => p.cc && countries.set(p.cc, (countries.get(p.cc) || 0) + 1));
@@ -42,9 +44,9 @@ function buildCriteria(data) {
   return out;
 }
 
-export function generateGrid(data, seed, filter = () => true) {
+export function generateGrid(data, seed, filter = () => true, era = null) {
   const r = rng(seed);
-  const all = buildCriteria(data);
+  const all = buildCriteria(data, era);
   // cells need 2+ answers among the players allowed by the difficulty filter
   all.forEach((c) => { c.set = new Set(data.players.filter((p) => filter(p) && c.test(p)).map((p) => p.idx)); });
   const inter = (a, b) => [...a.set].filter((i) => b.set.has(i));
@@ -54,16 +56,19 @@ export function generateGrid(data, seed, filter = () => true) {
   // non-team criteria of one kind may appear only once per grid (e.g. one age condition)
   const kindsOk = (list) => { const k = list.filter((c) => c.kind !== 'team').map((c) => c.kind); return new Set(k).size === k.length; };
 
-  for (let attempt = 0; attempt < 3000; attempt++) {
-    // rows: mostly teams, sometimes one other criterion
-    const rows = r() < 0.35 ? shuffle(r, teams).slice(0, 2).concat(shuffle(r, others).slice(0, 1)) : shuffle(r, teams).slice(0, 3);
-    if (!kindsOk(rows)) continue;
+  for (let attempt = 0; attempt < 4000; attempt++) {
+    // first try team-heavy grids; if the pool is small (e.g. a narrow era) allow more non-team criteria
+    const relaxed = attempt >= 2000;
+    const maxOther = relaxed ? 4 : 2;
+    const nRowTeams = relaxed ? 1 + Math.floor(r() * 2) : r() < 0.35 ? 2 : 3;
+    const rows = shuffle(r, teams).slice(0, nRowTeams).concat(shuffle(r, others).slice(0, 3 - nRowTeams));
+    if (rows.length < 3 || !kindsOk(rows)) continue;
     const cand = all.filter((c) => !rows.includes(c) && rows.every((row) => !clash(row, c) && inter(row, c).length >= 2));
     const cols = [];
     for (const c of shuffle(r, cand)) {
       if (cols.length === 3) break;
-      if (c.kind !== 'team' && rows.concat(cols).filter((x) => x.kind !== 'team').length >= 2) continue; // keep teams dominant
-      if (kindsOk(rows.concat(cols, [c]))) cols.push(c);
+      if (c.kind !== 'team' && rows.concat(cols).filter((x) => x.kind !== 'team').length >= maxOther) continue; // keep teams dominant
+      if (relaxed ? kindsOk(cols.concat([c])) : kindsOk(rows.concat(cols, [c]))) cols.push(c);
     }
     if (cols.length < 3) continue;
     const order = shuffle(r, cols);
@@ -83,8 +88,8 @@ function rarity(data, cellAnswers, idx) {
   return Math.round(10 + 90 * (more / Math.max(1, evs.length - 1)));
 }
 
-export function mount(root, data, { seed, daily, label, day, filter, onFinish }) {
-  const grid = generateGrid(data, seed, filter);
+export function mount(root, data, { seed, daily, label, day, filter, era, onFinish }) {
+  const grid = generateGrid(data, seed, filter, era);
   const saveKey = daily ? `grid:${seed}` : null;
   const state = (saveKey && store.get(saveKey)) || { cells: Array(9).fill(null), left: GUESSES, wrong: [], hints: {}, done: false };
   state.hints = state.hints || {};

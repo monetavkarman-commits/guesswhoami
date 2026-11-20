@@ -1,7 +1,7 @@
 // Offline support: app shell is cache-first, player data is network-first (falls back to cache offline).
-const VERSION = 'gwai-v3';
+const VERSION = 'gwai-v4';
 const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'js/app.js', 'js/core.js', 'js/core-store.js', 'js/i18n.js',
-  'js/grid.js', 'js/whoami.js', 'js/chain.js', 'js/stats.js', 'js/achievements.js', 'js/online.js', 'icons/icon-192.png', 'icons/icon-512.png'];
+  'js/grid.js', 'js/whoami.js', 'js/chain.js', 'js/stats.js', 'js/achievements.js', 'js/online.js', 'js/items.js', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', (e) => {

@@ -22,10 +22,10 @@ export function filtersFor(game) {
   return {
     all: { label: tr('Все игроки'), test: () => true },
     top: { label: tr('Только звёзды'), test: (p) => p.events >= (cs ? 3 : 2) },
-    active: { label: tr('Актуальные составы'), test: cs ? (p) => p.status === 'active' && !!p.team && p.era.includes('cs2') : (p) => p.status === 'active' && p.era.includes('late') },
+    active: { label: tr('Актуальные составы'), era: cs ? 'cs2' : 'late', test: cs ? (p) => p.status === 'active' && !!p.team && p.era.includes('cs2') : (p) => p.status === 'active' && p.era.includes('late') },
     ...(cs
-      ? { csgo: { label: tr('Эра CS:GO'), test: (p) => p.era.includes('csgo') }, cs2: { label: tr('Эра CS2'), test: (p) => p.era.includes('cs2') } }
-      : { early: { label: 'TI 2019–2022', test: (p) => p.era.includes('early') }, late: { label: 'TI 2023–2025', test: (p) => p.era.includes('late') } }),
+      ? { csgo: { label: tr('Эра CS:GO'), era: 'csgo', test: (p) => p.era.includes('csgo') }, cs2: { label: tr('Эра CS2'), era: 'cs2', test: (p) => p.era.includes('cs2') } }
+      : { early: { label: 'TI 2019–2022', era: 'early', test: (p) => p.era.includes('early') }, late: { label: 'TI 2023–2025', era: 'late', test: (p) => p.era.includes('late') } }),
   };
 }
 
@@ -39,6 +39,7 @@ export async function loadGame(game) {
   data.players.forEach((p, i) => {
     p.idx = i;
     p.teamSet = new Set(p.teams);
+    p.eraSets = Object.fromEntries(Object.entries(p.eraTeams || {}).map(([k, v]) => [k, new Set(v)]));
     p.mateMap = new Map(p.mates);
     p.age = p.birth ? ageOn(p.birth, now) : null;
     p.byear = p.birth ? +p.birth.slice(0, 4) : null;
