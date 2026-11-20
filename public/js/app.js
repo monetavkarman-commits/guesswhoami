@@ -10,19 +10,20 @@ import * as items from './items.js';
 import { askConsent } from './consent.js';
 import { startAnalytics, track, sendReport } from './analytics.js';
 import { renderHome } from './home.js';
-import { openPlayer } from './profile.js';
+import { openPlayer, openProfile } from './profile.js';
 import { initAccountButton, accountsEnabled, currentUser, client, openAccount } from './account.js';
 import { openLeaderboard, duelPanel, newDuelId, onlineReady } from './online.js';
 
-document.getElementById('profile-btn').addEventListener('click', () => openPlayer());
-document.addEventListener('gwai:open-player', () => openPlayer('profile'));
+const ctx = () => ({ game: parseHash().game, day: today().num });
+document.getElementById('profile-btn').addEventListener('click', () => openPlayer('stats', ctx()));
+document.addEventListener('gwai:open-player', () => openProfile());
 // on our own domain the site may not be shown inside someone else's frame (clickjacking); the Claude artifact runs framed on purpose
 if (window.top !== window.self && /(^|\.)guesswhoami\.eu$|github\.io$/.test(location.hostname)) {
   try { window.top.location = window.location.href; } catch { document.body.innerHTML = ''; }
 }
 initAccountButton(document.getElementById('account-btn'));
 onlineReady().then((ok) => { if (!ok) document.getElementById('board-btn').style.display = 'none'; });
-document.getElementById('board-btn').addEventListener('click', () => openLeaderboard(parseHash().game, today().num));
+document.getElementById('board-btn').addEventListener('click', () => openPlayer('rating', ctx()));
 
 // language, theme, footer and offline support
 const langBtn = document.getElementById('lang-btn');

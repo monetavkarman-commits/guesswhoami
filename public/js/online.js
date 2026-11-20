@@ -97,9 +97,15 @@ async function names(on, ids) {
   catch { return () => tr('Игрок'); }
 }
 
-export async function openLeaderboard(game, day) {
-  const body = h('div', { class: 'stack' }, h('p', { class: 'muted' }, tr('Загрузка…')));
+export function openLeaderboard(game, day) {
+  const body = h('div', { class: 'stack' });
   modal(tr('Рейтинг'), body, null, 'wide');
+  return fillLeaderboard(body, game, day, true);
+}
+
+export async function fillLeaderboard(body, game, day, withMine = true) {
+  body.innerHTML = '';
+  body.append(h('p', { class: 'muted' }, tr('Загрузка…')));
   const on = await init();
   body.innerHTML = '';
   if (!on) { body.append(h('p', { class: 'muted' }, tr('Рейтинг сейчас недоступен.'))); return; }
@@ -122,7 +128,7 @@ export async function openLeaderboard(game, day) {
   // personal card: place among everyone, total, games played, average and the split by game
   const ranked = rows.filter((r) => r.total > 0).sort((a, b) => b.total - a.total);
   const mine = on.uid && ranked.find((r) => r.id === on.uid);
-  if (mine) {
+  if (mine && withMine) {
     const place = ranked.indexOf(mine) + 1;
     const stat = (v, l) => h('div', { class: 'stat-tile' }, h('b', {}, String(v)), h('span', {}, l));
     const by = Object.entries(mine.by || {}).sort((a, b) => b[1].t - a[1].t);

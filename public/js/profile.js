@@ -2,7 +2,7 @@
 import { tr, lang, setLang } from './i18n.js';
 import { h, modal, toast, store, GAMES } from './core.js';
 import { client, currentUser, nameOf, openAccount } from './account.js';
-import { mySummary } from './online.js';
+import { mySummary, fillLeaderboard } from './online.js';
 import { localStatsBlock, achievementsBlock, overallLocal, unlocked, ACHIEVEMENTS } from './achievements.js';
 import { askConsent, consent } from './consent.js';
 
@@ -10,7 +10,7 @@ const AVATARS = ['🎮', '🎯', '🦊', '🐺', '🐯', '🦁', '🐼', '🦉',
 const tile = (v, l) => h('div', { class: 'stat-tile' }, h('b', {}, String(v)), h('span', {}, l));
 export const avatarOf = (u) => (u && u.user_metadata && u.user_metadata.avatar) || '🎮';
 
-export async function openPlayer(startTab = 'profile') {
+export async function openPlayer(startTab = 'stats', ctx = {}) {
   const sb = await client();
   let user = sb ? await currentUser() : null;
   const body = h('div', { class: 'stack player' });
@@ -18,7 +18,7 @@ export async function openPlayer(startTab = 'profile') {
   const pane = h('div', { class: 'stack' });
   modal(tr('Игрок'), h('div', { class: 'stack' }, tabs, pane), null, 'wide');
   let sum; let sumP = user ? mySummary() : Promise.resolve(null);
-  const T = [['profile', tr('Профиль')], ['stats', tr('Статистика')], ['settings', tr('Настройки')]];
+  const T = [['stats', tr('Моя статистика')], ['rating', tr('Рейтинг')], ['ach', tr('Достижения')]];
   let cur = startTab;
   const loginCta = () => h('div', { class: 'card-soft' }, h('p', {}, tr('Войдите, чтобы попасть в рейтинг и сохранить статистику на всех устройствах.')),
     sb ? h('button', { class: 'btn', onclick: () => openAccount(sb, null) }, tr('Войти')) : null);
@@ -27,31 +27,33 @@ export async function openPlayer(startTab = 'profile') {
     cur = tab; tabs.innerHTML = '';
     T.forEach(([id, label]) => tabs.append(h('button', { class: id === tab ? 'active' : '', onclick: () => show(id) }, label)));
     pane.innerHTML = '';
-    if (tab === 'profile') {
-      const got = Object.keys(unlocked()).length;
-      pane.append(h('div', { class: 'player-head' }, h('div', { class: 'avatar-big' }, user ? avatarOf(user) : '👤'),
-        h('div', {}, h('h3', {}, user ? nameOf(user) : tr('Гость')), user ? h('div', { class: 'muted small' }, user.email, ' · ', tr('с {0}', [new Date(user.created_at).toLocaleDateString(lang === 'en' ? 'en-GB' : 'ru-RU')])) : h('div', { class: 'muted small' }, tr('Вы играете без аккаунта')))));
-      if (!user) pane.append(loginCta());
+    if (tab === 'stats') {
       const l = overallLocal();
-      pane.append(h('div', { class: 'stat-tiles' }, tile(l.played, tr('сыграно ежедневок')), tile(l.played ? Math.round(100 * l.wins / l.played) + '%' : '—', tr('побед')), tile(l.streak, tr('текущая серия')), tile(l.best, tr('лучшая серия')), tile(got + '/' + ACHIEVEMENTS.length, tr('достижений'))),
-        achievementsBlock());
-    } else if (tab === 'stats') {
+      pane.append(h('div', { class: 'player-head' }, h('div', { class: 'avatar-big' }, user ? avatarOf(user) : '👤'), h('h3', {}, user ? nameOf(user) : tr('Гость'))));
       pane.append(h('p', { class: 'muted' }, tr('Загрузка…')));
       sum = await sumP; if (cur !== 'stats') return;
-      pane.innerHTML = '';
+      pane.lastChild.remove();
       if (user && sum) {
         const by = Object.entries(sum.by || {}).sort((a, b) => b[1].t - a[1].t);
-        pane.append(h('h4', {}, tr('Общий рейтинг')),
+        pane.append(h('h4', {}, tr('Общая статистика')),
           h('div', { class: 'stat-tiles' }, tile(sum.place ? sum.place + ' / ' + sum.of : '—', tr('место в рейтинге')), tile(sum.total || 0, tr('очков всего')), tile(sum.games || 0, tr('сыграно игр')), tile(sum.games ? Math.round(sum.total / sum.games) : 0, tr('среднее за игру'))),
           by.length ? h('ul', { class: 'pages' }, by.map(([g, v]) => h('li', {}, h('span', {}, (GAMES[g] ? GAMES[g].short : g) + ' · ' + tr('{0} игр', [v.n]) + ' · ' + tr('рекорд {0}', [v.best])), h('b', {}, String(v.t))))) : h('p', { class: 'muted small' }, tr('Разбивка по играм появится после следующих ежедневок.')));
       } else if (!user) pane.append(loginCta());
-      pane.append(h('h4', {}, tr('Ежедневные игры на этом устройстве')), localStatsBlock());
+      pane.append(h('div', { class: 'stat-tiles' }, tile(l.played, tr('сыграно ежедневок')), tile(l.played ? Math.round(100 * l.wins / l.played) + '%' : '—', tr('побед')), tile(l.streak, tr('текущая серия')), tile(l.best, tr('лучшая серия'))),
+        h('h4', {}, tr('Ежедневные игры на этом устройстве')), localStatsBlock());
+    } else if (tab === 'rating') {
+      const box = h('div', { class: 'stack' }); pane.append(box);
+      await fillLeaderboard(box, ctx.game || 'cs', ctx.day || 1, false);
     } else {
-      pane.append(...settings());
+      pane.append(achievementsBlock());
     }
   }
 
-  function settings() {
+  show(startTab);
+}
+
+function profileSettings(sb, user, loginCta, rerender) {
+  {
     const out = [];
     const msg = h('p', { class: 'muted small' });
     if (user) {
@@ -67,7 +69,7 @@ export async function openPlayer(startTab = 'profile') {
         if (error) { msg.textContent = tr('Ошибка: {0}', [error.message]); return; }
         user = data.user;
         try { await sb.from('profiles').upsert({ id: user.id, name }); } catch { /* not fatal */ }
-        toast(tr('Сохранено')); show('settings');
+        toast(tr('Сохранено')); rerender(user);
       } }, tr('Сохранить'));
       const p1 = h('input', { class: 'search-input', type: 'password', autocomplete: 'new-password', placeholder: tr('Новый пароль (от 8 символов)'), maxlength: 72 });
       const pbtn = h('button', { class: 'btn ghost', onclick: async () => {
@@ -97,5 +99,21 @@ export async function openPlayer(startTab = 'profile') {
     out.push(msg);
     return out;
   }
-  show(startTab);
+}
+
+// the "Профиль" button: who you are and the settings
+export async function openProfile() {
+  const sb = await client();
+  const user = sb ? await currentUser() : null;
+  const pane = h('div', { class: 'stack' });
+  const close = modal(tr('Профиль'), pane, null, 'wide');
+  const draw = (u) => {
+    pane.innerHTML = '';
+    const loginCta = () => h('div', { class: 'card-soft' }, h('p', {}, tr('Войдите, чтобы попасть в рейтинг и сохранить статистику на всех устройствах.')),
+      sb ? h('button', { class: 'btn', onclick: () => { close(); openAccount(sb, null); } }, tr('Войти')) : null);
+    pane.append(h('div', { class: 'player-head' }, h('div', { class: 'avatar-big' }, u ? avatarOf(u) : '👤'),
+      h('div', {}, h('h3', {}, u ? nameOf(u) : tr('Гость')), u ? h('div', { class: 'muted small' }, u.email, ' · ', tr('с {0}', [new Date(u.created_at).toLocaleDateString(lang === 'en' ? 'en-GB' : 'ru-RU')])) : h('div', { class: 'muted small' }, tr('Вы играете без аккаунта')))),
+      ...profileSettings(sb, u, loginCta, draw));
+  };
+  draw(user);
 }
