@@ -4,6 +4,7 @@
 //
 //   node scripts/build-sports.mjs
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { COUNTRIES, REGIONS } from './countries.mjs';
 import { bestOverlap } from './overlap.mjs';
 
@@ -14,6 +15,18 @@ const BY_ISO = {};
 for (const [en, [iso, ru, region]] of Object.entries(COUNTRIES)) if (!BY_ISO[iso]) BY_ISO[iso] = { en, ru, region };
 const NOW = +today.slice(0, 4) * 100 + +today.slice(5, 7);
 const ym = (s) => (s && /^\d{4}-\d\d/.test(s) ? +s.slice(0, 4) * 100 + +s.slice(5, 7) : null);
+
+// Pictures are never copied: Wikidata gives the Commons file (P18 photo, P154 logo) and the page loads a small thumbnail from
+// upload.wikimedia.org. A path "a/ab/File.jpg" is where Commons keeps the file (first characters of the MD5 of its name).
+// data/raw/sport-images.json = { p: {playerQ: file}, t: {teamQ: file} } is fetched from Wikidata by the queries in data/raw/sport-qids.json.
+const IMGS = existsSync(ROOT + 'data/raw/sport-images.json') ? JSON.parse(readFileSync(ROOT + 'data/raw/sport-images.json', 'utf8')) : { p: {}, t: {} };
+const commonsPath = (file) => {
+  const name = decodeURIComponent(String(file).replace(/^.*Special:FilePath\//, '')).replace(/ /g, '_');
+  if (!/\.(jpe?g|png|svg|webp|gif)$/i.test(name)) return null;
+  const md5 = createHash('md5').update(name).digest('hex');
+  return `${md5[0]}/${md5.slice(0, 2)}/${name}`;
+};
+const QIDS = { football: { p: [], t: {} }, basket: { p: [], t: {} }, tennis: { p: [], t: {} } };
 
 function load(sport) {
   const f = ROOT + `data/raw/${sport}-wd.json`;
@@ -53,9 +66,10 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
   const T = (label) => { if (!teamIdx.has(label)) { teamIdx.set(label, teamList.length); teamList.push(label); } return teamIdx.get(label); };
 
   // stints per player: clubs only (national and youth teams are left out: "country" already covers them)
-  const stintsBy = new Map();
+  const stintsBy = new Map(); const nameQ = new Map();
   for (const [p, team, label, nat, s, e] of raw.teams) {
     if (nat || !label || /^Q\d+$/.test(label) || /national|olympic/i.test(label) || YOUTH.test(label) || !keepTeam(label)) continue;
+    if (!nameQ.has(clubName(label))) nameQ.set(clubName(label), team);
     const list = stintsBy.get(p) || []; list.push({ team: clubName(label), s: ym(s), e: ym(e) }); stintsBy.set(p, list);
   }
   const players = [];
@@ -108,7 +122,18 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
     }
     delete p._stints;
   });
-  return { missing, out: { game: sport, title, eventLabel, generated: today, source: SOURCE, sourceNote, regions: REGIONS, teams: teamList, players } };
+  // photos and club logos (when data/raw/sport-images.json has them)
+  players.forEach((p) => {
+    const q = p.url.split('/').pop(); QIDS[sport].p.push(q);
+    const ph = IMGS.p[q] && commonsPath(IMGS.p[q]); if (ph) p.ph = ph;
+  });
+  const logos = {};
+  teamList.forEach((n, i) => {
+    const q = nameQ.get(n); if (!q) return; QIDS[sport].t[q] = n;
+    const lg = IMGS.t[q] && commonsPath(IMGS.t[q]); if (lg) logos[i] = lg;
+  });
+  console.log(`  ${sport}: photos ${players.filter((p) => p.ph).length}/${players.length}, logos ${Object.keys(logos).length}/${teamList.length}`);
+  return { missing, out: { game: sport, title, eventLabel, generated: today, source: SOURCE, sourceNote, regions: REGIONS, teams: teamList, logos, players } };
 }
 // club names: drop legal suffixes so "Real Madrid Club de Fútbol" and "Real Madrid CF" become one club
 const CLUB = { 'Real Madrid Club de Fútbol': 'Real Madrid', 'Paris Saint-Germain FC': 'Paris Saint-Germain', 'Clube de Regatas do Flamengo': 'Flamengo',
@@ -181,7 +206,9 @@ for (const [name, fn] of builds) {
         height: o.h ? Math.round(+o.h < 3 ? +o.h * 100 : +o.h) : null,
         pro: o.start ? +o.start : null, fame: o.sl,
         url: `https://www.wikidata.org/wiki/${o.p}`,
+        ...(IMGS.p[o.p] && commonsPath(IMGS.p[o.p]) ? { img: commonsPath(IMGS.p[o.p]) } : {}),
       });
+      QIDS.tennis.p.push(o.p);
     }
     items.sort((a, b) => b.fame - a.fame);
     const data = {
@@ -200,8 +227,11 @@ for (const [name, fn] of builds) {
       ],
       items,
     };
+    data.imgWm = true; // item pictures are Wikimedia Commons paths
     writeFileSync(ROOT + 'public/data/tennis-items.json', JSON.stringify(data));
+    console.log(`  tennis photos ${items.filter((x) => x.img).length}/${items.length}`);
     console.log(`tennis: ${items.length} players, with hand ${items.filter((x) => x.hand).length}, height ${items.filter((x) => x.height).length}, pro ${items.filter((x) => x.pro).length}`);
     if (missing.size) console.warn('  ISO codes missing from countries.mjs:', [...missing].join(', '));
   }
 }
+writeFileSync(ROOT + 'data/raw/sport-qids.json', JSON.stringify(QIDS));
