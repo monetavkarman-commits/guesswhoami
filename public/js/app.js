@@ -5,6 +5,7 @@ import * as grid from './grid.js';
 import * as whoami from './whoami.js';
 import * as chain from './chain.js';
 import * as team from './team.js';
+import * as lineup from './lineup.js';
 import * as items from './items.js';
 import { askConsent } from './consent.js';
 import { startAnalytics, track, sendReport } from './analytics.js';
@@ -54,6 +55,7 @@ const MODES = {
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
   items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), lol: tr('Чемпионы'), deadlock: tr('Герои'), tennis: tr('Теннисисты'), hockey: tr('Хоккеисты'), mma: tr('Бойцы'), boxing: tr('Боксёры') } },
   team: { title: tr('Команда'), icon: '🏷', mod: team, noFilter: true, gameTitle: Object.fromEntries(['cs', 'dota', 'valorant', 'lol', 'football', 'basket'].map((g) => [g, tr('Угадай команду')])) },
+  lineup: { title: tr('Состав'), icon: '👥', mod: lineup, noFilter: true, gameTitle: Object.fromEntries(['cs', 'dota', 'valorant', 'lol', 'football', 'basket'].map((g) => [g, tr('Угадай состав')])) },
   maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
   gear: { title: tr('Предметы'), icon: '🛡', mod: items, set: 'gear', gameTitle: { dota: tr('Предметы'), lol: tr('Предметы'), deadlock: tr('Предметы') } },
 };
