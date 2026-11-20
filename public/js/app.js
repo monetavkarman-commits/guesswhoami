@@ -41,7 +41,7 @@ const MODES = {
   grid: { title: tr('Сетка'), icon: '▦', mod: grid },
   whoami: { title: tr('Кто я?'), icon: '?', mod: whoami },
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
-  items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), tennis: tr('Теннисисты') } },
+  items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), lol: tr('Чемпионы'), tennis: tr('Теннисисты') } },
   maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
   gear: { title: tr('Предметы'), icon: '🛡', mod: items, set: 'gear', gameTitle: { dota: tr('Предметы'), lol: tr('Предметы') } },
 };

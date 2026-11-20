@@ -1,0 +1,3294 @@
+{
+ "modeTitle": "Чемпионы",
+ "nameTitle": "Чемпион",
+ "placeholder": "Имя чемпиона (англ. или рус.)…",
+ "intro": "Угадайте чемпиона League of Legends по классу, ресурсу, типу атаки, дальности, скорости, здоровью на 1 уровне и сложности. Зелёный — совпало, жёлтый — близко (классы пересекаются, дальность ±50, скорость ±5, здоровье ±20, сложность ±1), стрелка — больше или меньше.",
+ "source": "Riot Games Data Dragon, патч 16.23.1",
+ "columns": [
+  {
+   "key": "classes",
+   "title": "Класс",
+   "type": "set"
+  },
+  {
+   "key": "resource",
+   "title": "Ресурс",
+   "type": "cat"
+  },
+  {
+   "key": "atk",
+   "title": "Атака",
+   "type": "cat"
+  },
+  {
+   "key": "range",
+   "title": "Дальность",
+   "type": "num",
+   "near": 50
+  },
+  {
+   "key": "ms",
+   "title": "Скорость",
+   "type": "num",
+   "near": 5
+  },
+  {
+   "key": "hp",
+   "title": "Здоровье",
+   "type": "num",
+   "near": 20
+  },
+  {
+   "key": "diff",
+   "title": "Сложность",
+   "type": "num",
+   "near": 1
+  }
+ ],
+ "items": [
+  {
+   "id": "aatrox",
+   "name": "Aatrox",
+   "sub": "Атрокс, Клинок даркинов",
+   "alias": [
+    "Атрокс"
+   ],
+   "classes": [
+    "Боец"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 650,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Aatrox"
+  },
+  {
+   "id": "ahri",
+   "name": "Ahri",
+   "sub": "Ари, Девятихвостая лиса",
+   "alias": [
+    "Ари"
+   ],
+   "classes": [
+    "Маг",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 590,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ahri"
+  },
+  {
+   "id": "akali",
+   "name": "Akali",
+   "sub": "Акали, Вольная убийца",
+   "alias": [
+    "Акали"
+   ],
+   "classes": [
+    "Убийца"
+   ],
+   "resource": "Энергия",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 600,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Akali"
+  },
+  {
+   "id": "akshan",
+   "name": "Akshan",
+   "sub": "Акшан, Своевольный Страж",
+   "alias": [
+    "Акшан"
+   ],
+   "classes": [
+    "Стрелок",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 330,
+   "hp": 610,
+   "diff": 0,
+   "url": "https://wiki.leagueoflegends.com/en-us/Akshan"
+  },
+  {
+   "id": "alistar",
+   "name": "Alistar",
+   "sub": "Алистар, Минотавр",
+   "alias": [
+    "Алистар"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 685,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Alistar"
+  },
+  {
+   "id": "ambessa",
+   "name": "Ambessa",
+   "sub": "Амбесса, Матриарх войны",
+   "alias": [
+    "Амбесса"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Энергия",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 630,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ambessa"
+  },
+  {
+   "id": "amumu",
+   "name": "Amumu",
+   "sub": "Амуму, Печальная мумия",
+   "alias": [
+    "Амуму"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 685,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Amumu"
+  },
+  {
+   "id": "anivia",
+   "name": "Anivia",
+   "sub": "Анивия, Криофеникс",
+   "alias": [
+    "Анивия"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 600,
+   "ms": 325,
+   "hp": 550,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Anivia"
+  },
+  {
+   "id": "annie",
+   "name": "Annie",
+   "sub": "Энни, Дитя тьмы",
+   "alias": [
+    "Энни"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 625,
+   "ms": 335,
+   "hp": 560,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Annie"
+  },
+  {
+   "id": "aphelios",
+   "name": "Aphelios",
+   "sub": "Афелий, Оружие веры",
+   "alias": [
+    "Афелий"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 600,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Aphelios"
+  },
+  {
+   "id": "ashe",
+   "name": "Ashe",
+   "sub": "Эш, Ледяная лучница",
+   "alias": [
+    "Эш"
+   ],
+   "classes": [
+    "Стрелок",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 600,
+   "ms": 325,
+   "hp": 610,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ashe"
+  },
+  {
+   "id": "aurelionsol",
+   "name": "Aurelion Sol",
+   "sub": "Аурелион Сол, Создатель звезд",
+   "alias": [
+    "Аурелион Сол"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 340,
+   "hp": 600,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Aurelion_Sol"
+  },
+  {
+   "id": "aurora",
+   "name": "Aurora",
+   "sub": "Аврора, Ведьма двух миров",
+   "alias": [
+    "Аврора"
+   ],
+   "classes": [
+    "Маг",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 335,
+   "hp": 607,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Aurora"
+  },
+  {
+   "id": "azir",
+   "name": "Azir",
+   "sub": "Азир, Император пустыни",
+   "alias": [
+    "Азир"
+   ],
+   "classes": [
+    "Маг",
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 575,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Azir"
+  },
+  {
+   "id": "bard",
+   "name": "Bard",
+   "sub": "Бард, Странствующий хранитель",
+   "alias": [
+    "Бард"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 335,
+   "hp": 630,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Bard"
+  },
+  {
+   "id": "belveth",
+   "name": "Bel'Veth",
+   "sub": "Бел'Вет, Императрица Бездны",
+   "alias": [
+    "Бел'Вет"
+   ],
+   "classes": [
+    "Боец"
+   ],
+   "resource": "Без ресурса",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 340,
+   "hp": 580,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Bel'Veth"
+  },
+  {
+   "id": "blitzcrank",
+   "name": "Blitzcrank",
+   "sub": "Блицкранк, Великий паровой голем",
+   "alias": [
+    "Блицкранк"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 325,
+   "hp": 600,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Blitzcrank"
+  },
+  {
+   "id": "brand",
+   "name": "Brand",
+   "sub": "Брэнд, Пылающее возмездие",
+   "alias": [
+    "Брэнд"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 340,
+   "hp": 570,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Brand"
+  },
+  {
+   "id": "braum",
+   "name": "Braum",
+   "sub": "Браум, Сердце Фрельйорда",
+   "alias": [
+    "Браум"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 610,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Braum"
+  },
+  {
+   "id": "briar",
+   "name": "Briar",
+   "sub": "Брайер, Обузданный голод",
+   "alias": [
+    "Брайер"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 625,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Briar"
+  },
+  {
+   "id": "caitlyn",
+   "name": "Caitlyn",
+   "sub": "Кейтлин, Шериф Пилтовера",
+   "alias": [
+    "Кейтлин"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 650,
+   "ms": 325,
+   "hp": 580,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Caitlyn"
+  },
+  {
+   "id": "camille",
+   "name": "Camille",
+   "sub": "Камилла, Стальная тень",
+   "alias": [
+    "Камилла"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 650,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Camille"
+  },
+  {
+   "id": "cassiopeia",
+   "name": "Cassiopeia",
+   "sub": "Кассиопея, Змеиная хватка",
+   "alias": [
+    "Кассиопея"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 335,
+   "hp": 610,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Cassiopeia"
+  },
+  {
+   "id": "chogath",
+   "name": "Cho'Gath",
+   "sub": "Чо'Гат, Ужас Бездны",
+   "alias": [
+    "Чо'Гат"
+   ],
+   "classes": [
+    "Танк",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 644,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Cho'Gath"
+  },
+  {
+   "id": "corki",
+   "name": "Corki",
+   "sub": "Корки, Отважный бомбардир",
+   "alias": [
+    "Корки"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 610,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Corki"
+  },
+  {
+   "id": "darius",
+   "name": "Darius",
+   "sub": "Дариус, Рука Ноксуса",
+   "alias": [
+    "Дариус"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 652,
+   "diff": 2,
+   "url": "https://wiki.leagueoflegends.com/en-us/Darius"
+  },
+  {
+   "id": "diana",
+   "name": "Diana",
+   "sub": "Диана, Превосходство Луны",
+   "alias": [
+    "Диана"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 345,
+   "hp": 640,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Diana"
+  },
+  {
+   "id": "drmundo",
+   "name": "Dr. Mundo",
+   "sub": "Доктор Мундо, Сумасшедший из Зауна",
+   "alias": [
+    "Доктор Мундо"
+   ],
+   "classes": [
+    "Танк",
+    "Боец"
+   ],
+   "resource": "Без ресурса",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 640,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Dr._Mundo"
+  },
+  {
+   "id": "draven",
+   "name": "Draven",
+   "sub": "Дрейвен, Блистательный палач",
+   "alias": [
+    "Дрейвен"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 675,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Draven"
+  },
+  {
+   "id": "ekko",
+   "name": "Ekko",
+   "sub": "Экко, Покоритель времени",
+   "alias": [
+    "Экко"
+   ],
+   "classes": [
+    "Убийца",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 655,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ekko"
+  },
+  {
+   "id": "elise",
+   "name": "Elise",
+   "sub": "Элиза, Королева пауков",
+   "alias": [
+    "Элиза"
+   ],
+   "classes": [
+    "Убийца",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 620,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Elise"
+  },
+  {
+   "id": "evelynn",
+   "name": "Evelynn",
+   "sub": "Эвелинн, Объятия агонии",
+   "alias": [
+    "Эвелинн"
+   ],
+   "classes": [
+    "Убийца",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 642,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Evelynn"
+  },
+  {
+   "id": "ezreal",
+   "name": "Ezreal",
+   "sub": "Эзреаль, Вольный исследователь",
+   "alias": [
+    "Эзреаль"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 600,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ezreal"
+  },
+  {
+   "id": "fiddlesticks",
+   "name": "Fiddlesticks",
+   "sub": "Фиддлстикс, Древний ужас",
+   "alias": [
+    "Фиддлстикс"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 480,
+   "ms": 335,
+   "hp": 650,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Fiddlesticks"
+  },
+  {
+   "id": "fiora",
+   "name": "Fiora",
+   "sub": "Фиора, Бесподобный дуэлянт",
+   "alias": [
+    "Фиора"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 345,
+   "hp": 620,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Fiora"
+  },
+  {
+   "id": "fizz",
+   "name": "Fizz",
+   "sub": "Физз, Морской ловкач",
+   "alias": [
+    "Физз"
+   ],
+   "classes": [
+    "Убийца",
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 335,
+   "hp": 640,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Fizz"
+  },
+  {
+   "id": "galio",
+   "name": "Galio",
+   "sub": "Галио, Колосс",
+   "alias": [
+    "Галио"
+   ],
+   "classes": [
+    "Танк",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 340,
+   "hp": 600,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Galio"
+  },
+  {
+   "id": "gangplank",
+   "name": "Gangplank",
+   "sub": "Гангпланк, Гроза морей",
+   "alias": [
+    "Гангпланк"
+   ],
+   "classes": [
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 630,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Gangplank"
+  },
+  {
+   "id": "garen",
+   "name": "Garen",
+   "sub": "Гарен, Мощь Демасии",
+   "alias": [
+    "Гарен"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Без ресурса",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 690,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Garen"
+  },
+  {
+   "id": "gnar",
+   "name": "Gnar",
+   "sub": "Гнар, Недостающее звено",
+   "alias": [
+    "Гнар"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 335,
+   "hp": 540,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Gnar"
+  },
+  {
+   "id": "gragas",
+   "name": "Gragas",
+   "sub": "Грагас, Бедокур",
+   "alias": [
+    "Грагас"
+   ],
+   "classes": [
+    "Боец",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 330,
+   "hp": 640,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Gragas"
+  },
+  {
+   "id": "graves",
+   "name": "Graves",
+   "sub": "Грейвз, Беззаконник",
+   "alias": [
+    "Грейвз"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 425,
+   "ms": 340,
+   "hp": 625,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Graves"
+  },
+  {
+   "id": "gwen",
+   "name": "Gwen",
+   "sub": "Гвен, Благая швея",
+   "alias": [
+    "Гвен"
+   ],
+   "classes": [
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 340,
+   "hp": 620,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Gwen"
+  },
+  {
+   "id": "hecarim",
+   "name": "Hecarim",
+   "sub": "Гекарим, Призрак войны",
+   "alias": [
+    "Гекарим"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 625,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Hecarim"
+  },
+  {
+   "id": "heimerdinger",
+   "name": "Heimerdinger",
+   "sub": "Хеймердингер, Одержимый ученый",
+   "alias": [
+    "Хеймердингер"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 340,
+   "hp": 558,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Heimerdinger"
+  },
+  {
+   "id": "hwei",
+   "name": "Hwei",
+   "sub": "Хвэй, Творец",
+   "alias": [
+    "Хвэй"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 580,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Hwei"
+  },
+  {
+   "id": "illaoi",
+   "name": "Illaoi",
+   "sub": "Иллаой, Жрица Матери Глубин",
+   "alias": [
+    "Иллаой"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 350,
+   "hp": 656,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Illaoi"
+  },
+  {
+   "id": "irelia",
+   "name": "Irelia",
+   "sub": "Ирелия, Танцующая с клинками",
+   "alias": [
+    "Ирелия"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 200,
+   "ms": 335,
+   "hp": 630,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Irelia"
+  },
+  {
+   "id": "ivern",
+   "name": "Ivern",
+   "sub": "Иверн, Зеленый отец",
+   "alias": [
+    "Иверн"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 475,
+   "ms": 330,
+   "hp": 630,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ivern"
+  },
+  {
+   "id": "janna",
+   "name": "Janna",
+   "sub": "Жанна, Ярость шторма",
+   "alias": [
+    "Жанна"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 570,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Janna"
+  },
+  {
+   "id": "jarvaniv",
+   "name": "Jarvan IV",
+   "sub": "Джарван IV, Воплощение Демасии",
+   "alias": [
+    "Джарван IV"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 640,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Jarvan_IV"
+  },
+  {
+   "id": "jax",
+   "name": "Jax",
+   "sub": "Джакс, Великий мастер оружия",
+   "alias": [
+    "Джакс"
+   ],
+   "classes": [
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 350,
+   "hp": 650,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Jax"
+  },
+  {
+   "id": "jayce",
+   "name": "Jayce",
+   "sub": "Джейс, Защитник завтрашнего дня",
+   "alias": [
+    "Джейс"
+   ],
+   "classes": [
+    "Боец",
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 590,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Jayce"
+  },
+  {
+   "id": "jhin",
+   "name": "Jhin",
+   "sub": "Джин, Виртуоз",
+   "alias": [
+    "Джин"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 655,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Jhin"
+  },
+  {
+   "id": "jinx",
+   "name": "Jinx",
+   "sub": "Джинкс, Безбашенная хулиганка",
+   "alias": [
+    "Джинкс"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 325,
+   "hp": 610,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Jinx"
+  },
+  {
+   "id": "ksante",
+   "name": "K'Sante",
+   "sub": "К'Санте, Гордость Назумы",
+   "alias": [
+    "К'Санте"
+   ],
+   "classes": [
+    "Танк",
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 330,
+   "hp": 625,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/K'Sante"
+  },
+  {
+   "id": "kaisa",
+   "name": "Kai'Sa",
+   "sub": "Кай'Са, Дочь Бездны",
+   "alias": [
+    "Кай'Са"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 335,
+   "hp": 640,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kai'Sa"
+  },
+  {
+   "id": "kalista",
+   "name": "Kalista",
+   "sub": "Калиста, Копье возмездия",
+   "alias": [
+    "Калиста"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 560,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kalista"
+  },
+  {
+   "id": "karma",
+   "name": "Karma",
+   "sub": "Карма, Просвещенная",
+   "alias": [
+    "Карма"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 335,
+   "hp": 630,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Karma"
+  },
+  {
+   "id": "karthus",
+   "name": "Karthus",
+   "sub": "Картус, Певец смерти",
+   "alias": [
+    "Картус"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 450,
+   "ms": 335,
+   "hp": 620,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Karthus"
+  },
+  {
+   "id": "kassadin",
+   "name": "Kassadin",
+   "sub": "Кассадин, Скиталец Бездны",
+   "alias": [
+    "Кассадин"
+   ],
+   "classes": [
+    "Убийца",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 335,
+   "hp": 646,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kassadin"
+  },
+  {
+   "id": "katarina",
+   "name": "Katarina",
+   "sub": "Катарина, Гибельный клинок",
+   "alias": [
+    "Катарина"
+   ],
+   "classes": [
+    "Убийца",
+    "Маг"
+   ],
+   "resource": "Без ресурса",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 672,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Katarina"
+  },
+  {
+   "id": "kayle",
+   "name": "Kayle",
+   "sub": "Кейл, Праведница",
+   "alias": [
+    "Кейл"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 335,
+   "hp": 670,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kayle"
+  },
+  {
+   "id": "kayn",
+   "name": "Kayn",
+   "sub": "Каин, Сумеречный жнец",
+   "alias": [
+    "Каин"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 655,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kayn"
+  },
+  {
+   "id": "kennen",
+   "name": "Kennen",
+   "sub": "Кеннен, Сердце бури",
+   "alias": [
+    "Кеннен"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Энергия",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 335,
+   "hp": 580,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kennen"
+  },
+  {
+   "id": "khazix",
+   "name": "Kha'Zix",
+   "sub": "Ка'Зикс, Хищник из Бездны",
+   "alias": [
+    "Ка'Зикс"
+   ],
+   "classes": [
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 643,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kha'Zix"
+  },
+  {
+   "id": "kindred",
+   "name": "Kindred",
+   "sub": "Киндред, Вечные охотники",
+   "alias": [
+    "Киндред"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 325,
+   "hp": 595,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kindred"
+  },
+  {
+   "id": "kled",
+   "name": "Kled",
+   "sub": "Клед, Сварливый кавалерист",
+   "alias": [
+    "Клед"
+   ],
+   "classes": [
+    "Боец"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 410,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kled"
+  },
+  {
+   "id": "kogmaw",
+   "name": "Kog'Maw",
+   "sub": "Ког'Мао, Пасть Бездны",
+   "alias": [
+    "Ког'Мао"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 330,
+   "hp": 635,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Kog'Maw"
+  },
+  {
+   "id": "leblanc",
+   "name": "LeBlanc",
+   "sub": "Ле Блан, Обманщица",
+   "alias": [
+    "Ле Блан"
+   ],
+   "classes": [
+    "Убийца",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 340,
+   "hp": 598,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/LeBlanc"
+  },
+  {
+   "id": "leesin",
+   "name": "Lee Sin",
+   "sub": "Ли Син, Слепой монах",
+   "alias": [
+    "Ли Син"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Энергия",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 645,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Lee_Sin"
+  },
+  {
+   "id": "leona",
+   "name": "Leona",
+   "sub": "Леона, Ослепительный рассвет",
+   "alias": [
+    "Леона"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 646,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Leona"
+  },
+  {
+   "id": "lillia",
+   "name": "Lillia",
+   "sub": "Лиллия, Робкий цветок",
+   "alias": [
+    "Лиллия"
+   ],
+   "classes": [
+    "Боец",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 325,
+   "ms": 330,
+   "hp": 605,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Lillia"
+  },
+  {
+   "id": "lissandra",
+   "name": "Lissandra",
+   "sub": "Лиссандра, Ледяная ведьма",
+   "alias": [
+    "Лиссандра"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 620,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Lissandra"
+  },
+  {
+   "id": "locke",
+   "name": "Locke",
+   "sub": "Локк, Пепельный экзорцист",
+   "alias": [
+    "Локк"
+   ],
+   "classes": [
+    "Убийца",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 620,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Locke"
+  },
+  {
+   "id": "lucian",
+   "name": "Lucian",
+   "sub": "Люциан, Истребитель скверны",
+   "alias": [
+    "Люциан"
+   ],
+   "classes": [
+    "Стрелок",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 335,
+   "hp": 641,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Lucian"
+  },
+  {
+   "id": "lulu",
+   "name": "Lulu",
+   "sub": "Лулу, Волшебница фей",
+   "alias": [
+    "Лулу"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 565,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Lulu"
+  },
+  {
+   "id": "lux",
+   "name": "Lux",
+   "sub": "Люкс, Леди сияния",
+   "alias": [
+    "Люкс"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 580,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Lux"
+  },
+  {
+   "id": "malphite",
+   "name": "Malphite",
+   "sub": "Мальфит, Осколок Монолита",
+   "alias": [
+    "Мальфит"
+   ],
+   "classes": [
+    "Танк",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 665,
+   "diff": 2,
+   "url": "https://wiki.leagueoflegends.com/en-us/Malphite"
+  },
+  {
+   "id": "malzahar",
+   "name": "Malzahar",
+   "sub": "Мальзахар, Пророк Бездны",
+   "alias": [
+    "Мальзахар"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 335,
+   "hp": 580,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Malzahar"
+  },
+  {
+   "id": "maokai",
+   "name": "Maokai",
+   "sub": "Маокай, Испорченный энт",
+   "alias": [
+    "Маокай"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 665,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Maokai"
+  },
+  {
+   "id": "masteryi",
+   "name": "Master Yi",
+   "sub": "Мастер Йи, Мечник вуджу",
+   "alias": [
+    "Мастер Йи"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 355,
+   "hp": 640,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Master_Yi"
+  },
+  {
+   "id": "mel",
+   "name": "Mel",
+   "sub": "Мэл, Отражение души",
+   "alias": [
+    "Мэл"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 590,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Mel"
+  },
+  {
+   "id": "milio",
+   "name": "Milio",
+   "sub": "Милио, Ласковое пламя",
+   "alias": [
+    "Милио"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 560,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Milio"
+  },
+  {
+   "id": "missfortune",
+   "name": "Miss Fortune",
+   "sub": "Мисс Фортуна, Охотница за головами",
+   "alias": [
+    "Мисс Фортуна"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 625,
+   "diff": 1,
+   "url": "https://wiki.leagueoflegends.com/en-us/Miss_Fortune"
+  },
+  {
+   "id": "mordekaiser",
+   "name": "Mordekaiser",
+   "sub": "Мордекайзер, Железный призрак",
+   "alias": [
+    "Мордекайзер"
+   ],
+   "classes": [
+    "Боец",
+    "Маг"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 335,
+   "hp": 645,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Mordekaiser"
+  },
+  {
+   "id": "morgana",
+   "name": "Morgana",
+   "sub": "Моргана, Падшая",
+   "alias": [
+    "Моргана"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 450,
+   "ms": 335,
+   "hp": 630,
+   "diff": 1,
+   "url": "https://wiki.leagueoflegends.com/en-us/Morgana"
+  },
+  {
+   "id": "naafiri",
+   "name": "Naafiri",
+   "sub": "Наафири, Гончая с тысячью клыков",
+   "alias": [
+    "Наафири"
+   ],
+   "classes": [
+    "Убийца",
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 610,
+   "diff": 2,
+   "url": "https://wiki.leagueoflegends.com/en-us/Naafiri"
+  },
+  {
+   "id": "nami",
+   "name": "Nami",
+   "sub": "Нами, Повелительница морей",
+   "alias": [
+    "Нами"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 335,
+   "hp": 560,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Nami"
+  },
+  {
+   "id": "nasus",
+   "name": "Nasus",
+   "sub": "Насус, Хранитель песков",
+   "alias": [
+    "Насус"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 350,
+   "hp": 650,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Nasus"
+  },
+  {
+   "id": "nautilus",
+   "name": "Nautilus",
+   "sub": "Наутилус, Титан глубин",
+   "alias": [
+    "Наутилус"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 325,
+   "hp": 646,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Nautilus"
+  },
+  {
+   "id": "neeko",
+   "name": "Neeko",
+   "sub": "Нико, Любопытный хамелеон",
+   "alias": [
+    "Нико"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 340,
+   "hp": 610,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Neeko"
+  },
+  {
+   "id": "nidalee",
+   "name": "Nidalee",
+   "sub": "Нидали, Дикая охотница",
+   "alias": [
+    "Нидали"
+   ],
+   "classes": [
+    "Убийца",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 335,
+   "hp": 610,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Nidalee"
+  },
+  {
+   "id": "nilah",
+   "name": "Nilah",
+   "sub": "Нила, Воплощение радости",
+   "alias": [
+    "Нила"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 225,
+   "ms": 340,
+   "hp": 570,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Nilah"
+  },
+  {
+   "id": "nocturne",
+   "name": "Nocturne",
+   "sub": "Ноктюрн, Извечный кошмар",
+   "alias": [
+    "Ноктюрн"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 640,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Nocturne"
+  },
+  {
+   "id": "nunu",
+   "name": "Nunu & Willump",
+   "sub": "Нуну и Виллумп, Мальчик и его йети",
+   "alias": [
+    "Нуну и Виллумп"
+   ],
+   "classes": [
+    "Танк",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 610,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Nunu_%26_Willump"
+  },
+  {
+   "id": "olaf",
+   "name": "Olaf",
+   "sub": "Олаф, Берсерк",
+   "alias": [
+    "Олаф"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 350,
+   "hp": 645,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Olaf"
+  },
+  {
+   "id": "orianna",
+   "name": "Orianna",
+   "sub": "Орианна, Заводная леди",
+   "alias": [
+    "Орианна"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 325,
+   "hp": 565,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Orianna"
+  },
+  {
+   "id": "ornn",
+   "name": "Ornn",
+   "sub": "Орн, Пламя Горных Глубин",
+   "alias": [
+    "Орн"
+   ],
+   "classes": [
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 335,
+   "hp": 660,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ornn"
+  },
+  {
+   "id": "pantheon",
+   "name": "Pantheon",
+   "sub": "Пантеон, Несокрушимое Копье",
+   "alias": [
+    "Пантеон"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 650,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Pantheon"
+  },
+  {
+   "id": "poppy",
+   "name": "Poppy",
+   "sub": "Поппи, Хранительница молота",
+   "alias": [
+    "Поппи"
+   ],
+   "classes": [
+    "Танк",
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 610,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Poppy"
+  },
+  {
+   "id": "pyke",
+   "name": "Pyke",
+   "sub": "Пайк, Потрошитель из Кровавой гавани",
+   "alias": [
+    "Пайк"
+   ],
+   "classes": [
+    "Поддержка",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 330,
+   "hp": 670,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Pyke"
+  },
+  {
+   "id": "qiyana",
+   "name": "Qiyana",
+   "sub": "Киана, Повелительница стихий",
+   "alias": [
+    "Киана"
+   ],
+   "classes": [
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 335,
+   "hp": 590,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Qiyana"
+  },
+  {
+   "id": "quinn",
+   "name": "Quinn",
+   "sub": "Квинн, Крылья Демасии",
+   "alias": [
+    "Квинн"
+   ],
+   "classes": [
+    "Стрелок",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 565,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Quinn"
+  },
+  {
+   "id": "rakan",
+   "name": "Rakan",
+   "sub": "Рэйкан, Обольститель",
+   "alias": [
+    "Рэйкан"
+   ],
+   "classes": [
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 300,
+   "ms": 335,
+   "hp": 610,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Rakan"
+  },
+  {
+   "id": "rammus",
+   "name": "Rammus",
+   "sub": "Раммус, Броненосец",
+   "alias": [
+    "Раммус"
+   ],
+   "classes": [
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 645,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Rammus"
+  },
+  {
+   "id": "reksai",
+   "name": "Rek'Sai",
+   "sub": "Рек'Сай, Хозяйка недр Бездны",
+   "alias": [
+    "Рек'Сай"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 600,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Rek'Sai"
+  },
+  {
+   "id": "rell",
+   "name": "Rell",
+   "sub": "Релл, Железная дева",
+   "alias": [
+    "Релл"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 315,
+   "hp": 620,
+   "diff": 0,
+   "url": "https://wiki.leagueoflegends.com/en-us/Rell"
+  },
+  {
+   "id": "renata",
+   "name": "Renata Glasc",
+   "sub": "Рената Гласк, Химбаронесса",
+   "alias": [
+    "Рената Гласк"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 545,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Renata_Glasc"
+  },
+  {
+   "id": "renekton",
+   "name": "Renekton",
+   "sub": "Ренектон, Мясник из песков",
+   "alias": [
+    "Ренектон"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 660,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Renekton"
+  },
+  {
+   "id": "rengar",
+   "name": "Rengar",
+   "sub": "Ренгар, Охотник за трофеями",
+   "alias": [
+    "Ренгар"
+   ],
+   "classes": [
+    "Убийца",
+    "Боец"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 590,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Rengar"
+  },
+  {
+   "id": "riven",
+   "name": "Riven",
+   "sub": "Ривен, Изгнанница",
+   "alias": [
+    "Ривен"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Без ресурса",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 630,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Riven"
+  },
+  {
+   "id": "rumble",
+   "name": "Rumble",
+   "sub": "Рамбл, Механизированная угроза",
+   "alias": [
+    "Рамбл"
+   ],
+   "classes": [
+    "Боец",
+    "Маг"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 640,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Rumble"
+  },
+  {
+   "id": "ryze",
+   "name": "Ryze",
+   "sub": "Райз, Рунный маг",
+   "alias": [
+    "Райз"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 340,
+   "hp": 620,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ryze"
+  },
+  {
+   "id": "samira",
+   "name": "Samira",
+   "sub": "Самира, Пустынная роза",
+   "alias": [
+    "Самира"
+   ],
+   "classes": [
+    "Стрелок",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 335,
+   "hp": 630,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Samira"
+  },
+  {
+   "id": "sejuani",
+   "name": "Sejuani",
+   "sub": "Седжуани, Ярость севера",
+   "alias": [
+    "Седжуани"
+   ],
+   "classes": [
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 340,
+   "hp": 630,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Sejuani"
+  },
+  {
+   "id": "senna",
+   "name": "Senna",
+   "sub": "Сенна, Освободительница",
+   "alias": [
+    "Сенна"
+   ],
+   "classes": [
+    "Поддержка",
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 600,
+   "ms": 330,
+   "hp": 530,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Senna"
+  },
+  {
+   "id": "seraphine",
+   "name": "Seraphine",
+   "sub": "Серафина, Мечтательная певица",
+   "alias": [
+    "Серафина"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 570,
+   "diff": 0,
+   "url": "https://wiki.leagueoflegends.com/en-us/Seraphine"
+  },
+  {
+   "id": "sett",
+   "name": "Sett",
+   "sub": "Сетт, Босс",
+   "alias": [
+    "Сетт"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 670,
+   "diff": 2,
+   "url": "https://wiki.leagueoflegends.com/en-us/Sett"
+  },
+  {
+   "id": "shaco",
+   "name": "Shaco",
+   "sub": "Шако, Демонический шут",
+   "alias": [
+    "Шако"
+   ],
+   "classes": [
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 630,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Shaco"
+  },
+  {
+   "id": "shen",
+   "name": "Shen",
+   "sub": "Шен, Око сумрака",
+   "alias": [
+    "Шен"
+   ],
+   "classes": [
+    "Танк"
+   ],
+   "resource": "Энергия",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 610,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Shen"
+  },
+  {
+   "id": "shyvana",
+   "name": "Shyvana",
+   "sub": "Шивана, Полудракон",
+   "alias": [
+    "Шивана"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 350,
+   "hp": 625,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Shyvana"
+  },
+  {
+   "id": "singed",
+   "name": "Singed",
+   "sub": "Синджед, Безумный химик",
+   "alias": [
+    "Синджед"
+   ],
+   "classes": [
+    "Танк",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 650,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Singed"
+  },
+  {
+   "id": "sion",
+   "name": "Sion",
+   "sub": "Сион, Восставший сокрушитель",
+   "alias": [
+    "Сион"
+   ],
+   "classes": [
+    "Танк",
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 655,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Sion"
+  },
+  {
+   "id": "sivir",
+   "name": "Sivir",
+   "sub": "Сивир, Королева сражений",
+   "alias": [
+    "Сивир"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 335,
+   "hp": 600,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Sivir"
+  },
+  {
+   "id": "skarner",
+   "name": "Skarner",
+   "sub": "Скарнер, Извечный владыка",
+   "alias": [
+    "Скарнер"
+   ],
+   "classes": [
+    "Танк",
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 335,
+   "hp": 630,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Skarner"
+  },
+  {
+   "id": "smolder",
+   "name": "Smolder",
+   "sub": "Смолдер, Жгучий дракончик",
+   "alias": [
+    "Смолдер"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 575,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Smolder"
+  },
+  {
+   "id": "sona",
+   "name": "Sona",
+   "sub": "Сона, Виртуоз струн",
+   "alias": [
+    "Сона"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 550,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Sona"
+  },
+  {
+   "id": "soraka",
+   "name": "Soraka",
+   "sub": "Сорака, Звездное дитя",
+   "alias": [
+    "Сорака"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 605,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Soraka"
+  },
+  {
+   "id": "swain",
+   "name": "Swain",
+   "sub": "Свейн, Верховный полководец Ноксуса",
+   "alias": [
+    "Свейн"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 595,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Swain"
+  },
+  {
+   "id": "sylas",
+   "name": "Sylas",
+   "sub": "Сайлас, Сбросивший оковы",
+   "alias": [
+    "Сайлас"
+   ],
+   "classes": [
+    "Маг",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 600,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Sylas"
+  },
+  {
+   "id": "syndra",
+   "name": "Syndra",
+   "sub": "Синдра, Темная властительница",
+   "alias": [
+    "Синдра"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 583,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Syndra"
+  },
+  {
+   "id": "tahmkench",
+   "name": "Tahm Kench",
+   "sub": "Таам Кенч, Речной царь",
+   "alias": [
+    "Таам Кенч"
+   ],
+   "classes": [
+    "Танк",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 335,
+   "hp": 640,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Tahm_Kench"
+  },
+  {
+   "id": "taliyah",
+   "name": "Taliyah",
+   "sub": "Талия, Прядущая камни",
+   "alias": [
+    "Талия"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 550,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Taliyah"
+  },
+  {
+   "id": "talon",
+   "name": "Talon",
+   "sub": "Талон, Тень клинка",
+   "alias": [
+    "Талон"
+   ],
+   "classes": [
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 658,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Talon"
+  },
+  {
+   "id": "taric",
+   "name": "Taric",
+   "sub": "Тарик, Щит Валорана",
+   "alias": [
+    "Тарик"
+   ],
+   "classes": [
+    "Поддержка",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 340,
+   "hp": 645,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Taric"
+  },
+  {
+   "id": "teemo",
+   "name": "Teemo",
+   "sub": "Тимо, Шустрый скаут",
+   "alias": [
+    "Тимо"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 500,
+   "ms": 330,
+   "hp": 615,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Teemo"
+  },
+  {
+   "id": "thresh",
+   "name": "Thresh",
+   "sub": "Треш, Страж цепей",
+   "alias": [
+    "Треш"
+   ],
+   "classes": [
+    "Поддержка",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 450,
+   "ms": 330,
+   "hp": 620,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Thresh"
+  },
+  {
+   "id": "tristana",
+   "name": "Tristana",
+   "sub": "Тристана, Йордлский канонир",
+   "alias": [
+    "Тристана"
+   ],
+   "classes": [
+    "Стрелок",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 640,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Tristana"
+  },
+  {
+   "id": "trundle",
+   "name": "Trundle",
+   "sub": "Трандл, Король троллей",
+   "alias": [
+    "Трандл"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 350,
+   "hp": 650,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Trundle"
+  },
+  {
+   "id": "tryndamere",
+   "name": "Tryndamere",
+   "sub": "Триндамир, Король варваров",
+   "alias": [
+    "Триндамир"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 696,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Tryndamere"
+  },
+  {
+   "id": "twistedfate",
+   "name": "Twisted Fate",
+   "sub": "Твистед Фэйт, Мастер карт",
+   "alias": [
+    "Твистед Фэйт"
+   ],
+   "classes": [
+    "Маг",
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 604,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Twisted_Fate"
+  },
+  {
+   "id": "twitch",
+   "name": "Twitch",
+   "sub": "Твич, Чумная крыса",
+   "alias": [
+    "Твич"
+   ],
+   "classes": [
+    "Стрелок",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 630,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Twitch"
+  },
+  {
+   "id": "udyr",
+   "name": "Udyr",
+   "sub": "Удир, Странник духов",
+   "alias": [
+    "Удир"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 350,
+   "hp": 664,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Udyr"
+  },
+  {
+   "id": "urgot",
+   "name": "Urgot",
+   "sub": "Ургот, Дредноут",
+   "alias": [
+    "Ургот"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 350,
+   "ms": 330,
+   "hp": 655,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Urgot"
+  },
+  {
+   "id": "varus",
+   "name": "Varus",
+   "sub": "Варус, Стрела возмездия",
+   "alias": [
+    "Варус"
+   ],
+   "classes": [
+    "Стрелок",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 575,
+   "ms": 330,
+   "hp": 600,
+   "diff": 2,
+   "url": "https://wiki.leagueoflegends.com/en-us/Varus"
+  },
+  {
+   "id": "vayne",
+   "name": "Vayne",
+   "sub": "Вейн, Ночная охотница",
+   "alias": [
+    "Вейн"
+   ],
+   "classes": [
+    "Стрелок",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 580,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Vayne"
+  },
+  {
+   "id": "veigar",
+   "name": "Veigar",
+   "sub": "Вейгар, Маленький повелитель зла",
+   "alias": [
+    "Вейгар"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 340,
+   "hp": 580,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Veigar"
+  },
+  {
+   "id": "velkoz",
+   "name": "Vel'Koz",
+   "sub": "Вел'Коз, Око Бездны",
+   "alias": [
+    "Вел'Коз"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 340,
+   "hp": 590,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Vel'Koz"
+  },
+  {
+   "id": "vex",
+   "name": "Vex",
+   "sub": "Векс, Мрачнистка",
+   "alias": [
+    "Векс"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 335,
+   "hp": 590,
+   "diff": 0,
+   "url": "https://wiki.leagueoflegends.com/en-us/Vex"
+  },
+  {
+   "id": "vi",
+   "name": "Vi",
+   "sub": "Вай, Пилтоверский миротворец",
+   "alias": [
+    "Вай"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 340,
+   "hp": 655,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Vi"
+  },
+  {
+   "id": "viego",
+   "name": "Viego",
+   "sub": "Виего, Падший король",
+   "alias": [
+    "Виего"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Без ресурса",
+   "atk": "Ближний бой",
+   "range": 200,
+   "ms": 345,
+   "hp": 630,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Viego"
+  },
+  {
+   "id": "viktor",
+   "name": "Viktor",
+   "sub": "Виктор, Вестник аркейна",
+   "alias": [
+    "Виктор"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 600,
+   "diff": 9,
+   "url": "https://wiki.leagueoflegends.com/en-us/Viktor"
+  },
+  {
+   "id": "vladimir",
+   "name": "Vladimir",
+   "sub": "Владимир, Алый жнец",
+   "alias": [
+    "Владимир"
+   ],
+   "classes": [
+    "Маг",
+    "Боец"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Дальний бой",
+   "range": 450,
+   "ms": 330,
+   "hp": 600,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Vladimir"
+  },
+  {
+   "id": "volibear",
+   "name": "Volibear",
+   "sub": "Волибир, Неутихающая Буря",
+   "alias": [
+    "Волибир"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 150,
+   "ms": 340,
+   "hp": 650,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Volibear"
+  },
+  {
+   "id": "warwick",
+   "name": "Warwick",
+   "sub": "Варвик, Освобожденный гнев Зауна",
+   "alias": [
+    "Варвик"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 335,
+   "hp": 620,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Warwick"
+  },
+  {
+   "id": "monkeyking",
+   "name": "Wukong",
+   "sub": "Вуконг, Царь обезьян",
+   "alias": [
+    "Вуконг"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 610,
+   "diff": 3,
+   "url": "https://wiki.leagueoflegends.com/en-us/Wukong"
+  },
+  {
+   "id": "xayah",
+   "name": "Xayah",
+   "sub": "Шая, Бунтарка",
+   "alias": [
+    "Шая"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 330,
+   "hp": 630,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Xayah"
+  },
+  {
+   "id": "xerath",
+   "name": "Xerath",
+   "sub": "Зерат, Высший маг",
+   "alias": [
+    "Зерат"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 525,
+   "ms": 340,
+   "hp": 575,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Xerath"
+  },
+  {
+   "id": "xinzhao",
+   "name": "Xin Zhao",
+   "sub": "Ксин Жао, Сенешаль Демасии",
+   "alias": [
+    "Ксин Жао"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 620,
+   "diff": 2,
+   "url": "https://wiki.leagueoflegends.com/en-us/Xin_Zhao"
+  },
+  {
+   "id": "yasuo",
+   "name": "Yasuo",
+   "sub": "Ясуо, Непрощенный",
+   "alias": [
+    "Ясуо"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 590,
+   "diff": 10,
+   "url": "https://wiki.leagueoflegends.com/en-us/Yasuo"
+  },
+  {
+   "id": "yone",
+   "name": "Yone",
+   "sub": "Ёнэ, Незабытый",
+   "alias": [
+    "Ёнэ"
+   ],
+   "classes": [
+    "Боец",
+    "Убийца"
+   ],
+   "resource": "Особый ресурс",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 620,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Yone"
+  },
+  {
+   "id": "yorick",
+   "name": "Yorick",
+   "sub": "Йорик, Пастух заблудших душ",
+   "alias": [
+    "Йорик"
+   ],
+   "classes": [
+    "Боец",
+    "Танк"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 650,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Yorick"
+  },
+  {
+   "id": "yunara",
+   "name": "Yunara",
+   "sub": "Юнара, Нерушимая вера",
+   "alias": [
+    "Юнара"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 575,
+   "ms": 325,
+   "hp": 590,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Yunara"
+  },
+  {
+   "id": "yuumi",
+   "name": "Yuumi",
+   "sub": "Юми, Волшебная кошка",
+   "alias": [
+    "Юми"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 425,
+   "ms": 330,
+   "hp": 500,
+   "diff": 2,
+   "url": "https://wiki.leagueoflegends.com/en-us/Yuumi"
+  },
+  {
+   "id": "zaahen",
+   "name": "Zaahen",
+   "sub": "Заахен, Неразбиваемый",
+   "alias": [
+    "Заахен"
+   ],
+   "classes": [
+    "Боец"
+   ],
+   "resource": "Мана",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 345,
+   "hp": 640,
+   "diff": 2,
+   "url": "https://wiki.leagueoflegends.com/en-us/Zaahen"
+  },
+  {
+   "id": "zac",
+   "name": "Zac",
+   "sub": "Зак, Секретное оружие",
+   "alias": [
+    "Зак"
+   ],
+   "classes": [
+    "Танк",
+    "Боец"
+   ],
+   "resource": "Без ресурса",
+   "atk": "Ближний бой",
+   "range": 175,
+   "ms": 340,
+   "hp": 685,
+   "diff": 8,
+   "url": "https://wiki.leagueoflegends.com/en-us/Zac"
+  },
+  {
+   "id": "zed",
+   "name": "Zed",
+   "sub": "Зед, Мастер теней",
+   "alias": [
+    "Зед"
+   ],
+   "classes": [
+    "Убийца"
+   ],
+   "resource": "Энергия",
+   "atk": "Ближний бой",
+   "range": 125,
+   "ms": 345,
+   "hp": 654,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Zed"
+  },
+  {
+   "id": "zeri",
+   "name": "Zeri",
+   "sub": "Зери, Искра Зауна",
+   "alias": [
+    "Зери"
+   ],
+   "classes": [
+    "Стрелок"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 330,
+   "hp": 600,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Zeri"
+  },
+  {
+   "id": "ziggs",
+   "name": "Ziggs",
+   "sub": "Зиггс, Эксперт по хексчатке",
+   "alias": [
+    "Зиггс"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 325,
+   "hp": 606,
+   "diff": 4,
+   "url": "https://wiki.leagueoflegends.com/en-us/Ziggs"
+  },
+  {
+   "id": "zilean",
+   "name": "Zilean",
+   "sub": "Зилеан, Хранитель времени",
+   "alias": [
+    "Зилеан"
+   ],
+   "classes": [
+    "Поддержка",
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 335,
+   "hp": 574,
+   "diff": 6,
+   "url": "https://wiki.leagueoflegends.com/en-us/Zilean"
+  },
+  {
+   "id": "zoe",
+   "name": "Zoe",
+   "sub": "Зои, Звездная посланница",
+   "alias": [
+    "Зои"
+   ],
+   "classes": [
+    "Маг"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 550,
+   "ms": 340,
+   "hp": 630,
+   "diff": 5,
+   "url": "https://wiki.leagueoflegends.com/en-us/Zoe"
+  },
+  {
+   "id": "zyra",
+   "name": "Zyra",
+   "sub": "Зайра, Повелительница терний",
+   "alias": [
+    "Зайра"
+   ],
+   "classes": [
+    "Маг",
+    "Поддержка"
+   ],
+   "resource": "Мана",
+   "atk": "Дальний бой",
+   "range": 575,
+   "ms": 340,
+   "hp": 574,
+   "diff": 7,
+   "url": "https://wiki.leagueoflegends.com/en-us/Zyra"
+  }
+ ]
+}
