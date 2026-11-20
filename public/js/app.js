@@ -56,15 +56,17 @@ const dayBar = document.getElementById('day-bar');
 const sourceNote = document.getElementById('source-note');
 
 let endlessSeed = null;
+// Duels are switched off for now; set to true to bring back challenge links and the duel panel.
+const DUELS = false;
 
 // #cs-grid · #cs-grid-free · #cs-grid-duel-<id>[-s<rival score>][-f<filter>]
 function parseHash() {
   const [g, m, e, id, ...rest] = location.hash.replace('#', '').split(/[-/]/);
-  const duel = e === 'duel' && /^[a-z0-9]{4,16}$/.test(id || '') ? id : null;
+  const duel = DUELS && e === 'duel' && /^[a-z0-9]{4,16}$/.test(id || '') ? id : null;
   const s = rest.find((x) => /^s\d+$/.test(x)); const f = rest.find((x) => /^f\w+$/.test(x));
   const game = GAMES[g] ? g : 'cs';
   const okMode = (k) => MODES[k] && (!MODES[k].gameTitle || MODES[k].gameTitle[game]) && (!GAMES[game].itemsOnly || MODES[k].set);
-  return { game, mode: okMode(m) ? m : GAMES[game].itemsOnly ? 'items' : 'grid', endless: e === 'free' || !!duel, duel,
+  return { game, mode: okMode(m) ? m : GAMES[game].itemsOnly ? 'items' : 'grid', endless: e === 'free' || e === 'duel' || !!duel, duel,
     rival: s ? +s.slice(1) : null, duelFilter: f ? f.slice(1) : null };
 }
 
@@ -132,7 +134,7 @@ async function render() {
     MODES[mode].mod.mount(root, data, {
       seed, daily: !endless, day: num, mode, set: MODES[mode].set, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test, era: filtersFor(game)[fid].era,
       // endless and duel games end with a challenge link carrying the same puzzle id
-      onFinish: endless ? ({ score }) => {
+      onFinish: endless && DUELS ? ({ score }) => {
         root.querySelector('.duel')?.remove();
         root.append(duelPanel({ game, mode, id, filter: fid, score, rival: duel ? rival : null }));
       } : null,
