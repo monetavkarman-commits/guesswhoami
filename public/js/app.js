@@ -9,6 +9,10 @@ import { openProfile } from './achievements.js';
 import { openLeaderboard, duelPanel, newDuelId, onlineReady } from './online.js';
 
 document.getElementById('profile-btn').addEventListener('click', openProfile);
+// on our own domain the site may not be shown inside someone else's frame (clickjacking); the Claude artifact runs framed on purpose
+if (window.top !== window.self && /(^|\.)guesswhoami\.eu$|github\.io$/.test(location.hostname)) {
+  try { window.top.location = window.location.href; } catch { document.body.innerHTML = ''; }
+}
 onlineReady().then((ok) => { if (!ok) document.getElementById('board-btn').style.display = 'none'; });
 document.getElementById('board-btn').addEventListener('click', () => openLeaderboard(parseHash().game, today().num));
 
