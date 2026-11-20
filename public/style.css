@@ -491,3 +491,9 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .avatar-pick{display:flex;flex-wrap:wrap;gap:6px}.avatar-pick button{width:40px;height:40px;font-size:20px;border-radius:10px;border:1px solid var(--line);background:transparent;cursor:pointer}.avatar-pick button.on{outline:2px solid var(--accent);background:rgba(228,87,46,.12)}
 .row-between{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
 .card-soft{padding:12px 14px;border:1px solid var(--line);border-radius:14px}.btn.danger{color:#d64545;border-color:#d64545}
+
+.notice-bar{display:flex;gap:12px;justify-content:center;align-items:center;padding:8px 16px;background:var(--accent);color:#fff;font-weight:600;font-size:14px;text-align:center}.notice-bar button{background:transparent;border:0;color:inherit;font-size:20px;cursor:pointer;line-height:1}
+.admin-tabs{margin:12px 0}.rep{padding:10px 0;border-bottom:1px solid var(--line)}.rep .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.chip{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;border:1px solid var(--line)}
+.chip.open{color:#d64545;border-color:#d64545}.chip.progress{color:#c89b3c;border-color:#c89b3c}.chip.fixed{color:#3a9a5b;border-color:#3a9a5b}
+.admin textarea{width:100%;min-height:70px}.utable{width:100%;border-collapse:collapse;font-size:.88rem}.utable th,.utable td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}.utable .acts{display:flex;flex-wrap:wrap;gap:4px}
+.xscroll{overflow-x:auto}.row-acts{display:flex;gap:8px;flex-wrap:wrap}

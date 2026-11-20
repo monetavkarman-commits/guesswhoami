@@ -11,6 +11,7 @@ import { askConsent } from './consent.js';
 import { startAnalytics, track, sendReport } from './analytics.js';
 import { renderHome } from './home.js';
 import { openPlayer, openProfile } from './profile.js';
+import { showNotice } from './notice.js';
 import { initAccountButton, accountsEnabled, currentUser, client, openAccount } from './account.js';
 import { openLeaderboard, duelPanel, newDuelId, onlineReady } from './online.js';
 
@@ -233,6 +234,6 @@ function openReport() {
   const close = modal(tr('Сообщить об ошибке в данных'), h('div', { class: 'stack' }, box,
     h('button', { class: 'btn', type: 'button', onclick: async () => { if (box.value.trim().length < 5) return; if (await sendReport(box.value.trim())) { close(); toast(tr('Спасибо, мы проверим!')); } else toast(tr('Не удалось отправить')); } }, tr('Отправить'))));
 }
-askConsent(); startAnalytics();
+askConsent(); startAnalytics(); showNotice();
 window.addEventListener('hashchange', render);
 render();

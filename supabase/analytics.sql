@@ -47,8 +47,13 @@ begin
         select max(uname) as name, count(*) filter (where kind = 'ping') as minutes, count(*) filter (where kind = 'visit') as visits, max(created_at) as last_seen,
           (select regexp_replace(replace(e2.path, '#', ''), '^([^-/]+[-/][^-/]+).*$', '\1') from events e2 where e2.vid = e.vid and e2.kind = 'ping' and e2.created_at between since and until group by 1 order by count(*) desc limit 1) as top_page
         from events e where kind <> 'report' and created_at between since and until group by vid order by 2 desc, 4 desc limit 60) x),
-    'reports', (select coalesce(json_agg(x), '[]'::json) from (
-        select created_at, path, info from events where kind = 'report' order by created_at desc limit 30) x)
+    'reports_open', (select count(*) from events e where kind = 'report' and not exists (select 1 from report_status r where r.event_id = e.id and r.status in ('fixed', 'wontfix'))),
+    'returning', (select count(*) from (select vid from events where kind <> 'report' and created_at between since and until group by vid having count(distinct created_at::date) > 1) r),
+    'referrers', (select coalesce(json_agg(x), '[]'::json) from (
+        select coalesce(nullif(info, ''), 'прямой заход') as src, count(*) as n from events where kind = 'visit' and created_at between since and until group by 1 order by 2 desc limit 12) x),
+    'entry', (select coalesce(json_agg(x), '[]'::json) from (
+        select coalesce(nullif(regexp_replace(replace(path, '#', ''), '^([^-/]+).*$', '\1'), ''), 'home') as page, count(*) as n
+        from events where kind = 'visit' and created_at between since and until group by 1 order by 2 desc limit 12) x)
   ) into res;
   return res;
 end $$;

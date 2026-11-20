@@ -16,12 +16,16 @@ function vid() {
   return v;
 }
 
+// never store the login redirect (it carries tokens in the hash) or anything that is not a plain page address
+const cleanPath = (p) => { const x = p || location.hash || '#'; return /^#[\w-]*(\/[\w-]*)*$/.test(x) ? x.slice(0, 120) : '#'; };
+const refHost = () => { try { const h = new URL(document.referrer).hostname; return h && h !== location.hostname ? h.replace(/^www\./, '') : null; } catch { return null; } };
+
 export function track(kind, path, info) {
   if (!ok()) return;
   fetch(SUPABASE_URL + '/rest/v1/events', {
     method: 'POST', keepalive: true,
     headers: { apikey: SUPABASE_ANON_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-    body: JSON.stringify({ vid: vid(), kind, path: (path || location.hash || '#').slice(0, 120), info: info ? String(info).slice(0, 400) : null, uname }),
+    body: JSON.stringify({ vid: vid(), kind, path: cleanPath(path), info: info ? String(info).slice(0, 400) : null, uname }),
   }).catch(() => {});
 }
 
@@ -30,7 +34,7 @@ export async function startAnalytics() {
   try { setName(await currentUser()); } catch { /* ignore */ }
   let seen = false;
   try { seen = sessionStorage.getItem('gwai:sess') === '1'; sessionStorage.setItem('gwai:sess', '1'); } catch { /* ignore */ }
-  if (!seen) track('visit');
+  if (!seen) track('visit', null, refHost());
   if (!timer) timer = setInterval(() => { if (document.visibilityState === 'visible') track('ping'); }, 60000);
 }
 document.addEventListener('gwai:consent', startAnalytics);

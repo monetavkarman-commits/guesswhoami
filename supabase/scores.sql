@@ -17,6 +17,7 @@ declare
   b jsonb;
 begin
   if uid is null then raise exception 'login required'; end if;
+  if to_regclass('public.banned_users') is not null and exists (select 1 from public.banned_users where id = uid) then raise exception 'banned'; end if;
   if p_game !~ '^[a-z0-9]{2,16}$' then raise exception 'bad game'; end if;      -- any game id of the site (new games need no change here)
   if p_mode not in ('grid', 'whoami', 'chain', 'items', 'maps', 'gear', 'team', 'lineup') then raise exception 'bad mode'; end if;
   if p_score < 0 or p_score > 1000 then raise exception 'bad score'; end if;   -- the highest a single daily game can give is 1000
