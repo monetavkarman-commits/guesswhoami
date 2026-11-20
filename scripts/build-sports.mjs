@@ -64,10 +64,15 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
     const uniq = [...new Map(raw.map((x) => [`${x.team}|${x.s}|${x.e}`, x])).values()].sort((a, b) => a.s - b.s);
     // open-ended stints: closed by the next stint; the last one counts as current only for players young enough to still play
     const young = o.b && +o.b.slice(0, 4) >= 1984;
-    uniq.forEach((x, i) => {
+    // later stints that have an end date are usually loans, so they do not end the parent contract
+    // (e.g. Saliba: Arsenal from 2019, loans to Saint-Étienne, Nice and Marseille, still at Arsenal)
+    uniq.forEach((x) => {
       if (x.e) return;
-      const next = uniq.slice(i + 1).find((y) => y.s > x.s);
-      x.e = next ? next.s : young || x.s >= 201600 ? 209912 : x.s + 200;
+      const later = uniq.filter((y) => y.s > x.s);
+      const nextOpen = later.find((y) => !y.e);
+      if (nextOpen) x.e = nextOpen.s;
+      else if (young || x.s >= 201600) x.e = 209912;
+      else x.e = Math.max(x.s + 200, ...later.map((y) => y.e || 0));
     });
     if (!uniq.length || !o.en) continue;
     if (needPos && !Object.keys(o.pos).length) continue; // e.g. officials or actors listed as footballers
