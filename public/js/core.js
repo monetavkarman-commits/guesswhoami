@@ -148,6 +148,31 @@ export function pic(src, cls = 'pic') {
   return h('img', { class: cls, src, alt: '', loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer', onerror: (e) => e.target.remove() });
 }
 
+// Wikimedia Commons thumbnails: a stored path "a/ab/File.jpg" becomes https://upload.wikimedia.org/.../thumb/a/ab/File.jpg/120px-File.jpg
+const WM = 'https://upload.wikimedia.org/wikipedia/commons/thumb/';
+export function wmUrl(path, w = 120) {
+  if (!path) return null;
+  const name = path.split('/').pop();
+  return `${WM}${path}/${w}px-${name}${/\.svg$/i.test(name) ? '.png' : ''}`;
+}
+export const photo = (p, cls = 'pic round') => (p && p.ph ? pic(wmUrl(p.ph, 120), cls) : null);
+// Club badge: the Commons logo when the club has one there, otherwise a round badge with the club's initials
+// (the logos of many big clubs are not free, so they are not on Commons).
+function badge(name, cls) {
+  const words = name.replace(/\b(FC|CF|AC|AS|SC|SK|AFC|Club|de|del|of|the)\b\.?/gi, '').trim().split(/[\s.-]+/).filter(Boolean);
+  const ini = (words.length > 1 ? words[0][0] + words[1][0] : (words[0] || '?').slice(0, 2)).toUpperCase();
+  let hue = 0; for (const c of name) hue = (hue * 31 + c.charCodeAt(0)) % 360;
+  const el = h('span', { class: `${cls} badge`, title: name }, ini);
+  el.style.background = `hsl(${hue} 42% 36%)`; // set through CSSOM: inline style attributes are blocked by the page's CSP
+  return el;
+}
+const teamLogo = (data, i, cls) => {
+  if (!data.logos || i == null || i < 0) return null;
+  return data.logos[i] ? pic(wmUrl(data.logos[i], 60), cls) : badge(data.teams[i], cls);
+};
+export const logo = (data, name, cls = 'pic logo') => (name && data.logos ? teamLogo(data, data.teams.indexOf(name), cls) : null);
+export const logoAt = (data, i, cls = 'pic logo') => teamLogo(data, i, cls);
+
 export function flag(cc) {
   if (!cc || cc.length !== 2 || cc === 'XK') return h('span', { class: 'flag flag-text' }, cc || '?');
   const emoji = String.fromCodePoint(...[...cc].map((c) => 0x1f1a5 + c.charCodeAt(0)));
@@ -181,7 +206,7 @@ export function playerSearch(data, { placeholder = tr('Введите ник и�
     list.innerHTML = '';
     items.forEach((p, i) => {
       const li = h('li', { class: i === active ? 'active' : '', role: 'option' },
-        flag(p.cc), h('b', {}, p.id), h('span', { class: 'muted' }, p.name));
+        photo(p), flag(p.cc), h('b', {}, p.id), h('span', { class: 'muted' }, p.name));
       li.addEventListener('mousedown', (e) => { e.preventDefault(); choose(p); });
       list.append(li);
     });

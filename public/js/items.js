@@ -1,7 +1,7 @@
 // "Предметы": Wordle-style guessing of game items (Dota 2 heroes, CS weapons) from data/<game>-items.json.
 // Columns are declared in the data file: 'cat' (exact match), 'set' (overlap is yellow), 'num' (arrows, yellow when close).
 import { tr } from './i18n.js';
-import { rng, pick, h, store, share, pic } from './core.js';
+import { rng, pick, h, store, share, pic, wmUrl } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const MAX = 7;
@@ -40,7 +40,8 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
   const save = () => saveKey && store.set(saveKey, state);
   const byId = new Map(data.items.map((x) => [x.id, x]));
   // item icons come from the official CDN named in the data file (imgBase)
-  const icon = (it, cls = 'pic') => (it.img && data.imgBase ? pic(data.imgBase + it.img, cls) : null);
+  // (tennis players carry Wikimedia Commons photos instead: data.imgWm)
+  const icon = (it, cls = 'pic') => (!it.img ? null : data.imgWm ? pic(wmUrl(it.img, 120), `${cls} round`) : data.imgBase ? pic(data.imgBase + it.img, cls) : null);
 
   root.innerHTML = '';
   const input = h('input', { type: 'text', id: 'item-input', class: 'search-input', placeholder: tr(data.placeholder), autocomplete: 'off', spellcheck: 'false' });

@@ -1,7 +1,7 @@
 // "Цепочка" — our own mode. Connect two players through teammates: each next player must have
 // played on the same team at the same time as the previous one. Fewer links = better.
 import { tr } from './i18n.js';
-import { countryName, rng, shuffle, h, flag, store, share, playerSearch, playerLink, toast } from './core.js';
+import { countryName, rng, shuffle, h, flag, store, share, playerSearch, playerLink, toast, photo, logoAt } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 // 1000 for a shortest chain, −200 per extra link, −50 per wrong teammate, −150 per hint, at least 100
@@ -98,9 +98,9 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
     state.path.forEach((idx, i) => {
       const p = data.players[idx];
       if (i > 0) {
-        chainEl.append(h('div', { class: 'link' }, h('span', {}, linkText(data, state.path[i - 1], idx))));
+        chainEl.append(h('div', { class: 'link' }, h('span', { class: 'with-logo' }, logoAt(data, (data.players[state.path[i - 1]].mateInfo.get(idx) || [])[1]), linkText(data, state.path[i - 1], idx))));
       }
-      chainEl.append(h('div', { class: 'node' + (i === 0 || (state.done && i === state.path.length - 1) ? ' end' : '') }, flag(p.cc), ' ', h('b', {}, p.id)));
+      chainEl.append(h('div', { class: 'node' + (i === 0 || (state.done && i === state.path.length - 1) ? ' end' : '') }, photo(p, 'pic big round'), flag(p.cc), ' ', h('b', {}, p.id)));
     });
     if (!state.done) chainEl.append(h('div', { class: 'link pending' }, h('span', {}, '?')), h('div', { class: 'node end ghost' }, flag(E.cc), ' ', h('b', {}, E.id)));
 

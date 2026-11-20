@@ -238,3 +238,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .search-list li .pic { width: 26px; height: 26px; }
 .who-name { gap: 8px; }
 .answer { display: inline-flex; align-items: center; gap: 8px; }
+
+.pic.logo { border-radius: 4px; background: transparent; object-fit: contain; }
+.pic.big.logo { width: 36px; height: 36px; }
+.with-logo { display: inline-flex; align-items: center; gap: 6px; }
+.with-logo .pic { width: 20px; height: 20px; }
+.grid-head .pic { margin-bottom: 2px; }
+.grid-cell.filled .pic.big { width: 40px; height: 40px; }
+.node .pic.big { width: 40px; height: 40px; margin-right: 6px; vertical-align: middle; }
+
+.badge { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .02em; flex: none; width: 28px; height: 28px; }
+.with-logo .badge { width: 20px; height: 20px; font-size: 9px; }
+.pic.big.badge { width: 36px; height: 36px; font-size: 13px; }

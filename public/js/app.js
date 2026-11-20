@@ -36,7 +36,7 @@ applyTheme(theme);
 themeBtn.addEventListener('click', () => { theme = THEMES[(THEMES.indexOf(theme) + 1) % 3]; store.set('theme', theme); applyTheme(theme); });
 
 if (lang === 'en') {
-  document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Athletes from <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a> (CC0). Dota 2 hero and item icons belong to Valve, League of Legends champion and item icons to Riot Games, loaded from their servers. Not affiliated with Liquipedia, Valve, Riot Games, leagues or tournament organisers.';
+  document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Athletes from <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a> (CC0). Player photos and club logos come from Wikimedia Commons (authors and licences are on each file page); logos remain trademarks of the clubs. Dota 2 hero and item icons belong to Valve, League of Legends champion and item icons to Riot Games, loaded from their servers. Not affiliated with Liquipedia, Valve, Riot Games, leagues or tournament organisers.';
   document.title = 'GuessWhoAmI — guess the player';
 }
 

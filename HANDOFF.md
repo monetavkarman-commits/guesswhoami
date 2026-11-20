@@ -24,3 +24,10 @@
 - Код: `public/js/account.js` (окно входа), `public/js/online.js` (бэкенд Supabase или база артефакта).
 - Ограничения: встроенная почта Supabase шлёт лишь несколько писем в час, позже подключить SMTP (Resend). Очки пишет клиент, их можно подделать; при необходимости перенести подсчёт на сервер.
 - Защита: CSP в `public/index.html`, запрет встраивания в чужие фреймы в `app.js`.
+
+## Картинки (с 20.11.2026)
+- Ничего не копируем, браузер грузит картинки с официальных серверов; в CSP (`public/index.html`) разрешены steamstatic, ddragon, upload.wikimedia.org.
+- Dota 2 и LoL: у предметов поле `img`, у файла данных `imgBase` (собирает `scripts/build-items.mjs`; ключи Dota из `data/raw/dota-img-keys.json`, это константы OpenDota).
+- Спорт: фото игроков (`ph`) и логотипы клубов (`logos`, индекс клуба -> путь) с Wikimedia Commons. Файлы берутся из Wikidata (P18, P154) по спискам из `data/raw/sport-qids.json`, результат лежит в `data/raw/sport-images.json`, `scripts/build-sports.mjs` превращает их в пути `a/ab/File.jpg`.
+- Как обновить: запросить P18/P154 по qids через SPARQL в браузере Арта (с вкладки query.wikidata.org: с raw.githubusercontent.com и с самого сайта fetch блокирует CSP), сохранить в `data/raw/sport-images.json`, запустить `node scripts/build-sports.mjs`.
+- Нет картинок: у игроков и клубов киберспорта (Liquipedia) и у оружия/карт CS.

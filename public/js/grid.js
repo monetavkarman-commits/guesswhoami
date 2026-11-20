@@ -2,7 +2,7 @@
 // Own twist: every correct answer scores "rarity" points: the fewer events a player has among all
 // valid answers for that cell, the more points.
 import { tr } from './i18n.js';
-import { countryName, rng, shuffle, h, flag, store, share, modal, playerSearch, playerLink, roleText, toast } from './core.js';
+import { countryName, rng, shuffle, h, flag, store, share, modal, playerSearch, playerLink, roleText, toast, photo, logoAt } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const GUESSES = 9;
@@ -21,7 +21,7 @@ function buildCriteria(data, era) {
   const known = (p) => (data.cfg.topMin == null ? p.top : p.events >= 2);
   P.filter(known).forEach((p) => tset(p).forEach((t) => teamCounts.set(t, (teamCounts.get(t) || 0) + 1)));
   for (const [t, n] of teamCounts) if (n >= minTeam) {
-    out.push({ key: 't' + t, kind: 'team', label: data.teams[t], sub: era ? tr('играл за в эту эру') : tr('играл за'), test: (p) => tset(p).has(t) });
+    out.push({ key: 't' + t, kind: 'team', tidx: t, label: data.teams[t], sub: era ? tr('играл за в эту эру') : tr('играл за'), test: (p) => tset(p).has(t) });
   }
   const countries = new Map();
   P.forEach((p) => p.cc && countries.set(p.cc, (countries.get(p.cc) || 0) + 1));
@@ -113,7 +113,7 @@ export function mount(root, data, { seed, daily, label, day, filter, era, onFini
   root.append(h('p', { class: 'mode-intro' }, tr('Впишите в каждую клетку игрока, который подходит под условие строки и столбца. '),
     tr('У вас 9 попыток, каждый игрок только один раз. Очки: до 100 за клетку (чем менее очевидный игрок, тем больше), +100 за сетку без ошибок. Подсказка в клетке стоит одну попытку.')), status, board, footer);
 
-  const head = (c) => h('div', { class: 'grid-head' }, c.cc ? flag(c.cc) : null, h('small', {}, c.sub), h('span', {}, c.label));
+  const head = (c) => h('div', { class: 'grid-head' }, c.cc ? flag(c.cc) : null, c.tidx != null ? logoAt(data, c.tidx, 'pic logo big') : null, h('small', {}, c.sub), h('span', {}, c.label));
 
   const save = () => saveKey && store.set(saveKey, state);
   const correctN = () => state.cells.filter(Boolean).length;
@@ -135,7 +135,7 @@ export function mount(root, data, { seed, daily, label, day, filter, era, onFini
         const k = ri * 3 + ci; const cell = state.cells[k];
         if (cell) {
           const p = data.players[cell.idx];
-          board.append(h('div', { class: 'grid-cell filled' }, flag(p.cc), h('b', {}, p.id), h('small', {}, `+${cell.pts}`)));
+          board.append(h('div', { class: 'grid-cell filled' }, photo(p, 'pic big round'), flag(p.cc), h('b', {}, p.id), h('small', {}, `+${cell.pts}`)));
         } else if (state.done) {
           board.append(h('button', { class: 'grid-cell revealed', onclick: () => showAnswers(k) }, h('small', {}, tr('{0} вариантов', [grid.answers[k].length])), tr('показать')));
         } else {
