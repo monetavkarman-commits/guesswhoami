@@ -49,7 +49,7 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http') && !loc
 
 const MODES = {
   grid: { title: tr('Сетка'), icon: '▦', mod: grid },
-  whoami: { title: tr('Кто я?'), icon: '?', mod: whoami },
+  whoami: { title: tr('Кто я?'), icon: '👤', mod: whoami },
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
   items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), lol: tr('Чемпионы'), deadlock: tr('Герои'), tennis: tr('Теннисисты'), hockey: tr('Хоккеисты'), mma: tr('Бойцы'), boxing: tr('Боксёры') } },
   maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
