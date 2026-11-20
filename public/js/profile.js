@@ -114,6 +114,8 @@ export async function openProfile() {
     pane.append(h('div', { class: 'player-head' }, h('div', { class: 'avatar-big' }, u ? avatarOf(u) : '👤'),
       h('div', {}, h('h3', {}, u ? nameOf(u) : tr('Гость')), u ? h('div', { class: 'muted small' }, u.email, ' · ', tr('с {0}', [new Date(u.created_at).toLocaleDateString(lang === 'en' ? 'en-GB' : 'ru-RU')])) : h('div', { class: 'muted small' }, tr('Вы играете без аккаунта')))),
       ...profileSettings(sb, u, loginCta, draw));
+    // owner and staff get a shortcut to the panel (the server decides who may open it, this only hides the link)
+    if (u && sb) sb.rpc('admin_me').then(({ data }) => { if (data && pane.isConnected) pane.insertBefore(h('a', { class: 'btn', href: 'admin.html' }, tr('Открыть админку') + (data.role === 'owner' ? '' : ' (' + tr('сотрудник') + ')')), pane.children[1] || null); });
   };
   draw(user);
 }

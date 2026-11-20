@@ -273,6 +273,8 @@ const EN = {
   'Удалить аккаунт': 'Delete account',
   'Общая статистика': 'Overall statistics',
   'Достижения': 'Achievements',
+  'Открыть админку': 'Open admin panel',
+  'сотрудник': 'staff',
   'Рейтинг сейчас недоступен.': 'The leaderboard is unavailable right now.',
   'Войдите в аккаунт, чтобы ваши ежедневки попадали в рейтинг.': 'Log in to put your daily results on the leaderboard.',
   'с {0} по сей день': 'since {0}',
