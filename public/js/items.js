@@ -1,7 +1,7 @@
 // "Предметы": Wordle-style guessing of game items (Dota 2 heroes, CS weapons) from data/<game>-items.json.
 // Columns are declared in the data file: 'cat' (exact match), 'set' (overlap is yellow), 'num' (arrows, yellow when close).
 import { tr } from './i18n.js';
-import { rng, pick, h, store, share } from './core.js';
+import { rng, pick, h, store, share, pic } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const MAX = 7;
@@ -39,6 +39,8 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
   const state = (saveKey && store.get(saveKey)) || { guesses: [], done: false, won: false };
   const save = () => saveKey && store.set(saveKey, state);
   const byId = new Map(data.items.map((x) => [x.id, x]));
+  // item icons come from the official CDN named in the data file (imgBase)
+  const icon = (it, cls = 'pic') => (it.img && data.imgBase ? pic(data.imgBase + it.img, cls) : null);
 
   root.innerHTML = '';
   const input = h('input', { type: 'text', id: 'item-input', class: 'search-input', placeholder: tr(data.placeholder), autocomplete: 'off', spellcheck: 'false' });
@@ -50,7 +52,7 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
   let items = []; let active = 0;
   const renderList = () => {
     list.innerHTML = '';
-    items.forEach((it, i) => { const li = h('li', { class: i === active ? 'active' : '' }, h('b', {}, it.name), it.sub ? h('span', { class: 'muted' }, tr(it.sub)) : null); li.addEventListener('mousedown', (e) => { e.preventDefault(); choose(it); }); list.append(li); });
+    items.forEach((it, i) => { const li = h('li', { class: i === active ? 'active' : '' }, icon(it), h('b', {}, it.name), it.sub ? h('span', { class: 'muted' }, tr(it.sub)) : null); li.addEventListener('mousedown', (e) => { e.preventDefault(); choose(it); }); list.append(li); });
     list.style.display = items.length ? 'block' : 'none';
   };
   input.addEventListener('input', () => {
@@ -83,7 +85,7 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
     table.append(h('div', { class: 'who-row head items' }, h('div', {}, tr(data.nameTitle)), data.columns.map((c) => h('div', {}, tr(c.title)))));
     [...state.guesses].reverse().forEach((id) => {
       const g = byId.get(id); if (!g) return;
-      table.append(h('div', { class: 'who-row items' }, h('div', { class: 'who-name ' + (id === target.id ? 'hit' : '') }, g.name),
+      table.append(h('div', { class: 'who-row items' }, h('div', { class: 'who-name ' + (id === target.id ? 'hit' : '') }, icon(g), g.name),
         data.columns.map((c) => { const { res, arrow } = cmp(c, g, target); return h('div', { class: 'who-cell ' + res }, show(c, g[c.key]), arrow ? h('span', { class: 'arrow' }, arrow) : null); })));
     });
     footer.innerHTML = '';
@@ -92,7 +94,7 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
       footer.append(resultCard({
         title: state.won ? tr('Угадано за {0}!', [state.guesses.length]) : tr('Не угадали'),
         score: itemScore(state), daily, game: gameData.game, mode,
-        lines: [h('span', {}, tr('Ответ: '), target.url ? h('a', { href: target.url, target: '_blank', rel: 'noopener' }, target.name) : target.name), data.source ? h('span', { class: 'muted' }, tr(data.source)) : null].filter(Boolean),
+        lines: [h('span', { class: 'answer' }, icon(target, 'pic big'), tr('Ответ: '), target.url ? h('a', { href: target.url, target: '_blank', rel: 'noopener' }, target.name) : target.name), data.source ? h('span', { class: 'muted' }, tr(data.source)) : null].filter(Boolean),
         onShare: () => share(shareText()),
       }));
     } else footer.append(h('span', { class: 'muted' }, tr('Попытка {0} из {1}', [state.guesses.length + 1, MAX])));

@@ -230,3 +230,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .icon-pill.cta { background: var(--accent); border-color: var(--accent); color: #fff; padding: 0 14px; animation: cta-pulse 2.4s ease-out 3; }
 @keyframes cta-pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 90, 54, .6); } 70% { box-shadow: 0 0 0 10px rgba(255, 90, 54, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 90, 54, 0); } }
 @media (prefers-reduced-motion: reduce) { .icon-pill.cta { animation: none; } }
+
+/* item icons, player photos, club logos */
+.pic { width: 28px; height: 28px; object-fit: contain; flex: none; border-radius: 5px; background: var(--panel-2); }
+.pic.big { width: 44px; height: 44px; }
+.pic.round { border-radius: 50%; object-fit: cover; }
+.search-list li .pic { width: 26px; height: 26px; }
+.who-name { gap: 8px; }
+.answer { display: inline-flex; align-items: center; gap: 8px; }

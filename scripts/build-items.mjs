@@ -6,7 +6,17 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 const raw = JSON.parse(readFileSync('data/raw/items-raw.json', 'utf8'));
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const write = (f, d) => { writeFileSync(f, JSON.stringify(d, null, 1) + '\n'); console.log(f, d.items.length); };
+// Pictures are not copied: every item gets an `img` file name and the data file an `imgBase`, the official CDN the browser loads it from.
+// Dota 2: Valve's CDN, names matched through data/raw/dota-img-keys.json (OpenDota constants). LoL: Riot Data Dragon.
+const KEYS = JSON.parse(readFileSync('data/raw/dota-img-keys.json', 'utf8'));
+const DOTA_CDN = 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/';
+const NAMEFIX = { 'outworld destroyer': 'outworld devourer', ringmaster: 'ring master' };
+const keyOf = (list, name) => (list.find(([n]) => n.toLowerCase() === (NAMEFIX[name.toLowerCase()] || name.toLowerCase())) || [])[1];
+const write = (f, d) => {
+  if (f.endsWith('dota-items.json')) { d.imgBase = DOTA_CDN + 'heroes/'; d.items.forEach((x) => { const k = keyOf(KEYS.h, x.name); if (k) x.img = `${k}.png`; else console.warn('no hero image', x.name); }); }
+  if (f.endsWith('dota-gear.json')) { d.imgBase = DOTA_CDN + 'items/'; d.items.forEach((x) => { const k = keyOf(KEYS.it, x.name); if (k) x.img = `${k}.png`; else console.warn('no item image', x.name); }); }
+  writeFileSync(f, JSON.stringify(d, null, 1) + '\n'); console.log(f, d.items.length);
+};
 
 // ---------- Dota heroes ----------
 const ATTR = { Strength: 'Сила', Agility: 'Ловкость', Intelligence: 'Интеллект', Universal: 'Универсал' };
@@ -175,10 +185,11 @@ write('public/data/cs-items.json', cs);
       tier: x.boots ? 'Ботинки' : x.tags.includes('Lane') || x.tags.includes('Jungle') ? 'Стартовый' : !x.from ? 'Базовый' : x.into ? 'Эпический' : 'Легендарный',
       price: x.gold, parts: x.from,
       stats: [...new Set(x.tags.filter((t) => t !== 'Active').map((t) => TAG[t]).filter(Boolean))],
-      active: x.tags.includes('Active') ? 'Да' : 'Нет',
+      active: x.tags.includes('Active') ? 'Да' : 'Нет', img: `${x.id}.png`,
       url: `https://wiki.leagueoflegends.com/en-us/${encodeURIComponent(x.name.replace(/ /g, '_'))}` }))
     .sort((a, b) => a.name.localeCompare(b.name));
   write('public/data/lol-gear.json', {
+    imgBase: `https://ddragon.leagueoflegends.com/cdn/${raw2.lol.version}/img/item/`,
     modeTitle: 'Предметы', nameTitle: 'Предмет', placeholder: 'Название предмета (англ. или рус.)…',
     intro: 'Угадайте предмет League of Legends (Ущелье призывателей) по уровню, цене, числу компонентов, характеристикам и активной способности. Зелёный — совпало, жёлтый — близко (цена ±300, характеристики пересекаются), стрелка — больше или меньше.',
     source: `Riot Games Data Dragon, патч ${raw2.lol.version}`,
@@ -201,10 +212,11 @@ write('public/data/cs-items.json', cs);
   const items = raw.champs.map((c) => ({
     id: c.id.toLowerCase(), name: c.name, sub: [c.ru, c.titleRu].filter(Boolean).join(', '), alias: c.ru && c.ru !== c.name ? [c.ru] : [],
     classes: c.tags.map((t) => CLASS[t]).filter(Boolean), resource: res(c.par), atk: c.range <= 250 ? 'Ближний бой' : 'Дальний бой',
-    range: c.range, ms: c.ms, hp: Math.round(c.hp), diff: c.diff,
+    range: c.range, ms: c.ms, hp: Math.round(c.hp), diff: c.diff, img: `${c.id}.png`,
     url: `https://wiki.leagueoflegends.com/en-us/${encodeURIComponent(c.name.replace(/ /g, '_'))}`,
   })).sort((a, b) => a.name.localeCompare(b.name));
   write('public/data/lol-items.json', {
+    imgBase: `https://ddragon.leagueoflegends.com/cdn/${raw.version}/img/champion/`,
     modeTitle: 'Чемпионы', nameTitle: 'Чемпион', placeholder: 'Имя чемпиона (англ. или рус.)…',
     intro: 'Угадайте чемпиона League of Legends по классу, ресурсу, типу атаки, дальности, скорости, здоровью на 1 уровне и сложности. Зелёный — совпало, жёлтый — близко (классы пересекаются, дальность ±50, скорость ±5, здоровье ±20, сложность ±1), стрелка — больше или меньше.',
     source: `Riot Games Data Dragon, патч ${raw.version}`,

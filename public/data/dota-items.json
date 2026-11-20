@@ -62,7 +62,8 @@
    "range": 150,
    "year": 2013,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Abaddon"
+   "url": "https://liquipedia.net/dota2/Abaddon",
+   "img": "abaddon.png"
   },
   {
    "id": "alchemist",
@@ -83,7 +84,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Alchemist"
+   "url": "https://liquipedia.net/dota2/Alchemist",
+   "img": "alchemist.png"
   },
   {
    "id": "ancient-apparition",
@@ -103,7 +105,8 @@
    "alias": [
     "aa"
    ],
-   "url": "https://liquipedia.net/dota2/Ancient_Apparition"
+   "url": "https://liquipedia.net/dota2/Ancient_Apparition",
+   "img": "ancient_apparition.png"
   },
   {
    "id": "anti-mage",
@@ -123,7 +126,8 @@
    "alias": [
     "am"
    ],
-   "url": "https://liquipedia.net/dota2/Anti-Mage"
+   "url": "https://liquipedia.net/dota2/Anti-Mage",
+   "img": "antimage.png"
   },
   {
    "id": "arc-warden",
@@ -141,7 +145,8 @@
    "range": 625,
    "year": 2015,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Arc_Warden"
+   "url": "https://liquipedia.net/dota2/Arc_Warden",
+   "img": "arc_warden.png"
   },
   {
    "id": "axe",
@@ -160,7 +165,8 @@
    "range": 150,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Axe"
+   "url": "https://liquipedia.net/dota2/Axe",
+   "img": "axe.png"
   },
   {
    "id": "bane",
@@ -179,7 +185,8 @@
    "range": 425,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Bane"
+   "url": "https://liquipedia.net/dota2/Bane",
+   "img": "bane.png"
   },
   {
    "id": "batrider",
@@ -197,7 +204,8 @@
    "range": 400,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Batrider"
+   "url": "https://liquipedia.net/dota2/Batrider",
+   "img": "batrider.png"
   },
   {
    "id": "beastmaster",
@@ -216,7 +224,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Beastmaster"
+   "url": "https://liquipedia.net/dota2/Beastmaster",
+   "img": "beastmaster.png"
   },
   {
    "id": "bloodseeker",
@@ -235,7 +244,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Bloodseeker"
+   "url": "https://liquipedia.net/dota2/Bloodseeker",
+   "img": "bloodseeker.png"
   },
   {
    "id": "bounty-hunter",
@@ -252,7 +262,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Bounty_Hunter"
+   "url": "https://liquipedia.net/dota2/Bounty_Hunter",
+   "img": "bounty_hunter.png"
   },
   {
    "id": "brewmaster",
@@ -272,7 +283,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Brewmaster"
+   "url": "https://liquipedia.net/dota2/Brewmaster",
+   "img": "brewmaster.png"
   },
   {
    "id": "bristleback",
@@ -291,7 +303,8 @@
    "range": 150,
    "year": 2013,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Bristleback"
+   "url": "https://liquipedia.net/dota2/Bristleback",
+   "img": "bristleback.png"
   },
   {
    "id": "broodmother",
@@ -310,7 +323,8 @@
    "range": 175,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Broodmother"
+   "url": "https://liquipedia.net/dota2/Broodmother",
+   "img": "broodmother.png"
   },
   {
    "id": "centaur-warrunner",
@@ -330,7 +344,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Centaur_Warrunner"
+   "url": "https://liquipedia.net/dota2/Centaur_Warrunner",
+   "img": "centaur.png"
   },
   {
    "id": "chaos-knight",
@@ -350,7 +365,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Chaos_Knight"
+   "url": "https://liquipedia.net/dota2/Chaos_Knight",
+   "img": "chaos_knight.png"
   },
   {
    "id": "chen",
@@ -367,7 +383,8 @@
    "range": 650,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Chen"
+   "url": "https://liquipedia.net/dota2/Chen",
+   "img": "chen.png"
   },
   {
    "id": "clinkz",
@@ -385,7 +402,8 @@
    "range": 600,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Clinkz"
+   "url": "https://liquipedia.net/dota2/Clinkz",
+   "img": "clinkz.png"
   },
   {
    "id": "clockwerk",
@@ -404,7 +422,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Clockwerk"
+   "url": "https://liquipedia.net/dota2/Clockwerk",
+   "img": "rattletrap.png"
   },
   {
    "id": "crystal-maiden",
@@ -424,7 +443,8 @@
    "alias": [
     "cm"
    ],
-   "url": "https://liquipedia.net/dota2/Crystal_Maiden"
+   "url": "https://liquipedia.net/dota2/Crystal_Maiden",
+   "img": "crystal_maiden.png"
   },
   {
    "id": "dark-seer",
@@ -442,7 +462,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Dark_Seer"
+   "url": "https://liquipedia.net/dota2/Dark_Seer",
+   "img": "dark_seer.png"
   },
   {
    "id": "dark-willow",
@@ -463,7 +484,8 @@
    "alias": [
     "dw"
    ],
-   "url": "https://liquipedia.net/dota2/Dark_Willow"
+   "url": "https://liquipedia.net/dota2/Dark_Willow",
+   "img": "dark_willow.png"
   },
   {
    "id": "dawnbreaker",
@@ -480,7 +502,8 @@
    "range": 150,
    "year": 2021,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Dawnbreaker"
+   "url": "https://liquipedia.net/dota2/Dawnbreaker",
+   "img": "dawnbreaker.png"
   },
   {
    "id": "dazzle",
@@ -498,7 +521,8 @@
    "range": 575,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Dazzle"
+   "url": "https://liquipedia.net/dota2/Dazzle",
+   "img": "dazzle.png"
   },
   {
    "id": "death-prophet",
@@ -517,7 +541,8 @@
    "range": 600,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Death_Prophet"
+   "url": "https://liquipedia.net/dota2/Death_Prophet",
+   "img": "death_prophet.png"
   },
   {
    "id": "disruptor",
@@ -536,7 +561,8 @@
    "range": 625,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Disruptor"
+   "url": "https://liquipedia.net/dota2/Disruptor",
+   "img": "disruptor.png"
   },
   {
    "id": "doom",
@@ -556,7 +582,8 @@
    "range": 175,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Doom"
+   "url": "https://liquipedia.net/dota2/Doom",
+   "img": "doom_bringer.png"
   },
   {
    "id": "dragon-knight",
@@ -577,7 +604,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Dragon_Knight"
+   "url": "https://liquipedia.net/dota2/Dragon_Knight",
+   "img": "dragon_knight.png"
   },
   {
    "id": "drow-ranger",
@@ -595,7 +623,8 @@
    "range": 625,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Drow_Ranger"
+   "url": "https://liquipedia.net/dota2/Drow_Ranger",
+   "img": "drow_ranger.png"
   },
   {
    "id": "earth-spirit",
@@ -617,7 +646,8 @@
    "alias": [
     "es"
    ],
-   "url": "https://liquipedia.net/dota2/Earth_Spirit"
+   "url": "https://liquipedia.net/dota2/Earth_Spirit",
+   "img": "earth_spirit.png"
   },
   {
    "id": "earthshaker",
@@ -636,7 +666,8 @@
    "range": 150,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Earthshaker"
+   "url": "https://liquipedia.net/dota2/Earthshaker",
+   "img": "earthshaker.png"
   },
   {
    "id": "elder-titan",
@@ -655,7 +686,8 @@
    "range": 150,
    "year": 2013,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Elder_Titan"
+   "url": "https://liquipedia.net/dota2/Elder_Titan",
+   "img": "elder_titan.png"
   },
   {
    "id": "ember-spirit",
@@ -677,7 +709,8 @@
    "alias": [
     "ember"
    ],
-   "url": "https://liquipedia.net/dota2/Ember_Spirit"
+   "url": "https://liquipedia.net/dota2/Ember_Spirit",
+   "img": "ember_spirit.png"
   },
   {
    "id": "enchantress",
@@ -696,7 +729,8 @@
    "range": 575,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Enchantress"
+   "url": "https://liquipedia.net/dota2/Enchantress",
+   "img": "enchantress.png"
   },
   {
    "id": "enigma",
@@ -714,7 +748,8 @@
    "range": 500,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Enigma"
+   "url": "https://liquipedia.net/dota2/Enigma",
+   "img": "enigma.png"
   },
   {
    "id": "faceless-void",
@@ -736,7 +771,8 @@
    "alias": [
     "fv"
    ],
-   "url": "https://liquipedia.net/dota2/Faceless_Void"
+   "url": "https://liquipedia.net/dota2/Faceless_Void",
+   "img": "faceless_void.png"
   },
   {
    "id": "grimstroke",
@@ -755,7 +791,8 @@
    "range": 600,
    "year": 2018,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Grimstroke"
+   "url": "https://liquipedia.net/dota2/Grimstroke",
+   "img": "grimstroke.png"
   },
   {
    "id": "gyrocopter",
@@ -773,7 +810,8 @@
    "range": 365,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Gyrocopter"
+   "url": "https://liquipedia.net/dota2/Gyrocopter",
+   "img": "gyrocopter.png"
   },
   {
    "id": "hoodwink",
@@ -792,7 +830,8 @@
    "range": 575,
    "year": 2020,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Hoodwink"
+   "url": "https://liquipedia.net/dota2/Hoodwink",
+   "img": "hoodwink.png"
   },
   {
    "id": "huskar",
@@ -810,7 +849,8 @@
    "range": 400,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Huskar"
+   "url": "https://liquipedia.net/dota2/Huskar",
+   "img": "huskar.png"
   },
   {
    "id": "invoker",
@@ -830,7 +870,8 @@
    "range": 600,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Invoker"
+   "url": "https://liquipedia.net/dota2/Invoker",
+   "img": "invoker.png"
   },
   {
    "id": "io",
@@ -848,7 +889,8 @@
    "range": 500,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Io"
+   "url": "https://liquipedia.net/dota2/Io",
+   "img": "wisp.png"
   },
   {
    "id": "jakiro",
@@ -867,7 +909,8 @@
    "range": 400,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Jakiro"
+   "url": "https://liquipedia.net/dota2/Jakiro",
+   "img": "jakiro.png"
   },
   {
    "id": "juggernaut",
@@ -885,7 +928,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Juggernaut"
+   "url": "https://liquipedia.net/dota2/Juggernaut",
+   "img": "juggernaut.png"
   },
   {
    "id": "keeper-of-the-light",
@@ -905,7 +949,8 @@
    "alias": [
     "kotl"
    ],
-   "url": "https://liquipedia.net/dota2/Keeper_of_the_Light"
+   "url": "https://liquipedia.net/dota2/Keeper_of_the_Light",
+   "img": "keeper_of_the_light.png"
   },
   {
    "id": "kez",
@@ -923,7 +968,8 @@
    "range": 150,
    "year": 2024,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Kez"
+   "url": "https://liquipedia.net/dota2/Kez",
+   "img": "kez.png"
   },
   {
    "id": "kunkka",
@@ -944,7 +990,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Kunkka"
+   "url": "https://liquipedia.net/dota2/Kunkka",
+   "img": "kunkka.png"
   },
   {
    "id": "largo",
@@ -962,7 +1009,8 @@
    "range": 150,
    "year": 2025,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Largo"
+   "url": "https://liquipedia.net/dota2/Largo",
+   "img": "largo.png"
   },
   {
    "id": "legion-commander",
@@ -982,7 +1030,8 @@
    "range": 150,
    "year": 2013,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Legion_Commander"
+   "url": "https://liquipedia.net/dota2/Legion_Commander",
+   "img": "legion_commander.png"
   },
   {
    "id": "leshrac",
@@ -1002,7 +1051,8 @@
    "range": 575,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Leshrac"
+   "url": "https://liquipedia.net/dota2/Leshrac",
+   "img": "leshrac.png"
   },
   {
    "id": "lich",
@@ -1019,7 +1069,8 @@
    "range": 550,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Lich"
+   "url": "https://liquipedia.net/dota2/Lich",
+   "img": "lich.png"
   },
   {
    "id": "lifestealer",
@@ -1038,7 +1089,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Lifestealer"
+   "url": "https://liquipedia.net/dota2/Lifestealer",
+   "img": "life_stealer.png"
   },
   {
    "id": "lina",
@@ -1057,7 +1109,8 @@
    "range": 670,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Lina"
+   "url": "https://liquipedia.net/dota2/Lina",
+   "img": "lina.png"
   },
   {
    "id": "lion",
@@ -1076,7 +1129,8 @@
    "range": 600,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Lion"
+   "url": "https://liquipedia.net/dota2/Lion",
+   "img": "lion.png"
   },
   {
    "id": "lone-druid",
@@ -1096,7 +1150,8 @@
    "alias": [
     "ld"
    ],
-   "url": "https://liquipedia.net/dota2/Lone_Druid"
+   "url": "https://liquipedia.net/dota2/Lone_Druid",
+   "img": "lone_druid.png"
   },
   {
    "id": "luna",
@@ -1114,7 +1169,8 @@
    "range": 330,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Luna"
+   "url": "https://liquipedia.net/dota2/Luna",
+   "img": "luna.png"
   },
   {
    "id": "lycan",
@@ -1133,7 +1189,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Lycan"
+   "url": "https://liquipedia.net/dota2/Lycan",
+   "img": "lycan.png"
   },
   {
    "id": "magnus",
@@ -1152,7 +1209,8 @@
    "range": 200,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Magnus"
+   "url": "https://liquipedia.net/dota2/Magnus",
+   "img": "magnataur.png"
   },
   {
    "id": "marci",
@@ -1172,7 +1230,8 @@
    "range": 150,
    "year": 2021,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Marci"
+   "url": "https://liquipedia.net/dota2/Marci",
+   "img": "marci.png"
   },
   {
    "id": "mars",
@@ -1191,7 +1250,8 @@
    "range": 250,
    "year": 2019,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Mars"
+   "url": "https://liquipedia.net/dota2/Mars",
+   "img": "mars.png"
   },
   {
    "id": "medusa",
@@ -1209,7 +1269,8 @@
    "range": 600,
    "year": 2013,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Medusa"
+   "url": "https://liquipedia.net/dota2/Medusa",
+   "img": "medusa.png"
   },
   {
    "id": "meepo",
@@ -1230,7 +1291,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Meepo"
+   "url": "https://liquipedia.net/dota2/Meepo",
+   "img": "meepo.png"
   },
   {
    "id": "mirana",
@@ -1250,7 +1312,8 @@
    "range": 630,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Mirana"
+   "url": "https://liquipedia.net/dota2/Mirana",
+   "img": "mirana.png"
   },
   {
    "id": "monkey-king",
@@ -1271,7 +1334,8 @@
    "alias": [
     "mk"
    ],
-   "url": "https://liquipedia.net/dota2/Monkey_King"
+   "url": "https://liquipedia.net/dota2/Monkey_King",
+   "img": "monkey_king.png"
   },
   {
    "id": "morphling",
@@ -1291,7 +1355,8 @@
    "range": 350,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Morphling"
+   "url": "https://liquipedia.net/dota2/Morphling",
+   "img": "morphling.png"
   },
   {
    "id": "muerta",
@@ -1309,7 +1374,8 @@
    "range": 575,
    "year": 2023,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Muerta"
+   "url": "https://liquipedia.net/dota2/Muerta",
+   "img": "muerta.png"
   },
   {
    "id": "naga-siren",
@@ -1332,7 +1398,8 @@
    "alias": [
     "naga"
    ],
-   "url": "https://liquipedia.net/dota2/Naga_Siren"
+   "url": "https://liquipedia.net/dota2/Naga_Siren",
+   "img": "naga_siren.png"
   },
   {
    "id": "nature-s-prophet",
@@ -1354,7 +1421,8 @@
     "np",
     "furion"
    ],
-   "url": "https://liquipedia.net/dota2/Nature's_Prophet"
+   "url": "https://liquipedia.net/dota2/Nature's_Prophet",
+   "img": "furion.png"
   },
   {
    "id": "necrophos",
@@ -1373,7 +1441,8 @@
    "range": 500,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Necrophos"
+   "url": "https://liquipedia.net/dota2/Necrophos",
+   "img": "necrolyte.png"
   },
   {
    "id": "night-stalker",
@@ -1393,7 +1462,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Night_Stalker"
+   "url": "https://liquipedia.net/dota2/Night_Stalker",
+   "img": "night_stalker.png"
   },
   {
    "id": "nyx-assassin",
@@ -1412,7 +1482,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Nyx_Assassin"
+   "url": "https://liquipedia.net/dota2/Nyx_Assassin",
+   "img": "nyx_assassin.png"
   },
   {
    "id": "ogre-magi",
@@ -1432,7 +1503,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Ogre_Magi"
+   "url": "https://liquipedia.net/dota2/Ogre_Magi",
+   "img": "ogre_magi.png"
   },
   {
    "id": "omniknight",
@@ -1450,7 +1522,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Omniknight"
+   "url": "https://liquipedia.net/dota2/Omniknight",
+   "img": "omniknight.png"
   },
   {
    "id": "oracle",
@@ -1469,7 +1542,8 @@
    "range": 625,
    "year": 2015,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Oracle"
+   "url": "https://liquipedia.net/dota2/Oracle",
+   "img": "oracle.png"
   },
   {
    "id": "outworld-destroyer",
@@ -1489,7 +1563,8 @@
    "alias": [
     "od"
    ],
-   "url": "https://liquipedia.net/dota2/Outworld_Destroyer"
+   "url": "https://liquipedia.net/dota2/Outworld_Destroyer",
+   "img": "obsidian_destroyer.png"
   },
   {
    "id": "pangolier",
@@ -1510,7 +1585,8 @@
    "range": 150,
    "year": 2017,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Pangolier"
+   "url": "https://liquipedia.net/dota2/Pangolier",
+   "img": "pangolier.png"
   },
   {
    "id": "phantom-assassin",
@@ -1529,7 +1605,8 @@
    "alias": [
     "pa"
    ],
-   "url": "https://liquipedia.net/dota2/Phantom_Assassin"
+   "url": "https://liquipedia.net/dota2/Phantom_Assassin",
+   "img": "phantom_assassin.png"
   },
   {
    "id": "phantom-lancer",
@@ -1550,7 +1627,8 @@
    "alias": [
     "pl"
    ],
-   "url": "https://liquipedia.net/dota2/Phantom_Lancer"
+   "url": "https://liquipedia.net/dota2/Phantom_Lancer",
+   "img": "phantom_lancer.png"
   },
   {
    "id": "phoenix",
@@ -1570,7 +1648,8 @@
    "range": 500,
    "year": 2014,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Phoenix"
+   "url": "https://liquipedia.net/dota2/Phoenix",
+   "img": "phoenix.png"
   },
   {
    "id": "primal-beast",
@@ -1588,7 +1667,8 @@
    "range": 150,
    "year": 2022,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Primal_Beast"
+   "url": "https://liquipedia.net/dota2/Primal_Beast",
+   "img": "primal_beast.png"
   },
   {
    "id": "puck",
@@ -1607,7 +1687,8 @@
    "range": 550,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Puck"
+   "url": "https://liquipedia.net/dota2/Puck",
+   "img": "puck.png"
   },
   {
    "id": "pudge",
@@ -1626,7 +1707,8 @@
    "range": 175,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Pudge"
+   "url": "https://liquipedia.net/dota2/Pudge",
+   "img": "pudge.png"
   },
   {
    "id": "pugna",
@@ -1643,7 +1725,8 @@
    "range": 630,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Pugna"
+   "url": "https://liquipedia.net/dota2/Pugna",
+   "img": "pugna.png"
   },
   {
    "id": "queen-of-pain",
@@ -1663,7 +1746,8 @@
    "alias": [
     "qop"
    ],
-   "url": "https://liquipedia.net/dota2/Queen_of_Pain"
+   "url": "https://liquipedia.net/dota2/Queen_of_Pain",
+   "img": "queenofpain.png"
   },
   {
    "id": "razor",
@@ -1682,7 +1766,8 @@
    "range": 475,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Razor"
+   "url": "https://liquipedia.net/dota2/Razor",
+   "img": "razor.png"
   },
   {
    "id": "riki",
@@ -1700,7 +1785,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Riki"
+   "url": "https://liquipedia.net/dota2/Riki",
+   "img": "riki.png"
   },
   {
    "id": "ringmaster",
@@ -1719,7 +1805,8 @@
    "range": 575,
    "year": 2024,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Ringmaster"
+   "url": "https://liquipedia.net/dota2/Ringmaster",
+   "img": "ringmaster.png"
   },
   {
    "id": "rubick",
@@ -1737,7 +1824,8 @@
    "range": 550,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Rubick"
+   "url": "https://liquipedia.net/dota2/Rubick",
+   "img": "rubick.png"
   },
   {
    "id": "sand-king",
@@ -1757,7 +1845,8 @@
    "range": 150,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Sand_King"
+   "url": "https://liquipedia.net/dota2/Sand_King",
+   "img": "sand_king.png"
   },
   {
    "id": "shadow-demon",
@@ -1776,7 +1865,8 @@
    "range": 500,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Shadow_Demon"
+   "url": "https://liquipedia.net/dota2/Shadow_Demon",
+   "img": "shadow_demon.png"
   },
   {
    "id": "shadow-fiend",
@@ -1795,7 +1885,8 @@
    "alias": [
     "sf"
    ],
-   "url": "https://liquipedia.net/dota2/Shadow_Fiend"
+   "url": "https://liquipedia.net/dota2/Shadow_Fiend",
+   "img": "nevermore.png"
   },
   {
    "id": "shadow-shaman",
@@ -1815,7 +1906,8 @@
    "range": 400,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Shadow_Shaman"
+   "url": "https://liquipedia.net/dota2/Shadow_Shaman",
+   "img": "shadow_shaman.png"
   },
   {
    "id": "silencer",
@@ -1835,7 +1927,8 @@
    "range": 600,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Silencer"
+   "url": "https://liquipedia.net/dota2/Silencer",
+   "img": "silencer.png"
   },
   {
    "id": "skywrath-mage",
@@ -1855,7 +1948,8 @@
    "alias": [
     "sky"
    ],
-   "url": "https://liquipedia.net/dota2/Skywrath_Mage"
+   "url": "https://liquipedia.net/dota2/Skywrath_Mage",
+   "img": "skywrath_mage.png"
   },
   {
    "id": "slardar",
@@ -1875,7 +1969,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Slardar"
+   "url": "https://liquipedia.net/dota2/Slardar",
+   "img": "slardar.png"
   },
   {
    "id": "slark",
@@ -1894,7 +1989,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Slark"
+   "url": "https://liquipedia.net/dota2/Slark",
+   "img": "slark.png"
   },
   {
    "id": "snapfire",
@@ -1913,7 +2009,8 @@
    "range": 400,
    "year": 2019,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Snapfire"
+   "url": "https://liquipedia.net/dota2/Snapfire",
+   "img": "snapfire.png"
   },
   {
    "id": "sniper",
@@ -1930,7 +2027,8 @@
    "range": 550,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Sniper"
+   "url": "https://liquipedia.net/dota2/Sniper",
+   "img": "sniper.png"
   },
   {
    "id": "spectre",
@@ -1948,7 +2046,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Spectre"
+   "url": "https://liquipedia.net/dota2/Spectre",
+   "img": "spectre.png"
   },
   {
    "id": "spirit-breaker",
@@ -1968,7 +2067,8 @@
    "range": 170,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Spirit_Breaker"
+   "url": "https://liquipedia.net/dota2/Spirit_Breaker",
+   "img": "spirit_breaker.png"
   },
   {
    "id": "storm-spirit",
@@ -1990,7 +2090,8 @@
    "alias": [
     "storm"
    ],
-   "url": "https://liquipedia.net/dota2/Storm_Spirit"
+   "url": "https://liquipedia.net/dota2/Storm_Spirit",
+   "img": "storm_spirit.png"
   },
   {
    "id": "sven",
@@ -2010,7 +2111,8 @@
    "range": 150,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Sven"
+   "url": "https://liquipedia.net/dota2/Sven",
+   "img": "sven.png"
   },
   {
    "id": "techies",
@@ -2027,7 +2129,8 @@
    "range": 600,
    "year": 2014,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Techies"
+   "url": "https://liquipedia.net/dota2/Techies",
+   "img": "techies.png"
   },
   {
    "id": "templar-assassin",
@@ -2046,7 +2149,8 @@
    "alias": [
     "ta"
    ],
-   "url": "https://liquipedia.net/dota2/Templar_Assassin"
+   "url": "https://liquipedia.net/dota2/Templar_Assassin",
+   "img": "templar_assassin.png"
   },
   {
    "id": "terrorblade",
@@ -2064,7 +2168,8 @@
    "range": 150,
    "year": 2014,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Terrorblade"
+   "url": "https://liquipedia.net/dota2/Terrorblade",
+   "img": "terrorblade.png"
   },
   {
    "id": "tidehunter",
@@ -2084,7 +2189,8 @@
    "range": 150,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Tidehunter"
+   "url": "https://liquipedia.net/dota2/Tidehunter",
+   "img": "tidehunter.png"
   },
   {
    "id": "timbersaw",
@@ -2102,7 +2208,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Timbersaw"
+   "url": "https://liquipedia.net/dota2/Timbersaw",
+   "img": "shredder.png"
   },
   {
    "id": "tinker",
@@ -2120,7 +2227,8 @@
    "range": 500,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Tinker"
+   "url": "https://liquipedia.net/dota2/Tinker",
+   "img": "tinker.png"
   },
   {
    "id": "tiny",
@@ -2141,7 +2249,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Tiny"
+   "url": "https://liquipedia.net/dota2/Tiny",
+   "img": "tiny.png"
   },
   {
    "id": "treant-protector",
@@ -2163,7 +2272,8 @@
    "alias": [
     "treant"
    ],
-   "url": "https://liquipedia.net/dota2/Treant_Protector"
+   "url": "https://liquipedia.net/dota2/Treant_Protector",
+   "img": "treant.png"
   },
   {
    "id": "troll-warlord",
@@ -2182,7 +2292,8 @@
    "range": 500,
    "year": 2013,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Troll_Warlord"
+   "url": "https://liquipedia.net/dota2/Troll_Warlord",
+   "img": "troll_warlord.png"
   },
   {
    "id": "tusk",
@@ -2200,7 +2311,8 @@
    "range": 150,
    "year": 2013,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Tusk"
+   "url": "https://liquipedia.net/dota2/Tusk",
+   "img": "tusk.png"
   },
   {
    "id": "underlord",
@@ -2220,7 +2332,8 @@
    "range": 200,
    "year": 2016,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Underlord"
+   "url": "https://liquipedia.net/dota2/Underlord",
+   "img": "abyssal_underlord.png"
   },
   {
    "id": "undying",
@@ -2239,7 +2352,8 @@
    "range": 150,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Undying"
+   "url": "https://liquipedia.net/dota2/Undying",
+   "img": "undying.png"
   },
   {
    "id": "ursa",
@@ -2257,7 +2371,8 @@
    "range": 150,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Ursa"
+   "url": "https://liquipedia.net/dota2/Ursa",
+   "img": "ursa.png"
   },
   {
    "id": "vengeful-spirit",
@@ -2279,7 +2394,8 @@
    "alias": [
     "vs"
    ],
-   "url": "https://liquipedia.net/dota2/Vengeful_Spirit"
+   "url": "https://liquipedia.net/dota2/Vengeful_Spirit",
+   "img": "vengefulspirit.png"
   },
   {
    "id": "venomancer",
@@ -2299,7 +2415,8 @@
    "range": 450,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Venomancer"
+   "url": "https://liquipedia.net/dota2/Venomancer",
+   "img": "venomancer.png"
   },
   {
    "id": "viper",
@@ -2318,7 +2435,8 @@
    "range": 575,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Viper"
+   "url": "https://liquipedia.net/dota2/Viper",
+   "img": "viper.png"
   },
   {
    "id": "visage",
@@ -2338,7 +2456,8 @@
    "range": 600,
    "year": 2012,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Visage"
+   "url": "https://liquipedia.net/dota2/Visage",
+   "img": "visage.png"
   },
   {
    "id": "void-spirit",
@@ -2359,7 +2478,8 @@
    "alias": [
     "void"
    ],
-   "url": "https://liquipedia.net/dota2/Void_Spirit"
+   "url": "https://liquipedia.net/dota2/Void_Spirit",
+   "img": "void_spirit.png"
   },
   {
    "id": "warlock",
@@ -2377,7 +2497,8 @@
    "range": 600,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Warlock"
+   "url": "https://liquipedia.net/dota2/Warlock",
+   "img": "warlock.png"
   },
   {
    "id": "weaver",
@@ -2394,7 +2515,8 @@
    "range": 425,
    "year": 2011,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Weaver"
+   "url": "https://liquipedia.net/dota2/Weaver",
+   "img": "weaver.png"
   },
   {
    "id": "windranger",
@@ -2414,7 +2536,8 @@
    "range": 600,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Windranger"
+   "url": "https://liquipedia.net/dota2/Windranger",
+   "img": "windrunner.png"
   },
   {
    "id": "winter-wyvern",
@@ -2432,7 +2555,8 @@
    "range": 450,
    "year": 2015,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Winter_Wyvern"
+   "url": "https://liquipedia.net/dota2/Winter_Wyvern",
+   "img": "winter_wyvern.png"
   },
   {
    "id": "witch-doctor",
@@ -2450,7 +2574,8 @@
    "range": 550,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Witch_Doctor"
+   "url": "https://liquipedia.net/dota2/Witch_Doctor",
+   "img": "witch_doctor.png"
   },
   {
    "id": "wraith-king",
@@ -2472,7 +2597,8 @@
    "alias": [
     "wk"
    ],
-   "url": "https://liquipedia.net/dota2/Wraith_King"
+   "url": "https://liquipedia.net/dota2/Wraith_King",
+   "img": "skeleton_king.png"
   },
   {
    "id": "zeus",
@@ -2489,7 +2615,9 @@
    "range": 365,
    "year": 2010,
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Zeus"
+   "url": "https://liquipedia.net/dota2/Zeus",
+   "img": "zuus.png"
   }
- ]
+ ],
+ "imgBase": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/"
 }

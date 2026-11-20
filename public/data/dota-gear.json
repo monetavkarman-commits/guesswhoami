@@ -55,7 +55,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Abyssal_Blade"
+   "url": "https://liquipedia.net/dota2/Abyssal_Blade",
+   "img": "abyssal_blade.png"
   },
   {
    "id": "aeon-disk",
@@ -73,7 +74,8 @@
    "alias": [
     "ad"
    ],
-   "url": "https://liquipedia.net/dota2/Aeon_Disk"
+   "url": "https://liquipedia.net/dota2/Aeon_Disk",
+   "img": "aeon_disk.png"
   },
   {
    "id": "aether-lens",
@@ -90,7 +92,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Aether_Lens"
+   "url": "https://liquipedia.net/dota2/Aether_Lens",
+   "img": "aether_lens.png"
   },
   {
    "id": "aghanim-s-scepter",
@@ -112,7 +115,8 @@
     "ags",
     "ultimate"
    ],
-   "url": "https://liquipedia.net/dota2/Aghanim's_Scepter"
+   "url": "https://liquipedia.net/dota2/Aghanim's_Scepter",
+   "img": "ultimate_scepter.png"
   },
   {
    "id": "aghanim-s-shard",
@@ -128,7 +132,8 @@
     "ags",
     "aghs"
    ],
-   "url": "https://liquipedia.net/dota2/Aghanim's_Shard"
+   "url": "https://liquipedia.net/dota2/Aghanim's_Shard",
+   "img": "aghanims_shard.png"
   },
   {
    "id": "arcane-blink",
@@ -145,7 +150,8 @@
    "alias": [
     "blink dagger"
    ],
-   "url": "https://liquipedia.net/dota2/Arcane_Blink"
+   "url": "https://liquipedia.net/dota2/Arcane_Blink",
+   "img": "arcane_blink.png"
   },
   {
    "id": "arcane-boots",
@@ -165,7 +171,8 @@
     "mana",
     "mb"
    ],
-   "url": "https://liquipedia.net/dota2/Arcane_Boots"
+   "url": "https://liquipedia.net/dota2/Arcane_Boots",
+   "img": "arcane_boots.png"
   },
   {
    "id": "armlet-of-mordiggian",
@@ -183,7 +190,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Armlet_of_Mordiggian"
+   "url": "https://liquipedia.net/dota2/Armlet_of_Mordiggian",
+   "img": "armlet.png"
   },
   {
    "id": "assault-cuirass",
@@ -201,7 +209,8 @@
    "alias": [
     "ac"
    ],
-   "url": "https://liquipedia.net/dota2/Assault_Cuirass"
+   "url": "https://liquipedia.net/dota2/Assault_Cuirass",
+   "img": "assault.png"
   },
   {
    "id": "band-of-elvenskin",
@@ -216,7 +225,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Band_of_Elvenskin"
+   "url": "https://liquipedia.net/dota2/Band_of_Elvenskin",
+   "img": "boots_of_elves.png"
   },
   {
    "id": "battle-fury",
@@ -234,7 +244,8 @@
    "alias": [
     "bf"
    ],
-   "url": "https://liquipedia.net/dota2/Battle_Fury"
+   "url": "https://liquipedia.net/dota2/Battle_Fury",
+   "img": "bfury.png"
   },
   {
    "id": "belt-of-strength",
@@ -249,7 +260,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Belt_of_Strength"
+   "url": "https://liquipedia.net/dota2/Belt_of_Strength",
+   "img": "belt_of_strength.png"
   },
   {
    "id": "black-king-bar",
@@ -267,7 +279,8 @@
    "alias": [
     "bkb"
    ],
-   "url": "https://liquipedia.net/dota2/Black_King_Bar"
+   "url": "https://liquipedia.net/dota2/Black_King_Bar",
+   "img": "black_king_bar.png"
   },
   {
    "id": "blade-mail",
@@ -286,7 +299,8 @@
     "bm",
     "blademail"
    ],
-   "url": "https://liquipedia.net/dota2/Blade_Mail"
+   "url": "https://liquipedia.net/dota2/Blade_Mail",
+   "img": "blade_mail.png"
   },
   {
    "id": "blade-of-alacrity",
@@ -301,7 +315,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Blade_of_Alacrity"
+   "url": "https://liquipedia.net/dota2/Blade_of_Alacrity",
+   "img": "blade_of_alacrity.png"
   },
   {
    "id": "blades-of-attack",
@@ -316,7 +331,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Blades_of_Attack"
+   "url": "https://liquipedia.net/dota2/Blades_of_Attack",
+   "img": "blades_of_attack.png"
   },
   {
    "id": "blink-dagger",
@@ -329,7 +345,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Blink_Dagger"
+   "url": "https://liquipedia.net/dota2/Blink_Dagger",
+   "img": "blink.png"
   },
   {
    "id": "blitz-knuckles",
@@ -344,7 +361,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Blitz_Knuckles"
+   "url": "https://liquipedia.net/dota2/Blitz_Knuckles",
+   "img": "blitz_knuckles.png"
   },
   {
    "id": "blood-grenade",
@@ -359,7 +377,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Blood_Grenade"
+   "url": "https://liquipedia.net/dota2/Blood_Grenade",
+   "img": "blood_grenade.png"
   },
   {
    "id": "bloodstone",
@@ -379,7 +398,8 @@
    "alias": [
     "bs"
    ],
-   "url": "https://liquipedia.net/dota2/Bloodstone"
+   "url": "https://liquipedia.net/dota2/Bloodstone",
+   "img": "bloodstone.png"
   },
   {
    "id": "bloodthorn",
@@ -399,7 +419,8 @@
    "alias": [
     "orchid malevolence"
    ],
-   "url": "https://liquipedia.net/dota2/Bloodthorn"
+   "url": "https://liquipedia.net/dota2/Bloodthorn",
+   "img": "bloodthorn.png"
   },
   {
    "id": "boots-of-bearing",
@@ -419,7 +440,8 @@
     "marching boots",
     "bongo boots"
    ],
-   "url": "https://liquipedia.net/dota2/Boots_of_Bearing"
+   "url": "https://liquipedia.net/dota2/Boots_of_Bearing",
+   "img": "boots_of_bearing.png"
   },
   {
    "id": "boots-of-speed",
@@ -434,7 +456,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Boots_of_Speed"
+   "url": "https://liquipedia.net/dota2/Boots_of_Speed",
+   "img": "boots.png"
   },
   {
    "id": "bottle",
@@ -447,7 +470,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Bottle"
+   "url": "https://liquipedia.net/dota2/Bottle",
+   "img": "bottle.png"
   },
   {
    "id": "bracer",
@@ -466,7 +490,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Bracer"
+   "url": "https://liquipedia.net/dota2/Bracer",
+   "img": "bracer.png"
   },
   {
    "id": "broadsword",
@@ -481,7 +506,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Broadsword"
+   "url": "https://liquipedia.net/dota2/Broadsword",
+   "img": "broadsword.png"
   },
   {
    "id": "buckler",
@@ -496,7 +522,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Buckler"
+   "url": "https://liquipedia.net/dota2/Buckler",
+   "img": "buckler.png"
   },
   {
    "id": "butterfly",
@@ -516,7 +543,8 @@
    "alias": [
     "bfly"
    ],
-   "url": "https://liquipedia.net/dota2/Butterfly"
+   "url": "https://liquipedia.net/dota2/Butterfly",
+   "img": "butterfly.png"
   },
   {
    "id": "chainmail",
@@ -531,7 +559,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Chainmail"
+   "url": "https://liquipedia.net/dota2/Chainmail",
+   "img": "chainmail.png"
   },
   {
    "id": "chasm-stone",
@@ -546,7 +575,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Chasm_Stone"
+   "url": "https://liquipedia.net/dota2/Chasm_Stone",
+   "img": "chasm_stone.png"
   },
   {
    "id": "circlet",
@@ -563,7 +593,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Circlet"
+   "url": "https://liquipedia.net/dota2/Circlet",
+   "img": "circlet.png"
   },
   {
    "id": "clarity",
@@ -576,7 +607,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Clarity"
+   "url": "https://liquipedia.net/dota2/Clarity",
+   "img": "clarity.png"
   },
   {
    "id": "claymore",
@@ -591,7 +623,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Claymore"
+   "url": "https://liquipedia.net/dota2/Claymore",
+   "img": "claymore.png"
   },
   {
    "id": "cloak",
@@ -606,7 +639,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Cloak"
+   "url": "https://liquipedia.net/dota2/Cloak",
+   "img": "cloak.png"
   },
   {
    "id": "consecrated-wraps",
@@ -627,7 +661,8 @@
    "alias": [
     "cw"
    ],
-   "url": "https://liquipedia.net/dota2/Consecrated_Wraps"
+   "url": "https://liquipedia.net/dota2/Consecrated_Wraps",
+   "img": "consecrated_wraps.png"
   },
   {
    "id": "crella-s-crozier",
@@ -646,7 +681,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Crella's_Crozier"
+   "url": "https://liquipedia.net/dota2/Crella's_Crozier",
+   "img": "crellas_crozier.png"
   },
   {
    "id": "crimson-guard",
@@ -663,7 +699,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Crimson_Guard"
+   "url": "https://liquipedia.net/dota2/Crimson_Guard",
+   "img": "crimson_guard.png"
   },
   {
    "id": "crown",
@@ -680,7 +717,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Crown"
+   "url": "https://liquipedia.net/dota2/Crown",
+   "img": "crown.png"
   },
   {
    "id": "crystalys",
@@ -695,7 +733,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Crystalys"
+   "url": "https://liquipedia.net/dota2/Crystalys",
+   "img": "lesser_crit.png"
   },
   {
    "id": "daedalus",
@@ -712,7 +751,8 @@
    "alias": [
     "crit"
    ],
-   "url": "https://liquipedia.net/dota2/Daedalus"
+   "url": "https://liquipedia.net/dota2/Daedalus",
+   "img": "greater_crit.png"
   },
   {
    "id": "demon-edge",
@@ -727,7 +767,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Demon_Edge"
+   "url": "https://liquipedia.net/dota2/Demon_Edge",
+   "img": "demon_edge.png"
   },
   {
    "id": "desolator",
@@ -742,7 +783,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Desolator"
+   "url": "https://liquipedia.net/dota2/Desolator",
+   "img": "desolator.png"
   },
   {
    "id": "diadem",
@@ -759,7 +801,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Diadem"
+   "url": "https://liquipedia.net/dota2/Diadem",
+   "img": "diadem.png"
   },
   {
    "id": "diffusal-blade",
@@ -777,7 +820,8 @@
    "alias": [
     "diffusal blade 1"
    ],
-   "url": "https://liquipedia.net/dota2/Diffusal_Blade"
+   "url": "https://liquipedia.net/dota2/Diffusal_Blade",
+   "img": "diffusal_blade.png"
   },
   {
    "id": "disperser",
@@ -795,7 +839,8 @@
    "alias": [
     "diffusal blade 1"
    ],
-   "url": "https://liquipedia.net/dota2/Disperser"
+   "url": "https://liquipedia.net/dota2/Disperser",
+   "img": "disperser.png"
   },
   {
    "id": "divine-rapier",
@@ -810,7 +855,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Divine_Rapier"
+   "url": "https://liquipedia.net/dota2/Divine_Rapier",
+   "img": "rapier.png"
   },
   {
    "id": "dragon-lance",
@@ -827,7 +873,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Dragon_Lance"
+   "url": "https://liquipedia.net/dota2/Dragon_Lance",
+   "img": "dragon_lance.png"
   },
   {
    "id": "drum-of-endurance",
@@ -842,7 +889,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Drum_of_Endurance"
+   "url": "https://liquipedia.net/dota2/Drum_of_Endurance",
+   "img": "ancient_janggo.png"
   },
   {
    "id": "dust-of-appearance",
@@ -855,7 +903,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Dust_of_Appearance"
+   "url": "https://liquipedia.net/dota2/Dust_of_Appearance",
+   "img": "dust.png"
   },
   {
    "id": "eaglesong",
@@ -870,7 +919,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Eaglesong"
+   "url": "https://liquipedia.net/dota2/Eaglesong",
+   "img": "eagle.png"
   },
   {
    "id": "echo-sabre",
@@ -887,7 +937,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Echo_Sabre"
+   "url": "https://liquipedia.net/dota2/Echo_Sabre",
+   "img": "echo_sabre.png"
   },
   {
    "id": "enchanted-mango",
@@ -902,7 +953,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Enchanted_Mango"
+   "url": "https://liquipedia.net/dota2/Enchanted_Mango",
+   "img": "enchanted_mango.png"
   },
   {
    "id": "energy-booster",
@@ -917,7 +969,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Energy_Booster"
+   "url": "https://liquipedia.net/dota2/Energy_Booster",
+   "img": "energy_booster.png"
   },
   {
    "id": "essence-distiller",
@@ -939,7 +992,8 @@
    "alias": [
     "ed"
    ],
-   "url": "https://liquipedia.net/dota2/Essence_Distiller"
+   "url": "https://liquipedia.net/dota2/Essence_Distiller",
+   "img": "essence_distiller.png"
   },
   {
    "id": "ethereal-blade",
@@ -959,7 +1013,8 @@
     "eb",
     "eblade"
    ],
-   "url": "https://liquipedia.net/dota2/Ethereal_Blade"
+   "url": "https://liquipedia.net/dota2/Ethereal_Blade",
+   "img": "ethereal_blade.png"
   },
   {
    "id": "eul-s-scepter-of-divinity",
@@ -978,7 +1033,8 @@
    "alias": [
     "cyclone euls"
    ],
-   "url": "https://liquipedia.net/dota2/Eul's_Scepter_of_Divinity"
+   "url": "https://liquipedia.net/dota2/Eul's_Scepter_of_Divinity",
+   "img": "cyclone.png"
   },
   {
    "id": "eye-of-skadi",
@@ -997,7 +1053,8 @@
    "alias": [
     "eos"
    ],
-   "url": "https://liquipedia.net/dota2/Eye_of_Skadi"
+   "url": "https://liquipedia.net/dota2/Eye_of_Skadi",
+   "img": "skadi.png"
   },
   {
    "id": "faerie-fire",
@@ -1012,7 +1069,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Faerie_Fire"
+   "url": "https://liquipedia.net/dota2/Faerie_Fire",
+   "img": "faerie_fire.png"
   },
   {
    "id": "falcon-blade",
@@ -1031,7 +1089,8 @@
    "alias": [
     "fb"
    ],
-   "url": "https://liquipedia.net/dota2/Falcon_Blade"
+   "url": "https://liquipedia.net/dota2/Falcon_Blade",
+   "img": "falcon_blade.png"
   },
   {
    "id": "fluffy-hat",
@@ -1050,7 +1109,8 @@
     "hat",
     "fh"
    ],
-   "url": "https://liquipedia.net/dota2/Fluffy_Hat"
+   "url": "https://liquipedia.net/dota2/Fluffy_Hat",
+   "img": "fluffy_hat.png"
   },
   {
    "id": "force-staff",
@@ -1068,7 +1128,8 @@
    "alias": [
     "fs"
    ],
-   "url": "https://liquipedia.net/dota2/Force_Staff"
+   "url": "https://liquipedia.net/dota2/Force_Staff",
+   "img": "force_staff.png"
   },
   {
    "id": "gauntlets-of-strength",
@@ -1083,7 +1144,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Gauntlets_of_Strength"
+   "url": "https://liquipedia.net/dota2/Gauntlets_of_Strength",
+   "img": "gauntlets.png"
   },
   {
    "id": "gem-of-true-sight",
@@ -1096,7 +1158,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Gem_of_True_Sight"
+   "url": "https://liquipedia.net/dota2/Gem_of_True_Sight",
+   "img": "gem.png"
   },
   {
    "id": "ghost-scepter",
@@ -1113,7 +1176,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Ghost_Scepter"
+   "url": "https://liquipedia.net/dota2/Ghost_Scepter",
+   "img": "ghost.png"
   },
   {
    "id": "gleipnir",
@@ -1134,7 +1198,8 @@
     "gliepnir",
     "glaypnir"
    ],
-   "url": "https://liquipedia.net/dota2/Gleipnir"
+   "url": "https://liquipedia.net/dota2/Gleipnir",
+   "img": "gungir.png"
   },
   {
    "id": "glimmer-cape",
@@ -1149,7 +1214,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Glimmer_Cape"
+   "url": "https://liquipedia.net/dota2/Glimmer_Cape",
+   "img": "glimmer_cape.png"
   },
   {
    "id": "gloves-of-haste",
@@ -1164,7 +1230,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Gloves_of_Haste"
+   "url": "https://liquipedia.net/dota2/Gloves_of_Haste",
+   "img": "gloves.png"
   },
   {
    "id": "guardian-greaves",
@@ -1182,7 +1249,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Guardian_Greaves"
+   "url": "https://liquipedia.net/dota2/Guardian_Greaves",
+   "img": "guardian_greaves.png"
   },
   {
    "id": "hand-of-midas",
@@ -1197,7 +1265,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Hand_of_Midas"
+   "url": "https://liquipedia.net/dota2/Hand_of_Midas",
+   "img": "hand_of_midas.png"
   },
   {
    "id": "harpoon",
@@ -1216,7 +1285,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Harpoon"
+   "url": "https://liquipedia.net/dota2/Harpoon",
+   "img": "harpoon.png"
   },
   {
    "id": "headdress",
@@ -1231,7 +1301,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Headdress"
+   "url": "https://liquipedia.net/dota2/Headdress",
+   "img": "headdress.png"
   },
   {
    "id": "healing-salve",
@@ -1244,7 +1315,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Healing_Salve"
+   "url": "https://liquipedia.net/dota2/Healing_Salve",
+   "img": "flask.png"
   },
   {
    "id": "heart-of-tarrasque",
@@ -1263,7 +1335,8 @@
    "alias": [
     "hot"
    ],
-   "url": "https://liquipedia.net/dota2/Heart_of_Tarrasque"
+   "url": "https://liquipedia.net/dota2/Heart_of_Tarrasque",
+   "img": "heart.png"
   },
   {
    "id": "heaven-s-halberd",
@@ -1280,7 +1353,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Heaven's_Halberd"
+   "url": "https://liquipedia.net/dota2/Heaven's_Halberd",
+   "img": "heavens_halberd.png"
   },
   {
    "id": "helm-of-iron-will",
@@ -1296,7 +1370,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Helm_of_Iron_Will"
+   "url": "https://liquipedia.net/dota2/Helm_of_Iron_Will",
+   "img": "helm_of_iron_will.png"
   },
   {
    "id": "helm-of-the-dominator",
@@ -1317,7 +1392,8 @@
    "alias": [
     "hotd"
    ],
-   "url": "https://liquipedia.net/dota2/Helm_of_the_Dominator"
+   "url": "https://liquipedia.net/dota2/Helm_of_the_Dominator",
+   "img": "helm_of_the_dominator.png"
   },
   {
    "id": "helm-of-the-overlord",
@@ -1338,7 +1414,8 @@
    "alias": [
     "hoto"
    ],
-   "url": "https://liquipedia.net/dota2/Helm_of_the_Overlord"
+   "url": "https://liquipedia.net/dota2/Helm_of_the_Overlord",
+   "img": "helm_of_the_overlord.png"
   },
   {
    "id": "holy-locket",
@@ -1357,7 +1434,8 @@
    "alias": [
     "hl"
    ],
-   "url": "https://liquipedia.net/dota2/Holy_Locket"
+   "url": "https://liquipedia.net/dota2/Holy_Locket",
+   "img": "holy_locket.png"
   },
   {
    "id": "hurricane-pike",
@@ -1379,7 +1457,8 @@
     "fs",
     "force staff"
    ],
-   "url": "https://liquipedia.net/dota2/Hurricane_Pike"
+   "url": "https://liquipedia.net/dota2/Hurricane_Pike",
+   "img": "hurricane_pike.png"
   },
   {
    "id": "hydra-s-breath",
@@ -1397,7 +1476,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Hydra's_Breath"
+   "url": "https://liquipedia.net/dota2/Hydra's_Breath",
+   "img": "hydras_breath.png"
   },
   {
    "id": "hyperstone",
@@ -1412,7 +1492,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Hyperstone"
+   "url": "https://liquipedia.net/dota2/Hyperstone",
+   "img": "hyperstone.png"
   },
   {
    "id": "infused-raindrops",
@@ -1427,7 +1508,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Infused_Raindrops"
+   "url": "https://liquipedia.net/dota2/Infused_Raindrops",
+   "img": "infused_raindrop.png"
   },
   {
    "id": "iron-branch",
@@ -1446,7 +1528,8 @@
    "alias": [
     "gg branch"
    ],
-   "url": "https://liquipedia.net/dota2/Iron_Branch"
+   "url": "https://liquipedia.net/dota2/Iron_Branch",
+   "img": "branches.png"
   },
   {
    "id": "javelin",
@@ -1459,7 +1542,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Javelin"
+   "url": "https://liquipedia.net/dota2/Javelin",
+   "img": "javelin.png"
   },
   {
    "id": "kaya",
@@ -1478,7 +1562,8 @@
    "alias": [
     "ky"
    ],
-   "url": "https://liquipedia.net/dota2/Kaya"
+   "url": "https://liquipedia.net/dota2/Kaya",
+   "img": "kaya.png"
   },
   {
    "id": "kaya-and-sange",
@@ -1503,7 +1588,8 @@
     "s&k",
     "sk"
    ],
-   "url": "https://liquipedia.net/dota2/Kaya_and_Sange"
+   "url": "https://liquipedia.net/dota2/Kaya_and_Sange",
+   "img": "kaya_and_sange.png"
   },
   {
    "id": "khanda",
@@ -1526,7 +1612,8 @@
     "angel",
     "demise"
    ],
-   "url": "https://liquipedia.net/dota2/Khanda"
+   "url": "https://liquipedia.net/dota2/Khanda",
+   "img": "angels_demise.png"
   },
   {
    "id": "linken-s-sphere",
@@ -1546,7 +1633,8 @@
    "alias": [
     "ls"
    ],
-   "url": "https://liquipedia.net/dota2/Linken's_Sphere"
+   "url": "https://liquipedia.net/dota2/Linken's_Sphere",
+   "img": "sphere.png"
   },
   {
    "id": "lotus-orb",
@@ -1565,7 +1653,8 @@
    "alias": [
     "ls"
    ],
-   "url": "https://liquipedia.net/dota2/Lotus_Orb"
+   "url": "https://liquipedia.net/dota2/Lotus_Orb",
+   "img": "lotus_orb.png"
   },
   {
    "id": "maelstrom",
@@ -1581,7 +1670,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Maelstrom"
+   "url": "https://liquipedia.net/dota2/Maelstrom",
+   "img": "maelstrom.png"
   },
   {
    "id": "mage-slayer",
@@ -1600,7 +1690,8 @@
    "alias": [
     "ms"
    ],
-   "url": "https://liquipedia.net/dota2/Mage_Slayer"
+   "url": "https://liquipedia.net/dota2/Mage_Slayer",
+   "img": "mage_slayer.png"
   },
   {
    "id": "magic-stick",
@@ -1613,7 +1704,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Magic_Stick"
+   "url": "https://liquipedia.net/dota2/Magic_Stick",
+   "img": "magic_stick.png"
   },
   {
    "id": "magic-wand",
@@ -1630,7 +1722,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Magic_Wand"
+   "url": "https://liquipedia.net/dota2/Magic_Wand",
+   "img": "magic_wand.png"
   },
   {
    "id": "manta-style",
@@ -1649,7 +1742,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Manta_Style"
+   "url": "https://liquipedia.net/dota2/Manta_Style",
+   "img": "manta.png"
   },
   {
    "id": "mantle-of-intelligence",
@@ -1664,7 +1758,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Mantle_of_Intelligence"
+   "url": "https://liquipedia.net/dota2/Mantle_of_Intelligence",
+   "img": "mantle.png"
   },
   {
    "id": "mask-of-madness",
@@ -1681,7 +1776,8 @@
    "alias": [
     "mom"
    ],
-   "url": "https://liquipedia.net/dota2/Mask_of_Madness"
+   "url": "https://liquipedia.net/dota2/Mask_of_Madness",
+   "img": "mask_of_madness.png"
   },
   {
    "id": "mekansm",
@@ -1698,7 +1794,8 @@
    "alias": [
     "mechanism"
    ],
-   "url": "https://liquipedia.net/dota2/Mekansm"
+   "url": "https://liquipedia.net/dota2/Mekansm",
+   "img": "mekansm.png"
   },
   {
    "id": "meteor-hammer",
@@ -1719,7 +1816,8 @@
    "alias": [
     "mh"
    ],
-   "url": "https://liquipedia.net/dota2/Meteor_Hammer"
+   "url": "https://liquipedia.net/dota2/Meteor_Hammer",
+   "img": "meteor_hammer.png"
   },
   {
    "id": "mithril-hammer",
@@ -1734,7 +1832,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Mithril_Hammer"
+   "url": "https://liquipedia.net/dota2/Mithril_Hammer",
+   "img": "mithril_hammer.png"
   },
   {
    "id": "mjollnir",
@@ -1750,7 +1849,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Mjollnir"
+   "url": "https://liquipedia.net/dota2/Mjollnir",
+   "img": "mjollnir.png"
   },
   {
    "id": "monkey-king-bar",
@@ -1769,7 +1869,8 @@
    "alias": [
     "mkb"
    ],
-   "url": "https://liquipedia.net/dota2/Monkey_King_Bar"
+   "url": "https://liquipedia.net/dota2/Monkey_King_Bar",
+   "img": "monkey_king_bar.png"
   },
   {
    "id": "moon-shard",
@@ -1784,7 +1885,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Moon_Shard"
+   "url": "https://liquipedia.net/dota2/Moon_Shard",
+   "img": "moon_shard.png"
   },
   {
    "id": "morbid-mask",
@@ -1799,7 +1901,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Morbid_Mask"
+   "url": "https://liquipedia.net/dota2/Morbid_Mask",
+   "img": "lifesteal.png"
   },
   {
    "id": "mystic-staff",
@@ -1814,7 +1917,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Mystic_Staff"
+   "url": "https://liquipedia.net/dota2/Mystic_Staff",
+   "img": "mystic_staff.png"
   },
   {
    "id": "null-talisman",
@@ -1833,7 +1937,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Null_Talisman"
+   "url": "https://liquipedia.net/dota2/Null_Talisman",
+   "img": "null_talisman.png"
   },
   {
    "id": "nullifier",
@@ -1851,7 +1956,8 @@
    "alias": [
     "nlf"
    ],
-   "url": "https://liquipedia.net/dota2/Nullifier"
+   "url": "https://liquipedia.net/dota2/Nullifier",
+   "img": "nullifier.png"
   },
   {
    "id": "oblivion-staff",
@@ -1868,7 +1974,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Oblivion_Staff"
+   "url": "https://liquipedia.net/dota2/Oblivion_Staff",
+   "img": "oblivion_staff.png"
   },
   {
    "id": "octarine-core",
@@ -1888,7 +1995,8 @@
     "mana",
     "mb"
    ],
-   "url": "https://liquipedia.net/dota2/Octarine_Core"
+   "url": "https://liquipedia.net/dota2/Octarine_Core",
+   "img": "octarine_core.png"
   },
   {
    "id": "ogre-axe",
@@ -1905,7 +2013,8 @@
    "alias": [
     "ogre club"
    ],
-   "url": "https://liquipedia.net/dota2/Ogre_Axe"
+   "url": "https://liquipedia.net/dota2/Ogre_Axe",
+   "img": "ogre_axe.png"
   },
   {
    "id": "orb-of-blight",
@@ -1920,7 +2029,8 @@
    "alias": [
     "blight stone"
    ],
-   "url": "https://liquipedia.net/dota2/Orb_of_Blight"
+   "url": "https://liquipedia.net/dota2/Orb_of_Blight",
+   "img": "blight_stone.png"
   },
   {
    "id": "orb-of-corrosion",
@@ -1939,7 +2049,8 @@
     "corosion",
     "corossion"
    ],
-   "url": "https://liquipedia.net/dota2/Orb_of_Corrosion"
+   "url": "https://liquipedia.net/dota2/Orb_of_Corrosion",
+   "img": "orb_of_corrosion.png"
   },
   {
    "id": "orb-of-frost",
@@ -1954,7 +2065,8 @@
    "alias": [
     "oof"
    ],
-   "url": "https://liquipedia.net/dota2/Orb_of_Frost"
+   "url": "https://liquipedia.net/dota2/Orb_of_Frost",
+   "img": "orb_of_frost.png"
   },
   {
    "id": "orb-of-venom",
@@ -1969,7 +2081,8 @@
    "alias": [
     "oov"
    ],
-   "url": "https://liquipedia.net/dota2/Orb_of_Venom"
+   "url": "https://liquipedia.net/dota2/Orb_of_Venom",
+   "img": "orb_of_venom.png"
   },
   {
    "id": "orchid-malevolence",
@@ -1989,7 +2102,8 @@
    "alias": [
     "silence"
    ],
-   "url": "https://liquipedia.net/dota2/Orchid_Malevolence"
+   "url": "https://liquipedia.net/dota2/Orchid_Malevolence",
+   "img": "orchid.png"
   },
   {
    "id": "overwhelming-blink",
@@ -2006,7 +2120,8 @@
    "alias": [
     "blink dagger"
    ],
-   "url": "https://liquipedia.net/dota2/Overwhelming_Blink"
+   "url": "https://liquipedia.net/dota2/Overwhelming_Blink",
+   "img": "overwhelming_blink.png"
   },
   {
    "id": "parasma",
@@ -2028,7 +2143,8 @@
     "misery",
     "sm"
    ],
-   "url": "https://liquipedia.net/dota2/Parasma"
+   "url": "https://liquipedia.net/dota2/Parasma",
+   "img": "devastator.png"
   },
   {
    "id": "pavise",
@@ -2045,7 +2161,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Pavise"
+   "url": "https://liquipedia.net/dota2/Pavise",
+   "img": "pavise.png"
   },
   {
    "id": "perseverance",
@@ -2060,7 +2177,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Perseverance"
+   "url": "https://liquipedia.net/dota2/Perseverance",
+   "img": "pers.png"
   },
   {
    "id": "phase-boots",
@@ -2077,7 +2195,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Phase_Boots"
+   "url": "https://liquipedia.net/dota2/Phase_Boots",
+   "img": "phase_boots.png"
   },
   {
    "id": "phylactery",
@@ -2095,7 +2214,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Phylactery"
+   "url": "https://liquipedia.net/dota2/Phylactery",
+   "img": "phylactery.png"
   },
   {
    "id": "pipe-of-insight",
@@ -2111,7 +2231,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Pipe_of_Insight"
+   "url": "https://liquipedia.net/dota2/Pipe_of_Insight",
+   "img": "pipe.png"
   },
   {
    "id": "platemail",
@@ -2126,7 +2247,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Platemail"
+   "url": "https://liquipedia.net/dota2/Platemail",
+   "img": "platemail.png"
   },
   {
    "id": "point-booster",
@@ -2142,7 +2264,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Point_Booster"
+   "url": "https://liquipedia.net/dota2/Point_Booster",
+   "img": "point_booster.png"
   },
   {
    "id": "quelling-blade",
@@ -2157,7 +2280,8 @@
    "alias": [
     "QB"
    ],
-   "url": "https://liquipedia.net/dota2/Quelling_Blade"
+   "url": "https://liquipedia.net/dota2/Quelling_Blade",
+   "img": "quelling_blade.png"
   },
   {
    "id": "radiance",
@@ -2173,7 +2297,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Radiance"
+   "url": "https://liquipedia.net/dota2/Radiance",
+   "img": "radiance.png"
   },
   {
    "id": "reaver",
@@ -2188,7 +2313,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Reaver"
+   "url": "https://liquipedia.net/dota2/Reaver",
+   "img": "reaver.png"
   },
   {
    "id": "refresher-orb",
@@ -2203,7 +2329,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Refresher_Orb"
+   "url": "https://liquipedia.net/dota2/Refresher_Orb",
+   "img": "refresher.png"
   },
   {
    "id": "revenant-s-brooch",
@@ -2223,7 +2350,8 @@
     "misery",
     "sm"
    ],
-   "url": "https://liquipedia.net/dota2/Revenant's_Brooch"
+   "url": "https://liquipedia.net/dota2/Revenant's_Brooch",
+   "img": "revenants_brooch.png"
   },
   {
    "id": "ring-of-basilius",
@@ -2240,7 +2368,8 @@
    "alias": [
     "rob"
    ],
-   "url": "https://liquipedia.net/dota2/Ring_of_Basilius"
+   "url": "https://liquipedia.net/dota2/Ring_of_Basilius",
+   "img": "ring_of_basilius.png"
   },
   {
    "id": "ring-of-health",
@@ -2257,7 +2386,8 @@
    "alias": [
     "roh"
    ],
-   "url": "https://liquipedia.net/dota2/Ring_of_Health"
+   "url": "https://liquipedia.net/dota2/Ring_of_Health",
+   "img": "ring_of_health.png"
   },
   {
    "id": "ring-of-protection",
@@ -2274,7 +2404,8 @@
    "alias": [
     "RoP"
    ],
-   "url": "https://liquipedia.net/dota2/Ring_of_Protection"
+   "url": "https://liquipedia.net/dota2/Ring_of_Protection",
+   "img": "ring_of_protection.png"
   },
   {
    "id": "ring-of-regen",
@@ -2291,7 +2422,8 @@
    "alias": [
     "ror"
    ],
-   "url": "https://liquipedia.net/dota2/Ring_of_Regen"
+   "url": "https://liquipedia.net/dota2/Ring_of_Regen",
+   "img": "ring_of_regen.png"
   },
   {
    "id": "ring-of-tarrasque",
@@ -2308,7 +2440,8 @@
    "alias": [
     "rot"
    ],
-   "url": "https://liquipedia.net/dota2/Ring_of_Tarrasque"
+   "url": "https://liquipedia.net/dota2/Ring_of_Tarrasque",
+   "img": "ring_of_tarrasque.png"
   },
   {
    "id": "robe-of-the-magi",
@@ -2323,7 +2456,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Robe_of_the_Magi"
+   "url": "https://liquipedia.net/dota2/Robe_of_the_Magi",
+   "img": "robe.png"
   },
   {
    "id": "rod-of-atos",
@@ -2339,7 +2473,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Rod_of_Atos"
+   "url": "https://liquipedia.net/dota2/Rod_of_Atos",
+   "img": "rod_of_atos.png"
   },
   {
    "id": "sacred-relic",
@@ -2354,7 +2489,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Sacred_Relic"
+   "url": "https://liquipedia.net/dota2/Sacred_Relic",
+   "img": "relic.png"
   },
   {
    "id": "sage-s-mask",
@@ -2369,7 +2505,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Sage's_Mask"
+   "url": "https://liquipedia.net/dota2/Sage's_Mask",
+   "img": "sobi_mask.png"
   },
   {
    "id": "sange",
@@ -2386,7 +2523,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Sange"
+   "url": "https://liquipedia.net/dota2/Sange",
+   "img": "sange.png"
   },
   {
    "id": "sange-and-yasha",
@@ -2410,7 +2548,8 @@
     "s&y",
     "sy"
    ],
-   "url": "https://liquipedia.net/dota2/Sange_and_Yasha"
+   "url": "https://liquipedia.net/dota2/Sange_and_Yasha",
+   "img": "sange_and_yasha.png"
   },
   {
    "id": "satanic",
@@ -2426,7 +2565,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Satanic"
+   "url": "https://liquipedia.net/dota2/Satanic",
+   "img": "satanic.png"
   },
   {
    "id": "scythe-of-vyse",
@@ -2445,7 +2585,8 @@
     "hex",
     "sheepstick"
    ],
-   "url": "https://liquipedia.net/dota2/Scythe_of_Vyse"
+   "url": "https://liquipedia.net/dota2/Scythe_of_Vyse",
+   "img": "sheepstick.png"
   },
   {
    "id": "sentry-ward",
@@ -2458,7 +2599,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Sentry_Ward"
+   "url": "https://liquipedia.net/dota2/Sentry_Ward",
+   "img": "ward_sentry.png"
   },
   {
    "id": "shadow-amulet",
@@ -2471,7 +2613,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Shadow_Amulet"
+   "url": "https://liquipedia.net/dota2/Shadow_Amulet",
+   "img": "shadow_amulet.png"
   },
   {
    "id": "shadow-blade",
@@ -2491,7 +2634,8 @@
     "invis",
     "silver edge"
    ],
-   "url": "https://liquipedia.net/dota2/Shadow_Blade"
+   "url": "https://liquipedia.net/dota2/Shadow_Blade",
+   "img": "invis_sword.png"
   },
   {
    "id": "shawl",
@@ -2506,7 +2650,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Shawl"
+   "url": "https://liquipedia.net/dota2/Shawl",
+   "img": "shawl.png"
   },
   {
    "id": "shiva-s-guard",
@@ -2524,7 +2669,8 @@
    "alias": [
     "shivas"
    ],
-   "url": "https://liquipedia.net/dota2/Shiva's_Guard"
+   "url": "https://liquipedia.net/dota2/Shiva's_Guard",
+   "img": "shivas_guard.png"
   },
   {
    "id": "silver-edge",
@@ -2544,7 +2690,8 @@
     "invis",
     "shadow blade"
    ],
-   "url": "https://liquipedia.net/dota2/Silver_Edge"
+   "url": "https://liquipedia.net/dota2/Silver_Edge",
+   "img": "silver_edge.png"
   },
   {
    "id": "skull-basher",
@@ -2560,7 +2707,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Skull_Basher"
+   "url": "https://liquipedia.net/dota2/Skull_Basher",
+   "img": "basher.png"
   },
   {
    "id": "slippers-of-agility",
@@ -2575,7 +2723,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Slippers_of_Agility"
+   "url": "https://liquipedia.net/dota2/Slippers_of_Agility",
+   "img": "slippers.png"
   },
   {
    "id": "smoke-of-deceit",
@@ -2588,7 +2737,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Smoke_of_Deceit"
+   "url": "https://liquipedia.net/dota2/Smoke_of_Deceit",
+   "img": "smoke_of_deceit.png"
   },
   {
    "id": "solar-crest",
@@ -2606,7 +2756,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Solar_Crest"
+   "url": "https://liquipedia.net/dota2/Solar_Crest",
+   "img": "solar_crest.png"
   },
   {
    "id": "soul-booster",
@@ -2622,7 +2773,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Soul_Booster"
+   "url": "https://liquipedia.net/dota2/Soul_Booster",
+   "img": "soul_booster.png"
   },
   {
    "id": "soul-ring",
@@ -2638,7 +2790,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Soul_Ring"
+   "url": "https://liquipedia.net/dota2/Soul_Ring",
+   "img": "soul_ring.png"
   },
   {
    "id": "specialist-s-array",
@@ -2654,7 +2807,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Specialist's_Array"
+   "url": "https://liquipedia.net/dota2/Specialist's_Array",
+   "img": "specialists_array.png"
   },
   {
    "id": "spirit-vessel",
@@ -2675,7 +2829,8 @@
    "alias": [
     "sv"
    ],
-   "url": "https://liquipedia.net/dota2/Spirit_Vessel"
+   "url": "https://liquipedia.net/dota2/Spirit_Vessel",
+   "img": "spirit_vessel.png"
   },
   {
    "id": "splintmail",
@@ -2690,7 +2845,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Splintmail"
+   "url": "https://liquipedia.net/dota2/Splintmail",
+   "img": "splintmail.png"
   },
   {
    "id": "staff-of-wizardry",
@@ -2705,7 +2861,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Staff_of_Wizardry"
+   "url": "https://liquipedia.net/dota2/Staff_of_Wizardry",
+   "img": "staff_of_wizardry.png"
   },
   {
    "id": "swift-blink",
@@ -2722,7 +2879,8 @@
    "alias": [
     "blink dagger"
    ],
-   "url": "https://liquipedia.net/dota2/Swift_Blink"
+   "url": "https://liquipedia.net/dota2/Swift_Blink",
+   "img": "swift_blink.png"
   },
   {
    "id": "talisman-of-evasion",
@@ -2737,7 +2895,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Talisman_of_Evasion"
+   "url": "https://liquipedia.net/dota2/Talisman_of_Evasion",
+   "img": "talisman_of_evasion.png"
   },
   {
    "id": "tango",
@@ -2750,7 +2909,8 @@
    "active": "Да",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Tango"
+   "url": "https://liquipedia.net/dota2/Tango",
+   "img": "tango.png"
   },
   {
    "id": "tiara-of-selemene",
@@ -2765,7 +2925,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Tiara_of_Selemene"
+   "url": "https://liquipedia.net/dota2/Tiara_of_Selemene",
+   "img": "tiara_of_selemene.png"
   },
   {
    "id": "town-portal-scroll",
@@ -2781,7 +2942,8 @@
     "tp",
     "teleport"
    ],
-   "url": "https://liquipedia.net/dota2/Town_Portal_Scroll"
+   "url": "https://liquipedia.net/dota2/Town_Portal_Scroll",
+   "img": "tpscroll.png"
   },
   {
    "id": "tranquil-boots",
@@ -2797,7 +2959,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Tranquil_Boots"
+   "url": "https://liquipedia.net/dota2/Tranquil_Boots",
+   "img": "tranquil_boots.png"
   },
   {
    "id": "ultimate-orb",
@@ -2814,7 +2977,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Ultimate_Orb"
+   "url": "https://liquipedia.net/dota2/Ultimate_Orb",
+   "img": "ultimate_orb.png"
   },
   {
    "id": "urn-of-shadows",
@@ -2833,7 +2997,8 @@
    "active": "Да",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Urn_of_Shadows"
+   "url": "https://liquipedia.net/dota2/Urn_of_Shadows",
+   "img": "urn_of_shadows.png"
   },
   {
    "id": "vanguard",
@@ -2851,7 +3016,8 @@
    "alias": [
     "vg"
    ],
-   "url": "https://liquipedia.net/dota2/Vanguard"
+   "url": "https://liquipedia.net/dota2/Vanguard",
+   "img": "vanguard.png"
   },
   {
    "id": "veil-of-discord",
@@ -2870,7 +3036,8 @@
    "alias": [
     "vod"
    ],
-   "url": "https://liquipedia.net/dota2/Veil_of_Discord"
+   "url": "https://liquipedia.net/dota2/Veil_of_Discord",
+   "img": "veil_of_discord.png"
   },
   {
    "id": "vitality-booster",
@@ -2885,7 +3052,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Vitality_Booster"
+   "url": "https://liquipedia.net/dota2/Vitality_Booster",
+   "img": "vitality_booster.png"
   },
   {
    "id": "vladmir-s-offering",
@@ -2903,7 +3071,8 @@
    "alias": [
     "vlads"
    ],
-   "url": "https://liquipedia.net/dota2/Vladmir's_Offering"
+   "url": "https://liquipedia.net/dota2/Vladmir's_Offering",
+   "img": "vladmir.png"
   },
   {
    "id": "void-stone",
@@ -2918,7 +3087,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Void_Stone"
+   "url": "https://liquipedia.net/dota2/Void_Stone",
+   "img": "void_stone.png"
   },
   {
    "id": "voodoo-mask",
@@ -2937,7 +3107,8 @@
     "vodo",
     "vm"
    ],
-   "url": "https://liquipedia.net/dota2/Voodoo_Mask"
+   "url": "https://liquipedia.net/dota2/Voodoo_Mask",
+   "img": "voodoo_mask.png"
   },
   {
    "id": "wind-lace",
@@ -2952,7 +3123,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Wind_Lace"
+   "url": "https://liquipedia.net/dota2/Wind_Lace",
+   "img": "wind_lace.png"
   },
   {
    "id": "wind-waker",
@@ -2972,7 +3144,8 @@
     "cyclone",
     "ww"
    ],
-   "url": "https://liquipedia.net/dota2/Wind_Waker"
+   "url": "https://liquipedia.net/dota2/Wind_Waker",
+   "img": "wind_waker.png"
   },
   {
    "id": "witch-blade",
@@ -2992,7 +3165,8 @@
    "alias": [
     "wb"
    ],
-   "url": "https://liquipedia.net/dota2/Witch_Blade"
+   "url": "https://liquipedia.net/dota2/Witch_Blade",
+   "img": "witch_blade.png"
   },
   {
    "id": "wizard-hat",
@@ -3009,7 +3183,8 @@
    "alias": [
     "wh"
    ],
-   "url": "https://liquipedia.net/dota2/Wizard_Hat"
+   "url": "https://liquipedia.net/dota2/Wizard_Hat",
+   "img": "wizard_hat.png"
   },
   {
    "id": "wraith-band",
@@ -3028,7 +3203,8 @@
    "active": "Нет",
    "upgrade": "Нет",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Wraith_Band"
+   "url": "https://liquipedia.net/dota2/Wraith_Band",
+   "img": "wraith_band.png"
   },
   {
    "id": "yasha",
@@ -3045,7 +3221,8 @@
    "active": "Нет",
    "upgrade": "Да",
    "alias": [],
-   "url": "https://liquipedia.net/dota2/Yasha"
+   "url": "https://liquipedia.net/dota2/Yasha",
+   "img": "yasha.png"
   },
   {
    "id": "yasha-and-kaya",
@@ -3069,7 +3246,9 @@
     "y&k",
     "sk"
    ],
-   "url": "https://liquipedia.net/dota2/Yasha_and_Kaya"
+   "url": "https://liquipedia.net/dota2/Yasha_and_Kaya",
+   "img": "yasha_and_kaya.png"
   }
- ]
+ ],
+ "imgBase": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/"
 }

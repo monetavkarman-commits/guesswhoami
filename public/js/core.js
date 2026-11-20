@@ -142,6 +142,12 @@ export function h(tag, attrs = {}, ...kids) {
   return el;
 }
 
+// A small picture (item icon, player photo, club logo). A broken or blocked image removes itself, so the text stays alone.
+export function pic(src, cls = 'pic') {
+  if (!src) return null;
+  return h('img', { class: cls, src, alt: '', loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer', onerror: (e) => e.target.remove() });
+}
+
 export function flag(cc) {
   if (!cc || cc.length !== 2 || cc === 'XK') return h('span', { class: 'flag flag-text' }, cc || '?');
   const emoji = String.fromCodePoint(...[...cc].map((c) => 0x1f1a5 + c.charCodeAt(0)));
