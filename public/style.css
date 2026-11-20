@@ -394,3 +394,10 @@ body.is-home .mode-root { background: none; border: 0; box-shadow: none; padding
 .login-btn:not(.cta) { background: var(--panel); color: var(--text); border: 1px solid var(--line); box-shadow: 0 3px 0 var(--line); font-weight: 700; }
 .login-btn.cta { animation: cta-pulse 2.4s ease-out 3; }
 @media (max-width: 460px) { .top-right { gap: 8px; } .tools { gap: 4px; padding-right: 8px; } .login-btn { height: 36px; padding: 0 12px; font-size: 14px; } }
+
+/* "Угадай команду" */
+.chip.miss { background: var(--miss, #5b6275); }
+.team-guesses { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.team-guesses .chip { display: inline-flex; align-items: center; gap: 4px; }
+.cclue { margin-right: 6px; white-space: nowrap; }
+.clues { display: grid; gap: 6px; margin: 10px 0; }

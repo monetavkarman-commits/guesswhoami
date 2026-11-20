@@ -5,7 +5,7 @@ import { tr } from './i18n.js';
 import { h, modal, toast, GAMES } from './core.js';
 import { accountsEnabled, client, currentUser } from './account.js';
 
-const MODE_NAMES = () => ({ grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы'), maps: tr('Карты'), gear: tr('Предметы') });
+const MODE_NAMES = () => ({ grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы'), maps: tr('Карты'), gear: tr('Предметы'), team: tr('Команда') });
 // claude.ai link of the published artifact, used for challenge links when the page runs inside it
 const ARTIFACT_URL = 'https://claude.ai/artifact/XEQV83uqdWp7RRhgZFTYHa';
 

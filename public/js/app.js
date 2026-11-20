@@ -4,6 +4,7 @@ import { lang, setLang } from './i18n.js';
 import * as grid from './grid.js';
 import * as whoami from './whoami.js';
 import * as chain from './chain.js';
+import * as team from './team.js';
 import * as items from './items.js';
 import { askConsent } from './consent.js';
 import { startAnalytics, track, sendReport } from './analytics.js';
@@ -52,6 +53,7 @@ const MODES = {
   whoami: { title: tr('Кто я?'), icon: '👤', mod: whoami },
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
   items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), lol: tr('Чемпионы'), deadlock: tr('Герои'), tennis: tr('Теннисисты'), hockey: tr('Хоккеисты'), mma: tr('Бойцы'), boxing: tr('Боксёры') } },
+  team: { title: tr('Команда'), icon: '🏷', mod: team, noFilter: true, gameTitle: Object.fromEntries(['cs', 'dota', 'valorant', 'lol', 'football', 'basket'].map((g) => [g, tr('Угадай команду')])) },
   maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
   gear: { title: tr('Предметы'), icon: '🛡', mod: items, set: 'gear', gameTitle: { dota: tr('Предметы'), lol: tr('Предметы'), deadlock: tr('Предметы') } },
 };
@@ -139,7 +141,7 @@ async function render() {
       h('button', { class: endless ? '' : 'active', onclick: () => nav(game, mode, false) }, tr('Ежедневная №{0}', [num])),
       h('button', { class: endless && !duel ? 'active' : '', onclick: () => nav(game, mode, true) }, tr('Бесконечная')),
       duel ? h('button', { class: 'active' }, '⚔ ', tr('Дуэль')) : ''),
-    h('div', { class: 'bar-right' }, duel || MODES[mode].set ? '' : filterSelect(game),
+    h('div', { class: 'bar-right' }, duel || MODES[mode].set || MODES[mode].noFilter ? '' : filterSelect(game),
       endless ? h('button', { class: 'btn small', onclick: () => { if (duel) nav(game, mode, true); else { endlessSeed = null; render(); } } }, tr('Новая игра')) : ''));
 
   root.innerHTML = tr('<div class="loading">Загрузка игроков…</div>');
