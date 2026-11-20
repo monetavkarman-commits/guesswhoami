@@ -7,6 +7,7 @@ import { localStatsBlock, achievementsBlock, overallLocal, unlocked, ACHIEVEMENT
 import { askConsent, consent } from './consent.js';
 
 const AVATARS = ['🎮', '🎯', '🦊', '🐺', '🐯', '🦁', '🐼', '🦉', '🐙', '🚀', '⚡', '🔥', '👑', '🧠', '🎧', '⚽', '🏀', '🏒'];
+const SITE_VERSION = '66';
 const tile = (v, l) => h('div', { class: 'stat-tile' }, h('b', {}, String(v)), h('span', {}, l));
 export const avatarOf = (u) => (u && u.user_metadata && u.user_metadata.avatar) || '🎮';
 
@@ -115,7 +116,17 @@ export async function openProfile() {
       h('div', {}, h('h3', {}, u ? nameOf(u) : tr('Гость')), u ? h('div', { class: 'muted small' }, u.email, ' · ', tr('с {0}', [new Date(u.created_at).toLocaleDateString(lang === 'en' ? 'en-GB' : 'ru-RU')])) : h('div', { class: 'muted small' }, tr('Вы играете без аккаунта')))),
       ...profileSettings(sb, u, loginCta, draw));
     // owner and staff get a shortcut to the panel (the server decides who may open it, this only hides the link)
-    if (u && sb) sb.rpc('admin_me').then(({ data }) => { if (data && pane.isConnected) pane.insertBefore(h('a', { class: 'btn', href: 'admin.html' }, tr('Открыть админку') + (data.role === 'owner' ? '' : ' (' + tr('сотрудник') + ')')), pane.children[1] || null); });
+    const adminLink = (role) => h('a', { class: 'btn', href: 'admin.html' }, tr('Открыть админку') + (role === 'owner' ? '' : ' (' + tr('сотрудник') + ')'));
+    const place = (el) => { if (pane.isConnected) pane.insertBefore(el, pane.children[1] || null); };
+    if (u && sb) {
+      let shown = null;
+      if (store.get('isAdmin', null)) { shown = adminLink(store.get('isAdmin')); place(shown); }   // instant on later visits
+      sb.rpc('admin_me').then(({ data, error }) => {
+        if (data) { store.set('isAdmin', data.role); if (!shown) place(adminLink(data.role)); }
+        else { store.set('isAdmin', null); if (shown) shown.remove(); if (error && !/forbidden/.test(error.message)) place(h('p', { class: 'muted small' }, 'admin_me: ' + error.message)); }
+      });
+    }
+    pane.append(h('p', { class: 'muted small' }, tr('Версия сайта') + ': ' + SITE_VERSION));
   };
   draw(user);
 }

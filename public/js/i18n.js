@@ -273,6 +273,7 @@ const EN = {
   'Удалить аккаунт': 'Delete account',
   'Общая статистика': 'Overall statistics',
   'Достижения': 'Achievements',
+  'Версия сайта': 'Site version',
   'Открыть админку': 'Open admin panel',
   'сотрудник': 'staff',
   'Рейтинг сейчас недоступен.': 'The leaderboard is unavailable right now.',
