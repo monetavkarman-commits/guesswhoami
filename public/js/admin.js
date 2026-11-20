@@ -5,7 +5,11 @@ import { client, currentUser, openAccount } from './account.js';
 
 const root = document.getElementById('admin');
 const PERIODS = [['1ч', 3600e3, 'hour'], ['24ч', 864e5, 'hour'], ['7 дней', 7 * 864e5, 'day'], ['30 дней', 30 * 864e5, 'day'], ['90 дней', 90 * 864e5, 'day']];
-const TABS = [['stats', 'Статистика'], ['reports', 'Жалобы'], ['users', 'Пользователи'], ['data', 'Данные'], ['settings', 'Настройки']];
+const TABS = [['stats', 'Статистика', 'stats'], ['reports', 'Жалобы', 'reports'], ['users', 'Пользователи', 'users'], ['data', 'Данные', 'data'], ['settings', 'Настройки', '*'], ['team', 'Команда', 'owner']];
+const PERMS = [['stats', 'Статистика'], ['reports', 'Жалобы'], ['users', 'Пользователи (ники, бан, сброс очков)'], ['announce', 'Объявление на сайте'], ['data', 'Данные'], ['backup', 'Скачивание копии']];
+let me = { role: 'staff', perms: [] };
+const can = (p) => me.role === 'owner' || me.perms.includes(p);
+const tabOk = (p) => (p === '*' ? can('announce') || can('backup') || me.role === 'owner' : p === 'owner' ? me.role === 'owner' : can(p));
 const REPO = 'monetavkarman-commits/guesswhoami';
 let per = 1, timer = null, tab = store.get('adminTab', 'stats');
 
@@ -91,7 +95,7 @@ async function usersTab(sb, box) {
             u.banned ? h('button', { class: 'btn ghost small', onclick: () => act('admin_ban', { p_id: u.id, p_ban: false }, 'Разбанен') }, 'Разбан')
               : h('button', { class: 'btn ghost small', onclick: () => { const r = prompt('Причина бана (необязательно). Игрок исчезнет из рейтинга и не сможет добавлять очки.', ''); if (r !== null) act('admin_ban', { p_id: u.id, p_ban: true, p_reason: r }, 'Забанен'); } }, 'Бан'),
             h('button', { class: 'btn ghost small', onclick: () => { if (confirm('Обнулить очки и убрать из рейтинга?')) act('admin_reset_score', { p_id: u.id }, 'Очки сброшены'); } }, 'Сброс очков'),
-            h('button', { class: 'btn ghost small danger', onclick: () => { if (confirm('Удалить аккаунт ' + (u.email || u.name) + ' навсегда?')) act('admin_delete_user', { p_id: u.id }, 'Аккаунт удалён'); } }, 'Удалить'))))))));
+            me.role === 'owner' ? h('button', { class: 'btn ghost small danger', onclick: () => { if (confirm('Удалить аккаунт ' + (u.email || u.name) + ' навсегда?')) act('admin_delete_user', { p_id: u.id }, 'Аккаунт удалён'); } }, 'Удалить') : null)))))));
   };
   q.addEventListener('keydown', (e) => { if (e.key === 'Enter') load(); });
   box.append(h('div', { class: 'range' }, q, h('button', { class: 'btn small', onclick: load }, 'Найти')), body);
@@ -126,22 +130,24 @@ async function dataTab(sb, box) {
 
 // ---------- settings: banner, notifications, backup ----------
 async function settingsTab(sb, box) {
-  const ann = (await sb.rpc('admin_get_announcement')).data || { text: '', active: false };
-  const wh = (await sb.rpc('admin_webhook_state')).data || { set: false };
+  const ann = can('announce') ? (await sb.rpc('admin_get_announcement')).data || { text: '', active: false } : { text: '', active: false };
+  const wh = me.role === 'owner' ? (await sb.rpc('admin_webhook_state')).data || { set: false } : { set: false };
   const text = h('textarea', { class: 'search-input', maxlength: 240, placeholder: 'Например: Новый режим «Угадай состав»!' }); text.value = ann.text || '';
   const active = h('input', { type: 'checkbox' }); active.checked = !!ann.active;
   const hook = h('input', { class: 'search-input', type: 'password', placeholder: wh.set ? 'Уже настроено (' + wh.kind + '). Вставьте новую ссылку, чтобы заменить' : 'Ссылка вебхука Discord или Telegram', maxlength: 300, autocomplete: 'off' });
   const call = async (fn, args, ok) => { const { error } = await sb.rpc(fn, args); toast(error ? error.message : ok); return !error; };
-  box.append(
+  if (can('announce')) box.append(
     h('h3', {}, 'Объявление на сайте'),
     h('p', { class: 'muted small' }, 'Показывается плашкой над шапкой всем посетителям, пока включено. Закрыть её можно крестиком.'), text,
-    h('label', {}, active, ' показывать'), h('button', { class: 'btn', onclick: () => call('admin_set_announcement', { p_text: text.value, p_active: active.checked }, 'Сохранено') }, 'Сохранить объявление'),
+    h('label', {}, active, ' показывать'), h('button', { class: 'btn', onclick: () => call('admin_set_announcement', { p_text: text.value, p_active: active.checked }, 'Сохранено') }, 'Сохранить объявление'));
+  if (me.role === 'owner') box.append(
     h('h3', {}, 'Уведомления о новых жалобах'),
     h('p', { class: 'muted small' }, 'Discord: канал → Настройки → Интеграции → Вебхуки → скопировать URL. Telegram: ссылка вида https://api.telegram.org/bot<токен>/sendMessage?chat_id=<id>. Ссылка хранится в базе, а видна только функции отправки.'), hook,
     h('div', { class: 'acts row-acts' },
       h('button', { class: 'btn', onclick: async () => { if (await call('admin_set_webhook', { p_url: hook.value.trim() }, hook.value.trim() ? 'Ссылка сохранена' : 'Уведомления выключены')) show(sb); } }, 'Сохранить'),
       h('button', { class: 'btn ghost', onclick: () => call('admin_test_webhook', {}, 'Тест отправлен, проверьте мессенджер') }, 'Отправить тест'),
-      wh.set ? h('button', { class: 'btn ghost', onclick: async () => { if (await call('admin_set_webhook', { p_url: '' }, 'Уведомления выключены')) show(sb); } }, 'Выключить') : null),
+      wh.set ? h('button', { class: 'btn ghost', onclick: async () => { if (await call('admin_set_webhook', { p_url: '' }, 'Уведомления выключены')) show(sb); } }, 'Выключить') : null));
+  if (can('backup')) box.append(
     h('h3', {}, 'Резервная копия'),
     h('p', { class: 'muted small' }, 'Файл со всеми аккаунтами, никами, очками рейтинга, жалобами и событиями за 30 дней. Автоматически копия делается раз в сутки через GitHub Actions (workflow «Backup», хранится 30 дней). Пароли в копию не попадают.'),
     h('button', { class: 'btn', onclick: async () => {
@@ -152,13 +158,37 @@ async function settingsTab(sb, box) {
     } }, 'Скачать копию сейчас'));
 }
 
+// ---------- team (owner only): who may enter the panel and what they may do ----------
+async function teamTab(sb, box) {
+  const { data, error } = await sb.rpc('admin_team');
+  if (error) { box.append(err(error)); return; }
+  const call = async (fn, args, ok) => { const { error: e } = await sb.rpc(fn, args); toast(e ? e.message : ok); if (!e) show(sb); };
+  const checks = (have) => PERMS.map(([k, l]) => { const c = h('input', { type: 'checkbox', value: k }); c.checked = have.includes(k); return h('label', { class: 'perm' }, c, ' ' + l); });
+  const picked = (wrap) => [...wrap.querySelectorAll('input:checked')].map((x) => x.value);
+  const email = h('input', { class: 'search-input', type: 'email', placeholder: 'Почта сотрудника', maxlength: 120 });
+  const newPerms = h('div', { class: 'perms' }, checks(['reports']));
+  box.append(h('h3', {}, 'Выдать доступ сотруднику'),
+    h('p', { class: 'muted small' }, 'Сотрудник заходит на сайт под этой почтой (через пароль, Google или Discord; почта должна быть подтверждена), потом открывает /admin.html. Владелец видит всё и управляет командой, права владельца выдать нельзя.'),
+    email, newPerms, h('button', { class: 'btn', onclick: () => call('admin_team_set', { p_email: email.value.trim(), p_perms: picked(newPerms) }, 'Доступ выдан') }, 'Выдать доступ'),
+    h('h3', {}, 'Команда'),
+    ...data.team.map((m) => { if (m.role === 'owner') return h('div', { class: 'rep' }, h('b', {}, m.email), ' ', h('span', { class: 'chip fixed' }, 'владелец'));
+      const w = h('div', { class: 'perms' }, checks(m.perms));
+      return h('div', { class: 'rep' }, h('b', {}, m.email), ' ', h('small', { class: 'muted' }, 'с ' + dt(m.added_at)), w,
+        h('div', { class: 'acts' }, h('button', { class: 'btn small', onclick: () => call('admin_team_set', { p_email: m.email, p_perms: picked(w) }, 'Права обновлены') }, 'Сохранить права'),
+          h('button', { class: 'btn ghost small danger', onclick: () => { if (confirm('Забрать доступ у ' + m.email + '?')) call('admin_team_remove', { p_email: m.email }, 'Доступ отозван'); } }, 'Забрать доступ'))); }),
+    h('h3', {}, 'Журнал действий'),
+    data.log.length ? h('ul', { class: 'pages' }, data.log.map((l) => h('li', {}, h('span', {}, `${dt(l.at)} · ${l.actor} · ${l.action}`), h('small', { class: 'muted' }, l.target || '')))) : h('p', { class: 'muted' }, 'Пока пусто.'));
+}
+
 async function show(sb) {
   clearInterval(timer);
   const box = h('div', {});
-  const tabs = h('div', { class: 'seg admin-tabs' }, TABS.map(([k, l]) => h('button', { class: k === tab ? 'active' : '', onclick: () => { tab = k; store.set('adminTab', k); show(sb); } }, l)));
+  const allowed = TABS.filter((t) => tabOk(t[2]));
+  if (!allowed.some((t) => t[0] === tab)) tab = allowed[0][0];
+  const tabs = h('div', { class: 'seg admin-tabs' }, allowed.map(([k, l]) => h('button', { class: k === tab ? 'active' : '', onclick: () => { tab = k; store.set('adminTab', k); show(sb); } }, l)));
   root.innerHTML = '';
   root.append(h('h1', {}, 'Управление'), tabs, box);
-  const fn = { stats: statsTab, reports: reportsTab, users: usersTab, data: dataTab, settings: settingsTab }[tab] || statsTab;
+  const fn = { stats: statsTab, reports: reportsTab, users: usersTab, data: dataTab, settings: settingsTab, team: teamTab }[tab] || statsTab;
   await fn(sb, box);
 }
 
@@ -172,5 +202,8 @@ async function show(sb) {
     sb.auth.onAuthStateChange((ev) => { if (ev === 'SIGNED_IN') location.reload(); });
     return;
   }
+  const { data: who, error: whoErr } = await sb.rpc('admin_me');
+  if (whoErr) { root.innerHTML = ''; root.append(h('h1', {}, 'Нет доступа'), err(whoErr), h('p', { class: 'muted' }, 'Вы вошли как ' + user.email + '. Доступ выдаёт владелец сайта.')); return; }
+  me = who;
   show(sb);
 })();

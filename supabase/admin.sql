@@ -24,10 +24,19 @@ create policy "announcement read" on public.announcements for select to anon, au
 grant select on public.announcements to anon, authenticated;
 
 -- ---------- reports ----------
+-- audit log of what staff did in the panel
+create table if not exists public.admin_log (id bigint generated always as identity primary key, at timestamptz not null default now(), actor text, action text, target text);
+alter table public.admin_log enable row level security;
+create or replace function public.log_admin(p_action text, p_target text) returns void
+language sql security definer set search_path = public as $$
+  insert into admin_log (actor, action, target) values (coalesce(auth.jwt() ->> 'email', '?'), p_action, left(p_target, 200));
+$$;
+revoke all on function public.log_admin(text, text) from public, anon, authenticated;
+
 create or replace function public.admin_reports(p_filter text default 'open') returns json
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('reports') then raise exception 'forbidden'; end if;
   return (select coalesce(json_agg(x order by x.created_at desc), '[]'::json) from (
     select e.id, e.created_at, e.path, e.info, coalesce(r.status, 'open') as status, r.note
     from events e left join report_status r on r.event_id = e.id
@@ -37,7 +46,8 @@ end $$;
 create or replace function public.admin_set_report(p_id bigint, p_status text, p_note text default null) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('reports') then raise exception 'forbidden'; end if;
+  perform public.log_admin('report', p_id::text || ' ' || p_status);
   insert into report_status (event_id, status, note) values (p_id, p_status, nullif(left(p_note, 400), ''))
     on conflict (event_id) do update set status = excluded.status, note = coalesce(excluded.note, report_status.note), updated_at = now();
 end $$;
@@ -46,7 +56,7 @@ end $$;
 create or replace function public.admin_users(p_q text default '') returns json
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('users') then raise exception 'forbidden'; end if;
   return (select coalesce(json_agg(x order by x.created_at desc), '[]'::json) from (
     select u.id, u.email, coalesce(p.name, u.raw_user_meta_data ->> 'name') as name, u.created_at, u.last_sign_in_at,
       coalesce(u.raw_app_meta_data ->> 'provider', 'email') as provider,
@@ -59,7 +69,8 @@ end $$;
 create or replace function public.admin_ban(p_id uuid, p_ban boolean, p_reason text default null) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('users') then raise exception 'forbidden'; end if;
+  perform public.log_admin('ban', p_id::text || ' ' || p_ban::text);
   if p_ban then
     insert into banned_users (id, reason) values (p_id, left(p_reason, 200)) on conflict (id) do update set reason = excluded.reason;
     delete from docs where owner = p_id and collection = 'board';   -- off the leaderboard at once
@@ -68,20 +79,23 @@ end $$;
 create or replace function public.admin_reset_score(p_id uuid) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('users') then raise exception 'forbidden'; end if;
+  perform public.log_admin('reset_score', p_id::text);
   delete from docs where owner = p_id and collection = 'board';
 end $$;
 create or replace function public.admin_set_nick(p_id uuid, p_name text) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('users') then raise exception 'forbidden'; end if;
+  perform public.log_admin('set_nick', p_id::text || ' ' || p_name);
   if char_length(trim(p_name)) not between 1 and 24 then raise exception 'bad name'; end if;
   insert into profiles (id, name) values (p_id, trim(p_name)) on conflict (id) do update set name = excluded.name;
 end $$;
 create or replace function public.admin_delete_user(p_id uuid) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('owner') then raise exception 'forbidden'; end if;
+  perform public.log_admin('delete_user', p_id::text);
   if lower((select email from auth.users where id = p_id)) in (select lower(email) from admins) then raise exception 'cannot delete an admin'; end if;
   delete from docs where owner = p_id; delete from profiles where id = p_id; delete from banned_users where id = p_id; delete from auth.users where id = p_id;
 end $$;
@@ -90,13 +104,14 @@ end $$;
 create or replace function public.admin_set_announcement(p_text text, p_active boolean) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('announce') then raise exception 'forbidden'; end if;
+  perform public.log_admin('announcement', left(coalesce(p_text, ''), 60));
   update announcements set text = left(coalesce(p_text, ''), 240), active = coalesce(p_active, false) and coalesce(p_text, '') <> '', updated_at = now() where id = 1;
 end $$;
 create or replace function public.admin_get_announcement() returns json
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('announce') then raise exception 'forbidden'; end if;
   return (select row_to_json(a) from (select text, active from announcements where id = 1) a);
 end $$;
 
@@ -104,7 +119,8 @@ end $$;
 create or replace function public.admin_set_webhook(p_url text) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('owner') then raise exception 'forbidden'; end if;
+  perform public.log_admin('admin_set_webhook', '');
   if coalesce(p_url, '') = '' then delete from app_settings where key = 'webhook'; return; end if;
   if p_url !~ '^https://(discord\.com|discordapp\.com|api\.telegram\.org)/' or char_length(p_url) > 300 then raise exception 'only Discord or Telegram links are accepted'; end if;
   insert into app_settings (key, value) values ('webhook', p_url) on conflict (key) do update set value = excluded.value;
@@ -113,7 +129,7 @@ create or replace function public.admin_webhook_state() returns json
 language plpgsql security definer set search_path = public as $$
 declare v text;
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('owner') then raise exception 'forbidden'; end if;
   select value into v from app_settings where key = 'webhook';
   return json_build_object('set', v is not null, 'kind', case when v like '%telegram%' then 'Telegram' when v is not null then 'Discord' end);
 end $$;
@@ -131,7 +147,7 @@ revoke all on function public.send_notification(text) from public, anon, authent
 create or replace function public.admin_test_webhook() returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('owner') then raise exception 'forbidden'; end if;
   perform public.send_notification('✅ GuessWhoAmI: уведомления работают.');
 end $$;
 create or replace function public.notify_report() returns trigger
@@ -142,6 +158,42 @@ begin
 end $$;
 drop trigger if exists events_notify on public.events;
 create trigger events_notify after insert on public.events for each row when (new.kind = 'report') execute function public.notify_report();
+
+-- ---------- staff accounts (owner only) ----------
+create or replace function public.admin_me() returns json
+language plpgsql security definer set search_path = public as $$
+declare a admins%rowtype;
+begin
+  if not public.is_admin() then raise exception 'forbidden'; end if;
+  select * into a from admins where lower(email) = lower(coalesce(auth.jwt() ->> 'email', ''));
+  return json_build_object('role', a.role, 'perms', case when a.role = 'owner' then array['stats','reports','users','announce','data','backup'] else a.perms end);
+end $$;
+create or replace function public.admin_team() returns json
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.has_perm('owner') then raise exception 'forbidden'; end if;
+  return json_build_object(
+    'team', (select coalesce(json_agg(x order by x.role desc, x.added_at), '[]'::json) from (select email, role, perms, added_at from admins) x),
+    'log', (select coalesce(json_agg(l), '[]'::json) from (select at, actor, action, target from admin_log order by id desc limit 60) l));
+end $$;
+create or replace function public.admin_team_set(p_email text, p_perms text[]) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.has_perm('owner') then raise exception 'forbidden'; end if;
+  if p_email !~ '^\S+@\S+\.\S+$' or char_length(p_email) > 120 then raise exception 'bad email'; end if;
+  if not (p_perms <@ array['stats','reports','users','announce','data','backup']) then raise exception 'bad permission'; end if;
+  if exists (select 1 from admins where lower(email) = lower(p_email) and role = 'owner') then raise exception 'the owner cannot be changed'; end if;
+  insert into admins (email, role, perms) values (lower(trim(p_email)), 'staff', p_perms)
+    on conflict (email) do update set perms = excluded.perms where admins.role = 'staff';
+  perform public.log_admin('team_set', lower(p_email) || ' ' || array_to_string(p_perms, ','));
+end $$;
+create or replace function public.admin_team_remove(p_email text) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.has_perm('owner') then raise exception 'forbidden'; end if;
+  delete from admins where lower(email) = lower(p_email) and role = 'staff';
+  perform public.log_admin('team_remove', lower(p_email));
+end $$;
 
 -- ---------- backup ----------
 create or replace function public.backup_data() returns json
@@ -161,13 +213,14 @@ revoke all on function public.backup_data() from public, anon, authenticated;
 create or replace function public.admin_export() returns json
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('backup') then raise exception 'forbidden'; end if;
+  perform public.log_admin('export', '');
   return public.backup_data();
 end $$;
 
 do $$ declare f text; begin
   foreach f in array array['admin_reports(text)', 'admin_set_report(bigint,text,text)', 'admin_users(text)', 'admin_ban(uuid,boolean,text)', 'admin_reset_score(uuid)', 'admin_set_nick(uuid,text)',
-    'admin_delete_user(uuid)', 'admin_set_announcement(text,boolean)', 'admin_get_announcement()', 'admin_set_webhook(text)', 'admin_webhook_state()', 'admin_test_webhook()', 'admin_export()'] loop
+    'admin_delete_user(uuid)', 'admin_me()', 'admin_team()', 'admin_team_set(text,text[])', 'admin_team_remove(text)', 'admin_set_announcement(text,boolean)', 'admin_get_announcement()', 'admin_set_webhook(text)', 'admin_webhook_state()', 'admin_test_webhook()', 'admin_export()'] loop
     execute format('revoke all on function public.%s from public, anon', f);
     execute format('grant execute on function public.%s to authenticated', f);
   end loop;

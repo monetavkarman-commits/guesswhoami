@@ -17,18 +17,32 @@ create policy "events insert" on public.events for insert to anon, authenticated
 grant insert on public.events to anon, authenticated;
 
 create table if not exists public.admins (email text primary key);
+alter table public.admins add column if not exists role text not null default 'owner';   -- rows that existed before staff accounts are owners
+alter table public.admins alter column role set default 'staff';
+alter table public.admins add column if not exists perms text[] not null default '{}';
+alter table public.admins add column if not exists added_at timestamptz not null default now();
 alter table public.admins enable row level security; -- no policies: only the functions below can read it
 
 create or replace function public.is_admin() returns boolean language sql security definer set search_path = public as $$
-  select exists (select 1 from public.admins where lower(email) = lower(coalesce(auth.jwt() ->> 'email', '')));
+  select exists (select 1 from public.admins a where lower(a.email) = lower(coalesce(auth.jwt() ->> 'email', ''))
+    and exists (select 1 from auth.users u where u.id = auth.uid() and u.email_confirmed_at is not null));
 $$;
 
 -- since/until: the period; bucket: 'hour' or 'day'
+-- owner: everything; staff: only the permissions listed for them (stats, reports, users, announce, data, backup)
+create or replace function public.has_perm(p text) returns boolean language sql security definer set search_path = public as $$
+  select exists (select 1 from public.admins a where lower(a.email) = lower(coalesce(auth.jwt() ->> 'email', ''))
+    and exists (select 1 from auth.users u where u.id = auth.uid() and u.email_confirmed_at is not null)
+    and (a.role = 'owner' or p = any (a.perms)));
+$$;
+revoke all on function public.has_perm(text) from public, anon;
+grant execute on function public.has_perm(text) to authenticated;
+
 create or replace function public.admin_stats(since timestamptz, until timestamptz, bucket text default 'day') returns json
 language plpgsql security definer set search_path = public as $$
 declare res json;
 begin
-  if not public.is_admin() then raise exception 'forbidden'; end if;
+  if not public.has_perm('stats') then raise exception 'forbidden'; end if;
   if bucket not in ('hour', 'day') then bucket := 'day'; end if;
   select json_build_object(
     'online_now', (select count(distinct vid) from events where created_at > now() - interval '3 minutes' and kind <> 'report'),

@@ -497,3 +497,4 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .chip.open{color:#d64545;border-color:#d64545}.chip.progress{color:#c89b3c;border-color:#c89b3c}.chip.fixed{color:#3a9a5b;border-color:#3a9a5b}
 .admin textarea{width:100%;min-height:70px}.utable{width:100%;border-collapse:collapse;font-size:.88rem}.utable th,.utable td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}.utable .acts{display:flex;flex-wrap:wrap;gap:4px}
 .xscroll{overflow-x:auto}.row-acts{display:flex;gap:8px;flex-wrap:wrap}
+.perms{display:flex;flex-direction:column;gap:4px;margin:8px 0}.perm{font-size:14px}
