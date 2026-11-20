@@ -14,6 +14,7 @@ declare
   cur jsonb;
   s jsonb;
   kk text;
+  b jsonb;
 begin
   if uid is null then raise exception 'login required'; end if;
   if p_game !~ '^[a-z0-9]{2,16}$' then raise exception 'bad game'; end if;      -- any game id of the site (new games need no change here)
@@ -28,7 +29,9 @@ begin
   for kk in select jsonb_object_keys(s) loop                                    -- keep the last 14 days of detail; totals keep everything
     if split_part(kk, ':', 3)::int < p_day - 14 then s := s - kk; end if;
   end loop;
-  cur := jsonb_build_object('scores', s, 'total', coalesce((cur ->> 'total')::int, 0) + p_score, 'games', coalesce((cur ->> 'games')::int, 0) + 1, 'updated', now());
+  b := coalesce(cur -> 'by', '{}'::jsonb);                                       -- per-game totals for the personal statistics
+  b := b || jsonb_build_object(p_game, jsonb_build_object('t', coalesce((b -> p_game ->> 't')::int, 0) + p_score, 'n', coalesce((b -> p_game ->> 'n')::int, 0) + 1, 'best', greatest(coalesce((b -> p_game ->> 'best')::int, 0), p_score)));
+  cur := jsonb_build_object('scores', s, 'by', b, 'total', coalesce((cur ->> 'total')::int, 0) + p_score, 'games', coalesce((cur ->> 'games')::int, 0) + 1, 'updated', now());
   insert into docs (collection, id, owner, data) values ('board', uid::text, uid, cur)
     on conflict (collection, id) do update set data = excluded.data, updated_at = now();
 end $$;

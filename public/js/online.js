@@ -81,6 +81,7 @@ export function submitDaily({ game, mode, day, score }) {
     cur.scores[k] = score;
     cur.total = (cur.total || 0) + score;
     cur.games = (cur.games || 0) + 1;
+    cur.by = cur.by || {}; const g = cur.by[game] || { t: 0, n: 0, best: 0 }; cur.by[game] = { t: g.t + score, n: g.n + 1, best: Math.max(g.best, score) };
     // keep the last 14 days of per-game scores; the totals keep everything
     for (const key of Object.keys(cur.scores)) if (+key.split(':')[2] < day - 14) delete cur.scores[key];
     cur.updated = new Date().toISOString();
@@ -118,8 +119,19 @@ export async function openLeaderboard(game, day) {
       sub ? h('small', { class: 'muted' }, sub(r)) : null, h('b', {}, String(r[field])))))
     : h('p', { class: 'muted' }, tr('Пока никого. Сыграйте ежедневку, и вы будете первым.')));
 
+  // personal card: place among everyone, total, games played, average and the split by game
+  const ranked = rows.filter((r) => r.total > 0).sort((a, b) => b.total - a.total);
+  const mine = on.uid && ranked.find((r) => r.id === on.uid);
+  if (mine) {
+    const place = ranked.indexOf(mine) + 1;
+    const stat = (v, l) => h('div', { class: 'stat-tile' }, h('b', {}, String(v)), h('span', {}, l));
+    const by = Object.entries(mine.by || {}).sort((a, b) => b[1].t - a[1].t);
+    body.append(h('h4', {}, tr('Моя статистика')),
+      h('div', { class: 'stat-tiles' }, stat(place + ' / ' + ranked.length, tr('место в рейтинге')), stat(mine.total, tr('очков всего')), stat(mine.games || 0, tr('сыграно игр')), stat(Math.round(mine.total / Math.max(1, mine.games || 1)), tr('среднее за игру'))),
+      by.length ? h('ul', { class: 'pages' }, by.map(([g, v]) => h('li', {}, h('span', {}, (GAMES[g] ? GAMES[g].short : g) + ' · ' + tr('{0} игр', [v.n]) + ' · ' + tr('рекорд {0}', [v.best])), h('b', {}, String(v.t))))) : null);
+  }
   body.append(h('h4', {}, tr('Сегодня · {0} · все режимы', [GAMES[game].short])), table(todayRows, 'score'),
-    h('h4', {}, tr('За всё время')), table(allRows, 'total', (r) => tr('{0} игр', [r.games || 0])));
+    h('h4', {}, tr('Общий рейтинг · все игры')), table(allRows, 'total', (r) => tr('{0} игр · ср. {1}', [r.games || 0, Math.round(r.total / Math.max(1, r.games || 1))])));
 }
 
 // ---------- duels ----------
