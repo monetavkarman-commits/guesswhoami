@@ -1,17 +1,18 @@
 // Shared helpers: data loading, seeded randomness, storage, player search, UI bits.
+import { tr } from './i18n.js';
 
 export const GAMES = {
   cs: {
     title: 'Counter-Strike',
     short: 'CS',
-    roleLabels: { awp: 'AWP', igl: 'Капитан', rifle: 'Райфлер', entry: 'Энтри', lurker: 'Люркер', support: 'Саппорт', coach: 'Тренер' },
-    teamLabel: 'Команда',
+    roleLabels: { awp: 'AWP', igl: tr('Капитан'), rifle: tr('Райфлер'), entry: tr('Энтри'), lurker: tr('Люркер'), support: tr('Саппорт'), coach: tr('Тренер') },
+    teamLabel: tr('Команда'),
   },
   dota: {
     title: 'Dota 2',
     short: 'Dota 2',
-    posLabels: { 1: 'Керри', 2: 'Мид', 3: 'Оффлейн', 4: 'Саппорт 4', 5: 'Саппорт 5' },
-    teamLabel: 'Команда*',
+    posLabels: { 1: tr('Керри'), 2: tr('Мид'), 3: tr('Оффлейн'), 4: tr('Саппорт 4'), 5: tr('Саппорт 5') },
+    teamLabel: tr('Команда*'),
   },
 };
 
@@ -19,11 +20,11 @@ export const GAMES = {
 export function filtersFor(game) {
   const cs = game === 'cs';
   return {
-    all: { label: 'Все игроки', test: () => true },
-    top: { label: 'Только звёзды', test: (p) => p.events >= (cs ? 3 : 2) },
-    active: { label: 'Актуальные составы', test: cs ? (p) => p.status === 'active' && !!p.team && p.era.includes('cs2') : (p) => p.status === 'active' && p.era.includes('late') },
+    all: { label: tr('Все игроки'), test: () => true },
+    top: { label: tr('Только звёзды'), test: (p) => p.events >= (cs ? 3 : 2) },
+    active: { label: tr('Актуальные составы'), test: cs ? (p) => p.status === 'active' && !!p.team && p.era.includes('cs2') : (p) => p.status === 'active' && p.era.includes('late') },
     ...(cs
-      ? { csgo: { label: 'Эра CS:GO', test: (p) => p.era.includes('csgo') }, cs2: { label: 'Эра CS2', test: (p) => p.era.includes('cs2') } }
+      ? { csgo: { label: tr('Эра CS:GO'), test: (p) => p.era.includes('csgo') }, cs2: { label: tr('Эра CS2'), test: (p) => p.era.includes('cs2') } }
       : { early: { label: 'TI 2019–2022', test: (p) => p.era.includes('early') }, late: { label: 'TI 2023–2025', test: (p) => p.era.includes('late') } }),
   };
 }
@@ -32,7 +33,7 @@ const cache = {};
 export async function loadGame(game) {
   if (cache[game]) return cache[game];
   const res = await fetch(`data/${game}.json`);
-  if (!res.ok) throw new Error(`Не удалось загрузить data/${game}.json`);
+  if (!res.ok) throw new Error(tr('Не удалось загрузить data/{0}.json', [game]));
   const data = await res.json();
   const now = new Date();
   data.players.forEach((p, i) => {
@@ -91,11 +92,10 @@ export function today() {
   return { key, num };
 }
 
-// ---------- storage (never required for the game to work) ----------
-export const store = {
-  get(k, def = null) { try { const v = localStorage.getItem('gwai:' + k); return v ? JSON.parse(v) : def; } catch { return def; } },
-  set(k, v) { try { localStorage.setItem('gwai:' + k, JSON.stringify(v)); } catch { /* ignore */ } },
-};
+export { store } from './core-store.js';
+import { lang } from './i18n.js';
+
+export const countryName = (p) => (lang === 'en' ? p.countryEn || p.country : p.country);
 
 // ---------- small DOM helpers ----------
 export function h(tag, attrs = {}, ...kids) {
@@ -125,8 +125,8 @@ export function toast(msg) {
 }
 
 export async function share(text) {
-  try { await navigator.clipboard.writeText(text); toast('Результат скопирован'); }
-  catch { prompt('Скопируйте результат:', text); }
+  try { await navigator.clipboard.writeText(text); toast(tr('Результат скопирован')); }
+  catch { prompt(tr('Скопируйте результат:'), text); }
 }
 
 export function playerLink(p) {
@@ -134,7 +134,7 @@ export function playerLink(p) {
 }
 
 // ---------- player search box with autocomplete ----------
-export function playerSearch(data, { placeholder = 'Введите ник игрока…', exclude = () => false, onPick }) {
+export function playerSearch(data, { placeholder = tr('Введите ник игрока…'), exclude = () => false, onPick }) {
   const input = h('input', { type: 'text', class: 'search-input', placeholder, autocomplete: 'off', spellcheck: 'false' });
   const list = h('ul', { class: 'search-list', role: 'listbox' });
   const wrap = h('div', { class: 'search' }, input, list);
@@ -178,7 +178,7 @@ export function modal(title, body, onClose, cls = '') {
   const close = () => { back.remove(); document.removeEventListener('keydown', esc); onClose && onClose(); };
   const esc = (e) => { if (e.key === 'Escape') close(); };
   const back = h('div', { class: 'modal-back', onclick: (e) => { if (e.target === back) close(); } },
-    h('div', { class: 'modal ' + cls }, h('div', { class: 'modal-head' }, h('h3', {}, title), h('button', { class: 'icon-btn', onclick: close, 'aria-label': 'Закрыть' }, '×')), body));
+    h('div', { class: 'modal ' + cls }, h('div', { class: 'modal-head' }, h('h3', {}, title), h('button', { class: 'icon-btn', onclick: close, 'aria-label': tr('Закрыть') }, '×')), body));
   document.addEventListener('keydown', esc);
   document.body.append(back);
   return close;

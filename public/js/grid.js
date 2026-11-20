@@ -1,7 +1,8 @@
 // "Сетка" — 3x3 grid. Each row and column is a criterion; fill each cell with a player who fits both.
 // Own twist: every correct answer scores "rarity" points: the fewer events a player has among all
 // valid answers for that cell, the more points.
-import { rng, shuffle, h, flag, store, share, modal, playerSearch, playerLink, roleText, toast } from './core.js';
+import { tr } from './i18n.js';
+import { countryName, rng, shuffle, h, flag, store, share, modal, playerSearch, playerLink, roleText, toast } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const GUESSES = 9;
@@ -17,27 +18,27 @@ function buildCriteria(data) {
   const teamCounts = new Map();
   P.filter((p) => p.events >= 2).forEach((p) => p.teams.forEach((t) => teamCounts.set(t, (teamCounts.get(t) || 0) + 1)));
   for (const [t, n] of teamCounts) if (n >= minTeam) {
-    out.push({ key: 't' + t, kind: 'team', label: data.teams[t], sub: 'играл за', test: (p) => p.teamSet.has(t) });
+    out.push({ key: 't' + t, kind: 'team', label: data.teams[t], sub: tr('играл за'), test: (p) => p.teamSet.has(t) });
   }
   const countries = new Map();
   P.forEach((p) => p.cc && countries.set(p.cc, (countries.get(p.cc) || 0) + 1));
   for (const [cc, n] of countries) if (n >= 5) {
-    const name = P.find((p) => p.cc === cc).country;
-    out.push({ key: 'c' + cc, kind: 'country', label: name, sub: 'страна', cc, test: (p) => p.cc === cc });
+    const name = countryName(P.find((p) => p.cc === cc));
+    out.push({ key: 'c' + cc, kind: 'country', label: name, sub: tr('страна'), cc, test: (p) => p.cc === cc });
   }
   if (data.game === 'cs') {
     for (const r of ['awp', 'igl', 'entry', 'lurker', 'support']) {
       const test = (p) => p.roles.includes(r);
-      if (count(test) >= 15) out.push({ key: 'r' + r, kind: 'role', label: data.cfg.roleLabels[r], sub: 'роль', test });
+      if (count(test) >= 15) out.push({ key: 'r' + r, kind: 'role', label: data.cfg.roleLabels[r], sub: tr('роль'), test });
     }
   } else {
-    for (const pos of [1, 2, 3, 4, 5]) out.push({ key: 'p' + pos, kind: 'pos', label: data.cfg.posLabels[pos], sub: 'позиция', test: (p) => p.pos === pos });
+    for (const pos of [1, 2, 3, 4, 5]) out.push({ key: 'p' + pos, kind: 'pos', label: data.cfg.posLabels[pos], sub: tr('позиция'), test: (p) => p.pos === pos });
   }
-  out.push({ key: 'e3', kind: 'events', label: data.game === 'cs' ? '3+ мэйджора' : '3+ TI', sub: 'турниры', test: (p) => p.events >= 3 });
-  out.push({ key: 'e1', kind: 'events', label: data.game === 'cs' ? 'Ровно 1 мэйджор' : 'Без TI или 1 TI', sub: 'турниры', test: (p) => p.events <= 1 });
-  out.push({ key: 'a95', kind: 'age', label: 'Родился до 1995', sub: 'возраст', test: (p) => p.byear && p.byear < 1995 });
-  out.push({ key: 'a00', kind: 'age', label: 'Родился в 2000+', sub: 'возраст', test: (p) => p.byear && p.byear >= 2000 });
-  out.push({ key: 'sr', kind: 'status', label: 'Завершил карьеру', sub: 'статус', test: (p) => p.status === 'retired' });
+  out.push({ key: 'e3', kind: 'events', label: data.game === 'cs' ? tr('3+ мэйджора') : '3+ TI', sub: tr('турниры'), test: (p) => p.events >= 3 });
+  out.push({ key: 'e1', kind: 'events', label: data.game === 'cs' ? tr('Ровно 1 мэйджор') : tr('Без TI или 1 TI'), sub: tr('турниры'), test: (p) => p.events <= 1 });
+  out.push({ key: 'a95', kind: 'age', label: tr('Родился до 1995'), sub: tr('возраст'), test: (p) => p.byear && p.byear < 1995 });
+  out.push({ key: 'a00', kind: 'age', label: tr('Родился в 2000+'), sub: tr('возраст'), test: (p) => p.byear && p.byear >= 2000 });
+  out.push({ key: 'sr', kind: 'status', label: tr('Завершил карьеру'), sub: tr('статус'), test: (p) => p.status === 'retired' });
   return out;
 }
 
@@ -72,7 +73,7 @@ export function generateGrid(data, seed, filter = () => true) {
     for (const a of R) for (const b of C) answers.push(inter(a, b));
     return { rows: R, cols: C, answers };
   }
-  throw new Error('Не удалось собрать сетку');
+  throw new Error(tr('Не удалось собрать сетку'));
 }
 
 function rarity(data, cellAnswers, idx) {
@@ -92,8 +93,8 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
   const status = h('div', { class: 'status-line' });
   const board = h('div', { class: 'grid-board' });
   const footer = h('div', { class: 'mode-footer' });
-  root.append(h('p', { class: 'mode-intro' }, 'Впишите в каждую клетку игрока, который подходит под условие строки и столбца. ',
-    'У вас 9 попыток, каждый игрок только один раз. Очки: до 100 за клетку (чем менее очевидный игрок, тем больше), +100 за сетку без ошибок. Подсказка в клетке стоит одну попытку.'), status, board, footer);
+  root.append(h('p', { class: 'mode-intro' }, tr('Впишите в каждую клетку игрока, который подходит под условие строки и столбца. '),
+    tr('У вас 9 попыток, каждый игрок только один раз. Очки: до 100 за клетку (чем менее очевидный игрок, тем больше), +100 за сетку без ошибок. Подсказка в клетке стоит одну попытку.')), status, board, footer);
 
   const head = (c) => h('div', { class: 'grid-head' }, c.cc ? flag(c.cc) : null, h('small', {}, c.sub), h('span', {}, c.label));
 
@@ -118,7 +119,7 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
           const p = data.players[cell.idx];
           board.append(h('div', { class: 'grid-cell filled' }, flag(p.cc), h('b', {}, p.id), h('small', {}, `+${cell.pts}`)));
         } else if (state.done) {
-          board.append(h('button', { class: 'grid-cell revealed', onclick: () => showAnswers(k) }, h('small', {}, `${grid.answers[k].length} вариантов`), 'показать'));
+          board.append(h('button', { class: 'grid-cell revealed', onclick: () => showAnswers(k) }, h('small', {}, tr('{0} вариантов', [grid.answers[k].length])), tr('показать')));
         } else {
           board.append(h('button', { class: 'grid-cell', onclick: () => ask(k, row, col) }, '+'));
         }
@@ -126,24 +127,24 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
     });
     const correct = state.cells.filter(Boolean).length;
     status.innerHTML = '';
-    status.append(h('span', {}, `Попытки: `, h('b', {}, String(state.left))), h('span', {}, `Угадано: `, h('b', {}, `${correct}/9`)),
-      h('span', {}, `Очки: `, h('b', {}, String(score()))));
+    status.append(h('span', {}, tr('Попытки: '), h('b', {}, String(state.left))), h('span', {}, tr('Угадано: '), h('b', {}, `${correct}/9`)),
+      h('span', {}, tr('Очки: '), h('b', {}, String(score()))));
     footer.innerHTML = '';
     if (state.done) {
       footer.append(resultCard({
-        title: correct === 9 ? (bonus() ? 'Идеальная сетка!' : 'Сетка собрана!') : `Готово: ${correct}/9`,
+        title: correct === 9 ? (bonus() ? tr('Идеальная сетка!') : tr('Сетка собрана!')) : tr('Готово: {0}/9', [correct]),
         score: score(), daily, game: data.game, mode: 'grid',
-        lines: [bonus() ? 'Без единой ошибки: +100 очков.' : null, correct < 9 ? 'Нажмите на пустую клетку, чтобы увидеть ответы.' : null],
+        lines: [bonus() ? tr('Без единой ошибки: +100 очков.') : null, correct < 9 ? tr('Нажмите на пустую клетку, чтобы увидеть ответы.') : null],
         onShare: () => share(shareText()),
       }));
     } else {
-      footer.append(h('button', { class: 'btn ghost', onclick: giveUp }, 'Сдаться'));
+      footer.append(h('button', { class: 'btn ghost', onclick: giveUp }, tr('Сдаться')));
     }
   }
 
   function shareText() {
     const rows = [0, 1, 2].map((r) => [0, 1, 2].map((c) => (state.cells[r * 3 + c] ? '🟩' : '⬛')).join('')).join('\n');
-    return `GuessWhoAmI · ${data.cfg.short} · Сетка ${label}\n${rows}\nОчки: ${score()} · ошибок: ${state.wrong.length}`;
+    return tr('GuessWhoAmI · {0} · Сетка {1}\n{2}\nОчки: {3} · ошибок: {4}', [data.cfg.short, label, rows, score(), state.wrong.length]);
   }
 
   function ask(k, row, col) {
@@ -154,7 +155,7 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
         close();
         state.left--;
         if (row.test(p) && col.test(p)) state.cells[k] = { idx: p.idx, pts: rarity(data, grid.answers[k], p.idx) };
-        else state.wrong.push(p.idx), flash(`${p.id} не подходит`);
+        else state.wrong.push(p.idx), flash(tr('{0} не подходит', [p.id]));
         if (state.left <= 0 || state.cells.every(Boolean)) finish();
         save(); render();
       },
@@ -163,14 +164,14 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
     const showHint = () => {
       const p = data.players[grid.answers[k][state.hints[k]]];
       hintBox.innerHTML = '';
-      hintBox.append(h('div', { class: 'clue' }, '💡 Один из ответов: ник на «', h('b', {}, p.id[0].toUpperCase()), `», ${p.id.length} симв., страна `, flag(p.cc), ' ', p.country));
+      hintBox.append(h('div', { class: 'clue' }, tr('💡 Один из ответов: ник на «'), h('b', {}, p.id[0].toUpperCase()), tr('», {0} симв., страна ', [p.id.length]), flag(p.cc), ' ', countryName(p)));
     };
     if (state.hints[k] != null) showHint();
     else if (state.left > 1) hintBox.append(h('button', { class: 'btn ghost small', onclick: () => {
       const unused = grid.answers[k].filter((i) => !used.has(i));
       if (!unused.length) return;
       state.hints[k] = grid.answers[k].indexOf(unused[unused.length - 1]); state.left--; save(); render(); showHint();
-    } }, 'Подсказка (−1 попытка)'));
+    } }, tr('Подсказка (−1 попытка)')));
     const close = modal(`${row.sub}: ${row.label} × ${col.sub}: ${col.label}`, h('div', { class: 'stack' }, box.el, hintBox));
     box.focus();
   }
@@ -181,7 +182,7 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
 
   function showAnswers(k) {
     const list = grid.answers[k].map((i) => data.players[i]).sort((a, b) => b.events - a.events);
-    modal('Возможные ответы', h('ul', { class: 'answer-list' }, list.map((p) => h('li', {}, flag(p.cc), playerLink(p), h('span', { class: 'muted' }, `${roleText(data, p)} · ${p.events} ${data.eventLabel.toLowerCase()}`)))));
+    modal(tr('Возможные ответы'), h('ul', { class: 'answer-list' }, list.map((p) => h('li', {}, flag(p.cc), playerLink(p), h('span', { class: 'muted' }, `${roleText(data, p)} · ${p.events} ${tr(data.eventLabel).toLowerCase()}`)))));
   }
 
   render();

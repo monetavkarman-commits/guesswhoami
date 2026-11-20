@@ -13,6 +13,14 @@
   --radius: 12px;
   color-scheme: dark;
 }
+/* dark-first; light palette when the system or the toggle asks for it */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --bg: #f3f4f7; --panel: #ffffff; --panel-2: #eceef3; --line: #d5d9e2; --text: #151a22; --muted: #5b6575;
+    --accent: #e8461f; --accent-2: #a86200; --hit: #23885a; --near: #b58f12; --miss: #e2e6ed; color-scheme: light; }
+}
+:root[data-theme="light"] { --bg: #f3f4f7; --panel: #ffffff; --panel-2: #eceef3; --line: #d5d9e2; --text: #151a22; --muted: #5b6575;
+    --accent: #e8461f; --accent-2: #a86200; --hit: #23885a; --near: #b58f12; --miss: #e2e6ed; color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
 body {
@@ -184,3 +192,5 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ach.got .ach-icon { filter: none; }
 .ach b { display: block; }
 .ach small { color: var(--muted); }
+
+.icon-pill.text { font-size: 13px; font-weight: 700; }

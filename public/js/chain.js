@@ -1,6 +1,7 @@
 // "Цепочка" — our own mode. Connect two players through teammates: each next player must have
 // played on the same team at the same time as the previous one. Fewer links = better.
-import { rng, shuffle, h, flag, store, share, playerSearch, playerLink, toast } from './core.js';
+import { tr } from './i18n.js';
+import { countryName, rng, shuffle, h, flag, store, share, playerSearch, playerLink, toast } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 // 1000 for a shortest chain, −200 per extra link, −50 per wrong teammate, −150 per hint, at least 100
@@ -34,7 +35,7 @@ export function generateChain(data, seed, filter = () => true) {
       if (ends.length) return { start: s, end: shuffle(r, ends)[0], par: want };
     }
   }
-  throw new Error('Не удалось собрать цепочку');
+  throw new Error(tr('Не удалось собрать цепочку'));
 }
 
 export function mount(root, data, { seed, daily, label, day, filter }) {
@@ -44,8 +45,8 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
   const state = (saveKey && store.get(saveKey)) || { path: [game.start], errors: 0, hints: 0, done: false, gaveUp: false };
 
   root.innerHTML = '';
-  root.append(h('p', { class: 'mode-intro' }, 'Соедините двух игроков через тиммейтов. Каждый следующий игрок должен был играть в одной команде ',
-    'одновременно с предыдущим. Цепочка готова, когда последний игрок — тиммейт финального. ', h('b', {}, `Минимум звеньев: ${game.par - 1}.`)));
+  root.append(h('p', { class: 'mode-intro' }, tr('Соедините двух игроков через тиммейтов. Каждый следующий игрок должен был играть в одной команде '),
+    tr('одновременно с предыдущим. Цепочка готова, когда последний игрок — тиммейт финального. '), h('b', {}, tr('Минимум звеньев: {0}.', [game.par - 1]))));
   const ends = h('div', { class: 'chain-ends' });
   const chainEl = h('div', { class: 'chain' });
   const searchWrap = h('div', { class: 'chain-search' });
@@ -53,9 +54,9 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
   const footer = h('div', { class: 'mode-footer' });
   root.append(ends, chainEl, searchWrap, tools, footer);
 
-  ends.append(card(S, 'Старт'), h('div', { class: 'chain-arrow' }, '⟶'), card(E, 'Финиш'));
+  ends.append(card(S, tr('Старт')), h('div', { class: 'chain-arrow' }, '⟶'), card(E, tr('Финиш')));
   function card(p, cap) {
-    return h('div', { class: 'chain-card' }, h('small', {}, cap), h('div', { class: 'big' }, flag(p.cc), ' ', p.id), h('small', { class: 'muted' }, p.team || 'без команды'));
+    return h('div', { class: 'chain-card' }, h('small', {}, cap), h('div', { class: 'big' }, flag(p.cc), ' ', p.id), h('small', { class: 'muted' }, p.team || tr('без команды')));
   }
 
   const save = () => saveKey && store.set(saveKey, state);
@@ -66,11 +67,11 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
   const last = () => data.players[state.path[state.path.length - 1]];
 
   const box = playerSearch(data, {
-    placeholder: 'Тиммейт последнего игрока…',
+    placeholder: tr('Тиммейт последнего игрока…'),
     exclude: (p) => state.path.includes(p.idx) || p.idx === game.end,
     onPick: (p) => {
       const l = last();
-      if (!l.mateMap.has(p.idx)) { state.errors++; save(); render(); toast(`${p.id} не играл вместе с ${l.id}`); return; }
+      if (!l.mateMap.has(p.idx)) { state.errors++; save(); render(); toast(tr('{0} не играл вместе с {1}', [p.id, l.id])); return; }
       state.path.push(p.idx);
       if (p.mateMap.has(game.end)) { state.path.push(game.end); finish(); }
       save(); render();
@@ -94,10 +95,10 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
     searchWrap.style.display = state.done ? 'none' : '';
     if (!state.done) {
       tools.append(
-        h('button', { class: 'btn ghost small', disabled: state.path.length < 2, onclick: () => { state.path.pop(); save(); render(); } }, 'Отменить шаг'),
-        h('button', { class: 'btn ghost small', onclick: hint }, 'Подсказка −150'),
-        h('button', { class: 'btn ghost small', onclick: () => { state.gaveUp = true; finish(); save(); render(); } }, 'Сдаться'),
-        h('span', { class: 'muted' }, `Ошибок: ${state.errors} · Подсказок: ${state.hints}`));
+        h('button', { class: 'btn ghost small', disabled: state.path.length < 2, onclick: () => { state.path.pop(); save(); render(); } }, tr('Отменить шаг')),
+        h('button', { class: 'btn ghost small', onclick: hint }, tr('Подсказка −150')),
+        h('button', { class: 'btn ghost small', onclick: () => { state.gaveUp = true; finish(); save(); render(); } }, tr('Сдаться')),
+        h('span', { class: 'muted' }, tr('Ошибок: {0} · Подсказок: {1}', [state.errors, state.hints])));
       setTimeout(() => box.focus(), 0);
     }
 
@@ -107,10 +108,10 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
       const { prev } = bfs(data, game.start);
       const best = pathTo(prev, game.start, game.end);
       footer.append(resultCard({
-        title: state.gaveUp ? 'Цепочка не собрана' : links <= game.par - 1 ? 'Идеальная цепочка!' : `Готово за ${links} звен.`,
+        title: state.gaveUp ? tr('Цепочка не собрана') : links <= game.par - 1 ? tr('Идеальная цепочка!') : tr('Готово за {0} звен.', [links]),
         score: chainScore(state, game.par), daily, game: data.game, mode: 'chain',
-        lines: [`Ошибок: ${state.errors}, подсказок: ${state.hints}.`,
-          h('span', { class: 'muted' }, 'Один из кратчайших путей: ', best.flatMap((i, k) => [k ? ' → ' : '', playerLink(data.players[i])]))],
+        lines: [tr('Ошибок: {0}, подсказок: {1}.', [state.errors, state.hints]),
+          h('span', { class: 'muted' }, tr('Один из кратчайших путей: '), best.flatMap((i, k) => [k ? ' → ' : '', playerLink(data.players[i])]))],
         onShare: state.gaveUp ? null : () => share(shareText(links)),
       }));
     }
@@ -118,16 +119,16 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
 
   function hint() {
     const { prev, dist } = bfs(data, last().idx);
-    if (!dist.has(game.end)) { toast('От этого игрока до финиша не добраться — отмените шаг'); return; }
+    if (!dist.has(game.end)) { toast(tr('От этого игрока до финиша не добраться — отмените шаг')); return; }
     const path = pathTo(prev, last().idx, game.end);
     const nextP = data.players[path[1]];
     const team = data.teams[last().mateMap.get(nextP.idx)];
     state.hints++; save(); render();
-    toast(`Следующий шаг: тиммейт по ${team}, ${nextP.country} (−150 очков)`);
+    toast(tr('Следующий шаг: тиммейт по {0}, {1} (−150 очков)', [team, countryName(nextP)]));
   }
 
   function shareText(links) {
-    return `GuessWhoAmI · ${data.cfg.short} · Цепочка ${label}\n${S.id} → ${'🔗'.repeat(links)} → ${E.id}\nЗвеньев: ${links} (минимум ${game.par - 1}) · ошибок: ${state.errors} · подсказок: ${state.hints}\nОчки: ${chainScore(state, game.par)}`;
+    return tr('GuessWhoAmI · {0} · Цепочка {1}\n{2} → {3} → {4}\nЗвеньев: {5} (минимум {6}) · ошибок: {7} · подсказок: {8}\nОчки: {9}', [data.cfg.short, label, S.id, '🔗'.repeat(links), E.id, links, game.par - 1, state.errors, state.hints, chainScore(state, game.par)]);
   }
 
   render();

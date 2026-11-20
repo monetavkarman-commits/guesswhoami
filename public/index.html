@@ -7,6 +7,9 @@
   <meta name="description" content="Ежедневные игры на знание про-игроков CS и Dota 2: сетка 3×3, «Кто я?» и цепочка тиммейтов.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23ff5a36'/><text x='50' y='70' font-size='62' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'>?</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0e1116">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
   <header class="top">
@@ -14,6 +17,8 @@
       <a class="logo" href="#"><span class="logo-mark">?</span><span>Guess<b>Who</b>AmI</span></a>
       <div class="top-right">
         <nav id="game-tabs" class="tabs" aria-label="Игра"></nav>
+        <button id="lang-btn" class="icon-pill text" type="button" aria-label="Язык / Language">EN</button>
+        <button id="theme-btn" class="icon-pill" type="button" aria-label="Тема">◐</button>
         <button id="profile-btn" class="icon-pill" type="button" aria-label="Профиль и достижения">🏆</button>
       </div>
     </div>
@@ -27,7 +32,7 @@
 
   <footer class="wrap site-footer">
     <p id="source-note"></p>
-    <p>Данные об игроках — <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>,
+    <p id="license-note">Данные об игроках — <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>,
       распространяются по лицензии <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.
       Сайт не связан с Liquipedia, Valve или турнирными операторами.</p>
   </footer>

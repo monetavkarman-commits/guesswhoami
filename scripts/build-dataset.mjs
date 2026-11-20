@@ -21,8 +21,8 @@ function normBirth(b) {
 function countryOf(name, missing) {
   const n = clean(name);
   const c = COUNTRIES[n];
-  if (!c) { if (n) missing.add(n); return { cc: '', country: n || '—', region: '' }; }
-  return { cc: c[0], country: c[1], region: c[2] };
+  if (!c) { if (n) missing.add(n); return { cc: '', country: n || '—', countryEn: n || '—', region: '' }; }
+  return { cc: c[0], country: c[1], countryEn: n, region: c[2] };
 }
 
 function status(s) {

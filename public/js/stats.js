@@ -1,4 +1,5 @@
 // Daily results: streaks, scores and the "next puzzle in" countdown. Stored per game + mode in localStorage.
+import { tr } from './i18n.js';
 import { store, h } from './core.js';
 
 const key = (game, mode) => `stats:${game}:${mode}`;
@@ -35,8 +36,8 @@ export function statsLine(game, mode) {
   const s = getStats(game, mode);
   if (!s.played) return null;
   return h('div', { class: 'stats-line' },
-    stat('Сыграно', s.played), stat('Побед', `${Math.round((100 * s.wins) / s.played)}%`),
-    stat('Серия', s.streak), stat('Лучшая', s.best), stat('Рекорд', s.top));
+    stat(tr('Сыграно'), s.played), stat(tr('Побед'), `${Math.round((100 * s.wins) / s.played)}%`),
+    stat(tr('Серия'), s.streak), stat(tr('Лучшая'), s.best), stat(tr('Рекорд'), s.top));
 }
 const stat = (label, v) => h('div', {}, h('b', {}, String(v)), h('small', {}, label));
 
@@ -47,7 +48,7 @@ export function countdown() {
     el.dataset.started = '1';
     const now = new Date(); const next = new Date(now); next.setHours(24, 0, 0, 0);
     const s = Math.floor((next - now) / 1000);
-    el.textContent = `Новая ежедневная через ${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor((s % 3600) / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+    el.textContent = tr('Новая ежедневная через {0}:{1}:{2}', [String(Math.floor(s / 3600)).padStart(2, '0'), String(Math.floor((s % 3600) / 60)).padStart(2, '0'), String(s % 60).padStart(2, '0')]);
     setTimeout(tick, 1000);
   };
   tick();
@@ -58,9 +59,9 @@ export function countdown() {
 export function resultCard({ title, lines = [], score, daily, game, mode, onShare }) {
   return h('div', { class: 'result' },
     h('h3', {}, title),
-    score != null ? h('div', { class: 'score' }, h('b', {}, String(score)), h('small', {}, 'очков')) : null,
+    score != null ? h('div', { class: 'score' }, h('b', {}, String(score)), h('small', {}, tr('очков'))) : null,
     lines.map((l) => h('p', {}, l)),
     daily ? statsLine(game, mode) : null,
-    h('div', { class: 'result-actions' }, onShare ? h('button', { class: 'btn', onclick: onShare }, 'Поделиться') : null),
+    h('div', { class: 'result-actions' }, onShare ? h('button', { class: 'btn', onclick: onShare }, tr('Поделиться')) : null),
     daily ? countdown() : null);
 }
