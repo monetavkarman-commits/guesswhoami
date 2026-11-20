@@ -47,6 +47,9 @@ const MODES = {
 
 const root = document.getElementById('mode-root');
 const gameTabs = document.getElementById('game-tabs');
+// section switch (esports / sports) goes right before the game tabs
+const sectionTabs = h('div', { class: 'seg section-tabs', role: 'tablist', 'aria-label': tr('Раздел') });
+gameTabs.before(sectionTabs);
 const modeTabs = document.getElementById('mode-tabs');
 const dayBar = document.getElementById('day-bar');
 const sourceNote = document.getElementById('source-note');
@@ -84,9 +87,19 @@ function filterSelect(game) {
 
 async function render() {
   const { game, mode, endless, duel, rival, duelFilter } = parseHash();
+  // two sections, esports and sports; only the games of the current section are listed
+  const section = GAMES[game].sport ? 'sport' : 'esport';
+  store.set(`lastGame:${section}`, game);
+  sectionTabs.innerHTML = '';
+  for (const [sec, label] of [['esport', tr('🎮 Киберспорт')], ['sport', tr('🏟 Спорт')]]) {
+    const first = Object.keys(GAMES).find((k) => !!GAMES[k].sport === (sec === 'sport'));
+    const target = store.get(`lastGame:${sec}`, first);
+    sectionTabs.append(h('button', { class: sec === section ? 'active' : '', onclick: () => sec !== section && nav(GAMES[target] ? target : first, mode, endless) }, label));
+  }
   gameTabs.innerHTML = '';
+  gameTabs.classList.toggle('sport', section === 'sport');
   for (const [k, g] of Object.entries(GAMES)) {
-    if (g.sport && !gameTabs.querySelector('.tab-sep')) gameTabs.append(h('span', { class: 'tab-sep' }));
+    if (!!g.sport !== (section === 'sport')) continue;
     gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), title: g.title, onclick: () => nav(k, mode, endless) }, h('span', { class: 'full' }, g.tab || g.title), h('span', { class: 'short' }, g.short)));
   }
   modeTabs.innerHTML = '';

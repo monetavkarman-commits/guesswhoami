@@ -382,6 +382,10 @@ const EN = {
   'Монако': 'Monaco',
   'Люксембург': 'Luxembourg',
   'Кипр': 'Cyprus',
+  '🎮 Киберспорт': '🎮 Esports',
+  '🏟 Спорт': '🏟 Sports',
+  'Раздел': 'Section',
+  'Баскет': 'Basket',
   // dataset strings
   'Мэйджоры': 'Majors',
   'Игроки 9 мэйджоров CS:GO/CS2 (Бостон 2018 – Остин 2025)': 'Players from 9 CS:GO/CS2 Majors (Boston 2018 – Austin 2025)',

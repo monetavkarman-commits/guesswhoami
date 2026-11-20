@@ -212,9 +212,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .who-row.items { grid-template-columns: 1.1fr repeat(var(--cols, 5), 1fr); min-width: calc(120px + var(--cols, 5) * 92px); }
 
 /* game picker: its own row under the header, scrolls sideways when there are many games */
-.game-row { padding-top: 12px; }
+.game-row { padding-top: 12px; display: flex; gap: 10px; align-items: center; }
+.game-row .tabs { flex: 1; min-width: 0; }
+.section-tabs { flex: none; }
+.section-tabs button { white-space: nowrap; }
+@media (max-width: 760px) { .game-row { flex-direction: column; align-items: stretch; } .section-tabs { display: flex; } .section-tabs button { flex: 1; } }
 .game-row .tabs { overflow-x: auto; scrollbar-width: none; flex-wrap: nowrap; }
 .game-row .tabs::-webkit-scrollbar { display: none; }
 .game-row .tab { white-space: nowrap; flex: 1 0 auto; }
-.game-row .tab-sep { flex: 0 0 1px; background: var(--line, rgba(127,127,127,.3)); margin: 6px 2px; }
 @media (max-width: 760px) { .tab .full { display: none; } .tab .short { display: inline; } .game-row .tab { padding: 7px 9px; } }

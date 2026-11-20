@@ -30,26 +30,26 @@ export const GAMES = {
   },
   // sports (Wikidata): no event counts, so "top" means well-known (many Wikipedia articles), "events" = number of clubs
   football: {
-    title: tr('Футбол'), short: '⚽', sport: true, kind: 'pos',
+    title: tr('Футбол'), tab: '⚽ ' + tr('Футбол'), short: '⚽ ' + tr('Футбол'), sport: true, kind: 'pos',
     posLabels: { 1: tr('Вратарь'), 2: tr('Защитник'), 3: tr('Полузащитник'), 4: tr('Нападающий') },
     teamLabel: tr('Клуб'), ev3: tr('6+ клубов'), ev1: tr('Один клуб за карьеру'), evHi: 6, evLo: 1, topMin: null, minTeam: [8, 5],
     eras: { early: tr('Играли до 2010'), late: tr('Играли с 2016') }, activeEra: 'late',
     teamNote: tr('* Клубы и даты переходов — из Wikidata, там бывают пробелы.'),
   },
   basket: {
-    title: tr('Баскетбол'), short: '🏀', sport: true, kind: 'pos',
+    title: tr('Баскетбол'), tab: '🏀 ' + tr('Баскетбол'), short: '🏀 ' + tr('Баскет'), sport: true, kind: 'pos',
     posLabels: { 1: tr('Разыгрывающий'), 2: tr('Атакующий защитник'), 3: tr('Лёгкий форвард'), 4: tr('Тяжёлый форвард'), 5: tr('Центровой') },
     teamLabel: tr('Клуб'), ev3: tr('5+ клубов'), ev1: tr('Один клуб за карьеру'), evHi: 5, evLo: 1, topMin: null, minTeam: [6, 4],
     eras: { early: tr('Играли до 2010'), late: tr('Играли с 2016') }, activeEra: 'late',
     teamNote: tr('* Клубы и даты переходов — из Wikidata, там бывают пробелы.'),
   },
   f1: {
-    title: tr('Формула-1'), short: 'F1', sport: true, kind: null,
+    title: tr('Формула-1'), tab: '🏎 ' + tr('Формула-1'), short: '🏎 F1', sport: true, kind: null,
     teamLabel: tr('Команда'), ev3: tr('10+ сезонов'), ev1: tr('Один сезон'), evHi: 10, evLo: 1, topMin: null, minTeam: [5, 3],
     eras: { early: tr('Сезоны до 2010'), late: tr('Гибридная эра (2014+)') }, activeEra: 'late',
     teamNote: tr('* Команда — в последнем сезоне, только у действующих пилотов.'),
   },
-  tennis: { title: tr('Теннис'), short: '🎾', sport: true, itemsOnly: true, eras: {} },
+  tennis: { title: tr('Теннис'), tab: '🎾 ' + tr('Теннис'), short: '🎾 ' + tr('Теннис'), sport: true, itemsOnly: true, eras: {} },
 };
 
 // Difficulty / era filters: they narrow who can be the answer, any matching player is still accepted.
