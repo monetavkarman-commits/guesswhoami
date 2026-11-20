@@ -43,6 +43,7 @@ export const GAMES = {
     eras: { early: tr('Играли до 2010'), late: tr('Играли с 2016') }, activeEra: 'late',
     teamNote: tr('* Клубы и даты переходов — из Wikidata, там бывают пробелы.'),
   },
+  deadlock: { title: 'Deadlock', tab: 'Deadlock', short: 'Deadlock', itemsOnly: true, eras: {} },
   tennis: { title: tr('Теннис'), tab: '🎾 ' + tr('Теннис'), short: '🎾 ' + tr('Теннис'), sport: true, itemsOnly: true, eras: {} },
 };
 
@@ -167,11 +168,18 @@ function badge(name, cls) {
   return el;
 }
 const teamLogo = (data, i, cls) => {
-  if (!data.logos || i == null || i < 0) return null;
-  return data.logos[i] ? pic(wmUrl(data.logos[i], 60), cls) : badge(data.teams[i], cls);
+  if (i == null || i < 0 || !data.teams[i]) return null;
+  return data.logos && data.logos[i] ? pic(wmUrl(data.logos[i], 60), cls) : badge(data.teams[i], cls);
 };
-export const logo = (data, name, cls = 'pic logo') => (name && data.logos ? teamLogo(data, data.teams.indexOf(name), cls) : null);
+export const logo = (data, name, cls = 'pic logo') => (name ? teamLogo(data, data.teams.indexOf(name), cls) : null);
 export const logoAt = (data, i, cls = 'pic logo') => teamLogo(data, i, cls);
+
+// "Arsenal" for a player with a team; without one: the last club and a note, or just "retired"
+export function teamText(p) {
+  if (p.team) return p.team;
+  if (p.last) return `${p.last} · ${p.status === 'retired' ? tr('на пенсии') : tr('последняя команда')}`;
+  return tr('на пенсии');
+}
 
 export function flag(cc) {
   if (!cc || cc.length !== 2 || cc === 'XK') return h('span', { class: 'flag flag-text' }, cc || '?');

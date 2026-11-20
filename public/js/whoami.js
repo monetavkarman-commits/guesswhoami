@@ -1,7 +1,7 @@
 // "Кто я?" — Wordle-style: guess the hidden player; each guess shows per-attribute hints.
 // Own twist: after 4 misses you can open a clue card (a former team, then the real-name initials).
 import { tr } from './i18n.js';
-import { countryName, rng, pick, h, flag, store, share, playerSearch, playerLink, roleText, toast, photo, logo } from './core.js';
+import { countryName, rng, pick, h, flag, store, share, playerSearch, playerLink, roleText, toast, photo, logo, teamText } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 // 1000 for a first-try guess, -100 per extra guess, -150 per opened clue, at least 100 for any win
@@ -19,7 +19,7 @@ function columns(data) {
         const ti = data.teams.indexOf(g.team); const gi = data.teams.indexOf(t.team);
         if ((ti >= 0 && t.teamSet.has(ti)) || (gi >= 0 && g.teamSet.has(gi))) return 'near';
         return 'miss';
-      }, view: (g) => (g.team ? h('span', { class: 'with-logo' }, logo(data, g.team), g.team) : tr('без команды')) },
+      }, view: (g) => h('span', { class: 'with-logo' }, logo(data, g.team || g.last), teamText(g)) },
     kind === 'roles'
       ? { title: tr('Роль'), cmp: (g, t) => {
           const a = g.roles.join(); const b = t.roles.join();
@@ -106,7 +106,7 @@ export function mount(root, data, { seed, daily, label, day, filter = () => true
       footer.append(resultCard({
         title: state.won ? tr('Угадано за {0}!', [state.guesses.length]) : tr('Не угадали'),
         score: whoScore(state), daily, game: data.game, mode: 'whoami',
-        lines: [h('span', { class: 'answer' }, photo(target, 'pic big round'), tr('Это '), flag(target.cc), ' ', playerLink(target), ` — ${target.name}, ${target.team || tr('без команды')}.`),
+        lines: [h('span', { class: 'answer' }, photo(target, 'pic big round'), tr('Это '), flag(target.cc), ' ', playerLink(target), ` — ${target.name}, ${teamText(target)}.`),
           state.clues ? tr('Подсказок открыто: {0} (−{1} очков)', [state.clues, 150 * state.clues]) : null],
         onShare: () => share(shareText()),
       }));

@@ -5,7 +5,7 @@ import { tr } from './i18n.js';
 import { countryName, rng, shuffle, h, flag, store, share, modal, playerSearch, playerLink, roleText, toast, photo, logoAt } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
-const GUESSES = 9;
+const GUESSES = 12;
 const SAME_KIND_FORBIDDEN = new Set(['country', 'age', 'events', 'status', 'pos', 'region']);
 
 function buildCriteria(data, era) {
@@ -111,7 +111,7 @@ export function mount(root, data, { seed, daily, label, day, filter, era, onFini
   const board = h('div', { class: 'grid-board' });
   const footer = h('div', { class: 'mode-footer' });
   root.append(h('p', { class: 'mode-intro' }, tr('Впишите в каждую клетку игрока, который подходит под условие строки и столбца. '),
-    tr('У вас 9 попыток, каждый игрок только один раз. Очки: до 100 за клетку (чем менее очевидный игрок, тем больше), +100 за сетку без ошибок. Подсказка в клетке стоит одну попытку.')), status, board, footer);
+    tr('У вас 12 попыток, каждый игрок только один раз. Очки: до 100 за клетку (чем менее очевидный игрок, тем больше), +100 за сетку без ошибок. Подсказка в клетке стоит одну попытку.')), status, board, footer);
 
   const head = (c) => h('div', { class: 'grid-head' }, c.cc ? flag(c.cc) : null, c.tidx != null ? logoAt(data, c.tidx, 'pic logo big') : null, h('small', {}, c.sub), h('span', {}, c.label));
 

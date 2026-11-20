@@ -1,0 +1,2054 @@
+{
+ "modeTitle": "Предметы",
+ "nameTitle": "Предмет",
+ "placeholder": "Название предмета…",
+ "intro": "Угадайте предмет Deadlock по категории, уровню, бонусам, активной способности и числу компонентов улучшения. Зелёный — совпало, жёлтый — близко (бонусы пересекаются, уровень ±1), стрелка — больше или меньше.",
+ "source": "Liquipedia Deadlock, инфобоксы предметов (2026-11-20; цена по панели предметов)",
+ "columns": [
+  {
+   "key": "cat",
+   "title": "Категория",
+   "type": "cat"
+  },
+  {
+   "key": "tier",
+   "title": "Уровень",
+   "type": "num",
+   "near": 1
+  },
+  {
+   "key": "stats",
+   "title": "Бонусы",
+   "type": "set"
+  },
+  {
+   "key": "active",
+   "title": "Активка",
+   "type": "cat"
+  },
+  {
+   "key": "parts",
+   "title": "Компонентов",
+   "type": "num",
+   "near": 0
+  }
+ ],
+ "items": [
+  {
+   "id": "active-reload",
+   "name": "Active Reload",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Боезапас"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Active_Reload"
+  },
+  {
+   "id": "alchemical-fire",
+   "name": "Alchemical Fire",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Сила духа",
+    "Урон оружия",
+    "Скорость",
+    "Щит"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Alchemical_Fire"
+  },
+  {
+   "id": "arcane-surge",
+   "name": "Arcane Surge",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Выносливость"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Arcane_Surge"
+  },
+  {
+   "id": "armor-piercing-rounds",
+   "name": "Armor Piercing Rounds",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Урон оружия",
+    "Скорость пули"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Armor_Piercing_Rounds"
+  },
+  {
+   "id": "ballistic-enchantment",
+   "name": "Ballistic Enchantment",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Ballistic_Enchantment"
+  },
+  {
+   "id": "battle-vest",
+   "name": "Battle Vest",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Реген здоровья",
+    "Защита от пуль"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Battle_Vest"
+  },
+  {
+   "id": "berserker",
+   "name": "Berserker",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Защита от пуль"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Berserker"
+  },
+  {
+   "id": "blood-tribute",
+   "name": "Blood Tribute",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Реген здоровья",
+    "Защита от духа",
+    "Стойкость"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Blood_Tribute"
+  },
+  {
+   "id": "boundless-spirit",
+   "name": "Boundless Spirit",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Сила духа",
+    "Урон оружия",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Boundless_Spirit"
+  },
+  {
+   "id": "bullet-lifesteal",
+   "name": "Bullet Lifesteal",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Bullet_Lifesteal"
+  },
+  {
+   "id": "bullet-resilience",
+   "name": "Bullet Resilience",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Урон оружия",
+    "Защита от пуль"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Bullet_Resilience"
+  },
+  {
+   "id": "bullet-resist-shredder",
+   "name": "Bullet Resist Shredder",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Bullet_Resist_Shredder"
+  },
+  {
+   "id": "burst-fire",
+   "name": "Burst Fire",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Скорострельность"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Burst_Fire"
+  },
+  {
+   "id": "capacitor",
+   "name": "Capacitor",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Скорострельность"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Capacitor"
+  },
+  {
+   "id": "close-quarters",
+   "name": "Close Quarters",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Защита от пуль"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Close_Quarters"
+  },
+  {
+   "id": "cold-front",
+   "name": "Cold Front",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Защита от духа"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Cold_Front"
+  },
+  {
+   "id": "colossus",
+   "name": "Colossus",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Урон оружия",
+    "Ближний бой"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Colossus"
+  },
+  {
+   "id": "crippling-headshot",
+   "name": "Crippling Headshot",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Crippling_Headshot"
+  },
+  {
+   "id": "crushing-fists",
+   "name": "Crushing Fists",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Защита от пуль",
+    "Ближний бой"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Crushing_Fists"
+  },
+  {
+   "id": "cultist-sacrifice",
+   "name": "Cultist Sacrifice",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Реген здоровья"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Cultist_Sacrifice"
+  },
+  {
+   "id": "debuff-reducer",
+   "name": "Debuff Reducer",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Debuff_Reducer"
+  },
+  {
+   "id": "decay",
+   "name": "Decay",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Реген здоровья",
+    "Сила духа"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Decay"
+  },
+  {
+   "id": "divine-barrier",
+   "name": "Divine Barrier",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Скорость"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Divine_Barrier"
+  },
+  {
+   "id": "diviner-s-kevlar",
+   "name": "Diviner's Kevlar",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Откат умений"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Diviner's_Kevlar"
+  },
+  {
+   "id": "duration-extender",
+   "name": "Duration Extender",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Duration_Extender"
+  },
+  {
+   "id": "echo-shard",
+   "name": "Echo Shard",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Сила духа",
+    "Скорость",
+    "Защита от пуль"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Echo_Shard"
+  },
+  {
+   "id": "enchanter-s-emblem",
+   "name": "Enchanter's Emblem",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Реген здоровья",
+    "Защита от духа"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Enchanter's_Emblem"
+  },
+  {
+   "id": "enduring-speed",
+   "name": "Enduring Speed",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Enduring_Speed"
+  },
+  {
+   "id": "escalating-exposure",
+   "name": "Escalating Exposure",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Защита от духа"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Escalating_Exposure"
+  },
+  {
+   "id": "escalating-resilience",
+   "name": "Escalating Resilience",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Урон оружия",
+    "Скорострельность"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Escalating_Resilience"
+  },
+  {
+   "id": "ethereal-shift",
+   "name": "Ethereal Shift",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Сила духа"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Ethereal_Shift"
+  },
+  {
+   "id": "express-shot",
+   "name": "Express Shot",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Урон оружия",
+    "Скорость пули"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Express_Shot"
+  },
+  {
+   "id": "extended-magazine",
+   "name": "Extended Magazine",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Урон оружия",
+    "Боезапас"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Extended_Magazine"
+  },
+  {
+   "id": "extra-charge",
+   "name": "Extra Charge",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Урон оружия",
+    "Откат умений"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Extra_Charge"
+  },
+  {
+   "id": "extra-health",
+   "name": "Extra Health",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Здоровье",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Extra_Health"
+  },
+  {
+   "id": "extra-regen",
+   "name": "Extra Regen",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Реген здоровья",
+    "Боезапас"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Extra_Regen"
+  },
+  {
+   "id": "extra-spirit",
+   "name": "Extra Spirit",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Сила духа"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Extra_Spirit"
+  },
+  {
+   "id": "extra-stamina",
+   "name": "Extra Stamina",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Здоровье",
+    "Выносливость"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Extra_Stamina"
+  },
+  {
+   "id": "fleetfoot",
+   "name": "Fleetfoot",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Защита от пуль"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Fleetfoot"
+  },
+  {
+   "id": "fortitude",
+   "name": "Fortitude",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Fortitude"
+  },
+  {
+   "id": "frenzy",
+   "name": "Frenzy",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Скорострельность",
+    "Скорость",
+    "Защита от духа"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Frenzy"
+  },
+  {
+   "id": "glass-cannon",
+   "name": "Glass Cannon",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Glass_Cannon"
+  },
+  {
+   "id": "golden-goose-egg",
+   "name": "Golden Goose Egg",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Реген здоровья",
+    "Скорость"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Golden_Goose_Egg"
+  },
+  {
+   "id": "grit",
+   "name": "Grit",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Реген здоровья"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Grit"
+  },
+  {
+   "id": "guardian-ward",
+   "name": "Guardian Ward",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Скорость"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Guardian_Ward"
+  },
+  {
+   "id": "headhunter",
+   "name": "Headhunter",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Урон оружия",
+    "Скорострельность",
+    "Щит"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Headhunter"
+  },
+  {
+   "id": "headshot-booster",
+   "name": "Headshot Booster",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Headshot_Booster"
+  },
+  {
+   "id": "healbane",
+   "name": "Healbane",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Healbane"
+  },
+  {
+   "id": "healing-booster",
+   "name": "Healing Booster",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Реген здоровья",
+    "Защита от духа"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Healing_Booster"
+  },
+  {
+   "id": "healing-nova",
+   "name": "Healing Nova",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Сила духа",
+    "Урон оружия"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Healing_Nova"
+  },
+  {
+   "id": "healing-rite",
+   "name": "Healing Rite",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Да",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Healing_Rite"
+  },
+  {
+   "id": "heroic-aura",
+   "name": "Heroic Aura",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Скорость",
+    "Вампиризм"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Heroic_Aura"
+  },
+  {
+   "id": "high-velocity-rounds",
+   "name": "High-Velocity Rounds",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Урон оружия",
+    "Скорость пули"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/High-Velocity_Rounds"
+  },
+  {
+   "id": "hollow-point",
+   "name": "Hollow Point",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Hollow_Point"
+  },
+  {
+   "id": "hunter-s-aura",
+   "name": "Hunter's Aura",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Hunter's_Aura"
+  },
+  {
+   "id": "improved-spirit",
+   "name": "Improved Spirit",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Сила духа",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Improved_Spirit"
+  },
+  {
+   "id": "indomitable",
+   "name": "Indomitable",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Реген здоровья",
+    "Защита от пуль",
+    "Защита от духа"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Indomitable"
+  },
+  {
+   "id": "infuser",
+   "name": "Infuser",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Боезапас",
+    "Щит"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Infuser"
+  },
+  {
+   "id": "inhibitor",
+   "name": "Inhibitor",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Inhibitor"
+  },
+  {
+   "id": "intensifying-magazine",
+   "name": "Intensifying Magazine",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Урон оружия",
+    "Боезапас"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Intensifying_Magazine"
+  },
+  {
+   "id": "kinetic-dash",
+   "name": "Kinetic Dash",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Выносливость"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Kinetic_Dash"
+  },
+  {
+   "id": "knockdown",
+   "name": "Knockdown",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Сила духа",
+    "Щит",
+    "Выносливость"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Knockdown"
+  },
+  {
+   "id": "leech",
+   "name": "Leech",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Урон оружия",
+    "Вампиризм",
+    "Откат умений"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Leech"
+  },
+  {
+   "id": "lifestrike",
+   "name": "Lifestrike",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Защита от пуль",
+    "Ближний бой"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Lifestrike"
+  },
+  {
+   "id": "long-range",
+   "name": "Long Range",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Урон оружия",
+    "Перезарядка",
+    "Щит"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Long_Range"
+  },
+  {
+   "id": "lucky-shot",
+   "name": "Lucky Shot",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Боезапас"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Lucky_Shot"
+  },
+  {
+   "id": "magic-carpet",
+   "name": "Magic Carpet",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Сила духа"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Magic_Carpet"
+  },
+  {
+   "id": "majestic-leap",
+   "name": "Majestic Leap",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Сила духа",
+    "Защита от духа"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Majestic_Leap"
+  },
+  {
+   "id": "melee-charge",
+   "name": "Melee Charge",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Melee_Charge"
+  },
+  {
+   "id": "melee-lifesteal",
+   "name": "Melee Lifesteal",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Здоровье",
+    "Защита от пуль",
+    "Ближний бой"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Melee_Lifesteal"
+  },
+  {
+   "id": "metal-skin",
+   "name": "Metal Skin",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Сила духа",
+    "Скорострельность"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Metal_Skin"
+  },
+  {
+   "id": "monster-rounds",
+   "name": "Monster Rounds",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Monster_Rounds"
+  },
+  {
+   "id": "mystic-burst",
+   "name": "Mystic Burst",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Урон оружия",
+    "Щит"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Mystic_Burst"
+  },
+  {
+   "id": "mystic-reverb",
+   "name": "Mystic Reverb",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Защита от духа",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Mystic_Reverb"
+  },
+  {
+   "id": "mystic-shot",
+   "name": "Mystic Shot",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Сила духа",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Mystic_Shot"
+  },
+  {
+   "id": "mystic-slow",
+   "name": "Mystic Slow",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Сила духа",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Mystic_Slow"
+  },
+  {
+   "id": "mystic-vulnerability",
+   "name": "Mystic Vulnerability",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Защита от духа"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Mystic_Vulnerability"
+  },
+  {
+   "id": "opening-rounds",
+   "name": "Opening Rounds",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Сила духа",
+    "Урон оружия",
+    "Скорость пули"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Opening_Rounds"
+  },
+  {
+   "id": "phantom-strike",
+   "name": "Phantom Strike",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Сила духа",
+    "Урон оружия"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Phantom_Strike"
+  },
+  {
+   "id": "point-blank",
+   "name": "Point Blank",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Защита от пуль",
+    "Выносливость"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Point_Blank"
+  },
+  {
+   "id": "quicksilver-reload",
+   "name": "Quicksilver Reload",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Quicksilver_Reload"
+  },
+  {
+   "id": "rapid-recharge",
+   "name": "Rapid Recharge",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Rapid_Recharge"
+  },
+  {
+   "id": "rapid-rounds",
+   "name": "Rapid Rounds",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Скорострельность"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Rapid_Rounds"
+  },
+  {
+   "id": "reactive-barrier",
+   "name": "Reactive Barrier",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Reactive_Barrier"
+  },
+  {
+   "id": "rebuttal",
+   "name": "Rebuttal",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Rebuttal"
+  },
+  {
+   "id": "recharging-rush",
+   "name": "Recharging Rush",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Урон оружия",
+    "Боезапас"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Recharging_Rush"
+  },
+  {
+   "id": "refresher",
+   "name": "Refresher",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Защита от пуль",
+    "Защита от духа"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Refresher"
+  },
+  {
+   "id": "rescue-beam",
+   "name": "Rescue Beam",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Сила духа",
+    "Скорость"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Rescue_Beam"
+  },
+  {
+   "id": "restorative-locket",
+   "name": "Restorative Locket",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Скорость",
+    "Защита от духа"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Restorative_Locket"
+  },
+  {
+   "id": "restorative-shot",
+   "name": "Restorative Shot",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Restorative_Shot"
+  },
+  {
+   "id": "return-fire",
+   "name": "Return Fire",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Боезапас"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Return_Fire"
+  },
+  {
+   "id": "ricochet",
+   "name": "Ricochet",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Скорострельность"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Ricochet"
+  },
+  {
+   "id": "rusted-barrel",
+   "name": "Rusted Barrel",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Здоровье",
+    "Скорость"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Rusted_Barrel"
+  },
+  {
+   "id": "shadow-weave",
+   "name": "Shadow Weave",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Реген здоровья",
+    "Скорость"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Shadow_Weave"
+  },
+  {
+   "id": "sharpshooter",
+   "name": "Sharpshooter",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Урон оружия",
+    "Перезарядка",
+    "Скорость",
+    "Щит"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Sharpshooter"
+  },
+  {
+   "id": "silencer",
+   "name": "Silencer",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Защита от духа"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Silencer"
+  },
+  {
+   "id": "siphon-bullets",
+   "name": "Siphon Bullets",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Урон оружия",
+    "Защита от пуль"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Siphon_Bullets"
+  },
+  {
+   "id": "slowing-bullets",
+   "name": "Slowing Bullets",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Сила духа",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Slowing_Bullets"
+  },
+  {
+   "id": "slowing-hex",
+   "name": "Slowing Hex",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Сила духа",
+    "Вампиризм"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Slowing_Hex"
+  },
+  {
+   "id": "spellslinger",
+   "name": "Spellslinger",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Откат умений"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Spellslinger"
+  },
+  {
+   "id": "spirit-lifesteal",
+   "name": "Spirit Lifesteal",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Spirit_Lifesteal"
+  },
+  {
+   "id": "spirit-rend",
+   "name": "Spirit Rend",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Spirit_Rend"
+  },
+  {
+   "id": "spirit-resilience",
+   "name": "Spirit Resilience",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Сила духа",
+    "Защита от духа"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Spirit_Resilience"
+  },
+  {
+   "id": "spirit-shredder-bullets",
+   "name": "Spirit Shredder Bullets",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Spirit_Shredder_Bullets"
+  },
+  {
+   "id": "spirit-snatch",
+   "name": "Spirit Snatch",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Скорость",
+    "Защита от духа",
+    "Ближний бой"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Spirit_Snatch"
+  },
+  {
+   "id": "spirit-strike",
+   "name": "Spirit Strike",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Щит",
+    "Ближний бой"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Spirit_Strike"
+  },
+  {
+   "id": "spiritual-overflow",
+   "name": "Spiritual Overflow",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Щит",
+    "Вампиризм",
+    "Откат умений"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Spiritual_Overflow"
+  },
+  {
+   "id": "split-shot",
+   "name": "Split Shot",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Split_Shot"
+  },
+  {
+   "id": "sprint-boots",
+   "name": "Sprint Boots",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 1,
+   "price": 800,
+   "stats": [
+    "Реген здоровья",
+    "Урон оружия",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Sprint_Boots"
+  },
+  {
+   "id": "stalker",
+   "name": "Stalker",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Stalker"
+  },
+  {
+   "id": "superior-cooldown",
+   "name": "Superior Cooldown",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Реген здоровья",
+    "Боезапас",
+    "Щит"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Superior_Cooldown"
+  },
+  {
+   "id": "superior-duration",
+   "name": "Superior Duration",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Урон оружия"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Superior_Duration"
+  },
+  {
+   "id": "superior-stamina",
+   "name": "Superior Stamina",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Сила духа",
+    "Скорострельность",
+    "Выносливость"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Superior_Stamina"
+  },
+  {
+   "id": "suppressor",
+   "name": "Suppressor",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Сила духа"
+   ],
+   "active": "Нет",
+   "parts": 1,
+   "url": "https://liquipedia.net/deadlock/Suppressor"
+  },
+  {
+   "id": "surge-of-power",
+   "name": "Surge of Power",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Surge_of_Power"
+  },
+  {
+   "id": "swift-striker",
+   "name": "Swift Striker",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Скорострельность",
+    "Боезапас",
+    "Защита от пуль"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Swift_Striker"
+  },
+  {
+   "id": "tesla-bullets",
+   "name": "Tesla Bullets",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Скорострельность"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Tesla_Bullets"
+  },
+  {
+   "id": "titanic-magazine",
+   "name": "Titanic Magazine",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Урон оружия",
+    "Боезапас"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Titanic_Magazine"
+  },
+  {
+   "id": "torment-pulse",
+   "name": "Torment Pulse",
+   "sub": "Дух",
+   "alias": [],
+   "cat": "Дух",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье",
+    "Сила духа"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Torment_Pulse"
+  },
+  {
+   "id": "toxic-bullets",
+   "name": "Toxic Bullets",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Toxic_Bullets"
+  },
+  {
+   "id": "unstoppable",
+   "name": "Unstoppable",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Сила духа",
+    "Защита от пуль"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Unstoppable"
+  },
+  {
+   "id": "vampiric-burst",
+   "name": "Vampiric Burst",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 4,
+   "price": 6400,
+   "stats": [
+    "Здоровье",
+    "Урон оружия",
+    "Скорость"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Vampiric_Burst"
+  },
+  {
+   "id": "veil-walker",
+   "name": "Veil Walker",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Урон оружия",
+    "Боезапас",
+    "Щит"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Veil_Walker"
+  },
+  {
+   "id": "warp-stone",
+   "name": "Warp Stone",
+   "sub": "Живучесть",
+   "alias": [],
+   "cat": "Живучесть",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Сила духа",
+    "Урон оружия"
+   ],
+   "active": "Да",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Warp_Stone"
+  },
+  {
+   "id": "weakening-headshot",
+   "name": "Weakening Headshot",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 2,
+   "price": 1600,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Weakening_Headshot"
+  },
+  {
+   "id": "weighted-shots",
+   "name": "Weighted Shots",
+   "sub": "Оружие",
+   "alias": [],
+   "cat": "Оружие",
+   "tier": 3,
+   "price": 3200,
+   "stats": [
+    "Урон оружия",
+    "Скорость",
+    "Выносливость",
+    "Стойкость"
+   ],
+   "active": "Нет",
+   "parts": 0,
+   "url": "https://liquipedia.net/deadlock/Weighted_Shots"
+  }
+ ]
+}

@@ -98,7 +98,7 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
       id: latin(o.en), name: o.ru && o.ru !== o.en ? o.ru : '', url: `https://www.wikidata.org/wiki/${o.p}`,
       ...country(o, missing), birth: o.b || null,
       status: current || uniq.some((x) => x.e >= NOW - 100) ? 'active' : 'retired',
-      team: current ? current.team : null, ...(best ? { pos: +best[0] } : {}), roles: [],
+      team: current ? current.team : null, last: uniq.length ? uniq[uniq.length - 1].team : null, ...(best ? { pos: +best[0] } : {}), roles: [],
       events: new Set(stints.map((x) => x[0])).size, fame: o.sl,
       teams: [...new Set(stints.map((x) => x[0]))], _stints: stints,
     });
@@ -140,7 +140,7 @@ const CLUB = { 'Real Madrid Club de Fútbol': 'Real Madrid', 'Paris Saint-Germai
   'S.C. Corinthians Paulista': 'Corinthians', 'Club Atlético River Plate': 'River Plate', 'Club Atlético Boca Juniors': 'Boca Juniors',
   'Fenerbahçe Istanbul': 'Fenerbahçe', 'Parma Calcio 1913': 'Parma', 'S.L. Benfica': 'Benfica', 'U.C. Sampdoria': 'Sampdoria',
   'FC Bayern Munich': 'Bayern Munich', 'Inter Milan': 'Inter', 'Genoa CFC': 'Genoa', 'Galatasaray S.K.': 'Galatasaray', 'Beşiktaş J.K.': 'Beşiktaş' };
-const clubName = (l) => CLUB[l] || l.replace(/\s+(F\.C\.|FC|A\.F\.C\.|AFC|C\.F\.|CF|S\.K\.|J\.K\.)$/, '').trim();
+const clubName = (l) => CLUB[l] || l.replace(/\s+(F\.C\.|FC|A\.F\.C\.|AFC|C\.F\.|CF|S\.K\.|J\.K\.|F\.K\.|FK)$/, '').trim();
 const YOUTH = /\b(II|III|B|C)$|youth|academy|reserve|juvenil|castilla|atlètic|^jong |primavera|under-?\d|\bU-?\d{2}\b|amateur|men's basketball|college|university/i;
 // Wikidata labels sometimes carry Greek or Cyrillic look-alike letters (e.g. a Greek capital alpha in "Arda Güler"),
 // which break search; in a Latin name they are swapped for the Latin letter.

@@ -31,3 +31,9 @@
 - Спорт: фото игроков (`ph`) и логотипы клубов (`logos`, индекс клуба -> путь) с Wikimedia Commons. Файлы берутся из Wikidata (P18, P154) по спискам из `data/raw/sport-qids.json`, результат лежит в `data/raw/sport-images.json`, `scripts/build-sports.mjs` превращает их в пути `a/ab/File.jpg`.
 - Как обновить: запросить P18/P154 по qids через SPARQL в браузере Арта (с вкладки query.wikidata.org: с raw.githubusercontent.com и с самого сайта fetch блокирует CSP), сохранить в `data/raw/sport-images.json`, запустить `node scripts/build-sports.mjs`.
 - Нет картинок: у игроков и клубов киберспорта (Liquipedia) и у оружия/карт CS.
+
+## Deadlock, 12 попыток, «последняя команда» (20.11.2026)
+- Игра Deadlock (только режимы «Герои» и «Предметы», без сетки/цепочки: у игры нет базы про-игроков): данные с Liquipedia Deadlock в `data/raw/deadlock-raw.json`, сборка `scripts/build-deadlock.mjs`. Картинок нет: у deadlock-api хосты недоступны из браузера Арта, картинки Liquipedia не берём. 30 предметов из панели не нашлись как страницы.
+- Сетка: 12 попыток (`GUESSES` в `public/js/grid.js`).
+- Игрок без команды: показываем последнюю («Arsenal · на пенсии» или «последняя команда») через `teamText` в `core.js`, поле `last` кладут сборщики CS и спорта.
+- У киберкоманд и клубов без свободного логотипа круглый значок с инициалами (`badge` в `core.js`).

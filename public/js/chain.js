@@ -1,7 +1,7 @@
 // "Цепочка" — our own mode. Connect two players through teammates: each next player must have
 // played on the same team at the same time as the previous one. Fewer links = better.
 import { tr } from './i18n.js';
-import { countryName, rng, shuffle, h, flag, store, share, playerSearch, playerLink, toast, photo, logoAt } from './core.js';
+import { countryName, rng, shuffle, h, flag, store, share, playerSearch, playerLink, toast, photo, logoAt, teamText } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 // 1000 for a shortest chain, −200 per extra link, −50 per wrong teammate, −150 per hint, at least 100
@@ -69,7 +69,7 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
 
   ends.append(card(S, tr('Старт')), h('div', { class: 'chain-arrow' }, '⟶'), card(E, tr('Финиш')));
   function card(p, cap) {
-    return h('div', { class: 'chain-card' }, h('small', {}, cap), h('div', { class: 'big' }, flag(p.cc), ' ', p.id), h('small', { class: 'muted' }, p.team || tr('без команды')));
+    return h('div', { class: 'chain-card' }, h('small', {}, cap), h('div', { class: 'big' }, flag(p.cc), ' ', p.id), h('small', { class: 'muted' }, teamText(p)));
   }
 
   const save = () => saveKey && store.set(saveKey, state);

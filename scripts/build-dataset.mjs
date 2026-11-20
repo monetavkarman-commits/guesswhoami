@@ -79,6 +79,8 @@ function buildCS() {
       id: p.id, name: clean(p.n), url: 'https://liquipedia.net/counterstrike/' + encodeURI(p.p.replace(/ /g, '_')),
       ...countryOf(p.c, missing), birth: normBirth(p.b), status: status(p.s),
       team: p.t ? teamLabel(clean(p.t)) : null, roles, events: p.m,
+      // the club of the latest stint, shown when the player has no current team
+      last: stints.length ? teams.list[[...stints].sort((a, b) => b[1] - a[1])[0][0]] : null,
       teams: [...new Set(stints.map((s) => s[0]))], _stints: stints,
     };
   });
