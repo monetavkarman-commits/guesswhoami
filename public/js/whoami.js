@@ -35,7 +35,7 @@ function columns(data) {
   ];
 }
 
-export function mount(root, data, { seed, daily, label, day, filter = () => true }) {
+export function mount(root, data, { seed, daily, label, day, filter = () => true, onFinish }) {
   let pool = data.players.filter((p) => p.top && p.age != null && filter(p));
   if (pool.length < 10) pool = data.players.filter((p) => p.age != null && filter(p));
   const target = pick(rng(seed), pool);
@@ -62,6 +62,7 @@ export function mount(root, data, { seed, daily, label, day, filter = () => true
       if (p.idx === target.idx) { state.done = true; state.won = true; }
       else if (state.guesses.length >= MAX) state.done = true;
       if (state.done && daily) recordResult(data.game, 'whoami', day, { won: state.won, score: whoScore(state), detail: { guesses: state.guesses.length, clues: state.clues } });
+      if (state.done) setTimeout(() => onFinish?.({ won: state.won, score: whoScore(state) }), 0);
       save(); render();
     },
   });

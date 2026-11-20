@@ -5,8 +5,10 @@ import * as grid from './grid.js';
 import * as whoami from './whoami.js';
 import * as chain from './chain.js';
 import { openProfile } from './achievements.js';
+import { openLeaderboard, duelPanel, newDuelId } from './online.js';
 
 document.getElementById('profile-btn').addEventListener('click', openProfile);
+document.getElementById('board-btn').addEventListener('click', () => openLeaderboard(parseHash().game, today().num));
 
 // language, theme, footer and offline support
 const langBtn = document.getElementById('lang-btn');
@@ -48,9 +50,13 @@ const sourceNote = document.getElementById('source-note');
 
 let endlessSeed = null;
 
+// #cs-grid · #cs-grid-free · #cs-grid-duel-<id>[-s<rival score>][-f<filter>]
 function parseHash() {
-  const [g, m, e] = location.hash.replace('#', '').split(/[-/]/);
-  return { game: GAMES[g] ? g : 'cs', mode: MODES[m] ? m : 'grid', endless: e === 'free' };
+  const [g, m, e, id, ...rest] = location.hash.replace('#', '').split(/[-/]/);
+  const duel = e === 'duel' && /^[a-z0-9]{4,16}$/.test(id || '') ? id : null;
+  const s = rest.find((x) => /^s\d+$/.test(x)); const f = rest.find((x) => /^f\w+$/.test(x));
+  return { game: GAMES[g] ? g : 'cs', mode: MODES[m] ? m : 'grid', endless: e === 'free' || !!duel, duel,
+    rival: s ? +s.slice(1) : null, duelFilter: f ? f.slice(1) : null };
 }
 
 function nav(game, mode, endless) {
@@ -72,7 +78,7 @@ function filterSelect(game) {
 }
 
 async function render() {
-  const { game, mode, endless } = parseHash();
+  const { game, mode, endless, duel, rival, duelFilter } = parseHash();
   gameTabs.innerHTML = '';
   for (const [k, g] of Object.entries(GAMES)) {
     gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), onclick: () => nav(k, mode, endless) }, g.title));
@@ -83,23 +89,33 @@ async function render() {
   }
 
   const { key, num } = today();
-  if (endless && !endlessSeed) endlessSeed = String(Math.floor(Math.random() * 1e9));
+  if (duel) endlessSeed = duel;
+  else if (endless && !endlessSeed) endlessSeed = newDuelId();
   dayBar.innerHTML = '';
   dayBar.append(
     h('div', { class: 'seg' },
       h('button', { class: endless ? '' : 'active', onclick: () => nav(game, mode, false) }, tr('Ежедневная №{0}', [num])),
-      h('button', { class: endless ? 'active' : '', onclick: () => nav(game, mode, true) }, tr('Бесконечная'))),
-    h('div', { class: 'bar-right' }, filterSelect(game),
-      endless ? h('button', { class: 'btn small', onclick: () => { endlessSeed = null; render(); } }, tr('Новая игра')) : ''));
+      h('button', { class: endless && !duel ? 'active' : '', onclick: () => nav(game, mode, true) }, tr('Бесконечная')),
+      duel ? h('button', { class: 'active' }, '⚔ ', tr('Дуэль')) : ''),
+    h('div', { class: 'bar-right' }, duel ? '' : filterSelect(game),
+      endless ? h('button', { class: 'btn small', onclick: () => { if (duel) nav(game, mode, true); else { endlessSeed = null; render(); } } }, tr('Новая игра')) : ''));
 
   root.innerHTML = tr('<div class="loading">Загрузка игроков…</div>');
   try {
     const data = await loadGame(game);
     sourceNote.textContent = tr('{0}. Обновлено {1}. {2} игроков.', [tr(data.sourceNote), data.generated, data.players.length]);
-    const fid = currentFilter(game);
+    const fid = duel ? (filtersFor(game)[duelFilter] ? duelFilter : 'all') : currentFilter(game);
     const suffix = fid === 'all' ? '' : `:${fid}`;
     const seed = (endless ? `${game}:${mode}:free:${endlessSeed}` : `${game}:${mode}:${key}`) + suffix;
-    MODES[mode].mod.mount(root, data, { seed, daily: !endless, day: num, label: endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test });
+    const id = endlessSeed;
+    MODES[mode].mod.mount(root, data, {
+      seed, daily: !endless, day: num, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test,
+      // endless and duel games end with a challenge link carrying the same puzzle id
+      onFinish: endless ? ({ score }) => {
+        root.querySelector('.duel')?.remove();
+        root.append(duelPanel({ game, mode, id, filter: fid, score, rival: duel ? rival : null }));
+      } : null,
+    });
   } catch (e) {
     root.innerHTML = '';
     root.append(h('div', { class: 'error' }, tr('Ошибка: ') + e.message, h('br'), tr('Откройте сайт через локальный сервер (см. README), а не как файл.')));

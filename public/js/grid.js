@@ -83,7 +83,7 @@ function rarity(data, cellAnswers, idx) {
   return Math.round(10 + 90 * (more / Math.max(1, evs.length - 1)));
 }
 
-export function mount(root, data, { seed, daily, label, day, filter }) {
+export function mount(root, data, { seed, daily, label, day, filter, onFinish }) {
   const grid = generateGrid(data, seed, filter);
   const saveKey = daily ? `grid:${seed}` : null;
   const state = (saveKey && store.get(saveKey)) || { cells: Array(9).fill(null), left: GUESSES, wrong: [], hints: {}, done: false };
@@ -105,6 +105,7 @@ export function mount(root, data, { seed, daily, label, day, filter }) {
   const finish = () => {
     state.done = true;
     if (daily) recordResult(data.game, 'grid', day, { won: correctN() >= 5, score: score(), detail: { correct: correctN() } });
+    onFinish?.({ won: correctN() >= 5, score: score() });
   };
 
   function render() {
