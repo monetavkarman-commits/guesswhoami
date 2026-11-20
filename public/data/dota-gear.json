@@ -1,0 +1,3075 @@
+{
+ "modeTitle": "Предметы",
+ "nameTitle": "Предмет",
+ "placeholder": "Название предмета…",
+ "intro": "Угадайте предмет из лавки Dota 2 по разделу магазина, цене, числу компонентов, бонусам, активной способности и тому, собирается ли он дальше. Зелёный — совпало, жёлтый — близко (цена ±300, бонусы пересекаются), стрелка — больше или меньше.",
+ "source": "Liquipedia, инфобоксы предметов (цена с учётом компонентов и рецепта)",
+ "columns": [
+  {
+   "key": "type",
+   "title": "Раздел лавки",
+   "type": "cat"
+  },
+  {
+   "key": "price",
+   "title": "Цена",
+   "type": "num",
+   "near": 300
+  },
+  {
+   "key": "parts",
+   "title": "Компонентов",
+   "type": "num",
+   "near": 0
+  },
+  {
+   "key": "bonus",
+   "title": "Бонусы",
+   "type": "set"
+  },
+  {
+   "key": "active",
+   "title": "Активка",
+   "type": "cat"
+  },
+  {
+   "key": "upgrade",
+   "title": "Собирается дальше",
+   "type": "cat"
+  }
+ ],
+ "items": [
+  {
+   "id": "abyssal-blade",
+   "name": "Abyssal Blade",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 6250,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Здоровье",
+    "Урон",
+    "Сопротивление"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Abyssal_Blade"
+  },
+  {
+   "id": "aeon-disk",
+   "name": "Aeon Disk",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 3000,
+   "parts": 2,
+   "bonus": [
+    "Здоровье",
+    "Мана"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "ad"
+   ],
+   "url": "https://liquipedia.net/dota2/Aeon_Disk"
+  },
+  {
+   "id": "aether-lens",
+   "name": "Aether Lens",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 2275,
+   "parts": 2,
+   "bonus": [
+    "Мана",
+    "Регенерация",
+    "Усиление умений"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Aether_Lens"
+  },
+  {
+   "id": "aghanim-s-scepter",
+   "name": "Aghanim's Scepter",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 4200,
+   "parts": 4,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Здоровье",
+    "Мана"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "ags",
+    "ultimate"
+   ],
+   "url": "https://liquipedia.net/dota2/Aghanim's_Scepter"
+  },
+  {
+   "id": "aghanim-s-shard",
+   "name": "Aghanim's Shard",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 1400,
+   "parts": 0,
+   "bonus": [],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "ags",
+    "aghs"
+   ],
+   "url": "https://liquipedia.net/dota2/Aghanim's_Shard"
+  },
+  {
+   "id": "arcane-blink",
+   "name": "Arcane Blink",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 6800,
+   "parts": 2,
+   "bonus": [
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "blink dagger"
+   ],
+   "url": "https://liquipedia.net/dota2/Arcane_Blink"
+  },
+  {
+   "id": "arcane-boots",
+   "name": "Arcane Boots",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 1500,
+   "parts": 3,
+   "bonus": [
+    "Скорость бега",
+    "Регенерация",
+    "Мана"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "mana",
+    "mb"
+   ],
+   "url": "https://liquipedia.net/dota2/Arcane_Boots"
+  },
+  {
+   "id": "armlet-of-mordiggian",
+   "name": "Armlet of Mordiggian",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 2500,
+   "parts": 3,
+   "bonus": [
+    "Урон",
+    "Скорость атаки",
+    "Броня",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Armlet_of_Mordiggian"
+  },
+  {
+   "id": "assault-cuirass",
+   "name": "Assault Cuirass",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 5125,
+   "parts": 3,
+   "bonus": [
+    "Броня",
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "ac"
+   ],
+   "url": "https://liquipedia.net/dota2/Assault_Cuirass"
+  },
+  {
+   "id": "band-of-elvenskin",
+   "name": "Band of Elvenskin",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 450,
+   "parts": 0,
+   "bonus": [
+    "Ловкость"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Band_of_Elvenskin"
+  },
+  {
+   "id": "battle-fury",
+   "name": "Battle Fury",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 3900,
+   "parts": 4,
+   "bonus": [
+    "Урон",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "bf"
+   ],
+   "url": "https://liquipedia.net/dota2/Battle_Fury"
+  },
+  {
+   "id": "belt-of-strength",
+   "name": "Belt of Strength",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 450,
+   "parts": 0,
+   "bonus": [
+    "Сила"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Belt_of_Strength"
+  },
+  {
+   "id": "black-king-bar",
+   "name": "Black King Bar",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 4050,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Урон"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "bkb"
+   ],
+   "url": "https://liquipedia.net/dota2/Black_King_Bar"
+  },
+  {
+   "id": "blade-mail",
+   "name": "Blade Mail",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 2400,
+   "parts": 2,
+   "bonus": [
+    "Урон",
+    "Броня"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "bm",
+    "blademail"
+   ],
+   "url": "https://liquipedia.net/dota2/Blade_Mail"
+  },
+  {
+   "id": "blade-of-alacrity",
+   "name": "Blade of Alacrity",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 1000,
+   "parts": 0,
+   "bonus": [
+    "Ловкость"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Blade_of_Alacrity"
+  },
+  {
+   "id": "blades-of-attack",
+   "name": "Blades of Attack",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 450,
+   "parts": 0,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Blades_of_Attack"
+  },
+  {
+   "id": "blink-dagger",
+   "name": "Blink Dagger",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 2250,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Blink_Dagger"
+  },
+  {
+   "id": "blitz-knuckles",
+   "name": "Blitz Knuckles",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 1000,
+   "parts": 0,
+   "bonus": [
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Blitz_Knuckles"
+  },
+  {
+   "id": "blood-grenade",
+   "name": "Blood Grenade",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 50,
+   "parts": 0,
+   "bonus": [
+    "Здоровье"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Blood_Grenade"
+  },
+  {
+   "id": "bloodstone",
+   "name": "Bloodstone",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 4700,
+   "parts": 2,
+   "bonus": [
+    "Здоровье",
+    "Мана",
+    "Интеллект",
+    "Вампиризм"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "bs"
+   ],
+   "url": "https://liquipedia.net/dota2/Bloodstone"
+  },
+  {
+   "id": "bloodthorn",
+   "name": "Bloodthorn",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 6400,
+   "parts": 3,
+   "bonus": [
+    "Интеллект",
+    "Скорость атаки",
+    "Регенерация",
+    "Урон"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "orchid malevolence"
+   ],
+   "url": "https://liquipedia.net/dota2/Bloodthorn"
+  },
+  {
+   "id": "boots-of-bearing",
+   "name": "Boots of Bearing",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 4225,
+   "parts": 3,
+   "bonus": [
+    "Сила",
+    "Скорость бега",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "marching boots",
+    "bongo boots"
+   ],
+   "url": "https://liquipedia.net/dota2/Boots_of_Bearing"
+  },
+  {
+   "id": "boots-of-speed",
+   "name": "Boots of Speed",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 500,
+   "parts": 0,
+   "bonus": [
+    "Скорость бега"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Boots_of_Speed"
+  },
+  {
+   "id": "bottle",
+   "name": "Bottle",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 675,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Bottle"
+  },
+  {
+   "id": "bracer",
+   "name": "Bracer",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 505,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Здоровье",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Bracer"
+  },
+  {
+   "id": "broadsword",
+   "name": "Broadsword",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 1000,
+   "parts": 0,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Broadsword"
+  },
+  {
+   "id": "buckler",
+   "name": "Buckler",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 425,
+   "parts": 1,
+   "bonus": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Buckler"
+  },
+  {
+   "id": "butterfly",
+   "name": "Butterfly",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 5450,
+   "parts": 3,
+   "bonus": [
+    "Ловкость",
+    "Урон",
+    "Уклонение",
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "bfly"
+   ],
+   "url": "https://liquipedia.net/dota2/Butterfly"
+  },
+  {
+   "id": "chainmail",
+   "name": "Chainmail",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 500,
+   "parts": 0,
+   "bonus": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Chainmail"
+  },
+  {
+   "id": "chasm-stone",
+   "name": "Chasm Stone",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 900,
+   "parts": 0,
+   "bonus": [
+    "Усиление умений"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Chasm_Stone"
+  },
+  {
+   "id": "circlet",
+   "name": "Circlet",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 155,
+   "parts": 0,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Circlet"
+  },
+  {
+   "id": "clarity",
+   "name": "Clarity",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 60,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Clarity"
+  },
+  {
+   "id": "claymore",
+   "name": "Claymore",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 1350,
+   "parts": 0,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Claymore"
+  },
+  {
+   "id": "cloak",
+   "name": "Cloak",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 900,
+   "parts": 0,
+   "bonus": [
+    "Сопротивление"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Cloak"
+  },
+  {
+   "id": "consecrated-wraps",
+   "name": "Consecrated Wraps",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 2600,
+   "parts": 3,
+   "bonus": [
+    "Сопротивление",
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "cw"
+   ],
+   "url": "https://liquipedia.net/dota2/Consecrated_Wraps"
+  },
+  {
+   "id": "crella-s-crozier",
+   "name": "Crella's Crozier",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 4800,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Здоровье",
+    "Мана"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Crella's_Crozier"
+  },
+  {
+   "id": "crimson-guard",
+   "name": "Crimson Guard",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 3725,
+   "parts": 2,
+   "bonus": [
+    "Здоровье",
+    "Регенерация",
+    "Броня"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Crimson_Guard"
+  },
+  {
+   "id": "crown",
+   "name": "Crown",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 450,
+   "parts": 0,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Crown"
+  },
+  {
+   "id": "crystalys",
+   "name": "Crystalys",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 2000,
+   "parts": 2,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Crystalys"
+  },
+  {
+   "id": "daedalus",
+   "name": "Daedalus",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 5200,
+   "parts": 2,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "crit"
+   ],
+   "url": "https://liquipedia.net/dota2/Daedalus"
+  },
+  {
+   "id": "demon-edge",
+   "name": "Demon Edge",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 2200,
+   "parts": 0,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Demon_Edge"
+  },
+  {
+   "id": "desolator",
+   "name": "Desolator",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 3500,
+   "parts": 3,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Desolator"
+  },
+  {
+   "id": "diadem",
+   "name": "Diadem",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 1000,
+   "parts": 0,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Diadem"
+  },
+  {
+   "id": "diffusal-blade",
+   "name": "Diffusal Blade",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 2500,
+   "parts": 2,
+   "bonus": [
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "diffusal blade 1"
+   ],
+   "url": "https://liquipedia.net/dota2/Diffusal_Blade"
+  },
+  {
+   "id": "disperser",
+   "name": "Disperser",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 6100,
+   "parts": 2,
+   "bonus": [
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "diffusal blade 1"
+   ],
+   "url": "https://liquipedia.net/dota2/Disperser"
+  },
+  {
+   "id": "divine-rapier",
+   "name": "Divine Rapier",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 5600,
+   "parts": 2,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Divine_Rapier"
+  },
+  {
+   "id": "dragon-lance",
+   "name": "Dragon Lance",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 2000,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Дальность атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Dragon_Lance"
+  },
+  {
+   "id": "drum-of-endurance",
+   "name": "Drum of Endurance",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 1625,
+   "parts": 3,
+   "bonus": [
+    "Сила"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Drum_of_Endurance"
+  },
+  {
+   "id": "dust-of-appearance",
+   "name": "Dust of Appearance",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 80,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Dust_of_Appearance"
+  },
+  {
+   "id": "eaglesong",
+   "name": "Eaglesong",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 2800,
+   "parts": 0,
+   "bonus": [
+    "Ловкость"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Eaglesong"
+  },
+  {
+   "id": "echo-sabre",
+   "name": "Echo Sabre",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 2700,
+   "parts": 3,
+   "bonus": [
+    "Сила",
+    "Урон",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Echo_Sabre"
+  },
+  {
+   "id": "enchanted-mango",
+   "name": "Enchanted Mango",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 65,
+   "parts": 0,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Enchanted_Mango"
+  },
+  {
+   "id": "energy-booster",
+   "name": "Energy Booster",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 800,
+   "parts": 0,
+   "bonus": [
+    "Мана"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Energy_Booster"
+  },
+  {
+   "id": "essence-distiller",
+   "name": "Essence Distiller",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 1775,
+   "parts": 3,
+   "bonus": [
+    "Регенерация",
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Броня",
+    "Мана"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "ed"
+   ],
+   "url": "https://liquipedia.net/dota2/Essence_Distiller"
+  },
+  {
+   "id": "ethereal-blade",
+   "name": "Ethereal Blade",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 5200,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "eb",
+    "eblade"
+   ],
+   "url": "https://liquipedia.net/dota2/Ethereal_Blade"
+  },
+  {
+   "id": "eul-s-scepter-of-divinity",
+   "name": "Eul's Scepter of Divinity",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 2600,
+   "parts": 3,
+   "bonus": [
+    "Интеллект",
+    "Регенерация",
+    "Скорость бега"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "cyclone euls"
+   ],
+   "url": "https://liquipedia.net/dota2/Eul's_Scepter_of_Divinity"
+  },
+  {
+   "id": "eye-of-skadi",
+   "name": "Eye of Skadi",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 5900,
+   "parts": 3,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "eos"
+   ],
+   "url": "https://liquipedia.net/dota2/Eye_of_Skadi"
+  },
+  {
+   "id": "faerie-fire",
+   "name": "Faerie Fire",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 65,
+   "parts": 0,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Faerie_Fire"
+  },
+  {
+   "id": "falcon-blade",
+   "name": "Falcon Blade",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 1125,
+   "parts": 3,
+   "bonus": [
+    "Здоровье",
+    "Регенерация",
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "fb"
+   ],
+   "url": "https://liquipedia.net/dota2/Falcon_Blade"
+  },
+  {
+   "id": "fluffy-hat",
+   "name": "Fluffy Hat",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 250,
+   "parts": 0,
+   "bonus": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "flf",
+    "hat",
+    "fh"
+   ],
+   "url": "https://liquipedia.net/dota2/Fluffy_Hat"
+  },
+  {
+   "id": "force-staff",
+   "name": "Force Staff",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 2200,
+   "parts": 2,
+   "bonus": [
+    "Интеллект",
+    "Здоровье"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "fs"
+   ],
+   "url": "https://liquipedia.net/dota2/Force_Staff"
+  },
+  {
+   "id": "gauntlets-of-strength",
+   "name": "Gauntlets of Strength",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 140,
+   "parts": 0,
+   "bonus": [
+    "Сила"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Gauntlets_of_Strength"
+  },
+  {
+   "id": "gem-of-true-sight",
+   "name": "Gem of True Sight",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 900,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Gem_of_True_Sight"
+  },
+  {
+   "id": "ghost-scepter",
+   "name": "Ghost Scepter",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 1500,
+   "parts": 0,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Ghost_Scepter"
+  },
+  {
+   "id": "gleipnir",
+   "name": "Gleipnir",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 4650,
+   "parts": 3,
+   "bonus": [
+    "Здоровье",
+    "Мана",
+    "Интеллект",
+    "Усиление умений"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "gliepnir",
+    "glaypnir"
+   ],
+   "url": "https://liquipedia.net/dota2/Gleipnir"
+  },
+  {
+   "id": "glimmer-cape",
+   "name": "Glimmer Cape",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 2150,
+   "parts": 2,
+   "bonus": [
+    "Сопротивление"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Glimmer_Cape"
+  },
+  {
+   "id": "gloves-of-haste",
+   "name": "Gloves of Haste",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 450,
+   "parts": 0,
+   "bonus": [
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Gloves_of_Haste"
+  },
+  {
+   "id": "guardian-greaves",
+   "name": "Guardian Greaves",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 4450,
+   "parts": 2,
+   "bonus": [
+    "Скорость бега",
+    "Броня",
+    "Мана",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Guardian_Greaves"
+  },
+  {
+   "id": "hand-of-midas",
+   "name": "Hand of Midas",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 2200,
+   "parts": 1,
+   "bonus": [
+    "Скорость атаки"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Hand_of_Midas"
+  },
+  {
+   "id": "harpoon",
+   "name": "Harpoon",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 4700,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Интеллект",
+    "Ловкость",
+    "Урон",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Harpoon"
+  },
+  {
+   "id": "headdress",
+   "name": "Headdress",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 425,
+   "parts": 1,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Headdress"
+  },
+  {
+   "id": "healing-salve",
+   "name": "Healing Salve",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 100,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Healing_Salve"
+  },
+  {
+   "id": "heart-of-tarrasque",
+   "name": "Heart of Tarrasque",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 5300,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Здоровье",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "hot"
+   ],
+   "url": "https://liquipedia.net/dota2/Heart_of_Tarrasque"
+  },
+  {
+   "id": "heaven-s-halberd",
+   "name": "Heaven's Halberd",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 3300,
+   "parts": 3,
+   "bonus": [
+    "Броня",
+    "Регенерация",
+    "Уклонение"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Heaven's_Halberd"
+  },
+  {
+   "id": "helm-of-iron-will",
+   "name": "Helm of Iron Will",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 975,
+   "parts": 0,
+   "bonus": [
+    "Броня",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Helm_of_Iron_Will"
+  },
+  {
+   "id": "helm-of-the-dominator",
+   "name": "Helm of the Dominator",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 2550,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Броня",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "hotd"
+   ],
+   "url": "https://liquipedia.net/dota2/Helm_of_the_Dominator"
+  },
+  {
+   "id": "helm-of-the-overlord",
+   "name": "Helm of the Overlord",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 5650,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Броня",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "hoto"
+   ],
+   "url": "https://liquipedia.net/dota2/Helm_of_the_Overlord"
+  },
+  {
+   "id": "holy-locket",
+   "name": "Holy Locket",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 2250,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "hl"
+   ],
+   "url": "https://liquipedia.net/dota2/Holy_Locket"
+  },
+  {
+   "id": "hurricane-pike",
+   "name": "Hurricane Pike",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 4550,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Здоровье",
+    "Дальность атаки"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "fs",
+    "force staff"
+   ],
+   "url": "https://liquipedia.net/dota2/Hurricane_Pike"
+  },
+  {
+   "id": "hydra-s-breath",
+   "name": "Hydra's Breath",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 5900,
+   "parts": 3,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Урон",
+    "Дальность атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Hydra's_Breath"
+  },
+  {
+   "id": "hyperstone",
+   "name": "Hyperstone",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 2000,
+   "parts": 0,
+   "bonus": [
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Hyperstone"
+  },
+  {
+   "id": "infused-raindrops",
+   "name": "Infused Raindrops",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 225,
+   "parts": 0,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Infused_Raindrops"
+  },
+  {
+   "id": "iron-branch",
+   "name": "Iron Branch",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 55,
+   "parts": 0,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "gg branch"
+   ],
+   "url": "https://liquipedia.net/dota2/Iron_Branch"
+  },
+  {
+   "id": "javelin",
+   "name": "Javelin",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 900,
+   "parts": 0,
+   "bonus": [],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Javelin"
+  },
+  {
+   "id": "kaya",
+   "name": "Kaya",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 2100,
+   "parts": 2,
+   "bonus": [
+    "Интеллект",
+    "Усиление умений",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "ky"
+   ],
+   "url": "https://liquipedia.net/dota2/Kaya"
+  },
+  {
+   "id": "kaya-and-sange",
+   "name": "Kaya and Sange",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 4200,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Интеллект",
+    "Сопротивление",
+    "Усиление умений",
+    "Здоровье",
+    "Регенерация",
+    "Мана"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "snk",
+    "s&k",
+    "sk"
+   ],
+   "url": "https://liquipedia.net/dota2/Kaya_and_Sange"
+  },
+  {
+   "id": "khanda",
+   "name": "Khanda",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 5600,
+   "parts": 2,
+   "bonus": [
+    "Здоровье",
+    "Регенерация",
+    "Мана",
+    "Ловкость",
+    "Сила",
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "angel",
+    "demise"
+   ],
+   "url": "https://liquipedia.net/dota2/Khanda"
+  },
+  {
+   "id": "linken-s-sphere",
+   "name": "Linken's Sphere",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 4800,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "ls"
+   ],
+   "url": "https://liquipedia.net/dota2/Linken's_Sphere"
+  },
+  {
+   "id": "lotus-orb",
+   "name": "Lotus Orb",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 3850,
+   "parts": 3,
+   "bonus": [
+    "Броня",
+    "Регенерация",
+    "Мана"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "ls"
+   ],
+   "url": "https://liquipedia.net/dota2/Lotus_Orb"
+  },
+  {
+   "id": "maelstrom",
+   "name": "Maelstrom",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 2950,
+   "parts": 3,
+   "bonus": [
+    "Урон",
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Maelstrom"
+  },
+  {
+   "id": "mage-slayer",
+   "name": "Mage Slayer",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 3100,
+   "parts": 4,
+   "bonus": [
+    "Сопротивление",
+    "Регенерация",
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "ms"
+   ],
+   "url": "https://liquipedia.net/dota2/Mage_Slayer"
+  },
+  {
+   "id": "magic-stick",
+   "name": "Magic Stick",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 200,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Magic_Stick"
+  },
+  {
+   "id": "magic-wand",
+   "name": "Magic Wand",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 460,
+   "parts": 3,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Magic_Wand"
+  },
+  {
+   "id": "manta-style",
+   "name": "Manta Style",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 4650,
+   "parts": 2,
+   "bonus": [
+    "Ловкость",
+    "Сила",
+    "Интеллект",
+    "Скорость атаки",
+    "Скорость бега"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Manta_Style"
+  },
+  {
+   "id": "mantle-of-intelligence",
+   "name": "Mantle of Intelligence",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 140,
+   "parts": 0,
+   "bonus": [
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Mantle_of_Intelligence"
+  },
+  {
+   "id": "mask-of-madness",
+   "name": "Mask of Madness",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 1900,
+   "parts": 2,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "mom"
+   ],
+   "url": "https://liquipedia.net/dota2/Mask_of_Madness"
+  },
+  {
+   "id": "mekansm",
+   "name": "Mekansm",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 1775,
+   "parts": 2,
+   "bonus": [
+    "Броня"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "mechanism"
+   ],
+   "url": "https://liquipedia.net/dota2/Mekansm"
+  },
+  {
+   "id": "meteor-hammer",
+   "name": "Meteor Hammer",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 2850,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Усиление умений",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "mh"
+   ],
+   "url": "https://liquipedia.net/dota2/Meteor_Hammer"
+  },
+  {
+   "id": "mithril-hammer",
+   "name": "Mithril Hammer",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 1600,
+   "parts": 0,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Mithril_Hammer"
+  },
+  {
+   "id": "mjollnir",
+   "name": "Mjollnir",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 5500,
+   "parts": 2,
+   "bonus": [
+    "Скорость атаки",
+    "Урон"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Mjollnir"
+  },
+  {
+   "id": "monkey-king-bar",
+   "name": "Monkey King Bar",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 5000,
+   "parts": 3,
+   "bonus": [
+    "Урон",
+    "Скорость атаки",
+    "Дальность атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "mkb"
+   ],
+   "url": "https://liquipedia.net/dota2/Monkey_King_Bar"
+  },
+  {
+   "id": "moon-shard",
+   "name": "Moon Shard",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 4000,
+   "parts": 2,
+   "bonus": [
+    "Скорость атаки"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Moon_Shard"
+  },
+  {
+   "id": "morbid-mask",
+   "name": "Morbid Mask",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 900,
+   "parts": 0,
+   "bonus": [
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Morbid_Mask"
+  },
+  {
+   "id": "mystic-staff",
+   "name": "Mystic Staff",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 2800,
+   "parts": 0,
+   "bonus": [
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Mystic_Staff"
+  },
+  {
+   "id": "null-talisman",
+   "name": "Null Talisman",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 505,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Мана",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Null_Talisman"
+  },
+  {
+   "id": "nullifier",
+   "name": "Nullifier",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 4350,
+   "parts": 2,
+   "bonus": [
+    "Урон",
+    "Броня"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "nlf"
+   ],
+   "url": "https://liquipedia.net/dota2/Nullifier"
+  },
+  {
+   "id": "oblivion-staff",
+   "name": "Oblivion Staff",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 1625,
+   "parts": 3,
+   "bonus": [
+    "Интеллект",
+    "Скорость атаки",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Oblivion_Staff"
+  },
+  {
+   "id": "octarine-core",
+   "name": "Octarine Core",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 5100,
+   "parts": 2,
+   "bonus": [
+    "Здоровье",
+    "Мана",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "mana",
+    "mb"
+   ],
+   "url": "https://liquipedia.net/dota2/Octarine_Core"
+  },
+  {
+   "id": "ogre-axe",
+   "name": "Ogre Axe",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 1000,
+   "parts": 0,
+   "bonus": [
+    "Сила"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "ogre club"
+   ],
+   "url": "https://liquipedia.net/dota2/Ogre_Axe"
+  },
+  {
+   "id": "orb-of-blight",
+   "name": "Orb of Blight",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 300,
+   "parts": 0,
+   "bonus": [],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "blight stone"
+   ],
+   "url": "https://liquipedia.net/dota2/Orb_of_Blight"
+  },
+  {
+   "id": "orb-of-corrosion",
+   "name": "Orb of Corrosion",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 1050,
+   "parts": 3,
+   "bonus": [
+    "Ловкость"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "ooc",
+    "corosion",
+    "corossion"
+   ],
+   "url": "https://liquipedia.net/dota2/Orb_of_Corrosion"
+  },
+  {
+   "id": "orb-of-frost",
+   "name": "Orb of Frost",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 300,
+   "parts": 0,
+   "bonus": [],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "oof"
+   ],
+   "url": "https://liquipedia.net/dota2/Orb_of_Frost"
+  },
+  {
+   "id": "orb-of-venom",
+   "name": "Orb of Venom",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 350,
+   "parts": 0,
+   "bonus": [],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "oov"
+   ],
+   "url": "https://liquipedia.net/dota2/Orb_of_Venom"
+  },
+  {
+   "id": "orchid-malevolence",
+   "name": "Orchid Malevolence",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 3275,
+   "parts": 2,
+   "bonus": [
+    "Скорость атаки",
+    "Урон",
+    "Регенерация",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "silence"
+   ],
+   "url": "https://liquipedia.net/dota2/Orchid_Malevolence"
+  },
+  {
+   "id": "overwhelming-blink",
+   "name": "Overwhelming Blink",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 6800,
+   "parts": 2,
+   "bonus": [
+    "Сила"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "blink dagger"
+   ],
+   "url": "https://liquipedia.net/dota2/Overwhelming_Blink"
+  },
+  {
+   "id": "parasma",
+   "name": "Parasma",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 5975,
+   "parts": 2,
+   "bonus": [
+    "Интеллект",
+    "Скорость атаки",
+    "Броня",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "staff",
+    "misery",
+    "sm"
+   ],
+   "url": "https://liquipedia.net/dota2/Parasma"
+  },
+  {
+   "id": "pavise",
+   "name": "Pavise",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 1350,
+   "parts": 3,
+   "bonus": [
+    "Броня",
+    "Мана",
+    "Здоровье"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Pavise"
+  },
+  {
+   "id": "perseverance",
+   "name": "Perseverance",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 1400,
+   "parts": 2,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Perseverance"
+  },
+  {
+   "id": "phase-boots",
+   "name": "Phase Boots",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 1450,
+   "parts": 3,
+   "bonus": [
+    "Урон",
+    "Броня",
+    "Скорость бега"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Phase_Boots"
+  },
+  {
+   "id": "phylactery",
+   "name": "Phylactery",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 2600,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Phylactery"
+  },
+  {
+   "id": "pipe-of-insight",
+   "name": "Pipe of Insight",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 3725,
+   "parts": 3,
+   "bonus": [
+    "Регенерация",
+    "Сопротивление"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Pipe_of_Insight"
+  },
+  {
+   "id": "platemail",
+   "name": "Platemail",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 1400,
+   "parts": 0,
+   "bonus": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Platemail"
+  },
+  {
+   "id": "point-booster",
+   "name": "Point Booster",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 1200,
+   "parts": 0,
+   "bonus": [
+    "Здоровье",
+    "Мана"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Point_Booster"
+  },
+  {
+   "id": "quelling-blade",
+   "name": "Quelling Blade",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 100,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "QB"
+   ],
+   "url": "https://liquipedia.net/dota2/Quelling_Blade"
+  },
+  {
+   "id": "radiance",
+   "name": "Radiance",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 4700,
+   "parts": 2,
+   "bonus": [
+    "Урон",
+    "Уклонение"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Radiance"
+  },
+  {
+   "id": "reaver",
+   "name": "Reaver",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 2800,
+   "parts": 0,
+   "bonus": [
+    "Сила"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Reaver"
+  },
+  {
+   "id": "refresher-orb",
+   "name": "Refresher Orb",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 5000,
+   "parts": 2,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Refresher_Orb"
+  },
+  {
+   "id": "revenant-s-brooch",
+   "name": "Revenant's Brooch",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 3300,
+   "parts": 2,
+   "bonus": [
+    "Урон",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "staff",
+    "misery",
+    "sm"
+   ],
+   "url": "https://liquipedia.net/dota2/Revenant's_Brooch"
+  },
+  {
+   "id": "ring-of-basilius",
+   "name": "Ring of Basilius",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 425,
+   "parts": 1,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "rob"
+   ],
+   "url": "https://liquipedia.net/dota2/Ring_of_Basilius"
+  },
+  {
+   "id": "ring-of-health",
+   "name": "Ring of Health",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 700,
+   "parts": 0,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "roh"
+   ],
+   "url": "https://liquipedia.net/dota2/Ring_of_Health"
+  },
+  {
+   "id": "ring-of-protection",
+   "name": "Ring of Protection",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 175,
+   "parts": 0,
+   "bonus": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "RoP"
+   ],
+   "url": "https://liquipedia.net/dota2/Ring_of_Protection"
+  },
+  {
+   "id": "ring-of-regen",
+   "name": "Ring of Regen",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 175,
+   "parts": 0,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "ror"
+   ],
+   "url": "https://liquipedia.net/dota2/Ring_of_Regen"
+  },
+  {
+   "id": "ring-of-tarrasque",
+   "name": "Ring of Tarrasque",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 1700,
+   "parts": 0,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "rot"
+   ],
+   "url": "https://liquipedia.net/dota2/Ring_of_Tarrasque"
+  },
+  {
+   "id": "robe-of-the-magi",
+   "name": "Robe of the Magi",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 450,
+   "parts": 0,
+   "bonus": [
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Robe_of_the_Magi"
+  },
+  {
+   "id": "rod-of-atos",
+   "name": "Rod of Atos",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 2250,
+   "parts": 2,
+   "bonus": [
+    "Здоровье",
+    "Интеллект"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Rod_of_Atos"
+  },
+  {
+   "id": "sacred-relic",
+   "name": "Sacred Relic",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 3400,
+   "parts": 0,
+   "bonus": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Sacred_Relic"
+  },
+  {
+   "id": "sage-s-mask",
+   "name": "Sage's Mask",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 175,
+   "parts": 0,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Sage's_Mask"
+  },
+  {
+   "id": "sange",
+   "name": "Sange",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 2100,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Здоровье",
+    "Сопротивление"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Sange"
+  },
+  {
+   "id": "sange-and-yasha",
+   "name": "Sange and Yasha",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 4200,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Скорость атаки",
+    "Скорость бега",
+    "Здоровье",
+    "Сопротивление"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "sny",
+    "s&y",
+    "sy"
+   ],
+   "url": "https://liquipedia.net/dota2/Sange_and_Yasha"
+  },
+  {
+   "id": "satanic",
+   "name": "Satanic",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 5050,
+   "parts": 3,
+   "bonus": [
+    "Сила",
+    "Урон"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Satanic"
+  },
+  {
+   "id": "scythe-of-vyse",
+   "name": "Scythe of Vyse",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 5200,
+   "parts": 2,
+   "bonus": [
+    "Интеллект",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "hex",
+    "sheepstick"
+   ],
+   "url": "https://liquipedia.net/dota2/Scythe_of_Vyse"
+  },
+  {
+   "id": "sentry-ward",
+   "name": "Sentry Ward",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 50,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Sentry_Ward"
+  },
+  {
+   "id": "shadow-amulet",
+   "name": "Shadow Amulet",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 900,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Shadow_Amulet"
+  },
+  {
+   "id": "shadow-blade",
+   "name": "Shadow Blade",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 3250,
+   "parts": 3,
+   "bonus": [
+    "Урон",
+    "Скорость атаки"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "sb",
+    "invis",
+    "silver edge"
+   ],
+   "url": "https://liquipedia.net/dota2/Shadow_Blade"
+  },
+  {
+   "id": "shawl",
+   "name": "Shawl",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 450,
+   "parts": 0,
+   "bonus": [
+    "Сопротивление"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Shawl"
+  },
+  {
+   "id": "shiva-s-guard",
+   "name": "Shiva's Guard",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 4500,
+   "parts": 3,
+   "bonus": [
+    "Броня",
+    "Усиление умений"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "shivas"
+   ],
+   "url": "https://liquipedia.net/dota2/Shiva's_Guard"
+  },
+  {
+   "id": "silver-edge",
+   "name": "Silver Edge",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 5700,
+   "parts": 2,
+   "bonus": [
+    "Урон",
+    "Скорость атаки"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "sb",
+    "invis",
+    "shadow blade"
+   ],
+   "url": "https://liquipedia.net/dota2/Silver_Edge"
+  },
+  {
+   "id": "skull-basher",
+   "name": "Skull Basher",
+   "sub": "Оружие",
+   "type": "Оружие",
+   "price": 2875,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Skull_Basher"
+  },
+  {
+   "id": "slippers-of-agility",
+   "name": "Slippers of Agility",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 140,
+   "parts": 0,
+   "bonus": [
+    "Ловкость"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Slippers_of_Agility"
+  },
+  {
+   "id": "smoke-of-deceit",
+   "name": "Smoke of Deceit",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 50,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Smoke_of_Deceit"
+  },
+  {
+   "id": "solar-crest",
+   "name": "Solar Crest",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 2575,
+   "parts": 3,
+   "bonus": [
+    "Броня",
+    "Скорость бега",
+    "Здоровье",
+    "Мана"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Solar_Crest"
+  },
+  {
+   "id": "soul-booster",
+   "name": "Soul Booster",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 3000,
+   "parts": 3,
+   "bonus": [
+    "Здоровье",
+    "Мана"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Soul_Booster"
+  },
+  {
+   "id": "soul-ring",
+   "name": "Soul Ring",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 805,
+   "parts": 3,
+   "bonus": [
+    "Броня",
+    "Сила"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Soul_Ring"
+  },
+  {
+   "id": "specialist-s-array",
+   "name": "Specialist's Array",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 2550,
+   "parts": 2,
+   "bonus": [
+    "Ловкость",
+    "Урон"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Specialist's_Array"
+  },
+  {
+   "id": "spirit-vessel",
+   "name": "Spirit Vessel",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 2725,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Броня",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "sv"
+   ],
+   "url": "https://liquipedia.net/dota2/Spirit_Vessel"
+  },
+  {
+   "id": "splintmail",
+   "name": "Splintmail",
+   "sub": "Снаряжение",
+   "type": "Снаряжение",
+   "price": 950,
+   "parts": 0,
+   "bonus": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Splintmail"
+  },
+  {
+   "id": "staff-of-wizardry",
+   "name": "Staff of Wizardry",
+   "sub": "Атрибуты",
+   "type": "Атрибуты",
+   "price": 1000,
+   "parts": 0,
+   "bonus": [
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Staff_of_Wizardry"
+  },
+  {
+   "id": "swift-blink",
+   "name": "Swift Blink",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 6800,
+   "parts": 2,
+   "bonus": [
+    "Ловкость"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "blink dagger"
+   ],
+   "url": "https://liquipedia.net/dota2/Swift_Blink"
+  },
+  {
+   "id": "talisman-of-evasion",
+   "name": "Talisman of Evasion",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 1300,
+   "parts": 0,
+   "bonus": [
+    "Уклонение"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Talisman_of_Evasion"
+  },
+  {
+   "id": "tango",
+   "name": "Tango",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 90,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Tango"
+  },
+  {
+   "id": "tiara-of-selemene",
+   "name": "Tiara of Selemene",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 1700,
+   "parts": 0,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Tiara_of_Selemene"
+  },
+  {
+   "id": "town-portal-scroll",
+   "name": "Town Portal Scroll",
+   "sub": "Расходники",
+   "type": "Расходники",
+   "price": 100,
+   "parts": 0,
+   "bonus": [],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "tp",
+    "teleport"
+   ],
+   "url": "https://liquipedia.net/dota2/Town_Portal_Scroll"
+  },
+  {
+   "id": "tranquil-boots",
+   "name": "Tranquil Boots",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 900,
+   "parts": 3,
+   "bonus": [
+    "Скорость бега",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Tranquil_Boots"
+  },
+  {
+   "id": "ultimate-orb",
+   "name": "Ultimate Orb",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 2800,
+   "parts": 0,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Ultimate_Orb"
+  },
+  {
+   "id": "urn-of-shadows",
+   "name": "Urn of Shadows",
+   "sub": "Поддержка",
+   "type": "Поддержка",
+   "price": 825,
+   "parts": 3,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Броня",
+    "Регенерация"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Urn_of_Shadows"
+  },
+  {
+   "id": "vanguard",
+   "name": "Vanguard",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 1700,
+   "parts": 2,
+   "bonus": [
+    "Регенерация",
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "vg"
+   ],
+   "url": "https://liquipedia.net/dota2/Vanguard"
+  },
+  {
+   "id": "veil-of-discord",
+   "name": "Veil of Discord",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 1700,
+   "parts": 3,
+   "bonus": [
+    "Здоровье",
+    "Интеллект",
+    "Вампиризм"
+   ],
+   "active": "Да",
+   "upgrade": "Да",
+   "alias": [
+    "vod"
+   ],
+   "url": "https://liquipedia.net/dota2/Veil_of_Discord"
+  },
+  {
+   "id": "vitality-booster",
+   "name": "Vitality Booster",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 1000,
+   "parts": 0,
+   "bonus": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Vitality_Booster"
+  },
+  {
+   "id": "vladmir-s-offering",
+   "name": "Vladmir's Offering",
+   "sub": "Броня",
+   "type": "Броня",
+   "price": 2200,
+   "parts": 4,
+   "bonus": [
+    "Броня",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "vlads"
+   ],
+   "url": "https://liquipedia.net/dota2/Vladmir's_Offering"
+  },
+  {
+   "id": "void-stone",
+   "name": "Void Stone",
+   "sub": "Секретная лавка",
+   "type": "Секретная лавка",
+   "price": 700,
+   "parts": 0,
+   "bonus": [
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Void_Stone"
+  },
+  {
+   "id": "voodoo-mask",
+   "name": "Voodoo Mask",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 650,
+   "parts": 0,
+   "bonus": [
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "voom",
+    "vodo",
+    "vm"
+   ],
+   "url": "https://liquipedia.net/dota2/Voodoo_Mask"
+  },
+  {
+   "id": "wind-lace",
+   "name": "Wind Lace",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 225,
+   "parts": 0,
+   "bonus": [
+    "Скорость бега"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Wind_Lace"
+  },
+  {
+   "id": "wind-waker",
+   "name": "Wind Waker",
+   "sub": "Магические",
+   "type": "Магические",
+   "price": 6800,
+   "parts": 2,
+   "bonus": [
+    "Интеллект",
+    "Регенерация",
+    "Скорость бега"
+   ],
+   "active": "Да",
+   "upgrade": "Нет",
+   "alias": [
+    "cyclone",
+    "ww"
+   ],
+   "url": "https://liquipedia.net/dota2/Wind_Waker"
+  },
+  {
+   "id": "witch-blade",
+   "name": "Witch Blade",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 2775,
+   "parts": 3,
+   "bonus": [
+    "Интеллект",
+    "Броня",
+    "Скорость атаки",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "wb"
+   ],
+   "url": "https://liquipedia.net/dota2/Witch_Blade"
+  },
+  {
+   "id": "wizard-hat",
+   "name": "Wizard Hat",
+   "sub": "Разное",
+   "type": "Разное",
+   "price": 250,
+   "parts": 0,
+   "bonus": [
+    "Мана"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [
+    "wh"
+   ],
+   "url": "https://liquipedia.net/dota2/Wizard_Hat"
+  },
+  {
+   "id": "wraith-band",
+   "name": "Wraith Band",
+   "sub": "Аксессуары",
+   "type": "Аксессуары",
+   "price": 505,
+   "parts": 2,
+   "bonus": [
+    "Сила",
+    "Ловкость",
+    "Интеллект",
+    "Броня",
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Wraith_Band"
+  },
+  {
+   "id": "yasha",
+   "name": "Yasha",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 2100,
+   "parts": 2,
+   "bonus": [
+    "Ловкость",
+    "Скорость атаки",
+    "Скорость бега"
+   ],
+   "active": "Нет",
+   "upgrade": "Да",
+   "alias": [],
+   "url": "https://liquipedia.net/dota2/Yasha"
+  },
+  {
+   "id": "yasha-and-kaya",
+   "name": "Yasha and Kaya",
+   "sub": "Вооружение",
+   "type": "Вооружение",
+   "price": 4200,
+   "parts": 2,
+   "bonus": [
+    "Ловкость",
+    "Интеллект",
+    "Скорость атаки",
+    "Скорость бега",
+    "Усиление умений",
+    "Регенерация"
+   ],
+   "active": "Нет",
+   "upgrade": "Нет",
+   "alias": [
+    "ynk",
+    "y&k",
+    "sk"
+   ],
+   "url": "https://liquipedia.net/dota2/Yasha_and_Kaya"
+  }
+ ]
+}

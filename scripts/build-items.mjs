@@ -116,3 +116,79 @@ if (!cs.columns.some((c) => c.key === 'origin')) cs.columns.push({ key: 'origin'
 cs.intro = 'Угадайте оружие CS2 по типу, стороне, цене, магазину, награде за убийство и стране-производителю. Зелёный — совпало, жёлтый — близко (цена ±$300, магазин ±5, награда ±$300), стрелка — больше или меньше.';
 cs.source = `Liquipedia, инфобоксы оружия (${raw.fetched.slice(0, 10)})`;
 write('public/data/cs-items.json', cs);
+
+// ---------- Dota 2 shop items (Liquipedia item infoboxes) and LoL items (Riot Data Dragon) ----------
+{
+  const raw2 = JSON.parse(readFileSync('data/raw/items2-raw.json', 'utf8'));
+  const D = Object.fromEntries(Object.entries(raw2.dota).filter(([, v]) => v));
+  // total cost: own price, or components + recipe
+  const costMemo = {};
+  const cost = (n, seen = new Set()) => {
+    if (n in costMemo) return costMemo[n];
+    const v = D[n]; if (!v || seen.has(n)) return 0; seen.add(n);
+    let c = +v['item cost'] || 0;
+    if (!c) { for (let i = 1; v[`recipe ${i}`]; i++) c += cost(v[`recipe ${i}`], seen); c += +v['recipe cost'] || 0; }
+    return (costMemo[n] = c);
+  };
+  const TYPE = { Consumables: 'Расходники', Attributes: 'Атрибуты', Equipment: 'Снаряжение', Miscellaneous: 'Разное', Secret: 'Секретная лавка',
+    Accessories: 'Аксессуары', Support: 'Поддержка', Magical: 'Магические', Armor: 'Броня', Weapons: 'Оружие', Armaments: 'Вооружение' };
+  const BONUS = [[/strength|universal attributes|primary attribute/, 'Сила'], [/agility|universal attributes|primary attribute/, 'Ловкость'], [/intelligence|universal attributes|primary attribute/, 'Интеллект'],
+    [/attack damage/, 'Урон'], [/attack speed|base attack time/, 'Скорость атаки'], [/bonus armor/, 'Броня'], [/bonus health$|max hp|bonus health restoration/, 'Здоровье'],
+    [/bonus mana$|mana loss/, 'Мана'], [/regen/, 'Регенерация'], [/movement speed/, 'Скорость бега'], [/magic resistance|status resistance|slow resistance/, 'Сопротивление'],
+    [/lifesteal/, 'Вампиризм'], [/spell damage|cast range|aoe|cooldown/, 'Усиление умений'], [/evasion/, 'Уклонение'], [/attack range/, 'Дальность атаки']];
+  const SKIP = /^(Aegis|Cheese|Refresher Shard|Roshan's Banner|Bag of Gold|Tango \(Shared\)|Power Treads \(|Aghanim's Blessing)/;
+  const items = [];
+  for (const [n, v] of Object.entries(D)) {
+    if (!TYPE[v.type] || v.neutral === 'True' || SKIP.test(n)) continue;
+    const price = cost(n); if (!price) continue;
+    let parts = 0; for (let i = 1; v[`recipe ${i}`]; i++) parts++;
+    const bonus = [...new Set(Object.keys(v).filter((k) => k.startsWith('bonus ')).flatMap((k) => BONUS.filter(([re]) => re.test(k)).map(([, l]) => l)))];
+    items.push({ id: slug(n), name: n, sub: TYPE[v.type], type: TYPE[v.type], price, parts, bonus,
+      active: v.active ? 'Да' : 'Нет', upgrade: v['used in 1'] ? 'Да' : 'Нет',
+      alias: (v.alias || '').split(',').map((x) => x.trim()).filter(Boolean),
+      url: `https://liquipedia.net/dota2/${encodeURIComponent(n.replace(/ /g, '_'))}` });
+  }
+  items.sort((a, b) => a.name.localeCompare(b.name));
+  write('public/data/dota-gear.json', {
+    modeTitle: 'Предметы', nameTitle: 'Предмет', placeholder: 'Название предмета…',
+    intro: 'Угадайте предмет из лавки Dota 2 по разделу магазина, цене, числу компонентов, бонусам, активной способности и тому, собирается ли он дальше. Зелёный — совпало, жёлтый — близко (цена ±300, бонусы пересекаются), стрелка — больше или меньше.',
+    source: 'Liquipedia, инфобоксы предметов (цена с учётом компонентов и рецепта)',
+    columns: [
+      { key: 'type', title: 'Раздел лавки', type: 'cat' },
+      { key: 'price', title: 'Цена', type: 'num', near: 300 },
+      { key: 'parts', title: 'Компонентов', type: 'num', near: 0 },
+      { key: 'bonus', title: 'Бонусы', type: 'set' },
+      { key: 'active', title: 'Активка', type: 'cat' },
+      { key: 'upgrade', title: 'Собирается дальше', type: 'cat' },
+    ],
+    items,
+  });
+
+  const TAG = { Health: 'Здоровье', Damage: 'Урон', CriticalStrike: 'Крит', SpellDamage: 'Сила умений', Mana: 'Мана', ManaRegen: 'Реген маны',
+    HealthRegen: 'Реген здоровья', Armor: 'Броня', SpellBlock: 'Маг. сопротивление', MagicResist: 'Маг. сопротивление', AttackSpeed: 'Скорость атаки',
+    OnHit: 'При попадании', LifeSteal: 'Вампиризм', SpellVamp: 'Вампиризм', CooldownReduction: 'Ускорение умений', AbilityHaste: 'Ускорение умений',
+    ArmorPenetration: 'Пробивание брони', MagicPenetration: 'Маг. пробивание', NonbootsMovement: 'Скорость', Boots: 'Скорость', Tenacity: 'Стойкость',
+    Active: 'Активка', Aura: 'Аура', Slow: 'Замедление', Vision: 'Обзор', Stealth: 'Невидимость', GoldPer: 'Золото' };
+  const lol = raw2.lol.items.filter((x) => x.gold > 0 && !x.tags.some((t) => ['Consumable', 'Trinket'].includes(t)))
+    .map((x) => ({ id: x.id, name: x.name, sub: x.ru || '', alias: x.ru ? [x.ru] : [],
+      // tier from the build tree: no components = basic, builds further = epic, final item = legendary
+      tier: x.boots ? 'Ботинки' : x.tags.includes('Lane') || x.tags.includes('Jungle') ? 'Стартовый' : !x.from ? 'Базовый' : x.into ? 'Эпический' : 'Легендарный',
+      price: x.gold, parts: x.from,
+      stats: [...new Set(x.tags.filter((t) => t !== 'Active').map((t) => TAG[t]).filter(Boolean))],
+      active: x.tags.includes('Active') ? 'Да' : 'Нет',
+      url: `https://wiki.leagueoflegends.com/en-us/${encodeURIComponent(x.name.replace(/ /g, '_'))}` }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  write('public/data/lol-gear.json', {
+    modeTitle: 'Предметы', nameTitle: 'Предмет', placeholder: 'Название предмета (англ. или рус.)…',
+    intro: 'Угадайте предмет League of Legends (Ущелье призывателей) по уровню, цене, числу компонентов, характеристикам и активной способности. Зелёный — совпало, жёлтый — близко (цена ±300, характеристики пересекаются), стрелка — больше или меньше.',
+    source: `Riot Games Data Dragon, патч ${raw2.lol.version}`,
+    columns: [
+      { key: 'tier', title: 'Уровень', type: 'cat' },
+      { key: 'price', title: 'Цена', type: 'num', near: 300 },
+      { key: 'parts', title: 'Компонентов', type: 'num', near: 0 },
+      { key: 'stats', title: 'Характеристики', type: 'set' },
+      { key: 'active', title: 'Активка', type: 'cat' },
+    ],
+    items: lol,
+  });
+}

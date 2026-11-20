@@ -27,7 +27,7 @@ function cmp(col, g, t) {
   if (a != null && a === b) return { res: 'hit', arrow: '' };
   return { res: col.nearKey && g[col.nearKey] && g[col.nearKey] === t[col.nearKey] ? 'near' : 'miss', arrow: '' };
 }
-const show = (col, v) => (Array.isArray(v) ? v.map((x) => tr(x)).join(', ') : v == null ? '—' : col.type === 'num' && col.unit ? (col.unit === '$' ? `$${v}` : `${v}${col.unit}`) : tr(String(v)));
+const show = (col, v) => (Array.isArray(v) ? (v.length ? v.map((x) => tr(x)).join(', ') : '—') : v == null ? '—' : col.type === 'num' && col.unit ? (col.unit === '$' ? `$${v}` : `${v}${col.unit}`) : tr(String(v)));
 
 export const itemScore = (st) => (st.won ? Math.max(100, 1000 - 125 * (st.guesses.length - 1)) : 0);
 

@@ -1,0 +1,3842 @@
+{
+ "modeTitle": "Предметы",
+ "nameTitle": "Предмет",
+ "placeholder": "Название предмета (англ. или рус.)…",
+ "intro": "Угадайте предмет League of Legends (Ущелье призывателей) по уровню, цене, числу компонентов, характеристикам и активной способности. Зелёный — совпало, жёлтый — близко (цена ±300, характеристики пересекаются), стрелка — больше или меньше.",
+ "source": "Riot Games Data Dragon, патч 16.23.1",
+ "columns": [
+  {
+   "key": "tier",
+   "title": "Уровень",
+   "type": "cat"
+  },
+  {
+   "key": "price",
+   "title": "Цена",
+   "type": "num",
+   "near": 300
+  },
+  {
+   "key": "parts",
+   "title": "Компонентов",
+   "type": "num",
+   "near": 0
+  },
+  {
+   "key": "stats",
+   "title": "Характеристики",
+   "type": "set"
+  },
+  {
+   "key": "active",
+   "title": "Активка",
+   "type": "cat"
+  }
+ ],
+ "items": [
+  {
+   "id": "8020",
+   "name": "Abyssal Mask",
+   "sub": "Маска пустоты",
+   "alias": [
+    "Маска пустоты"
+   ],
+   "tier": "Легендарный",
+   "price": 2650,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Abyssal_Mask"
+  },
+  {
+   "id": "2522",
+   "name": "Actualizer",
+   "sub": "Воплотитель",
+   "alias": [
+    "Воплотитель"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Мана",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Actualizer"
+  },
+  {
+   "id": "3113",
+   "name": "Aether Wisp",
+   "sub": "Эфирный всполох",
+   "alias": [
+    "Эфирный всполох"
+   ],
+   "tier": "Эпический",
+   "price": 900,
+   "parts": 1,
+   "stats": [
+    "Скорость",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Aether_Wisp"
+  },
+  {
+   "id": "1052",
+   "name": "Amplifying Tome",
+   "sub": "Усиливающий фолиант",
+   "alias": [
+    "Усиливающий фолиант"
+   ],
+   "tier": "Базовый",
+   "price": 400,
+   "parts": 0,
+   "stats": [
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Amplifying_Tome"
+  },
+  {
+   "id": "3003",
+   "name": "Archangel's Staff",
+   "sub": "Посох архангела",
+   "alias": [
+    "Посох архангела"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 3,
+   "stats": [
+    "Сила умений",
+    "Мана",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Archangel's_Staff"
+  },
+  {
+   "id": "3504",
+   "name": "Ardent Censer",
+   "sub": "Пылающая кадильница",
+   "alias": [
+    "Пылающая кадильница"
+   ],
+   "tier": "Легендарный",
+   "price": 2200,
+   "parts": 2,
+   "stats": [
+    "Скорость атаки",
+    "Сила умений",
+    "Реген маны",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Ardent_Censer"
+  },
+  {
+   "id": "3174",
+   "name": "Armored Advance",
+   "sub": "Тяжелое наступление",
+   "alias": [
+    "Тяжелое наступление"
+   ],
+   "tier": "Ботинки",
+   "price": 1200,
+   "parts": 1,
+   "stats": [
+    "Броня",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Armored_Advance"
+  },
+  {
+   "id": "663039",
+   "name": "Atma's Reckoning",
+   "sub": "Расплата Атмы",
+   "alias": [
+    "Расплата Атмы"
+   ],
+   "tier": "Стартовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Крит"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Atma's_Reckoning"
+  },
+  {
+   "id": "6696",
+   "name": "Axiom Arc",
+   "sub": "Шакрам Аксиом",
+   "alias": [
+    "Шакрам Аксиом"
+   ],
+   "tier": "Легендарный",
+   "price": 2750,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Пробивание брони",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Axiom_Arc"
+  },
+  {
+   "id": "1038",
+   "name": "B. F. Sword",
+   "sub": "Самый Лучший Меч",
+   "alias": [
+    "Самый Лучший Меч"
+   ],
+   "tier": "Базовый",
+   "price": 1300,
+   "parts": 0,
+   "stats": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/B._F._Sword"
+  },
+  {
+   "id": "6660",
+   "name": "Bami's Cinder",
+   "sub": "Пепел Бами",
+   "alias": [
+    "Пепел Бами"
+   ],
+   "tier": "Эпический",
+   "price": 900,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Bami's_Cinder"
+  },
+  {
+   "id": "4642",
+   "name": "Bandleglass Mirror",
+   "sub": "Зеркало йордлов",
+   "alias": [
+    "Зеркало йордлов"
+   ],
+   "tier": "Эпический",
+   "price": 900,
+   "parts": 3,
+   "stats": [
+    "Сила умений",
+    "Реген маны",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Bandleglass_Mirror"
+  },
+  {
+   "id": "2524",
+   "name": "Bandlepipes",
+   "sub": "Бандл-трубы",
+   "alias": [
+    "Бандл-трубы"
+   ],
+   "tier": "Легендарный",
+   "price": 2300,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Броня",
+    "Скорость атаки",
+    "Скорость",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Bandlepipes"
+  },
+  {
+   "id": "3102",
+   "name": "Banshee's Veil",
+   "sub": "Завеса банши",
+   "alias": [
+    "Завеса банши"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 2,
+   "stats": [
+    "Маг. сопротивление",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Banshee's_Veil"
+  },
+  {
+   "id": "2520",
+   "name": "Bastionbreaker",
+   "sub": "Гроза укреплений",
+   "alias": [
+    "Гроза укреплений"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Пробивание брони",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Bastionbreaker"
+  },
+  {
+   "id": "3006",
+   "name": "Berserker's Greaves",
+   "sub": "Наголенники берсерка",
+   "alias": [
+    "Наголенники берсерка"
+   ],
+   "tier": "Ботинки",
+   "price": 1100,
+   "parts": 3,
+   "stats": [
+    "Скорость атаки",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Berserker's_Greaves"
+  },
+  {
+   "id": "3071",
+   "name": "Black Cleaver",
+   "sub": "Черная секира",
+   "alias": [
+    "Черная секира"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Ускорение умений",
+    "При попадании",
+    "Скорость",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Black_Cleaver"
+  },
+  {
+   "id": "2503",
+   "name": "Blackfire Torch",
+   "sub": "Факел темного огня",
+   "alias": [
+    "Факел темного огня"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Мана",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Blackfire_Torch"
+  },
+  {
+   "id": "3153",
+   "name": "Blade of The Ruined King",
+   "sub": "Клинок Падшего короля",
+   "alias": [
+    "Клинок Падшего короля"
+   ],
+   "tier": "Легендарный",
+   "price": 3200,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Скорость атаки",
+    "Вампиризм",
+    "Замедление",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Blade_of_The_Ruined_King"
+  },
+  {
+   "id": "1026",
+   "name": "Blasting Wand",
+   "sub": "Разящий жезл",
+   "alias": [
+    "Разящий жезл"
+   ],
+   "tier": "Базовый",
+   "price": 850,
+   "parts": 0,
+   "stats": [
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Blasting_Wand"
+  },
+  {
+   "id": "4630",
+   "name": "Blighting Jewel",
+   "sub": "Вредоносный самоцвет",
+   "alias": [
+    "Вредоносный самоцвет"
+   ],
+   "tier": "Эпический",
+   "price": 1100,
+   "parts": 1,
+   "stats": [
+    "Маг. пробивание",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Blighting_Jewel"
+  },
+  {
+   "id": "8010",
+   "name": "Bloodletter's Curse",
+   "sub": "Проклятие кровопускателя",
+   "alias": [
+    "Проклятие кровопускателя"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Ускорение умений",
+    "Маг. пробивание"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Bloodletter's_Curse"
+  },
+  {
+   "id": "3877",
+   "name": "Bloodsong",
+   "sub": "Кровавая песнь",
+   "alias": [
+    "Кровавая песнь"
+   ],
+   "tier": "Стартовый",
+   "price": 400,
+   "parts": 1,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Реген маны",
+    "Обзор",
+    "Золото"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Bloodsong"
+  },
+  {
+   "id": "3072",
+   "name": "Bloodthirster",
+   "sub": "Кровопийца",
+   "alias": [
+    "Кровопийца"
+   ],
+   "tier": "Легендарный",
+   "price": 3400,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Bloodthirster"
+  },
+  {
+   "id": "1001",
+   "name": "Boots",
+   "sub": "Ботинки",
+   "alias": [
+    "Ботинки"
+   ],
+   "tier": "Ботинки",
+   "price": 300,
+   "parts": 0,
+   "stats": [
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Boots"
+  },
+  {
+   "id": "3009",
+   "name": "Boots of Swiftness",
+   "sub": "Ботинки стремительности",
+   "alias": [
+    "Ботинки стремительности"
+   ],
+   "tier": "Ботинки",
+   "price": 1000,
+   "parts": 1,
+   "stats": [
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Boots_of_Swiftness"
+  },
+  {
+   "id": "3076",
+   "name": "Bramble Vest",
+   "sub": "Терновый жилет",
+   "alias": [
+    "Терновый жилет"
+   ],
+   "tier": "Эпический",
+   "price": 800,
+   "parts": 2,
+   "stats": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Bramble_Vest"
+  },
+  {
+   "id": "3803",
+   "name": "Catalyst of Aeons",
+   "sub": "Катализатор эонов",
+   "alias": [
+    "Катализатор эонов"
+   ],
+   "tier": "Эпический",
+   "price": 1300,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Мана",
+    "Реген маны"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Catalyst_of_Aeons"
+  },
+  {
+   "id": "3133",
+   "name": "Caulfield's Warhammer",
+   "sub": "Боевой молот Колфилда",
+   "alias": [
+    "Боевой молот Колфилда"
+   ],
+   "tier": "Эпический",
+   "price": 1050,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Caulfield's_Warhammer"
+  },
+  {
+   "id": "3869",
+   "name": "Celestial Opposition",
+   "sub": "Небесное противостояние",
+   "alias": [
+    "Небесное противостояние"
+   ],
+   "tier": "Стартовый",
+   "price": 400,
+   "parts": 1,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Реген маны",
+    "Обзор",
+    "Золото"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Celestial_Opposition"
+  },
+  {
+   "id": "1031",
+   "name": "Chain Vest",
+   "sub": "Кольчуга",
+   "alias": [
+    "Кольчуга"
+   ],
+   "tier": "Эпический",
+   "price": 800,
+   "parts": 1,
+   "stats": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Chain_Vest"
+  },
+  {
+   "id": "3173",
+   "name": "Chainlaced Crushers",
+   "sub": "Цепные крушители",
+   "alias": [
+    "Цепные крушители"
+   ],
+   "tier": "Ботинки",
+   "price": 1250,
+   "parts": 1,
+   "stats": [
+    "Маг. сопротивление",
+    "Скорость",
+    "Стойкость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Chainlaced_Crushers"
+  },
+  {
+   "id": "6609",
+   "name": "Chempunk Chainsword",
+   "sub": "Нож-пила химпанка",
+   "alias": [
+    "Нож-пила химпанка"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Chempunk_Chainsword"
+  },
+  {
+   "id": "1018",
+   "name": "Cloak of Agility",
+   "sub": "Плащ ловкости",
+   "alias": [
+    "Плащ ловкости"
+   ],
+   "tier": "Базовый",
+   "price": 600,
+   "parts": 0,
+   "stats": [
+    "Крит"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Cloak_of_Agility"
+  },
+  {
+   "id": "663059",
+   "name": "Cloak of Starry Night",
+   "sub": "Мантия звездной ночи",
+   "alias": [
+    "Мантия звездной ночи"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Cloak_of_Starry_Night"
+  },
+  {
+   "id": "1029",
+   "name": "Cloth Armor",
+   "sub": "Тканевая броня",
+   "alias": [
+    "Тканевая броня"
+   ],
+   "tier": "Базовый",
+   "price": 300,
+   "parts": 0,
+   "stats": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Cloth_Armor"
+  },
+  {
+   "id": "4629",
+   "name": "Cosmic Drive",
+   "sub": "Космический ускоритель",
+   "alias": [
+    "Космический ускоритель"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Скорость",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Cosmic_Drive"
+  },
+  {
+   "id": "3171",
+   "name": "Crimson Lucidity",
+   "sub": "Алое просветление",
+   "alias": [
+    "Алое просветление"
+   ],
+   "tier": "Ботинки",
+   "price": 900,
+   "parts": 1,
+   "stats": [
+    "Ускорение умений",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Crimson_Lucidity"
+  },
+  {
+   "id": "664644",
+   "name": "Crown of the Shattered Queen",
+   "sub": "Венец Расколотой королевы",
+   "alias": [
+    "Венец Расколотой королевы"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Мана",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Crown_of_the_Shattered_Queen"
+  },
+  {
+   "id": "667109",
+   "name": "Cruelty",
+   "sub": "Жестокость",
+   "alias": [
+    "Жестокость"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Броня",
+    "Сила умений",
+    "Маг. сопротивление"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Cruelty"
+  },
+  {
+   "id": "3137",
+   "name": "Cryptbloom",
+   "sub": "Могильный цветок",
+   "alias": [
+    "Могильный цветок"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Сила умений",
+    "Маг. пробивание",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Cryptbloom"
+  },
+  {
+   "id": "3801",
+   "name": "Crystalline Bracer",
+   "sub": "Кристаллические наручи",
+   "alias": [
+    "Кристаллические наручи"
+   ],
+   "tier": "Эпический",
+   "price": 800,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Crystalline_Bracer"
+  },
+  {
+   "id": "1083",
+   "name": "Cull",
+   "sub": "Уничтожитель",
+   "alias": [
+    "Уничтожитель"
+   ],
+   "tier": "Стартовый",
+   "price": 450,
+   "parts": 0,
+   "stats": [
+    "Урон",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Cull"
+  },
+  {
+   "id": "1042",
+   "name": "Dagger",
+   "sub": "Кинжал",
+   "alias": [
+    "Кинжал"
+   ],
+   "tier": "Базовый",
+   "price": 250,
+   "parts": 0,
+   "stats": [
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Dagger"
+  },
+  {
+   "id": "1082",
+   "name": "Dark Seal",
+   "sub": "Темная печать",
+   "alias": [
+    "Темная печать"
+   ],
+   "tier": "Стартовый",
+   "price": 350,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Dark_Seal"
+  },
+  {
+   "id": "6621",
+   "name": "Dawncore",
+   "sub": "Ядро рассвета",
+   "alias": [
+    "Ядро рассвета"
+   ],
+   "tier": "Легендарный",
+   "price": 2500,
+   "parts": 3,
+   "stats": [
+    "Сила умений",
+    "Реген маны"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Dawncore"
+  },
+  {
+   "id": "3742",
+   "name": "Dead Man's Plate",
+   "sub": "Броня мертвеца",
+   "alias": [
+    "Броня мертвеца"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Броня",
+    "Замедление",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Dead_Man's_Plate"
+  },
+  {
+   "id": "6333",
+   "name": "Death's Dance",
+   "sub": "Танец смерти",
+   "alias": [
+    "Танец смерти"
+   ],
+   "tier": "Легендарный",
+   "price": 3300,
+   "parts": 3,
+   "stats": [
+    "Броня",
+    "Урон",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Death's_Dance"
+  },
+  {
+   "id": "663056",
+   "name": "Demon King's Crown",
+   "sub": "Корона короля-демона",
+   "alias": [
+    "Корона короля-демона"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Броня",
+    "Урон",
+    "Скорость атаки",
+    "Сила умений",
+    "Маг. сопротивление",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Demon_King's_Crown"
+  },
+  {
+   "id": "1055",
+   "name": "Doran's Blade",
+   "sub": "Клинок Дорана",
+   "alias": [
+    "Клинок Дорана"
+   ],
+   "tier": "Стартовый",
+   "price": 450,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Doran's_Blade"
+  },
+  {
+   "id": "1086",
+   "name": "Doran's Bow",
+   "sub": "Лук Дорана",
+   "alias": [
+    "Лук Дорана"
+   ],
+   "tier": "Стартовый",
+   "price": 400,
+   "parts": 0,
+   "stats": [
+    "Урон",
+    "Скорость атаки",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Doran's_Bow"
+  },
+  {
+   "id": "1120",
+   "name": "Doran's Helm",
+   "sub": "Шлем Дорана",
+   "alias": [
+    "Шлем Дорана"
+   ],
+   "tier": "Стартовый",
+   "price": 450,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Броня"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Doran's_Helm"
+  },
+  {
+   "id": "1056",
+   "name": "Doran's Ring",
+   "sub": "Кольцо Дорана",
+   "alias": [
+    "Кольцо Дорана"
+   ],
+   "tier": "Стартовый",
+   "price": 400,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Реген маны",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Doran's_Ring"
+  },
+  {
+   "id": "1054",
+   "name": "Doran's Shield",
+   "sub": "Щит Дорана",
+   "alias": [
+    "Щит Дорана"
+   ],
+   "tier": "Стартовый",
+   "price": 450,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Doran's_Shield"
+  },
+  {
+   "id": "3870",
+   "name": "Dream Maker",
+   "sub": "Сновичок",
+   "alias": [
+    "Сновичок"
+   ],
+   "tier": "Стартовый",
+   "price": 400,
+   "parts": 1,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Реген маны",
+    "Обзор",
+    "Золото"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Dream_Maker"
+  },
+  {
+   "id": "2510",
+   "name": "Dusk and Dawn",
+   "sub": "Рассвет и закат",
+   "alias": [
+    "Рассвет и закат"
+   ],
+   "tier": "Легендарный",
+   "price": 3100,
+   "parts": 4,
+   "stats": [
+    "Здоровье",
+    "Скорость атаки",
+    "Сила умений",
+    "При попадании",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Dusk_and_Dawn"
+  },
+  {
+   "id": "6620",
+   "name": "Echoes of Helia",
+   "sub": "Эхо Гелии",
+   "alias": [
+    "Эхо Гелии"
+   ],
+   "tier": "Легендарный",
+   "price": 2200,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Реген маны",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Echoes_of_Helia"
+  },
+  {
+   "id": "6692",
+   "name": "Eclipse",
+   "sub": "Затмение",
+   "alias": [
+    "Затмение"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Eclipse"
+  },
+  {
+   "id": "3814",
+   "name": "Edge of Night",
+   "sub": "Грань ночи",
+   "alias": [
+    "Грань ночи"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Edge_of_Night"
+  },
+  {
+   "id": "2517",
+   "name": "Endless Hunger",
+   "sub": "Вечный голод",
+   "alias": [
+    "Вечный голод"
+   ],
+   "tier": "Легендарный",
+   "price": 3100,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Вампиризм",
+    "Стойкость",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Endless_Hunger"
+  },
+  {
+   "id": "3508",
+   "name": "Essence Reaver",
+   "sub": "Похититель сущности",
+   "alias": [
+    "Похититель сущности"
+   ],
+   "tier": "Легендарный",
+   "price": 3050,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Крит",
+    "Реген маны",
+    "Ускорение умений",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Essence_Reaver"
+  },
+  {
+   "id": "3123",
+   "name": "Executioner's Calling",
+   "sub": "Призвание Палача",
+   "alias": [
+    "Призвание Палача"
+   ],
+   "tier": "Эпический",
+   "price": 800,
+   "parts": 1,
+   "stats": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Executioner's_Calling"
+  },
+  {
+   "id": "3073",
+   "name": "Experimental Hexplate",
+   "sub": "Экспериментальная хекстековая броня",
+   "alias": [
+    "Экспериментальная хекстековая броня"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Скорость атаки",
+    "Ускорение умений",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Experimental_Hexplate"
+  },
+  {
+   "id": "1004",
+   "name": "Faerie Charm",
+   "sub": "Амулет фей",
+   "alias": [
+    "Амулет фей"
+   ],
+   "tier": "Базовый",
+   "price": 200,
+   "parts": 0,
+   "stats": [
+    "Реген маны"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Faerie_Charm"
+  },
+  {
+   "id": "2508",
+   "name": "Fated Ashes",
+   "sub": "Роковой пепел",
+   "alias": [
+    "Роковой пепел"
+   ],
+   "tier": "Эпический",
+   "price": 900,
+   "parts": 1,
+   "stats": [
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Fated_Ashes"
+  },
+  {
+   "id": "2512",
+   "name": "Fiendhunter Bolts",
+   "sub": "Стрелы борца с демонами",
+   "alias": [
+    "Стрелы борца с демонами"
+   ],
+   "tier": "Легендарный",
+   "price": 2650,
+   "parts": 2,
+   "stats": [
+    "Крит",
+    "Скорость атаки",
+    "Скорость",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Fiendhunter_Bolts"
+  },
+  {
+   "id": "3108",
+   "name": "Fiendish Codex",
+   "sub": "Бесовской манускрипт",
+   "alias": [
+    "Бесовской манускрипт"
+   ],
+   "tier": "Эпический",
+   "price": 850,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Fiendish_Codex"
+  },
+  {
+   "id": "667112",
+   "name": "Flesheater",
+   "sub": "Пожиратель плоти",
+   "alias": [
+    "Пожиратель плоти"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Урон",
+    "Сила умений",
+    "Маг. пробивание",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Flesheater"
+  },
+  {
+   "id": "3114",
+   "name": "Forbidden Idol",
+   "sub": "Запретный идол",
+   "alias": [
+    "Запретный идол"
+   ],
+   "tier": "Эпический",
+   "price": 600,
+   "parts": 1,
+   "stats": [
+    "Реген маны"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Forbidden_Idol"
+  },
+  {
+   "id": "4401",
+   "name": "Force of Nature",
+   "sub": "Сила природы",
+   "alias": [
+    "Сила природы"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Force_of_Nature"
+  },
+  {
+   "id": "3110",
+   "name": "Frozen Heart",
+   "sub": "Ледяное сердце",
+   "alias": [
+    "Ледяное сердце"
+   ],
+   "tier": "Легендарный",
+   "price": 2500,
+   "parts": 2,
+   "stats": [
+    "Броня",
+    "Мана",
+    "Аура",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Frozen_Heart"
+  },
+  {
+   "id": "667101",
+   "name": "Gambler's Blade",
+   "sub": "Клинок картежника",
+   "alias": [
+    "Клинок картежника"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Урон",
+    "Скорость",
+    "Маг. пробивание",
+    "Пробивание брони",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Gambler's_Blade"
+  },
+  {
+   "id": "663193",
+   "name": "Gargoyle Stoneplate",
+   "sub": "Каменный доспех гаргульи",
+   "alias": [
+    "Каменный доспех гаргульи"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Маг. сопротивление",
+    "Броня",
+    "Ускорение умений"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Gargoyle_Stoneplate"
+  },
+  {
+   "id": "1011",
+   "name": "Giant's Belt",
+   "sub": "Пояс великана",
+   "alias": [
+    "Пояс великана"
+   ],
+   "tier": "Эпический",
+   "price": 900,
+   "parts": 1,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Giant's_Belt"
+  },
+  {
+   "id": "3024",
+   "name": "Glacial Buckler",
+   "sub": "Ледяной баклер",
+   "alias": [
+    "Ледяной баклер"
+   ],
+   "tier": "Эпический",
+   "price": 900,
+   "parts": 3,
+   "stats": [
+    "Броня",
+    "Мана",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Glacial_Buckler"
+  },
+  {
+   "id": "2022",
+   "name": "Glowing Mote",
+   "sub": "Светлячок",
+   "alias": [
+    "Светлячок"
+   ],
+   "tier": "Базовый",
+   "price": 250,
+   "parts": 0,
+   "stats": [
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Glowing_Mote"
+  },
+  {
+   "id": "3008",
+   "name": "Gluttonous Greaves",
+   "sub": "Алчные наголенники",
+   "alias": [
+    "Алчные наголенники"
+   ],
+   "tier": "Ботинки",
+   "price": 1100,
+   "parts": 1,
+   "stats": [
+    "Вампиризм",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Gluttonous_Greaves"
+  },
+  {
+   "id": "3026",
+   "name": "Guardian Angel",
+   "sub": "Ангел-хранитель",
+   "alias": [
+    "Ангел-хранитель"
+   ],
+   "tier": "Легендарный",
+   "price": 3200,
+   "parts": 2,
+   "stats": [
+    "Броня",
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Guardian_Angel"
+  },
+  {
+   "id": "3177",
+   "name": "Guardian's Blade",
+   "sub": "Клинок стража",
+   "alias": [
+    "Клинок стража"
+   ],
+   "tier": "Стартовый",
+   "price": 950,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Guardian's_Blade"
+  },
+  {
+   "id": "3184",
+   "name": "Guardian's Hammer",
+   "sub": "Молот стража",
+   "alias": [
+    "Молот стража"
+   ],
+   "tier": "Стартовый",
+   "price": 950,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Guardian's_Hammer"
+  },
+  {
+   "id": "2051",
+   "name": "Guardian's Horn",
+   "sub": "Рог стража",
+   "alias": [
+    "Рог стража"
+   ],
+   "tier": "Стартовый",
+   "price": 950,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Guardian's_Horn"
+  },
+  {
+   "id": "3112",
+   "name": "Guardian's Orb",
+   "sub": "Сфера стража",
+   "alias": [
+    "Сфера стража"
+   ],
+   "tier": "Стартовый",
+   "price": 950,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Реген маны"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Guardian's_Orb"
+  },
+  {
+   "id": "3124",
+   "name": "Guinsoo's Rageblade",
+   "sub": "Клинок ярости Гинсу",
+   "alias": [
+    "Клинок ярости Гинсу"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Скорость атаки",
+    "Сила умений",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Guinsoo's_Rageblade"
+  },
+  {
+   "id": "3172",
+   "name": "Gunmetal Greaves",
+   "sub": "Наголенники из орудийной стали",
+   "alias": [
+    "Наголенники из орудийной стали"
+   ],
+   "tier": "Легендарный",
+   "price": 1100,
+   "parts": 1,
+   "stats": [
+    "Скорость атаки",
+    "Вампиризм",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Gunmetal_Greaves"
+  },
+  {
+   "id": "1102",
+   "name": "Gustwalker Hatchling",
+   "sub": "Детеныш ветролиса",
+   "alias": [
+    "Детеныш ветролиса"
+   ],
+   "tier": "Стартовый",
+   "price": 450,
+   "parts": 0,
+   "stats": [],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Gustwalker_Hatchling"
+  },
+  {
+   "id": "3147",
+   "name": "Haunting Guise",
+   "sub": "Преследующая маска",
+   "alias": [
+    "Преследующая маска"
+   ],
+   "tier": "Эпический",
+   "price": 1300,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Haunting_Guise"
+  },
+  {
+   "id": "3051",
+   "name": "Hearthbound Axe",
+   "sub": "Топор Теплолюбивых",
+   "alias": [
+    "Топор Теплолюбивых"
+   ],
+   "tier": "Эпический",
+   "price": 1200,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hearthbound_Axe"
+  },
+  {
+   "id": "3084",
+   "name": "Heartsteel",
+   "sub": "Сердце стали",
+   "alias": [
+    "Сердце стали"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Heartsteel"
+  },
+  {
+   "id": "3155",
+   "name": "Hexdrinker",
+   "sub": "Пожиратель заклятий",
+   "alias": [
+    "Пожиратель заклятий"
+   ],
+   "tier": "Эпический",
+   "price": 1300,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Маг. сопротивление"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hexdrinker"
+  },
+  {
+   "id": "2523",
+   "name": "Hexoptics C44",
+   "sub": "Хекс-прицел С44",
+   "alias": [
+    "Хекс-прицел С44"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Крит"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hexoptics_C44"
+  },
+  {
+   "id": "3145",
+   "name": "Hextech Alternator",
+   "sub": "Хекстек-альтернатор",
+   "alias": [
+    "Хекстек-альтернатор"
+   ],
+   "tier": "Эпический",
+   "price": 1100,
+   "parts": 2,
+   "stats": [
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hextech_Alternator"
+  },
+  {
+   "id": "3146",
+   "name": "Hextech Gunblade",
+   "sub": "Хекстековый штык",
+   "alias": [
+    "Хекстековый штык"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Вампиризм",
+    "Сила умений"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hextech_Gunblade"
+  },
+  {
+   "id": "3152",
+   "name": "Hextech Rocketbelt",
+   "sub": "Хекстековый ракетный ремень",
+   "alias": [
+    "Хекстековый ракетный ремень"
+   ],
+   "tier": "Легендарный",
+   "price": 2650,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Ускорение умений",
+    "Скорость"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hextech_Rocketbelt"
+  },
+  {
+   "id": "6664",
+   "name": "Hollow Radiance",
+   "sub": "Сияние пустоты",
+   "alias": [
+    "Сияние пустоты"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Реген здоровья",
+    "Аура",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hollow_Radiance"
+  },
+  {
+   "id": "4628",
+   "name": "Horizon Focus",
+   "sub": "Хекстековый прицел",
+   "alias": [
+    "Хекстековый прицел"
+   ],
+   "tier": "Легендарный",
+   "price": 2700,
+   "parts": 3,
+   "stats": [
+    "Сила умений",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Horizon_Focus"
+  },
+  {
+   "id": "6697",
+   "name": "Hubris",
+   "sub": "Гордыня",
+   "alias": [
+    "Гордыня"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Ускорение умений",
+    "Пробивание брони"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hubris"
+  },
+  {
+   "id": "3181",
+   "name": "Hullbreaker",
+   "sub": "Бортолом",
+   "alias": [
+    "Бортолом"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Hullbreaker"
+  },
+  {
+   "id": "6662",
+   "name": "Iceborn Gauntlet",
+   "sub": "Хладорожденная рукавица",
+   "alias": [
+    "Хладорожденная рукавица"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Броня",
+    "Ускорение умений",
+    "Замедление",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Iceborn_Gauntlet"
+  },
+  {
+   "id": "3168",
+   "name": "Immortal Path",
+   "sub": "Путь бессмертного",
+   "alias": [
+    "Путь бессмертного"
+   ],
+   "tier": "Ботинки",
+   "price": 1100,
+   "parts": 1,
+   "stats": [
+    "Вампиризм",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Immortal_Path"
+  },
+  {
+   "id": "6673",
+   "name": "Immortal Shieldbow",
+   "sub": "Арбалет бессмертия",
+   "alias": [
+    "Арбалет бессмертия"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Крит"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Immortal_Shieldbow"
+  },
+  {
+   "id": "4005",
+   "name": "Imperial Mandate",
+   "sub": "Имперский мандат",
+   "alias": [
+    "Имперский мандат"
+   ],
+   "tier": "Легендарный",
+   "price": 2400,
+   "parts": 3,
+   "stats": [
+    "Сила умений",
+    "Реген маны",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Imperial_Mandate"
+  },
+  {
+   "id": "3031",
+   "name": "Infinity Edge",
+   "sub": "Грань Бесконечности",
+   "alias": [
+    "Грань Бесконечности"
+   ],
+   "tier": "Легендарный",
+   "price": 3500,
+   "parts": 3,
+   "stats": [
+    "Крит",
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Infinity_Edge"
+  },
+  {
+   "id": "3158",
+   "name": "Ionian Boots of Lucidity",
+   "sub": "Ионийские сапоги просветления",
+   "alias": [
+    "Ионийские сапоги просветления"
+   ],
+   "tier": "Ботинки",
+   "price": 900,
+   "parts": 2,
+   "stats": [
+    "Скорость",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Ionian_Boots_of_Lucidity"
+  },
+  {
+   "id": "6665",
+   "name": "Jak'Sho, The Protean",
+   "sub": "Жак'Шо Многоликий",
+   "alias": [
+    "Жак'Шо Многоликий"
+   ],
+   "tier": "Легендарный",
+   "price": 3200,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Броня"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Jak'Sho%2C_The_Protean"
+  },
+  {
+   "id": "2504",
+   "name": "Kaenic Rookern",
+   "sub": "Кейниковый рукерн",
+   "alias": [
+    "Кейниковый рукерн"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Kaenic_Rookern"
+  },
+  {
+   "id": "3067",
+   "name": "Kindlegem",
+   "sub": "Воспламеняющий камень",
+   "alias": [
+    "Воспламеняющий камень"
+   ],
+   "tier": "Эпический",
+   "price": 800,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Kindlegem"
+  },
+  {
+   "id": "3109",
+   "name": "Knight's Vow",
+   "sub": "Клятва рыцаря",
+   "alias": [
+    "Клятва рыцаря"
+   ],
+   "tier": "Легендарный",
+   "price": 2300,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Броня",
+    "Аура",
+    "Ускорение умений"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Knight's_Vow"
+  },
+  {
+   "id": "6672",
+   "name": "Kraken Slayer",
+   "sub": "Убийца кракенов",
+   "alias": [
+    "Убийца кракенов"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Скорость атаки",
+    "При попадании",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Kraken_Slayer"
+  },
+  {
+   "id": "3035",
+   "name": "Last Whisper",
+   "sub": "Предсмертный шепот",
+   "alias": [
+    "Предсмертный шепот"
+   ],
+   "tier": "Эпический",
+   "price": 1450,
+   "parts": 2,
+   "stats": [
+    "Пробивание брони",
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Last_Whisper"
+  },
+  {
+   "id": "6653",
+   "name": "Liandry's Torment",
+   "sub": "Мучения Лиандри",
+   "alias": [
+    "Мучения Лиандри"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Liandry's_Torment"
+  },
+  {
+   "id": "3100",
+   "name": "Lich Bane",
+   "sub": "Гроза Личей",
+   "alias": [
+    "Гроза Личей"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 3,
+   "stats": [
+    "Сила умений",
+    "При попадании",
+    "Скорость",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Lich_Bane"
+  },
+  {
+   "id": "3190",
+   "name": "Locket of the Iron Solari",
+   "sub": "Медальон Железных Солари",
+   "alias": [
+    "Медальон Железных Солари"
+   ],
+   "tier": "Легендарный",
+   "price": 2200,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Броня",
+    "Аура",
+    "Ускорение умений"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Locket_of_the_Iron_Solari"
+  },
+  {
+   "id": "1036",
+   "name": "Long Sword",
+   "sub": "Длинный меч",
+   "alias": [
+    "Длинный меч"
+   ],
+   "tier": "Стартовый",
+   "price": 350,
+   "parts": 0,
+   "stats": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Long_Sword"
+  },
+  {
+   "id": "3036",
+   "name": "Lord Dominik's Regards",
+   "sub": "Поклон лорда Доминика",
+   "alias": [
+    "Поклон лорда Доминика"
+   ],
+   "tier": "Легендарный",
+   "price": 3300,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Крит",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Lord_Dominik's_Regards"
+  },
+  {
+   "id": "3802",
+   "name": "Lost Chapter",
+   "sub": "Потерянная глава",
+   "alias": [
+    "Потерянная глава"
+   ],
+   "tier": "Эпический",
+   "price": 1200,
+   "parts": 3,
+   "stats": [
+    "Сила умений",
+    "Мана",
+    "Реген маны",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Lost_Chapter"
+  },
+  {
+   "id": "6655",
+   "name": "Luden's Echo",
+   "sub": "Эхо Людена",
+   "alias": [
+    "Эхо Людена"
+   ],
+   "tier": "Легендарный",
+   "price": 2750,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Мана",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Luden's_Echo"
+  },
+  {
+   "id": "3118",
+   "name": "Malignance",
+   "sub": "Пагубность",
+   "alias": [
+    "Пагубность"
+   ],
+   "tier": "Легендарный",
+   "price": 2700,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Мана",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Malignance"
+  },
+  {
+   "id": "3004",
+   "name": "Manamune",
+   "sub": "Манамунэ",
+   "alias": [
+    "Манамунэ"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Мана",
+    "Ускорение умений",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Manamune"
+  },
+  {
+   "id": "3156",
+   "name": "Maw of Malmortius",
+   "sub": "Зев Малмортиуса",
+   "alias": [
+    "Зев Малмортиуса"
+   ],
+   "tier": "Легендарный",
+   "price": 3100,
+   "parts": 2,
+   "stats": [
+    "Маг. сопротивление",
+    "Урон",
+    "Вампиризм",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Maw_of_Malmortius"
+  },
+  {
+   "id": "3041",
+   "name": "Mejai's Soulstealer",
+   "sub": "Пожиратель душ Меджай",
+   "alias": [
+    "Пожиратель душ Меджай"
+   ],
+   "tier": "Легендарный",
+   "price": 1500,
+   "parts": 1,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Mejai's_Soulstealer"
+  },
+  {
+   "id": "3139",
+   "name": "Mercurial Scimitar",
+   "sub": "Ртутный ятаган",
+   "alias": [
+    "Ртутный ятаган"
+   ],
+   "tier": "Легендарный",
+   "price": 3200,
+   "parts": 3,
+   "stats": [
+    "Маг. сопротивление",
+    "Урон",
+    "Вампиризм",
+    "Скорость",
+    "Стойкость"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Mercurial_Scimitar"
+  },
+  {
+   "id": "3111",
+   "name": "Mercury's Treads",
+   "sub": "Поступь Меркурия",
+   "alias": [
+    "Поступь Меркурия"
+   ],
+   "tier": "Ботинки",
+   "price": 1250,
+   "parts": 2,
+   "stats": [
+    "Скорость",
+    "Маг. сопротивление",
+    "Стойкость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Mercury's_Treads"
+  },
+  {
+   "id": "3222",
+   "name": "Mikael's Blessing",
+   "sub": "Благословение Микаэля",
+   "alias": [
+    "Благословение Микаэля"
+   ],
+   "tier": "Легендарный",
+   "price": 2300,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Реген маны",
+    "Ускорение умений",
+    "Стойкость"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Mikael's_Blessing"
+  },
+  {
+   "id": "6617",
+   "name": "Moonstone Renewer",
+   "sub": "Исцеляющий лунный камень",
+   "alias": [
+    "Исцеляющий лунный камень"
+   ],
+   "tier": "Легендарный",
+   "price": 2200,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Реген маны",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Moonstone_Renewer"
+  },
+  {
+   "id": "3165",
+   "name": "Morellonomicon",
+   "sub": "Мореллономикон",
+   "alias": [
+    "Мореллономикон"
+   ],
+   "tier": "Легендарный",
+   "price": 2850,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Morellonomicon"
+  },
+  {
+   "id": "3033",
+   "name": "Mortal Reminder",
+   "sub": "Глашатай смерти",
+   "alias": [
+    "Глашатай смерти"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Крит",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Mortal_Reminder"
+  },
+  {
+   "id": "1103",
+   "name": "Mosstomper Seedling",
+   "sub": "Детеныш травоящера",
+   "alias": [
+    "Детеныш травоящера"
+   ],
+   "tier": "Стартовый",
+   "price": 450,
+   "parts": 0,
+   "stats": [],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Mosstomper_Seedling"
+  },
+  {
+   "id": "3115",
+   "name": "Nashor's Tooth",
+   "sub": "Зуб Нашора",
+   "alias": [
+    "Зуб Нашора"
+   ],
+   "tier": "Легендарный",
+   "price": 2900,
+   "parts": 3,
+   "stats": [
+    "Скорость атаки",
+    "Сила умений",
+    "При попадании",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Nashor's_Tooth"
+  },
+  {
+   "id": "6675",
+   "name": "Navori Flickerblade",
+   "sub": "Летающий нож Навори",
+   "alias": [
+    "Летающий нож Навори"
+   ],
+   "tier": "Легендарный",
+   "price": 2650,
+   "parts": 3,
+   "stats": [
+    "Крит",
+    "Скорость атаки",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Navori_Flickerblade"
+  },
+  {
+   "id": "1058",
+   "name": "Needlessly Large Rod",
+   "sub": "Слишком Большой Жезл",
+   "alias": [
+    "Слишком Большой Жезл"
+   ],
+   "tier": "Базовый",
+   "price": 1200,
+   "parts": 0,
+   "stats": [
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Needlessly_Large_Rod"
+  },
+  {
+   "id": "1057",
+   "name": "Negatron Cloak",
+   "sub": "Поглощающий плащ",
+   "alias": [
+    "Поглощающий плащ"
+   ],
+   "tier": "Эпический",
+   "price": 850,
+   "parts": 1,
+   "stats": [
+    "Маг. сопротивление"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Negatron_Cloak"
+  },
+  {
+   "id": "6670",
+   "name": "Noonquiver",
+   "sub": "Полуденный колчан",
+   "alias": [
+    "Полуденный колчан"
+   ],
+   "tier": "Эпический",
+   "price": 1300,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Крит"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Noonquiver"
+  },
+  {
+   "id": "1033",
+   "name": "Null-Magic Mantle",
+   "sub": "Антимагическая мантия",
+   "alias": [
+    "Антимагическая мантия"
+   ],
+   "tier": "Базовый",
+   "price": 400,
+   "parts": 0,
+   "stats": [
+    "Маг. сопротивление"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Null-Magic_Mantle"
+  },
+  {
+   "id": "3916",
+   "name": "Oblivion Orb",
+   "sub": "Сфера забвения",
+   "alias": [
+    "Сфера забвения"
+   ],
+   "tier": "Эпический",
+   "price": 800,
+   "parts": 1,
+   "stats": [
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Oblivion_Orb"
+  },
+  {
+   "id": "2501",
+   "name": "Overlord's Bloodmail",
+   "sub": "Кровавая кольчуга господина",
+   "alias": [
+    "Кровавая кольчуга господина"
+   ],
+   "tier": "Легендарный",
+   "price": 3300,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Overlord's_Bloodmail"
+  },
+  {
+   "id": "3044",
+   "name": "Phage",
+   "sub": "Поглотитель",
+   "alias": [
+    "Поглотитель"
+   ],
+   "tier": "Эпический",
+   "price": 1100,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Phage"
+  },
+  {
+   "id": "3046",
+   "name": "Phantom Dancer",
+   "sub": "Призрачный Танцор",
+   "alias": [
+    "Призрачный Танцор"
+   ],
+   "tier": "Легендарный",
+   "price": 2650,
+   "parts": 3,
+   "stats": [
+    "Крит",
+    "Скорость атаки",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Phantom_Dancer"
+  },
+  {
+   "id": "1037",
+   "name": "Pickaxe",
+   "sub": "Кирка",
+   "alias": [
+    "Кирка"
+   ],
+   "tier": "Базовый",
+   "price": 875,
+   "parts": 0,
+   "stats": [
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Pickaxe"
+  },
+  {
+   "id": "3047",
+   "name": "Plated Steelcaps",
+   "sub": "Бронированные сапоги",
+   "alias": [
+    "Бронированные сапоги"
+   ],
+   "tier": "Ботинки",
+   "price": 1200,
+   "parts": 2,
+   "stats": [
+    "Броня",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Plated_Steelcaps"
+  },
+  {
+   "id": "6698",
+   "name": "Profane Hydra",
+   "sub": "Нечестивая гидра",
+   "alias": [
+    "Нечестивая гидра"
+   ],
+   "tier": "Легендарный",
+   "price": 2850,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Ускорение умений",
+    "Пробивание брони"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Profane_Hydra"
+  },
+  {
+   "id": "2525",
+   "name": "Protoplasm Harness",
+   "sub": "Протоплазменная портупея",
+   "alias": [
+    "Протоплазменная портупея"
+   ],
+   "tier": "Легендарный",
+   "price": 2600,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Скорость",
+    "Стойкость",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Protoplasm_Harness"
+  },
+  {
+   "id": "3140",
+   "name": "Quicksilver Sash",
+   "sub": "Кушак стремительного серебра",
+   "alias": [
+    "Кушак стремительного серебра"
+   ],
+   "tier": "Эпический",
+   "price": 1300,
+   "parts": 1,
+   "stats": [
+    "Маг. сопротивление"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Quicksilver_Sash"
+  },
+  {
+   "id": "3089",
+   "name": "Rabadon's Deathcap",
+   "sub": "Смертельная шляпа Рабадона",
+   "alias": [
+    "Смертельная шляпа Рабадона"
+   ],
+   "tier": "Легендарный",
+   "price": 3500,
+   "parts": 2,
+   "stats": [
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Rabadon's_Deathcap"
+  },
+  {
+   "id": "3143",
+   "name": "Randuin's Omen",
+   "sub": "Знамение Рандуина",
+   "alias": [
+    "Знамение Рандуина"
+   ],
+   "tier": "Легендарный",
+   "price": 2700,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Броня",
+    "Замедление"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Randuin's_Omen"
+  },
+  {
+   "id": "3094",
+   "name": "Rapid Firecannon",
+   "sub": "Скорострельная пушка",
+   "alias": [
+    "Скорострельная пушка"
+   ],
+   "tier": "Легендарный",
+   "price": 2650,
+   "parts": 2,
+   "stats": [
+    "Крит",
+    "Скорость атаки",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Rapid_Firecannon"
+  },
+  {
+   "id": "3074",
+   "name": "Ravenous Hydra",
+   "sub": "Ненасытная гидра",
+   "alias": [
+    "Ненасытная гидра"
+   ],
+   "tier": "Легендарный",
+   "price": 3300,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Вампиризм",
+    "Ускорение умений",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Ravenous_Hydra"
+  },
+  {
+   "id": "6690",
+   "name": "Rectrix",
+   "sub": "Рулевое перо",
+   "alias": [
+    "Рулевое перо"
+   ],
+   "tier": "Эпический",
+   "price": 775,
+   "parts": 1,
+   "stats": [
+    "Урон",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Rectrix"
+  },
+  {
+   "id": "1043",
+   "name": "Recurve Bow",
+   "sub": "Изогнутый лук",
+   "alias": [
+    "Изогнутый лук"
+   ],
+   "tier": "Эпический",
+   "price": 700,
+   "parts": 1,
+   "stats": [
+    "Скорость атаки",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Recurve_Bow"
+  },
+  {
+   "id": "3107",
+   "name": "Redemption",
+   "sub": "Искупление",
+   "alias": [
+    "Искупление"
+   ],
+   "tier": "Легендарный",
+   "price": 2300,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Реген маны",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Redemption"
+  },
+  {
+   "id": "1006",
+   "name": "Rejuvenation Bead",
+   "sub": "Заживляющая бусина",
+   "alias": [
+    "Заживляющая бусина"
+   ],
+   "tier": "Базовый",
+   "price": 300,
+   "parts": 0,
+   "stats": [
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Rejuvenation_Bead"
+  },
+  {
+   "id": "4633",
+   "name": "Riftmaker",
+   "sub": "Творец разломов",
+   "alias": [
+    "Творец разломов"
+   ],
+   "tier": "Легендарный",
+   "price": 3100,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Ускорение умений",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Riftmaker"
+  },
+  {
+   "id": "6657",
+   "name": "Rod of Ages",
+   "sub": "Жезл веков",
+   "alias": [
+    "Жезл веков"
+   ],
+   "tier": "Легендарный",
+   "price": 2600,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Сила умений",
+    "Мана",
+    "Реген маны"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Rod_of_Ages"
+  },
+  {
+   "id": "1028",
+   "name": "Ruby Crystal",
+   "sub": "Рубиновый кристалл",
+   "alias": [
+    "Рубиновый кристалл"
+   ],
+   "tier": "Базовый",
+   "price": 400,
+   "parts": 0,
+   "stats": [
+    "Здоровье"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Ruby_Crystal"
+  },
+  {
+   "id": "3085",
+   "name": "Runaan's Hurricane",
+   "sub": "Ураган Рунаан",
+   "alias": [
+    "Ураган Рунаан"
+   ],
+   "tier": "Легендарный",
+   "price": 2650,
+   "parts": 2,
+   "stats": [
+    "Крит",
+    "Скорость атаки",
+    "При попадании",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Runaan's_Hurricane"
+  },
+  {
+   "id": "3116",
+   "name": "Rylai's Crystal Scepter",
+   "sub": "Хрустальный скипетр Рилай",
+   "alias": [
+    "Хрустальный скипетр Рилай"
+   ],
+   "tier": "Легендарный",
+   "price": 2600,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Замедление"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Rylai's_Crystal_Scepter"
+  },
+  {
+   "id": "1027",
+   "name": "Sapphire Crystal",
+   "sub": "Сапфировый кристалл",
+   "alias": [
+    "Сапфировый кристалл"
+   ],
+   "tier": "Базовый",
+   "price": 300,
+   "parts": 0,
+   "stats": [
+    "Мана"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Sapphire_Crystal"
+  },
+  {
+   "id": "1101",
+   "name": "Scorchclaw Pup",
+   "sub": "Детеныш огневолка",
+   "alias": [
+    "Детеныш огневолка"
+   ],
+   "tier": "Стартовый",
+   "price": 450,
+   "parts": 0,
+   "stats": [],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Scorchclaw_Pup"
+  },
+  {
+   "id": "3144",
+   "name": "Scout's Slingshot",
+   "sub": "Рогатка скаута",
+   "alias": [
+    "Рогатка скаута"
+   ],
+   "tier": "Эпический",
+   "price": 600,
+   "parts": 2,
+   "stats": [
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Scout's_Slingshot"
+  },
+  {
+   "id": "2420",
+   "name": "Seeker's Armguard",
+   "sub": "Наручи Искательницы",
+   "alias": [
+    "Наручи Искательницы"
+   ],
+   "tier": "Эпический",
+   "price": 1600,
+   "parts": 3,
+   "stats": [
+    "Броня",
+    "Сила умений"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Seeker's_Armguard"
+  },
+  {
+   "id": "6695",
+   "name": "Serpent's Fang",
+   "sub": "Змеиный клык",
+   "alias": [
+    "Змеиный клык"
+   ],
+   "tier": "Легендарный",
+   "price": 2500,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Serpent's_Fang"
+  },
+  {
+   "id": "3134",
+   "name": "Serrated Dirk",
+   "sub": "Зазубренный кинжал",
+   "alias": [
+    "Зазубренный кинжал"
+   ],
+   "tier": "Эпический",
+   "price": 1000,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Serrated_Dirk"
+  },
+  {
+   "id": "6694",
+   "name": "Serylda's Grudge",
+   "sub": "Злоба Серильды",
+   "alias": [
+    "Злоба Серильды"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Ускорение умений",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Serylda's_Grudge"
+  },
+  {
+   "id": "4645",
+   "name": "Shadowflame",
+   "sub": "Сумрачное пламя",
+   "alias": [
+    "Сумрачное пламя"
+   ],
+   "tier": "Легендарный",
+   "price": 3200,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Маг. пробивание"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Shadowflame"
+  },
+  {
+   "id": "3057",
+   "name": "Sheen",
+   "sub": "Сияние",
+   "alias": [
+    "Сияние"
+   ],
+   "tier": "Эпический",
+   "price": 900,
+   "parts": 1,
+   "stats": [
+    "При попадании",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Sheen"
+  },
+  {
+   "id": "663058",
+   "name": "Shield of Molten Stone",
+   "sub": "Щит из расплавленного камня",
+   "alias": [
+    "Щит из расплавленного камня"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Броня"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Shield_of_Molten_Stone"
+  },
+  {
+   "id": "2065",
+   "name": "Shurelya's Battlesong",
+   "sub": "Боевая песнь Шурелии",
+   "alias": [
+    "Боевая песнь Шурелии"
+   ],
+   "tier": "Легендарный",
+   "price": 2200,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Реген маны",
+    "Ускорение умений",
+    "Скорость"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Shurelya's_Battlesong"
+  },
+  {
+   "id": "3876",
+   "name": "Solstice Sleigh",
+   "sub": "Сани солнцестояния",
+   "alias": [
+    "Сани солнцестояния"
+   ],
+   "tier": "Стартовый",
+   "price": 400,
+   "parts": 1,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Реген маны",
+    "Обзор",
+    "Золото"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Solstice_Sleigh"
+  },
+  {
+   "id": "3020",
+   "name": "Sorcerer's Shoes",
+   "sub": "Сапоги чародея",
+   "alias": [
+    "Сапоги чародея"
+   ],
+   "tier": "Ботинки",
+   "price": 1100,
+   "parts": 1,
+   "stats": [
+    "Скорость",
+    "Маг. пробивание"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Sorcerer's_Shoes"
+  },
+  {
+   "id": "3161",
+   "name": "Spear of Shojin",
+   "sub": "Копье Седзина",
+   "alias": [
+    "Копье Седзина"
+   ],
+   "tier": "Легендарный",
+   "price": 3100,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Spear_of_Shojin"
+  },
+  {
+   "id": "3211",
+   "name": "Spectre's Cowl",
+   "sub": "Капюшон призрака",
+   "alias": [
+    "Капюшон призрака"
+   ],
+   "tier": "Эпический",
+   "price": 1250,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Маг. сопротивление"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Spectre's_Cowl"
+  },
+  {
+   "id": "3175",
+   "name": "Spellslinger's Shoes",
+   "sub": "Сапоги заклинателя",
+   "alias": [
+    "Сапоги заклинателя"
+   ],
+   "tier": "Ботинки",
+   "price": 1100,
+   "parts": 1,
+   "stats": [
+    "Скорость",
+    "Маг. пробивание"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Spellslinger's_Shoes"
+  },
+  {
+   "id": "3065",
+   "name": "Spirit Visage",
+   "sub": "Облачение духов",
+   "alias": [
+    "Облачение духов"
+   ],
+   "tier": "Легендарный",
+   "price": 2700,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Реген здоровья",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Spirit_Visage"
+  },
+  {
+   "id": "6616",
+   "name": "Staff of Flowing Water",
+   "sub": "Посох водного потока",
+   "alias": [
+    "Посох водного потока"
+   ],
+   "tier": "Легендарный",
+   "price": 2250,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Реген маны",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Staff_of_Flowing_Water"
+  },
+  {
+   "id": "3087",
+   "name": "Statikk Shiv",
+   "sub": "Заточка Статикка",
+   "alias": [
+    "Заточка Статикка"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Скорость атаки",
+    "Сила умений",
+    "При попадании",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Statikk_Shiv"
+  },
+  {
+   "id": "2019",
+   "name": "Steel Sigil",
+   "sub": "Стальной знак",
+   "alias": [
+    "Стальной знак"
+   ],
+   "tier": "Эпический",
+   "price": 1100,
+   "parts": 3,
+   "stats": [
+    "Броня",
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Steel_Sigil"
+  },
+  {
+   "id": "3053",
+   "name": "Sterak's Gage",
+   "sub": "Испытание Стерака",
+   "alias": [
+    "Испытание Стерака"
+   ],
+   "tier": "Легендарный",
+   "price": 3200,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Стойкость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Sterak's_Gage"
+  },
+  {
+   "id": "3095",
+   "name": "Stormrazor",
+   "sub": "Грозовая бритва",
+   "alias": [
+    "Грозовая бритва"
+   ],
+   "tier": "Легендарный",
+   "price": 3200,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Крит",
+    "Скорость атаки",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Stormrazor"
+  },
+  {
+   "id": "4646",
+   "name": "Stormsurge",
+   "sub": "Штормовой прилив",
+   "alias": [
+    "Штормовой прилив"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 2,
+   "stats": [
+    "Сила умений",
+    "Золото",
+    "Скорость",
+    "Маг. пробивание"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Stormsurge"
+  },
+  {
+   "id": "6631",
+   "name": "Stridebreaker",
+   "sub": "Костолом",
+   "alias": [
+    "Костолом"
+   ],
+   "tier": "Легендарный",
+   "price": 3300,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Скорость атаки",
+    "Замедление"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Stridebreaker"
+  },
+  {
+   "id": "6610",
+   "name": "Sundered Sky",
+   "sub": "Расколотое небо",
+   "alias": [
+    "Расколотое небо"
+   ],
+   "tier": "Легендарный",
+   "price": 3100,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Sundered_Sky"
+  },
+  {
+   "id": "3068",
+   "name": "Sunfire Aegis",
+   "sub": "Эгида солнечного пламени",
+   "alias": [
+    "Эгида солнечного пламени"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Броня",
+    "Аура",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Sunfire_Aegis"
+  },
+  {
+   "id": "3170",
+   "name": "Swiftmarch",
+   "sub": "Стремительный марш",
+   "alias": [
+    "Стремительный марш"
+   ],
+   "tier": "Ботинки",
+   "price": 1000,
+   "parts": 1,
+   "stats": [
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Swiftmarch"
+  },
+  {
+   "id": "664011",
+   "name": "Sword of Blossoming Dawn",
+   "sub": "Меч сияющего рассвета",
+   "alias": [
+    "Меч сияющего рассвета"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Сила умений",
+    "Ускорение умений",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Sword_of_Blossoming_Dawn"
+  },
+  {
+   "id": "663060",
+   "name": "Sword of the Divine",
+   "sub": "Меч Божественных",
+   "alias": [
+    "Меч Божественных"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Урон",
+    "Крит",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Sword_of_the_Divine"
+  },
+  {
+   "id": "3070",
+   "name": "Tear of the Goddess",
+   "sub": "Слеза богини",
+   "alias": [
+    "Слеза богини"
+   ],
+   "tier": "Базовый",
+   "price": 400,
+   "parts": 0,
+   "stats": [
+    "Мана",
+    "Реген маны"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Tear_of_the_Goddess"
+  },
+  {
+   "id": "3302",
+   "name": "Terminus",
+   "sub": "Светотень",
+   "alias": [
+    "Светотень"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Скорость атаки",
+    "При попадании",
+    "Маг. пробивание",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Terminus"
+  },
+  {
+   "id": "2020",
+   "name": "The Brutalizer",
+   "sub": "Изувер",
+   "alias": [
+    "Изувер"
+   ],
+   "tier": "Эпический",
+   "price": 1337,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Ускорение умений",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/The_Brutalizer"
+  },
+  {
+   "id": "6676",
+   "name": "The Collector",
+   "sub": "Сборщик долгов",
+   "alias": [
+    "Сборщик долгов"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Крит",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/The_Collector"
+  },
+  {
+   "id": "3075",
+   "name": "Thornmail",
+   "sub": "Шипованный доспех",
+   "alias": [
+    "Шипованный доспех"
+   ],
+   "tier": "Легендарный",
+   "price": 2450,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Броня"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Thornmail"
+  },
+  {
+   "id": "3077",
+   "name": "Tiamat",
+   "sub": "Тиамат",
+   "alias": [
+    "Тиамат"
+   ],
+   "tier": "Эпический",
+   "price": 1200,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Tiamat"
+  },
+  {
+   "id": "3748",
+   "name": "Titanic Hydra",
+   "sub": "Титаническая гидра",
+   "alias": [
+    "Титаническая гидра"
+   ],
+   "tier": "Легендарный",
+   "price": 3300,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Урон",
+    "При попадании"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Titanic_Hydra"
+  },
+  {
+   "id": "3078",
+   "name": "Trinity Force",
+   "sub": "Тройственный Союз",
+   "alias": [
+    "Тройственный Союз"
+   ],
+   "tier": "Легендарный",
+   "price": 3333,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Урон",
+    "Скорость атаки",
+    "Ускорение умений",
+    "При попадании",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Trinity_Force"
+  },
+  {
+   "id": "2021",
+   "name": "Tunneler",
+   "sub": "Бур",
+   "alias": [
+    "Бур"
+   ],
+   "tier": "Эпический",
+   "price": 1150,
+   "parts": 2,
+   "stats": [
+    "Здоровье",
+    "Урон"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Tunneler"
+  },
+  {
+   "id": "3179",
+   "name": "Umbral Glaive",
+   "sub": "Теневая глефа",
+   "alias": [
+    "Теневая глефа"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 2,
+   "stats": [
+    "Урон",
+    "Обзор",
+    "Ускорение умений",
+    "Пробивание брони"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Umbral_Glaive"
+  },
+  {
+   "id": "2502",
+   "name": "Unending Despair",
+   "sub": "Бесконечное отчаяние",
+   "alias": [
+    "Бесконечное отчаяние"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Броня",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Unending_Despair"
+  },
+  {
+   "id": "1053",
+   "name": "Vampiric Scepter",
+   "sub": "Вампирский скипетр",
+   "alias": [
+    "Вампирский скипетр"
+   ],
+   "tier": "Эпический",
+   "price": 900,
+   "parts": 1,
+   "stats": [
+    "Урон",
+    "Вампиризм"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Vampiric_Scepter"
+  },
+  {
+   "id": "663064",
+   "name": "Veigar's Talisman of Ascension",
+   "sub": "Талисман вознесения Вейгара",
+   "alias": [
+    "Талисман вознесения Вейгара"
+   ],
+   "tier": "Базовый",
+   "price": 900,
+   "parts": 0,
+   "stats": [],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Veigar's_Talisman_of_Ascension"
+  },
+  {
+   "id": "4632",
+   "name": "Verdant Barrier",
+   "sub": "Изумрудный оберег",
+   "alias": [
+    "Изумрудный оберег"
+   ],
+   "tier": "Эпический",
+   "price": 1600,
+   "parts": 3,
+   "stats": [
+    "Маг. сопротивление",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Verdant_Barrier"
+  },
+  {
+   "id": "3135",
+   "name": "Void Staff",
+   "sub": "Посох Бездны",
+   "alias": [
+    "Посох Бездны"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 2,
+   "stats": [
+    "Маг. пробивание",
+    "Сила умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Void_Staff"
+  },
+  {
+   "id": "6699",
+   "name": "Voltaic Cyclosword",
+   "sub": "Электрический цикломеч",
+   "alias": [
+    "Электрический цикломеч"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Ускорение умений",
+    "Пробивание брони"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Voltaic_Cyclosword"
+  },
+  {
+   "id": "3082",
+   "name": "Warden's Mail",
+   "sub": "Доспех хранителя",
+   "alias": [
+    "Доспех хранителя"
+   ],
+   "tier": "Эпический",
+   "price": 1000,
+   "parts": 2,
+   "stats": [
+    "Броня"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Warden's_Mail"
+  },
+  {
+   "id": "3083",
+   "name": "Warmog's Armor",
+   "sub": "Доспех Вармога",
+   "alias": [
+    "Доспех Вармога"
+   ],
+   "tier": "Легендарный",
+   "price": 3100,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Warmog's_Armor"
+  },
+  {
+   "id": "2526",
+   "name": "Whispering Circlet",
+   "sub": "Шепчущая диадема",
+   "alias": [
+    "Шепчущая диадема"
+   ],
+   "tier": "Эпический",
+   "price": 2250,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Мана",
+    "Реген маны"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Whispering_Circlet"
+  },
+  {
+   "id": "3066",
+   "name": "Winged Moonplate",
+   "sub": "Крылья луны",
+   "alias": [
+    "Крылья луны"
+   ],
+   "tier": "Эпический",
+   "price": 800,
+   "parts": 1,
+   "stats": [
+    "Здоровье",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Winged_Moonplate"
+  },
+  {
+   "id": "3119",
+   "name": "Winter's Approach",
+   "sub": "Вестник зимы",
+   "alias": [
+    "Вестник зимы"
+   ],
+   "tier": "Легендарный",
+   "price": 2400,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Мана",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Winter's_Approach"
+  },
+  {
+   "id": "3091",
+   "name": "Wit's End",
+   "sub": "Смерть Разума",
+   "alias": [
+    "Смерть Разума"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 3,
+   "stats": [
+    "Маг. сопротивление",
+    "Скорость атаки",
+    "При попадании",
+    "Стойкость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Wit's_End"
+  },
+  {
+   "id": "3865",
+   "name": "World Atlas",
+   "sub": "Атлас мира",
+   "alias": [
+    "Атлас мира"
+   ],
+   "tier": "Стартовый",
+   "price": 400,
+   "parts": 0,
+   "stats": [
+    "Здоровье",
+    "Реген маны",
+    "Обзор",
+    "Золото"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/World_Atlas"
+  },
+  {
+   "id": "3142",
+   "name": "Youmuu's Ghostblade",
+   "sub": "Призрачный клинок Йомуу",
+   "alias": [
+    "Призрачный клинок Йомуу"
+   ],
+   "tier": "Легендарный",
+   "price": 2800,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Скорость",
+    "Пробивание брони"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Youmuu's_Ghostblade"
+  },
+  {
+   "id": "3032",
+   "name": "Yun Tal Wildarrows",
+   "sub": "Дикие стрелы Юнталь",
+   "alias": [
+    "Дикие стрелы Юнталь"
+   ],
+   "tier": "Легендарный",
+   "price": 3000,
+   "parts": 3,
+   "stats": [
+    "Урон",
+    "Крит",
+    "Скорость атаки"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Yun_Tal_Wildarrows"
+  },
+  {
+   "id": "3871",
+   "name": "Zaz'Zak's Realmspike",
+   "sub": "Нарыв Зак'Зака",
+   "alias": [
+    "Нарыв Зак'Зака"
+   ],
+   "tier": "Стартовый",
+   "price": 400,
+   "parts": 1,
+   "stats": [
+    "Здоровье",
+    "Реген здоровья",
+    "Реген маны",
+    "Обзор",
+    "Золото"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Zaz'Zak's_Realmspike"
+  },
+  {
+   "id": "3086",
+   "name": "Zeal",
+   "sub": "Рвение",
+   "alias": [
+    "Рвение"
+   ],
+   "tier": "Эпический",
+   "price": 1200,
+   "parts": 2,
+   "stats": [
+    "Крит",
+    "Скорость атаки",
+    "Скорость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Zeal"
+  },
+  {
+   "id": "3050",
+   "name": "Zeke's Convergence",
+   "sub": "Конвергенция Зика",
+   "alias": [
+    "Конвергенция Зика"
+   ],
+   "tier": "Легендарный",
+   "price": 2200,
+   "parts": 3,
+   "stats": [
+    "Здоровье",
+    "Маг. сопротивление",
+    "Броня",
+    "Ускорение умений"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Zeke's_Convergence"
+  },
+  {
+   "id": "663172",
+   "name": "Zephyr",
+   "sub": "Западный ветер",
+   "alias": [
+    "Западный ветер"
+   ],
+   "tier": "Базовый",
+   "price": 2500,
+   "parts": 0,
+   "stats": [
+    "Скорость атаки",
+    "Ускорение умений",
+    "При попадании",
+    "Скорость",
+    "Стойкость"
+   ],
+   "active": "Нет",
+   "url": "https://wiki.leagueoflegends.com/en-us/Zephyr"
+  },
+  {
+   "id": "3157",
+   "name": "Zhonya's Hourglass",
+   "sub": "Песочные часы Жони",
+   "alias": [
+    "Песочные часы Жони"
+   ],
+   "tier": "Легендарный",
+   "price": 3250,
+   "parts": 2,
+   "stats": [
+    "Броня",
+    "Сила умений"
+   ],
+   "active": "Да",
+   "url": "https://wiki.leagueoflegends.com/en-us/Zhonya's_Hourglass"
+  }
+ ]
+}
