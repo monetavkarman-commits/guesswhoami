@@ -1,8 +1,9 @@
-// Online features: leaderboard and duels. They use the shared database the page gets when it runs as a
-// Claude artifact (claude.use("db")). Anywhere else everything here quietly reports "offline" and the
-// duel still works through the link alone (the challenger's score travels in the link).
+// Online features: leaderboard and duels. Two backends behind one small interface (db.doc / db.collection / user.profiles):
+// the shared database the page gets as a Claude artifact (claude.use("db")), or Supabase on our own domain
+// (see js/config.js and supabase/schema.sql). Without either everything here quietly reports "offline".
 import { tr } from './i18n.js';
 import { h, modal, toast, GAMES } from './core.js';
+import { accountsEnabled, client, currentUser } from './account.js';
 
 const MODE_NAMES = () => ({ grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы'), maps: tr('Карты'), gear: tr('Предметы') });
 // claude.ai link of the published artifact, used for challenge links when the page runs inside it
@@ -13,7 +14,7 @@ function init() {
   if (ready) return ready;
   ready = (async () => {
     const c = window.claude;
-    if (!c || typeof c.use !== 'function') return null;
+    if (!c || typeof c.use !== 'function') return accountsEnabled() ? supabaseBackend() : null;
     const [db, user] = await Promise.all([c.use('db'), c.use('user')]);
     if (!db || !user) return null;
     const uid = await user.id();
@@ -23,6 +24,45 @@ function init() {
   return ready;
 }
 
+// Supabase stores every document in one "docs" table (collection, id, owner, data); profiles hold public nicknames.
+// uid is null for a visitor who has not logged in: they can read the leaderboard but not write to it.
+async function supabaseBackend() {
+  const sb = await client(); if (!sb) return null;
+  const user = await currentUser();
+  const query = (col, filters = []) => ({
+    where: (field, _op, value) => query(col, [...filters, [field, value]]),
+    limit: (n) => ({ get: async () => {
+      let q = sb.from('docs').select('id,data').eq('collection', col).limit(n);
+      for (const [f, v] of filters) q = q.eq(`data->>${f}`, String(v));
+      const { data, error } = await q; if (error) throw error;
+      return { docs: data.map((r) => ({ id: r.id, data: () => r.data })) };
+    } }),
+  });
+  const db = {
+    doc: (path) => {
+      const [col, id] = path.split('/');
+      return {
+        get: async () => {
+          const { data, error } = await sb.from('docs').select('data').eq('collection', col).eq('id', id).maybeSingle();
+          if (error) throw error;
+          return { exists: !!data, data: () => data && data.data };
+        },
+        set: async (value) => {
+          const { error } = await sb.from('docs').upsert({ collection: col, id, owner: user.id, data: value }); if (error) throw error;
+        },
+      };
+    },
+    collection: (col) => query(col),
+  };
+  const profiles = async (ids) => {
+    const { data } = await sb.from('profiles').select('id,name').in('id', [...new Set(ids)].slice(0, 500));
+    return Object.fromEntries((data || []).map((p) => [p.id, { name: p.name }]));
+  };
+  return { db, user: { profiles }, uid: user ? user.id : null };
+}
+// logging in or out changes who writes, so the backend is rebuilt
+document.addEventListener('gwai:auth', () => { ready = null; });
+
 // true when the shared database is available (inside the Claude artifact); on plain hosting the leaderboard is hidden
 export const onlineReady = () => init().then(Boolean);
 
@@ -30,7 +70,7 @@ export const onlineReady = () => init().then(Boolean);
 let writing = Promise.resolve();
 export function submitDaily({ game, mode, day, score }) {
   writing = writing.then(async () => {
-    const on = await init(); if (!on) return;
+    const on = await init(); if (!on || !on.uid) return;
     const ref = on.db.doc(`board/${on.uid}`);
     const snap = await ref.get();
     const cur = snap.exists ? structuredClone(snap.data()) : { scores: {}, total: 0, games: 0 };
@@ -59,7 +99,8 @@ export async function openLeaderboard(game, day) {
   modal(tr('Рейтинг'), body, null, 'wide');
   const on = await init();
   body.innerHTML = '';
-  if (!on) { body.append(h('p', { class: 'muted' }, tr('Рейтинг работает, когда сайт открыт как артефакт Claude и вы вошли в аккаунт.'))); return; }
+  if (!on) { body.append(h('p', { class: 'muted' }, tr('Рейтинг сейчас недоступен.'))); return; }
+  if (!on.uid) body.append(h('p', { class: 'muted' }, tr('Войдите в аккаунт, чтобы ваши ежедневки попадали в рейтинг.')));
   let rows;
   try { rows = (await on.db.collection('board').limit(500).get()).docs.map((d) => ({ id: d.id, ...d.data() })); }
   catch { body.append(h('p', { class: 'muted' }, tr('Не получилось загрузить рейтинг. Попробуйте позже.'))); return; }
@@ -113,7 +154,7 @@ export function duelPanel({ game, mode, id, score, rival, filter }) {
   const list = h('div', { class: 'duel-table' });
   box.append(list);
   init().then(async (on) => {
-    if (!on) return;
+    if (!on || !on.uid) return;
     await saveDuel(on, { id, game, mode, score });
     let rows = [];
     try { rows = (await on.db.collection('duels').where('duel', '==', id).limit(100).get()).docs.map((d) => d.data()); } catch { return; }

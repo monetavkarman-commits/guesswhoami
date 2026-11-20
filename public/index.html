@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- only the site's own files may run or load; no outside scripts, forms or plugins -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; font-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>GuessWhoAmI — угадай игрока</title>
   <meta name="description" content="Ежедневные игры на знание игроков: киберспорт (CS, Dota 2, VALORANT, LoL) и спорт (футбол, баскетбол, теннис).">
@@ -21,6 +21,7 @@
       <div class="top-right">
         <button id="lang-btn" class="icon-pill text" type="button" aria-label="Язык / Language">EN</button>
         <button id="theme-btn" class="icon-pill" type="button" aria-label="Тема">◐</button>
+        <button id="account-btn" class="icon-pill text" type="button" hidden aria-label="Аккаунт">Войти</button>
         <button id="board-btn" class="icon-pill" type="button" aria-label="Рейтинг">🏅</button>
         <button id="profile-btn" class="icon-pill" type="button" aria-label="Профиль и достижения">🏆</button>
       </div>
