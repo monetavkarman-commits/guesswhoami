@@ -107,13 +107,14 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
   // the daily pool ("top") is the best-known share of players, by number of Wikipedia articles about them
   const cut = [...players].sort((a, b) => b.fame - a.fame)[Math.floor(players.length * topShare)]?.fame ?? 0;
   players.forEach((p) => { p.top = p.fame > cut; });
-  players.forEach((a) => {
-    a.mates = [];
-    players.forEach((b, j) => {
-      if (a === b) return;
+  players.forEach((a) => { a.mates = []; });
+  // each pair once, written to both sides, so the link is always symmetric
+  players.forEach((a, i) => {
+    for (let j = i + 1; j < players.length; j++) {
+      const b = players[j];
       const hit = bestOverlap(a._stints, b._stints, (s, e) => monthsBetween(s, e) >= minOverlap);
-      if (hit) a.mates.push(hit.map((x, k) => (k ? x : j)));
-    });
+      if (hit) { a.mates.push(hit.map((x, k) => (k ? x : j))); b.mates.push(hit.map((x, k) => (k ? x : i))); }
+    }
   });
   players.forEach((p) => {
     p.era = []; p.eraTeams = {};
