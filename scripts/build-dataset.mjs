@@ -76,6 +76,8 @@ function buildCS() {
     const stints = history(p).map(([t, s, e]) => [teams.id(t), s, e || 209912]);
     let roles = p.r.filter((r) => PLAYER_ROLES.includes(r));
     if (!roles.length && p.r.some((r) => r.includes('coach'))) roles = ['coach'];
+    // former players who now work as casters, analysts, managers or streamers
+    if (!roles.length && p.r.some((r) => /caster|analyst|observer|manager|streamer|interviewer/.test(r))) roles = ['staff'];
     // Liquipedia lists only the CURRENT role, so famous in-game leaders who moved to coaching lost their IGL role
     if (roles.includes('coach') && FORMER_IGL.has(p.p)) roles = ['igl', 'coach'];
     return {
