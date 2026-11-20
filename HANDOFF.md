@@ -37,3 +37,7 @@
 - Сетка: 12 попыток (`GUESSES` в `public/js/grid.js`).
 - Игрок без команды: показываем последнюю («Arsenal · на пенсии» или «последняя команда») через `teamText` в `core.js`, поле `last` кладут сборщики CS и спорта.
 - У киберкоманд и клубов без свободного логотипа круглый значок с инициалами (`badge` в `core.js`).
+
+## Esports photos and logos (added)
+- `data/raw/esports-wd.json` = Wikidata: professional gamers with a photo (P18) and esports teams with a logo (P154), fetched in the owner's browser from query.wikidata.org (see `scripts/apply-esports-img.mjs` for the shape). `node scripts/build-dataset.mjs` applies it (nickname must match exactly one person; birth year must agree). Coverage is partial: Commons has few free esports photos.
+- Also added: legal pages (privacy.html, terms.html), cookie consent, anonymous analytics (`js/analytics.js`, table `events`), dashboard `admin.html`, social sign-in (providers shown automatically when enabled in Supabase), server-checked scores (`supabase/scores.sql`), and a 4-hourly Liquipedia refresh (`.github/workflows/refresh-data.yml`, CS and Dota only).

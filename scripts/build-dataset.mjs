@@ -240,3 +240,4 @@ for (const [name, fn] of [['cs', buildCS], ['dota', buildDota], ['valorant', bui
   if (missing.size) console.warn(`  countries missing from countries.mjs: ${[...missing].join(', ')}`);
 }
 
+await import('./apply-esports-img.mjs'); // photos and logos from Wikidata
