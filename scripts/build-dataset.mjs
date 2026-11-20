@@ -3,6 +3,7 @@
 //
 //   node scripts/build-dataset.mjs
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { bestOverlap } from './overlap.mjs';
 import { COUNTRIES, REGIONS } from './countries.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -82,13 +83,14 @@ function buildCS() {
     };
   });
 
-  // teammates: overlapping stints (at least one month) on the same team; stored as [playerIndex, teamIndex]
+  // teammates: overlapping stints (at least one month) on the same team;
+  // stored as [playerIndex, teamIndex, fromYear, toYear] (toYear 0 = still together)
   players.forEach((a, i) => {
     a.mates = [];
     players.forEach((b, j) => {
       if (i === j) return;
-      const hit = a._stints.find(([t, s, e]) => b._stints.some(([t2, s2, e2]) => t === t2 && Math.min(e, e2) - Math.max(s, s2) >= 1));
-      if (hit) a.mates.push([j, hit[0]]);
+      const hit = bestOverlap(a._stints, b._stints, (s, e) => e - s >= 1);
+      if (hit) a.mates.push(hit.map((x, k) => (k ? x : j)));
     });
   });
   // eras: CS:GO up to Sep 2023, CS2 from Oct 2023 (a stint must last past October 2023 to count for CS2) (only real playing stints count)
@@ -149,11 +151,13 @@ function buildDota() {
       mates: [],
     };
   });
-  // teammates: same team at the same event; stored as [playerIndex, teamIndex]
+  // teammates: same team at the same event; stored as [playerIndex, teamIndex, firstYear, lastYear]
   apps.forEach((a) => apps.forEach((b) => {
     if (a.ev === b.ev && a.t === b.t && a.pl !== b.pl) {
       const m = players[index.get(a.pl)].mates; const j = index.get(b.pl);
-      if (!m.some((x) => x[0] === j)) m.push([j, a.t]);
+      const x = m.find((y) => y[0] === j && y[1] === a.t);
+      if (x) { x[2] = Math.min(x[2], a.yr); x[3] = Math.max(x[3], a.yr); }
+      else if (!m.some((y) => y[0] === j)) m.push([j, a.t, a.yr, a.yr]);
     }
   }));
   players.forEach((p) => { p.top = p.events >= 2; });
@@ -205,7 +209,9 @@ function buildEventGame({ game, title, eventLabel, sourceNote, wiki, isMajor, la
   apps.forEach((a) => apps.forEach((b) => {
     if (a.ev === b.ev && a.t === b.t && a.pl !== b.pl) {
       const m = players[index.get(a.pl)].mates; const j = index.get(b.pl);
-      if (!m.some((x) => x[0] === j)) m.push([j, a.t]);
+      const x = m.find((y) => y[0] === j && y[1] === a.t);
+      if (x) { x[2] = Math.min(x[2], a.yr); x[3] = Math.max(x[3], a.yr); }
+      else if (!m.some((y) => y[0] === j)) m.push([j, a.t, a.yr, a.yr]);
     }
   }));
   players.forEach((p) => { p.top = p.events >= 2; });
@@ -231,3 +237,4 @@ for (const [name, fn] of [['cs', buildCS], ['dota', buildDota], ['valorant', bui
   console.log(`${name}: ${out.players.length} players, ${out.teams.length} teams, daily pool ${out.players.filter((p) => p.top).length}`);
   if (missing.size) console.warn(`  countries missing from countries.mjs: ${[...missing].join(', ')}`);
 }
+

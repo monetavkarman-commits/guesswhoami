@@ -16,6 +16,19 @@ function bfs(data, from) {
   return { dist, prev };
 }
 
+// "Fenerbahçe, 2021–2022" for the stint two players shared
+function years(m) {
+  if (!m || !m[2]) return '';
+  if (m[3] === 0) return tr('с {0} по сей день', [m[2]]);
+  return m[2] === m[3] ? String(m[2]) : `${m[2]}–${m[3]}`;
+}
+function linkText(data, a, b) {
+  const m = data.players[a].mateInfo.get(b);
+  if (!m) return '';
+  const y = years(m);
+  return data.teams[m[1]] + (y ? ', ' + y : '');
+}
+
 function pathTo(prev, from, to) {
   const path = [to];
   while (path[0] !== from) path.unshift(prev.get(path[0]));
@@ -85,8 +98,7 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
     state.path.forEach((idx, i) => {
       const p = data.players[idx];
       if (i > 0) {
-        const t = data.players[state.path[i - 1]].mateMap.get(idx);
-        chainEl.append(h('div', { class: 'link' }, h('span', {}, data.teams[t])));
+        chainEl.append(h('div', { class: 'link' }, h('span', {}, linkText(data, state.path[i - 1], idx))));
       }
       chainEl.append(h('div', { class: 'node' + (i === 0 || (state.done && i === state.path.length - 1) ? ' end' : '') }, flag(p.cc), ' ', h('b', {}, p.id)));
     });
@@ -112,7 +124,12 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
         title: state.gaveUp ? tr('Цепочка не собрана') : links <= game.par - 1 ? tr('Идеальная цепочка!') : tr('Готово за {0} звен.', [links]),
         score: chainScore(state, game.par), daily, game: data.game, mode: 'chain',
         lines: [tr('Ошибок: {0}, подсказок: {1}.', [state.errors, state.hints]),
-          h('span', { class: 'muted' }, tr('Один из кратчайших путей: '), best.flatMap((i, k) => [k ? ' → ' : '', playerLink(data.players[i])]))],
+          h('div', { class: 'best-path' }, h('span', { class: 'muted' }, tr('Один из кратчайших путей:')),
+            h('ol', {}, best.slice(1).map((b, k) => {
+              const a = best[k];
+              return h('li', {}, playerLink(data.players[a]), ' → ', playerLink(data.players[b]),
+                h('span', { class: 'muted' }, ' · ', tr('вместе в {0}', [linkText(data, a, b)])));
+            })))],
         onShare: state.gaveUp ? null : () => share(shareText(links)),
       }));
     }
@@ -123,7 +140,7 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
     if (!dist.has(game.end)) { toast(tr('От этого игрока до финиша не добраться — отмените шаг')); return; }
     const path = pathTo(prev, last().idx, game.end);
     const nextP = data.players[path[1]];
-    const team = data.teams[last().mateMap.get(nextP.idx)];
+    const team = linkText(data, last().idx, nextP.idx);
     state.hints++; save(); render();
     toast(tr('Следующий шаг: тиммейт по {0}, {1} (−150 очков)', [team, countryName(nextP)]));
   }

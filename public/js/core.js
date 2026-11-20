@@ -68,7 +68,9 @@ export async function loadGame(game) {
     p.idx = i;
     p.teamSet = new Set(p.teams);
     p.eraSets = Object.fromEntries(Object.entries(p.eraTeams || {}).map(([k, v]) => [k, new Set(v)]));
-    p.mateMap = new Map(p.mates);
+    // mates: [playerIndex, teamIndex, fromYear, toYear]; toYear 0 = still together
+    p.mateMap = new Map(p.mates.map((m) => [m[0], m[1]]));
+    p.mateInfo = new Map(p.mates.map((m) => [m[0], m]));
     p.age = p.birth ? ageOn(p.birth, now) : null;
     p.byear = p.birth ? +p.birth.slice(0, 4) : null;
     p.search = (p.id + ' ' + p.name).toLowerCase();

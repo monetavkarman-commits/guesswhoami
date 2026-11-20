@@ -5,6 +5,7 @@
 //   node scripts/build-sports.mjs
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { COUNTRIES, REGIONS } from './countries.mjs';
+import { bestOverlap } from './overlap.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const today = new Date().toISOString().slice(0, 10);
@@ -80,7 +81,7 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
     const current = uniq.filter((x) => x.e >= NOW).sort((a, b) => b.s - a.s)[0];
     const best = Object.entries(o.pos).sort((a, b) => b[1] - a[1])[0];
     players.push({
-      id: o.en, name: o.ru && o.ru !== o.en ? o.ru : '', url: `https://www.wikidata.org/wiki/${o.p}`,
+      id: latin(o.en), name: o.ru && o.ru !== o.en ? o.ru : '', url: `https://www.wikidata.org/wiki/${o.p}`,
       ...country(o, missing), birth: o.b || null,
       status: current || uniq.some((x) => x.e >= NOW - 100) ? 'active' : 'retired',
       team: current ? current.team : null, ...(best ? { pos: +best[0] } : {}), roles: [],
@@ -95,8 +96,8 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
     a.mates = [];
     players.forEach((b, j) => {
       if (a === b) return;
-      const hit = a._stints.find(([t, s, e]) => b._stints.some(([t2, s2, e2]) => t === t2 && monthsBetween(Math.max(s, s2), Math.min(e, e2)) >= minOverlap));
-      if (hit) a.mates.push([j, hit[0]]);
+      const hit = bestOverlap(a._stints, b._stints, (s, e) => monthsBetween(s, e) >= minOverlap);
+      if (hit) a.mates.push(hit.map((x, k) => (k ? x : j)));
     });
   });
   players.forEach((p) => {
@@ -116,6 +117,15 @@ const CLUB = { 'Real Madrid Club de Fútbol': 'Real Madrid', 'Paris Saint-Germai
   'FC Bayern Munich': 'Bayern Munich', 'Inter Milan': 'Inter', 'Genoa CFC': 'Genoa', 'Galatasaray S.K.': 'Galatasaray', 'Beşiktaş J.K.': 'Beşiktaş' };
 const clubName = (l) => CLUB[l] || l.replace(/\s+(F\.C\.|FC|A\.F\.C\.|AFC|C\.F\.|CF|S\.K\.|J\.K\.)$/, '').trim();
 const YOUTH = /\b(II|III|B|C)$|youth|academy|reserve|juvenil|castilla|atlètic|^jong |primavera|under-?\d|\bU-?\d{2}\b|amateur|men's basketball|college|university/i;
+// Wikidata labels sometimes carry Greek or Cyrillic look-alike letters (e.g. a Greek capital alpha in "Arda Güler"),
+// which break search; in a Latin name they are swapped for the Latin letter.
+const GLYPHS = { 'Α': 'A', 'Β': 'B', 'Ε': 'E', 'Ζ': 'Z', 'Η': 'H', 'Ι': 'I', 'Κ': 'K', 'Μ': 'M', 'Ν': 'N', 'Ο': 'O', 'Ρ': 'P', 'Τ': 'T', 'Υ': 'Y', 'Χ': 'X',
+  'ο': 'o', 'ν': 'v', 'А': 'A', 'В': 'B', 'Е': 'E', 'К': 'K', 'М': 'M', 'Н': 'H', 'О': 'O', 'Р': 'P', 'С': 'C', 'Т': 'T', 'Х': 'X',
+  'а': 'a', 'е': 'e', 'о': 'o', 'р': 'p', 'с': 'c', 'у': 'y', 'х': 'x', 'і': 'i' };
+function latin(s) {
+  if (!s || !/[A-Za-z]/.test(s)) return s;
+  return s.replace(/[\u0370-\u03ff\u0400-\u04ff]/g, (c) => GLYPHS[c] || c);
+}
 const monthsBetween = (a, b) => (Math.floor(b / 100) - Math.floor(a / 100)) * 12 + (b % 100) - (a % 100);
 
 const footballPos = (l) => { l = (l || '').toLowerCase(); if (!l) return null;
@@ -159,7 +169,7 @@ for (const [name, fn] of builds) {
       if (!o.en || !o.b || !o.sex || !(o.hands.size || o.start)) continue;
       const c = country(o, missing);
       items.push({
-        id: o.p, name: o.en, sub: [c.country, o.ru && o.ru !== o.en ? o.ru : ''].filter((x) => x && x !== '—').join(' · '),
+        id: o.p, name: latin(o.en), sub: [c.country, o.ru && o.ru !== o.en ? o.ru : ''].filter((x) => x && x !== '—').join(' · '),
         alias: o.ru && o.ru !== o.en ? [o.ru] : [],
         tour: o.sex === 'Q6581072' ? 'WTA' : o.sex === 'Q6581097' ? 'ATP' : null,
         country: c.country === '—' ? null : c.country, region: c.region || null,

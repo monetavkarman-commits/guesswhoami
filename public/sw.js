@@ -1,5 +1,5 @@
 // Offline support: app shell is cache-first, player data is network-first (falls back to cache offline).
-const VERSION = 'gwai-v14';
+const VERSION = 'gwai-v15';
 const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'js/app.js', 'js/core.js', 'js/core-store.js', 'js/i18n.js',
   'js/grid.js', 'js/whoami.js', 'js/chain.js', 'js/stats.js', 'js/achievements.js', 'js/online.js', 'js/items.js', 'icons/icon-192.png', 'icons/icon-512.png'];
 
