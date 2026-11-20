@@ -43,12 +43,6 @@ export const GAMES = {
     eras: { early: tr('Играли до 2010'), late: tr('Играли с 2016') }, activeEra: 'late',
     teamNote: tr('* Клубы и даты переходов — из Wikidata, там бывают пробелы.'),
   },
-  f1: {
-    title: tr('Формула-1'), tab: '🏎 ' + tr('Формула-1'), short: '🏎 F1', sport: true, kind: null,
-    teamLabel: tr('Команда'), ev3: tr('10+ сезонов'), ev1: tr('Один сезон'), evHi: 10, evLo: 1, topMin: null, minTeam: [5, 3],
-    eras: { early: tr('Сезоны до 2010'), late: tr('Гибридная эра (2014+)') }, activeEra: 'late',
-    teamNote: tr('* Команда — в последнем сезоне, только у действующих пилотов.'),
-  },
   tennis: { title: tr('Теннис'), tab: '🎾 ' + tr('Теннис'), short: '🎾 ' + tr('Теннис'), sport: true, itemsOnly: true, eras: {} },
 };
 

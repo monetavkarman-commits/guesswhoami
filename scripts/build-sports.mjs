@@ -1,4 +1,4 @@
-// Builds sport datasets (football, basketball, F1, tennis) from Wikidata query results cached in data/raw/<sport>-wd.json.
+// Builds sport datasets (football, basketball, tennis) from Wikidata query results cached in data/raw/<sport>-wd.json.
 // Wikidata is CC0. Raw format: { list: [{p, sl, b}], teams: [[player, team, teamLabel, isNational, start 'YYYY-MM', end 'YYYY-MM']],
 // info: [{p, en, ru, b, cc, ccs, pos, hand, start, sex?, h?}] } (several info rows per player when a property has several values).
 //
@@ -189,59 +189,5 @@ for (const [name, fn] of builds) {
     writeFileSync(ROOT + 'public/data/tennis-items.json', JSON.stringify(data));
     console.log(`tennis: ${items.length} players, with hand ${items.filter((x) => x.hand).length}, height ${items.filter((x) => x.height).length}, pro ${items.filter((x) => x.pro).length}`);
     if (missing.size) console.warn('  ISO codes missing from countries.mjs:', [...missing].join(', '));
-  }
-}
-
-// ---------- Formula 1: season standings 1990–2026 from the jolpica-f1 API (Ergast successor, CC BY-NC-SA 4.0) ----------
-{
-  const f = ROOT + 'data/raw/f1-jolpica.json';
-  if (existsSync(f)) {
-    const seasons = JSON.parse(readFileSync(f, 'utf8'));
-    const NAT = { Brazilian: 'BR', French: 'FR', Austrian: 'AT', British: 'GB', Belgian: 'BE', Italian: 'IT', Japanese: 'JP', Swiss: 'CH', Finnish: 'FI',
-      German: 'DE', Australian: 'AU', Swedish: 'SE', Dutch: 'NL', American: 'US', Portuguese: 'PT', Monegasque: 'MC', Danish: 'DK', Canadian: 'CA',
-      Argentine: 'AR', Spanish: 'ES', Colombian: 'CO', Czech: 'CZ', Malaysian: 'MY', Irish: 'IE', Hungarian: 'HU', Indian: 'IN', Polish: 'PL',
-      Russian: 'RU', Mexican: 'MX', Venezuelan: 'VE', Indonesian: 'ID', 'New Zealander': 'NZ', Thai: 'TH', Chinese: 'CN' };
-    const missing = new Set();
-    const teamList = []; const teamIdx = new Map();
-    const T = (n) => { if (!teamIdx.has(n)) { teamIdx.set(n, teamList.length); teamList.push(n); } return teamIdx.get(n); };
-    const by = new Map();
-    const years = Object.keys(seasons).map(Number).sort();
-    const last = years[years.length - 1];
-    for (const y of years) for (const d of seasons[y]) {
-      const p = by.get(d.id) || { d, seasons: [], wins: 0, titles: 0, best: 99 };
-      p.d = d; p.seasons.push({ y, teams: d.teams.map(T) }); p.wins += d.wins; if (d.pos === 1) p.titles++; if (d.pos && d.pos < p.best) p.best = d.pos;
-      by.set(d.id, p);
-    }
-    const ids = [...by.keys()]; const index = new Map(ids.map((k, i) => [k, i]));
-    const players = ids.map((k) => {
-      const { d, seasons: ss, wins, titles } = by.get(k);
-      const iso = NAT[d.nat]; const c = iso && BY_ISO[iso]; if (!c) missing.add(d.nat);
-      const lastS = ss[ss.length - 1];
-      return {
-        id: `${d.given} ${d.family}`, name: d.code || '', url: d.url || '', cc: iso || '', country: c ? c.ru : d.nat, countryEn: c ? c.en : d.nat, region: c ? c.region : '',
-        birth: d.dob || null, status: lastS.y === last ? 'active' : 'retired', team: lastS.y === last ? teamList[lastS.teams[lastS.teams.length - 1]] : null,
-        roles: [], events: ss.length, wins, titles, top: ss.length >= 4 || wins > 0,
-        teams: [...new Set(ss.flatMap((x) => x.teams))],
-        era: [...new Set(ss.map((x) => (x.y < 2010 ? 'early' : x.y >= 2014 ? 'late' : null)).filter(Boolean))],
-        eraTeams: {
-          early: [...new Set(ss.filter((x) => x.y < 2010).flatMap((x) => x.teams))],
-          late: [...new Set(ss.filter((x) => x.y >= 2014).flatMap((x) => x.teams))],
-        },
-        _ss: ss, mates: [],
-      };
-    });
-    // teammates: same team in the same season
-    for (const y of years) {
-      const byTeam = new Map();
-      for (const d of seasons[y]) for (const t of d.teams.map((n) => teamIdx.get(n))) { const l = byTeam.get(t) || []; l.push(index.get(d.id)); byTeam.set(t, l); }
-      for (const [t, l] of byTeam) for (const a of l) for (const b of l) if (a !== b && !players[a].mates.some((m) => m[0] === b)) players[a].mates.push([b, t]);
-    }
-    players.forEach((p) => delete p._ss);
-    const out = { game: 'f1', title: 'Формула-1', eventLabel: 'Сезонов', generated: today,
-      source: { name: 'jolpica-f1 (Ergast)', license: 'CC BY-NC-SA 4.0', url: 'https://github.com/jolpica/jolpica-f1' },
-      sourceNote: `Пилоты Формулы-1, сезоны ${years[0]}–${last} (jolpica-f1, CC BY-NC-SA 4.0)`, regions: REGIONS, teams: teamList, players };
-    writeFileSync(ROOT + 'public/data/f1.json', JSON.stringify(out));
-    console.log(`f1: ${players.length} drivers, ${teamList.length} teams, top ${players.filter((p) => p.top).length}, champions ${players.filter((p) => p.titles).length}`);
-    if (missing.size) console.warn('  nationalities missing:', [...missing].join(', '));
   }
 }
