@@ -74,7 +74,7 @@ export async function loadGame(game) {
     p.mateInfo = new Map(p.mates.map((m) => [m[0], m]));
     p.age = p.birth ? ageOn(p.birth, now) : null;
     p.byear = p.birth ? +p.birth.slice(0, 4) : null;
-    p.search = (p.id + ' ' + p.name).toLowerCase();
+    p.search = fold(p.id + ' ' + p.name);
   });
   data.cfg = GAMES[game];
   cache[game] = data;
@@ -204,6 +204,9 @@ export function playerLink(p) {
 }
 
 // ---------- player search box with autocomplete ----------
+// search ignores case and accents: "ozil" finds Özil, "gueler" is not needed, "guler" finds Güler
+export const fold = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').replace(/ø/g, 'o').replace(/ß/g, 'ss').replace(/đ/g, 'd').replace(/ł/g, 'l').toLowerCase();
+
 export function playerSearch(data, { placeholder = tr('Введите ник игрока…'), exclude = () => false, onPick }) {
   const input = h('input', { type: 'text', class: 'search-input', placeholder, autocomplete: 'off', spellcheck: 'false' });
   const list = h('ul', { class: 'search-list', role: 'listbox' });
@@ -221,12 +224,12 @@ export function playerSearch(data, { placeholder = tr('Введите ник и�
     list.style.display = items.length ? 'block' : 'none';
   };
   const update = () => {
-    const q = input.value.trim().toLowerCase();
+    const q = fold(input.value.trim());
     if (!q) { items = []; render(); return; }
     const starts = []; const contains = [];
     for (const p of data.players) {
       if (exclude(p)) continue;
-      const id = p.id.toLowerCase();
+      const id = fold(p.id);
       if (id.startsWith(q)) starts.push(p); else if (p.search.includes(q)) contains.push(p);
     }
     starts.sort((a, b) => a.id.length - b.id.length);

@@ -5,6 +5,7 @@ import * as grid from './grid.js';
 import * as whoami from './whoami.js';
 import * as chain from './chain.js';
 import * as items from './items.js';
+import { renderHome } from './home.js';
 import { openProfile } from './achievements.js';
 import { initAccountButton } from './account.js';
 import { openLeaderboard, duelPanel, newDuelId, onlineReady } from './online.js';
@@ -71,9 +72,10 @@ function parseHash() {
   const [g, m, e, id, ...rest] = location.hash.replace('#', '').split(/[-/]/);
   const duel = DUELS && e === 'duel' && /^[a-z0-9]{4,16}$/.test(id || '') ? id : null;
   const s = rest.find((x) => /^s\d+$/.test(x)); const f = rest.find((x) => /^f\w+$/.test(x));
+  const home = !GAMES[g];
   const game = GAMES[g] ? g : 'cs';
   const okMode = (k) => MODES[k] && (!MODES[k].gameTitle || MODES[k].gameTitle[game]) && (!GAMES[game].itemsOnly || MODES[k].set);
-  return { game, mode: okMode(m) ? m : GAMES[game].itemsOnly ? 'items' : 'grid', endless: e === 'free' || e === 'duel' || !!duel, duel,
+  return { home, game, mode: okMode(m) ? m : GAMES[game].itemsOnly ? 'items' : 'grid', endless: e === 'free' || e === 'duel' || !!duel, duel,
     rival: s ? +s.slice(1) : null, duelFilter: f ? f.slice(1) : null };
 }
 
@@ -96,7 +98,15 @@ function filterSelect(game) {
 }
 
 async function render() {
-  const { game, mode, endless, duel, rival, duelFilter } = parseHash();
+  const { home, game, mode, endless, duel, rival, duelFilter } = parseHash();
+  document.body.classList.toggle('is-home', home);
+  window.scrollTo(0, 0);
+  if (home) {
+    document.title = lang === 'en' ? 'GuessWhoAmI — guess the player' : 'GuessWhoAmI — угадай игрока';
+    sourceNote.textContent = '';
+    renderHome(root, { GAMES, MODES, nav, num: today().num });
+    return;
+  }
   // two sections, esports and sports; only the games of the current section are listed
   const section = GAMES[game].sport ? 'sport' : 'esport';
   store.set(`lastGame:${section}`, game);

@@ -1,7 +1,7 @@
 // "Предметы": Wordle-style guessing of game items (Dota 2 heroes, CS weapons) from data/<game>-items.json.
 // Columns are declared in the data file: 'cat' (exact match), 'set' (overlap is yellow), 'num' (arrows, yellow when close).
 import { tr } from './i18n.js';
-import { rng, pick, h, store, share, pic, wmUrl } from './core.js';
+import { rng, pick, h, store, share, pic, wmUrl, fold } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const MAX = 7;
@@ -57,9 +57,9 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
     list.style.display = items.length ? 'block' : 'none';
   };
   input.addEventListener('input', () => {
-    const q = input.value.trim().toLowerCase();
-    items = q ? data.items.filter((x) => !state.guesses.includes(x.id) && (x.name.toLowerCase().includes(q) || (x.alias || []).some((a) => a.toLowerCase().includes(q))))
-      .sort((a, b) => a.name.toLowerCase().indexOf(q) - b.name.toLowerCase().indexOf(q)).slice(0, 8) : [];
+    const q = fold(input.value.trim());
+    items = q ? data.items.filter((x) => !state.guesses.includes(x.id) && (fold(x.name).includes(q) || (x.alias || []).some((a) => fold(a).includes(q))))
+      .sort((a, b) => fold(a.name).indexOf(q) - fold(b.name).indexOf(q)).slice(0, 8) : [];
     active = 0; renderList();
   });
   input.addEventListener('keydown', (e) => {
