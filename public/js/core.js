@@ -57,7 +57,7 @@ const STEAM = 'https://shared.fastly.steamstatic.com/community_assets/images/app
 const GAME_IMG = {
   cs: () => STEAM + '730/8dbc71957312bbd3baea65848b545be9eae2a355.jpg', dota: () => STEAM + '570/48eb825bb93787945065b460bdc109e395384ebf.jpg',
   deadlock: () => STEAM + '1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg',
-  valorant: () => wmUrl('f/fc/Valorant_logo_-_pink_color_version.svg', 96), lol: () => wmUrl('d/d8/League_of_Legends_2019_vector.svg', 120),
+  valorant: () => wmUrl('f/fc/Valorant_logo_-_pink_color_version.svg', 120), lol: () => wmUrl('d/d8/League_of_Legends_2019_vector.svg', 120),
 };
 export function gameBadge(game, cls = 'gico') {
   const b = GAME_BADGE[game]; if (!b) return null;
