@@ -11,7 +11,7 @@ import { askConsent } from './consent.js';
 import { startAnalytics, track, sendReport } from './analytics.js';
 import { renderHome } from './home.js';
 import { openProfile } from './achievements.js';
-import { initAccountButton } from './account.js';
+import { initAccountButton, accountsEnabled, currentUser, client, openAccount } from './account.js';
 import { openLeaderboard, duelPanel, newDuelId, onlineReady } from './online.js';
 
 document.getElementById('profile-btn').addEventListener('click', openProfile);
@@ -59,6 +59,22 @@ const MODES = {
   maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
   gear: { title: tr('Предметы'), icon: '🛡', mod: items, set: 'gear', gameTitle: { dota: tr('Предметы'), lol: tr('Предметы'), deadlock: tr('Предметы') } },
 };
+
+// Without an account only FREE_GAMES puzzles can be finished; the count is kept in the browser (a convenience limit, not a lock)
+const FREE_GAMES = 3;
+let signedIn = false;
+currentUser().then((u) => { signedIn = !!u; });
+document.addEventListener('gwai:auth', (e) => { const was = signedIn; signedIn = !!(e.detail && e.detail.user); if (signedIn !== was) render(); });
+let resultWatch = null;
+
+function gateCard() {
+  return h('div', { class: 'gate' },
+    h('h3', {}, tr('Бесплатные игры закончились')),
+    h('p', {}, tr('Без аккаунта можно сыграть {0} раза. Создайте аккаунт (это бесплатно, хватит почты или Google, Discord), и можно играть без ограничений, а ваши очки попадут в рейтинг.', [FREE_GAMES])),
+    h('div', { class: 'row' },
+      h('button', { class: 'btn', onclick: async () => { const sb = await client(); if (sb) openAccount(sb, await currentUser(), true); } }, tr('Войти или создать аккаунт')),
+      h('button', { class: 'btn ghost', onclick: () => { location.hash = ''; } }, tr('На главную'))));
+}
 
 const root = document.getElementById('mode-root');
 const gameTabs = document.getElementById('game-tabs');
@@ -166,6 +182,15 @@ async function render() {
     const suffix = fid === 'all' ? '' : `:${fid}`;
     const seed = (endless ? `${game}:${mode}:free:${endlessSeed}` : `${game}:${mode}:${key}`) + suffix;
     const id = endlessSeed;
+    if (resultWatch) { resultWatch.disconnect(); resultWatch = null; }
+    if (accountsEnabled() && !signedIn) {
+      const done = store.get('guestDone', []);
+      if (done.length >= FREE_GAMES && !done.includes(seed)) { root.innerHTML = ''; root.append(gateCard()); return; }
+      // a finished puzzle (its result card shows up) counts once
+      const count = () => { const d = store.get('guestDone', []); if (!d.includes(seed)) store.set('guestDone', [...d, seed]); };
+      resultWatch = new MutationObserver(() => { if (root.querySelector('.result')) { count(); resultWatch.disconnect(); resultWatch = null; } });
+      resultWatch.count = count;
+    }
     MODES[mode].mod.mount(root, data, {
       seed, daily: !endless, day: num, mode, set: MODES[mode].set, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test, era: filtersFor(game)[fid].era,
       // endless and duel games end with a challenge link carrying the same puzzle id
@@ -174,6 +199,7 @@ async function render() {
         root.append(duelPanel({ game, mode, id, filter: fid, score, rival: duel ? rival : null }));
       } : null,
     });
+    if (resultWatch) { if (root.querySelector('.result')) { resultWatch.count(); resultWatch = null; } else resultWatch.observe(root, { childList: true, subtree: true }); }
   } catch (e) {
     root.innerHTML = '';
     root.append(h('div', { class: 'error' }, tr('Ошибка: ') + e.message, h('br'), tr('Откройте сайт через локальный сервер (см. README), а не как файл.')));

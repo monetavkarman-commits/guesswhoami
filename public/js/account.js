@@ -44,7 +44,8 @@ export async function initAccountButton(btn) {
   paint(first);
   sb.auth.onAuthStateChange((ev, session) => {
     paint(session && session.user);
-    if (ev === 'SIGNED_IN' && session) { saveProfile(sb, session.user); document.dispatchEvent(new CustomEvent('gwai:auth')); }
+    if (ev === 'SIGNED_IN' && session) saveProfile(sb, session.user);
+    document.dispatchEvent(new CustomEvent('gwai:auth', { detail: { user: session ? session.user : null } }));
   });
   btn.addEventListener('click', async () => openAccount(sb, await currentUser()));
   // a visitor who plays without an account is offered one after the third answer (any game); not again for 3 days once it was closed
