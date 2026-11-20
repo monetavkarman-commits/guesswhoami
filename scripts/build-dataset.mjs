@@ -128,9 +128,12 @@ function buildDota() {
   const raw = JSON.parse(readFileSync(ROOT + 'data/raw/dota.json', 'utf8'));
   const missing = new Set();
   const teams = new TeamTable({ 'nouns': 'Nouns Esports', 'PVISION': 'PARIVISION' });
-  const byFrom = new Map(raw.players.filter((p) => !p.missing && p.id).map((p) => [p.from, p]));
-  const apps = raw.appearances.filter((a) => byFrom.has(a.pl))
-    .map((a) => ({ ...a, t: teams.id(a.team), when: EVENT_ORDER[a.ev] || a.yr * 100 }));
+  // one person can appear under several redirect names ("Somnus丶M", "Somnus"): key everything by the page
+  const alias = new Map(raw.players.filter((p) => !p.missing && p.id).map((p) => [p.from, p.page]));
+  const byFrom = new Map();
+  raw.players.filter((p) => !p.missing && p.id).forEach((p) => { if (!byFrom.has(p.page)) byFrom.set(p.page, p); });
+  const apps = raw.appearances.filter((a) => alias.has(a.pl))
+    .map((a) => ({ ...a, pl: alias.get(a.pl), t: teams.id(a.team), when: EVENT_ORDER[a.ev] || a.yr * 100 }));
 
   const keys = [...byFrom.keys()];
   const index = new Map(keys.map((k, i) => [k, i]));

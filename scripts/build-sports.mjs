@@ -123,6 +123,9 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
     }
     delete p._stints;
   });
+  // Wikidata has no citizenship for a few well-known players
+  const COUNTRY_FIX = { 'Jude Bellingham': 'United Kingdom' };
+  players.forEach((p) => { const n = COUNTRY_FIX[p.id]; const c = n && COUNTRIES[n]; if (c && !p.cc) Object.assign(p, { cc: c[0], country: c[1], countryEn: n, region: c[2] }); });
   // photos and club logos (when data/raw/sport-images.json has them)
   players.forEach((p) => {
     const q = p.url.split('/').pop(); QIDS[sport].p.push(q);
