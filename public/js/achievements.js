@@ -41,17 +41,25 @@ document.addEventListener('gwai:result', (ev) => {
   store.set('achievements', got);
 });
 
-export function openProfile() {
-  const got = unlocked();
+export function localStatsBlock() {
   const rows = allStats().filter((x) => x.s.played);
-  const table = rows.length
+  return rows.length
     ? h('div', { class: 'profile-table' },
       h('div', { class: 'pt-row head' }, [tr('Игра'), tr('Сыграно'), tr('Победы'), tr('Серия'), tr('Лучшая'), tr('Рекорд'), tr('Средний')].map((t) => h('div', {}, t))),
       rows.map(({ g, m, s }) => h('div', { class: 'pt-row' }, h('div', {}, `${GAMES[g].short} · ${MODES[m]}`),
         [s.played, `${Math.round((100 * s.wins) / s.played)}%`, s.streak, s.best, s.top, Math.round(s.total / s.played)].map((v) => h('div', {}, String(v))))))
     : h('p', { class: 'muted' }, tr('Сыграйте любую ежедневную игру, и здесь появится статистика.'));
-  const list = h('div', { class: 'ach-list' }, ACHIEVEMENTS.map((a) => h('div', { class: 'ach' + (got[a.id] ? ' got' : '') },
-    h('span', { class: 'ach-icon' }, a.icon), h('div', {}, h('b', {}, a.title), h('small', {}, got[a.id] ? `${a.desc} · ${got[a.id]}` : a.desc)))));
-  modal(tr('Профиль'), h('div', { class: 'stack' }, h('h4', {}, tr('Статистика ежедневных игр')), table,
-    h('h4', {}, tr('Достижения {0}/{1}', [Object.keys(got).length, ACHIEVEMENTS.length])), list), null, 'wide');
+}
+
+export function achievementsBlock() {
+  const got = unlocked();
+  return h('div', { class: 'stack' }, h('h4', {}, tr('Достижения {0}/{1}', [Object.keys(got).length, ACHIEVEMENTS.length])),
+    h('div', { class: 'ach-list' }, ACHIEVEMENTS.map((a) => h('div', { class: 'ach' + (got[a.id] ? ' got' : '') },
+      h('span', { class: 'ach-icon' }, a.icon), h('div', {}, h('b', {}, a.title), h('small', {}, got[a.id] ? `${a.desc} · ${got[a.id]}` : a.desc))))));
+}
+
+export function overallLocal() {
+  const all = allStats().map((x) => x.s);
+  const played = all.reduce((n, s) => n + s.played, 0), wins = all.reduce((n, s) => n + s.wins, 0);
+  return { played, wins, best: Math.max(0, ...all.map((s) => s.best)), streak: Math.max(0, ...all.map((s) => s.streak)), total: all.reduce((n, s) => n + s.total, 0) };
 }

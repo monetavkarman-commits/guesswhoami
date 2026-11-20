@@ -1,7 +1,7 @@
 // Offline support: everything is network-first, so a new release shows up on the next visit; the cache is only the fallback when offline.
-const VERSION = 'gwai-v60';
+const VERSION = 'gwai-v61';
 const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'js/app.js', 'js/home.js', 'js/consent.js', 'js/analytics.js', 'js/core.js', 'js/core-store.js', 'js/i18n.js',
-  'js/grid.js', 'js/whoami.js', 'js/chain.js', 'js/team.js', 'js/lineup.js', 'js/stats.js', 'js/achievements.js', 'js/online.js', 'js/items.js', 'js/account.js', 'js/config.js', 'icons/icon-192.png', 'icons/icon-512.png'];
+  'js/grid.js', 'js/whoami.js', 'js/chain.js', 'js/team.js', 'js/lineup.js', 'js/stats.js', 'js/achievements.js', 'js/profile.js', 'js/online.js', 'js/items.js', 'js/account.js', 'js/config.js', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', (e) => {

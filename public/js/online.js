@@ -134,6 +134,16 @@ export async function openLeaderboard(game, day) {
     h('h4', {}, tr('Общий рейтинг · все игры')), table(allRows, 'total', (r) => tr('{0} игр · ср. {1}', [r.games || 0, Math.round(r.total / Math.max(1, r.games || 1))])));
 }
 
+// the player's own place and totals (for the profile window); null when logged out or the board is unavailable
+export async function mySummary() {
+  const on = await init(); if (!on || !on.uid) return null;
+  try {
+    const rows = (await on.db.collection('board').limit(500).get()).docs.map((d) => ({ id: d.id, ...d.data() })).filter((r) => r.total > 0).sort((a, b) => b.total - a.total);
+    const mine = rows.find((r) => r.id === on.uid);
+    return mine ? { ...mine, place: rows.indexOf(mine) + 1, of: rows.length } : { total: 0, games: 0, by: {}, place: 0, of: rows.length };
+  } catch { return null; }
+}
+
 // ---------- duels ----------
 export function newDuelId() { return Math.random().toString(36).slice(2, 10); }
 

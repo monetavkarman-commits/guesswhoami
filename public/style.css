@@ -486,3 +486,8 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .gate p { margin: 0; color: var(--muted); max-width: 46ch; }
 .gate .row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .visitors{width:100%;border-collapse:collapse;font-size:.9rem}.visitors th,.visitors td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line,rgba(128,128,128,.25))}
+
+.player-head{display:flex;gap:14px;align-items:center}.avatar-big{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:32px;background:var(--card,rgba(128,128,128,.15));border:1px solid var(--line)}
+.avatar-pick{display:flex;flex-wrap:wrap;gap:6px}.avatar-pick button{width:40px;height:40px;font-size:20px;border-radius:10px;border:1px solid var(--line);background:transparent;cursor:pointer}.avatar-pick button.on{outline:2px solid var(--accent);background:rgba(228,87,46,.12)}
+.row-between{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.card-soft{padding:12px 14px;border:1px solid var(--line);border-radius:14px}.btn.danger{color:#d64545;border-color:#d64545}

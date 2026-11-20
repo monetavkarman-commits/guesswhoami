@@ -39,7 +39,7 @@ export async function initAccountButton(btn) {
   const sb = await client(); if (!sb) return;
   btn.hidden = false;
   // the button is highlighted while nobody is logged in
-  const paint = (user) => { btn.textContent = user ? '👤 ' + nameOf(user).slice(0, 12) : tr('Войти'); btn.classList.toggle('cta', !user); btn.title = user ? nameOf(user) : ''; };
+  const paint = (user) => { btn.textContent = user ? ((user.user_metadata && user.user_metadata.avatar) || '👤') + ' ' + nameOf(user).slice(0, 12) : tr('Войти'); btn.classList.toggle('cta', !user); btn.title = user ? nameOf(user) : ''; };
   const first = await currentUser();
   paint(first);
   sb.auth.onAuthStateChange((ev, session) => {
@@ -47,7 +47,7 @@ export async function initAccountButton(btn) {
     if (ev === 'SIGNED_IN' && session) saveProfile(sb, session.user);
     document.dispatchEvent(new CustomEvent('gwai:auth', { detail: { user: session ? session.user : null } }));
   });
-  btn.addEventListener('click', async () => openAccount(sb, await currentUser()));
+  btn.addEventListener('click', async () => { const u = await currentUser(); if (u) document.dispatchEvent(new CustomEvent('gwai:open-player')); else openAccount(sb, null); });
   // a visitor who plays without an account is offered one after the third answer (any game); not again for 3 days once it was closed
   let asked = false;
   document.addEventListener('gwai:answer', async () => {
