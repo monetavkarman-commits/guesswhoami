@@ -24,7 +24,7 @@ export const ACHIEVEMENTS = [
   { id: 'streak30', icon: '👑', title: tr('Легенда'), desc: tr('Серия из 30 побед подряд'), test: (e, all) => all.some((x) => x.s.best >= 30) },
   { id: 'trio', icon: '🎲', title: tr('Хет-трик'), desc: tr('Сыграть все три режима одной игры за день'),
     test: (e) => ['grid', 'whoami', 'chain'].every((m) => getStats(e.game, m).days[e.day]) },
-  { id: 'both', icon: '🌍', title: tr('Универсал'), desc: tr('Сыграть ежедневки и в CS, и в Dota 2'), test: (e, all) => Object.keys(GAMES).every((g) => all.some((x) => x.g === g && x.s.played)) },
+  { id: 'both', icon: '🌍', title: tr('Универсал'), desc: tr('Сыграть ежедневки в двух разных играх'), test: (e, all) => Object.keys(GAMES).filter((g) => all.some((x) => x.g === g && x.s.played)).length >= 2 },
   { id: 'fifty', icon: '🎖', title: tr('Завсегдатай'), desc: tr('Сыграть 50 ежедневных игр'), test: (e, all) => all.reduce((n, x) => n + x.s.played, 0) >= 50 },
 ];
 

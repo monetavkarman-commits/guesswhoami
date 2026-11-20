@@ -165,7 +165,67 @@ function buildDota() {
   } };
 }
 
-for (const [name, fn] of [['cs', buildCS], ['dota', buildDota]]) {
+// ---------- Valorant / League of Legends: rosters of top events (team history there is auto-generated) ----------
+// "events" counts appearances at the game's world championship; "team" is the player's team at their latest event.
+function buildEventGame({ game, title, eventLabel, sourceNote, wiki, isMajor, lateFrom, aliases = {} }) {
+  const raw = JSON.parse(readFileSync(ROOT + `data/raw/${game}.json`, 'utf8'));
+  const missing = new Set();
+  const teams = new TeamTable(aliases);
+  const fixCountry = (c) => { c = clean(c); const k = Object.keys(COUNTRIES).find((x) => x.toLowerCase() === c.toLowerCase()); return k || c; };
+  const byFrom = new Map();
+  for (const p of raw.players) if (!p.missing && p.id) { byFrom.set(p.from, p); byFrom.set(p.page, p); }
+  const pageOf = (pl) => byFrom.get(pl)?.page;
+  const apps = raw.appearances.filter((a) => pageOf(a.pl))
+    .map((a) => ({ ...a, pl: pageOf(a.pl), t: teams.id(a.team), when: a.yr * 100 + (isMajor(a.ev) ? 9 : 5) }));
+  const keys = [...new Set(apps.map((a) => a.pl))];
+  const index = new Map(keys.map((k, i) => [k, i]));
+  const byPage = new Map(raw.players.filter((p) => p.id).map((p) => [p.page, p]));
+  const players = keys.map((k) => {
+    const p = byPage.get(k);
+    const mine = apps.filter((a) => a.pl === k).sort((x, y) => x.when - y.when);
+    const posCount = {};
+    mine.forEach((a) => { if (a.pos) posCount[a.pos] = (posCount[a.pos] || 0) + 1; });
+    const best = Object.entries(posCount).sort((a, b) => b[1] - a[1])[0];
+    const st = clean(p.status).toLowerCase();
+    return {
+      id: clean(p.id), name: clean(p.name), url: `https://liquipedia.net/${wiki}/` + encodeURI(p.page.replace(/ /g, '_')),
+      ...countryOf(fixCountry(p.country), missing), birth: normBirth(p.birth),
+      status: st === 'retired' || st === 'passed away' ? 'retired' : st === 'active' ? 'active' : 'inactive',
+      team: teams.list[mine[mine.length - 1].t], ...(best ? { pos: +best[0] } : {}), roles: [],
+      events: new Set(mine.filter((a) => isMajor(a.ev)).map((a) => a.ev)).size,
+      teams: [...new Set(mine.map((a) => a.t))],
+      era: [...new Set(mine.map((a) => (a.yr < lateFrom ? 'early' : 'late')))],
+      eraTeams: {
+        early: [...new Set(mine.filter((a) => a.yr < lateFrom).map((a) => a.t))],
+        late: [...new Set(mine.filter((a) => a.yr >= lateFrom).map((a) => a.t))],
+      },
+      mates: [],
+    };
+  });
+  apps.forEach((a) => apps.forEach((b) => {
+    if (a.ev === b.ev && a.t === b.t && a.pl !== b.pl) {
+      const m = players[index.get(a.pl)].mates; const j = index.get(b.pl);
+      if (!m.some((x) => x[0] === j)) m.push([j, a.t]);
+    }
+  }));
+  players.forEach((p) => { p.top = p.events >= 2; });
+  return { missing, out: { game, title, eventLabel, generated: today, source: SOURCE, sourceNote, regions: REGIONS, teams: teams.list, players } };
+}
+
+const buildValorant = () => buildEventGame({
+  game: 'valorant', title: 'VALORANT', eventLabel: 'Champions', wiki: 'valorant', lateFrom: 2024,
+  sourceNote: 'Игроки VALORANT Champions 2021–2026, Masters и LOCK//IN 2022–2026',
+  isMajor: (ev) => ev.endsWith('/Champions'),
+  aliases: { 'Gen.G': 'Gen.G Esports', 'FURIA Esports': 'FURIA', 'Detonation FocusMe': 'DetonatioN FocusMe' },
+});
+const buildLoL = () => buildEventGame({
+  game: 'lol', title: 'League of Legends', eventLabel: 'Worlds', wiki: 'leagueoflegends', lateFrom: 2024,
+  sourceNote: 'Игроки Worlds 2021–2026 и MSI 2022–2026',
+  isMajor: (ev) => ev.startsWith('World Championship'),
+  aliases: { 'Gen.G Esports': 'Gen.G', 'TOP Esports': 'Top Esports' },
+});
+
+for (const [name, fn] of [['cs', buildCS], ['dota', buildDota], ['valorant', buildValorant], ['lol', buildLoL]]) {
   const { out, missing } = fn();
   writeFileSync(ROOT + `public/data/${name}.json`, JSON.stringify(out));
   console.log(`${name}: ${out.players.length} players, ${out.teams.length} teams, daily pool ${out.players.filter((p) => p.top).length}`);

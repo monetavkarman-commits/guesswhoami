@@ -6,7 +6,7 @@ import { countryName, rng, shuffle, h, flag, store, share, modal, playerSearch, 
 import { recordResult, resultCard } from './stats.js';
 
 const GUESSES = 9;
-const SAME_KIND_FORBIDDEN = new Set(['country', 'age', 'events', 'status', 'pos']);
+const SAME_KIND_FORBIDDEN = new Set(['country', 'age', 'events', 'status', 'pos', 'region']);
 
 function buildCriteria(data, era) {
   // with an era filter, "played for" only counts stints inside that era
@@ -14,7 +14,7 @@ function buildCriteria(data, era) {
   const out = [];
   const P = data.players;
   const count = (test) => P.filter(test).length;
-  const minTeam = era ? (data.game === 'cs' ? 5 : 3) : (data.game === 'cs' ? 8 : 5);
+  const minTeam = data.cfg.minTeam[era ? 1 : 0];
 
   // only teams with enough well-known players (2+ big events) become criteria, so grids stay fair
   const teamCounts = new Map();
@@ -28,16 +28,22 @@ function buildCriteria(data, era) {
     const name = countryName(P.find((p) => p.cc === cc));
     out.push({ key: 'c' + cc, kind: 'country', label: name, sub: tr('страна'), cc, test: (p) => p.cc === cc });
   }
-  if (data.game === 'cs') {
+  if (data.cfg.kind === 'roles') {
     for (const r of ['awp', 'igl', 'entry', 'lurker', 'support']) {
       const test = (p) => p.roles.includes(r);
       if (count(test) >= 15) out.push({ key: 'r' + r, kind: 'role', label: data.cfg.roleLabels[r], sub: tr('роль'), test });
     }
-  } else {
+  } else if (!data.cfg.kind) {
+    // no roles or positions in the data (VALORANT): use regions instead
+    for (const [rg, name] of Object.entries(data.regions)) {
+      const test = (p) => p.region === rg;
+      if (count(test) >= 15) out.push({ key: 'g' + rg, kind: 'region', label: tr(name), sub: tr('регион'), test });
+    }
+  } else if (data.cfg.kind === 'pos') {
     for (const pos of [1, 2, 3, 4, 5]) out.push({ key: 'p' + pos, kind: 'pos', label: data.cfg.posLabels[pos], sub: tr('позиция'), test: (p) => p.pos === pos });
   }
-  out.push({ key: 'e3', kind: 'events', label: data.game === 'cs' ? tr('3+ мэйджора') : '3+ TI', sub: tr('турниры'), test: (p) => p.events >= 3 });
-  out.push({ key: 'e1', kind: 'events', label: data.game === 'cs' ? tr('Ровно 1 мэйджор') : tr('Без TI или 1 TI'), sub: tr('турниры'), test: (p) => p.events <= 1 });
+  out.push({ key: 'e3', kind: 'events', label: data.cfg.ev3, sub: tr('турниры'), test: (p) => p.events >= 3 });
+  out.push({ key: 'e1', kind: 'events', label: data.cfg.ev1, sub: tr('турниры'), test: (p) => p.events <= 1 });
   out.push({ key: 'a95', kind: 'age', label: tr('Родился до 1995'), sub: tr('возраст'), test: (p) => p.byear && p.byear < 1995 });
   out.push({ key: 'a00', kind: 'age', label: tr('Родился в 2000+'), sub: tr('возраст'), test: (p) => p.byear && p.byear >= 2000 });
   out.push({ key: 'sr', kind: 'status', label: tr('Завершил карьеру'), sub: tr('статус'), test: (p) => p.status === 'retired' });

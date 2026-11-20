@@ -3,29 +3,41 @@ import { tr } from './i18n.js';
 
 export const GAMES = {
   cs: {
-    title: 'Counter-Strike',
-    short: 'CS',
+    title: 'Counter-Strike', short: 'CS', kind: 'roles',
     roleLabels: { awp: 'AWP', igl: tr('Капитан'), rifle: tr('Райфлер'), entry: tr('Энтри'), lurker: tr('Люркер'), support: tr('Саппорт'), coach: tr('Тренер') },
-    teamLabel: tr('Команда'),
+    teamLabel: tr('Команда'), ev3: tr('3+ мэйджора'), ev1: tr('Ровно 1 мэйджор'), topMin: 3, chainMin: 3, minTeam: [8, 5],
+    eras: { csgo: tr('Эра CS:GO'), cs2: tr('Эра CS2') }, activeEra: 'cs2',
   },
   dota: {
-    title: 'Dota 2',
-    short: 'Dota 2',
+    title: 'Dota 2', short: 'Dota', kind: 'pos',
     posLabels: { 1: tr('Керри'), 2: tr('Мид'), 3: tr('Оффлейн'), 4: tr('Саппорт 4'), 5: tr('Саппорт 5') },
-    teamLabel: tr('Команда*'),
+    teamLabel: tr('Команда*'), ev3: '3+ TI', ev1: tr('Без TI или 1 TI'), topMin: 2, chainMin: 2, minTeam: [5, 3],
+    eras: { early: 'TI 2019–2022', late: 'TI 2023–2025' }, activeEra: 'late',
+    teamNote: tr('* Команда — с последнего турнира игрока в базе (TI / EWC / Riyadh Masters).'),
+  },
+  valorant: {
+    title: 'VALORANT', short: 'VALORANT', kind: null,
+    teamLabel: tr('Команда*'), ev3: '3+ Champions', ev1: tr('Не больше 1 Champions'), topMin: 2, chainMin: 2, minTeam: [5, 3],
+    eras: { early: 'VCT 2021–2023', late: 'VCT 2024–2026' }, activeEra: 'late',
+    teamNote: tr('* Команда — с последнего турнира игрока в базе (Champions / Masters).'),
+  },
+  lol: {
+    title: 'League of Legends', short: 'LoL', kind: 'pos',
+    posLabels: { 1: tr('Топ'), 2: tr('Лесник'), 3: tr('Мид'), 4: tr('Бот'), 5: tr('Саппорт') },
+    teamLabel: tr('Команда*'), ev3: '3+ Worlds', ev1: tr('Не больше 1 Worlds'), topMin: 2, chainMin: 2, minTeam: [5, 3],
+    eras: { early: 'Worlds 2021–2023', late: 'Worlds 2024–2026' }, activeEra: 'late',
+    teamNote: tr('* Команда — с последнего турнира игрока в базе (Worlds / MSI).'),
   },
 };
 
 // Difficulty / era filters: they narrow who can be the answer, any matching player is still accepted.
 export function filtersFor(game) {
-  const cs = game === 'cs';
+  const cfg = GAMES[game];
   return {
     all: { label: tr('Все игроки'), test: () => true },
-    top: { label: tr('Только звёзды'), test: (p) => p.events >= (cs ? 3 : 2) },
-    active: { label: tr('Актуальные составы'), era: cs ? 'cs2' : 'late', test: cs ? (p) => p.status === 'active' && !!p.team && p.era.includes('cs2') : (p) => p.status === 'active' && p.era.includes('late') },
-    ...(cs
-      ? { csgo: { label: tr('Эра CS:GO'), era: 'csgo', test: (p) => p.era.includes('csgo') }, cs2: { label: tr('Эра CS2'), era: 'cs2', test: (p) => p.era.includes('cs2') } }
-      : { early: { label: 'TI 2019–2022', era: 'early', test: (p) => p.era.includes('early') }, late: { label: 'TI 2023–2025', era: 'late', test: (p) => p.era.includes('late') } }),
+    top: { label: tr('Только звёзды'), test: (p) => p.events >= cfg.topMin },
+    active: { label: tr('Актуальные составы'), era: cfg.activeEra, test: (p) => p.status === 'active' && !!p.team && p.era.includes(cfg.activeEra) },
+    ...Object.fromEntries(Object.entries(cfg.eras).map(([k, label]) => [k, { label, era: k, test: (p) => p.era.includes(k) }])),
   };
 }
 
@@ -58,8 +70,8 @@ function ageOn(birth, now) {
 }
 
 export function roleText(data, p) {
-  if (data.game === 'dota') return data.cfg.posLabels[p.pos] || '—';
-  if (!p.roles.length) return '—';
+  if (data.cfg.kind === 'pos') return data.cfg.posLabels[p.pos] || '—';
+  if (!p.roles?.length) return '—';
   return p.roles.map((r) => data.cfg.roleLabels[r] || r).join(', ');
 }
 

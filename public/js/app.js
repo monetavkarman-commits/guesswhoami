@@ -29,7 +29,7 @@ applyTheme(theme);
 themeBtn.addEventListener('click', () => { theme = THEMES[(THEMES.indexOf(theme) + 1) % 3]; store.set('theme', theme); applyTheme(theme); });
 
 if (lang === 'en') {
-  document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Not affiliated with Liquipedia, Valve or tournament organisers.';
+  document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Not affiliated with Liquipedia, Valve, Riot Games or tournament organisers.';
   document.title = 'GuessWhoAmI — guess the esports pro';
 }
 
@@ -85,7 +85,7 @@ async function render() {
   const { game, mode, endless, duel, rival, duelFilter } = parseHash();
   gameTabs.innerHTML = '';
   for (const [k, g] of Object.entries(GAMES)) {
-    gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), onclick: () => nav(k, mode, endless) }, g.title));
+    gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), title: g.title, onclick: () => nav(k, mode, endless) }, h('span', { class: 'full' }, g.title), h('span', { class: 'short' }, g.short)));
   }
   modeTabs.innerHTML = '';
   for (const [k, m] of Object.entries(MODES)) {

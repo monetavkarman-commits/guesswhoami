@@ -1,6 +1,19 @@
 // Liquipedia country name -> [ISO 3166-1 alpha-2, Russian name, region]
 // Regions: EU (Western/Northern/Central Europe), CIS, AM (Americas), AS (Asia), OC (Oceania), ME (Middle East & Africa)
 export const COUNTRIES = {
+  'Japan': ['JP', 'Япония', 'AS'],
+  'Colombia': ['CO', 'Колумбия', 'AM'],
+  'Taiwan': ['TW', 'Тайвань', 'AS'],
+  'Morocco': ['MA', 'Марокко', 'ME'],
+  'Vietnam': ['VN', 'Вьетнам', 'AS'],
+  'Egypt': ['EG', 'Египет', 'ME'],
+  'Croatia': ['HR', 'Хорватия', 'EU'],
+  'Dominican Republic': ['DO', 'Доминиканская Республика', 'AM'],
+  'Ecuador': ['EC', 'Эквадор', 'AM'],
+  'Greece': ['GR', 'Греция', 'EU'],
+  'Mexico': ['MX', 'Мексика', 'AM'],
+  'Slovenia': ['SI', 'Словения', 'EU'],
+  'Italy': ['IT', 'Италия', 'EU'],
   'Russia': ['RU', 'Россия', 'CIS'],
   'Ukraine': ['UA', 'Украина', 'CIS'],
   'Kazakhstan': ['KZ', 'Казахстан', 'CIS'],

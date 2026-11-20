@@ -10,7 +10,7 @@ export const whoScore = (st) => (st.won ? Math.max(100, 1000 - 100 * (st.guesses
 const MAX = 8;
 
 function columns(data) {
-  const cs = data.game === 'cs';
+  const kind = data.cfg.kind;
   return [
     { title: tr('Страна'), cmp: (g, t) => (g.cc && g.cc === t.cc ? 'hit' : g.region && g.region === t.region ? 'near' : 'miss'),
       view: (g) => h('span', {}, flag(g.cc), ' ', countryName(g)) },
@@ -20,19 +20,19 @@ function columns(data) {
         if ((ti >= 0 && t.teamSet.has(ti)) || (gi >= 0 && g.teamSet.has(gi))) return 'near';
         return 'miss';
       }, view: (g) => g.team || tr('без команды') },
-    cs
+    kind === 'roles'
       ? { title: tr('Роль'), cmp: (g, t) => {
           const a = g.roles.join(); const b = t.roles.join();
           if (a === b) return 'hit';
           return g.roles.some((r) => t.roles.includes(r)) ? 'near' : 'miss';
         }, view: (g) => roleText(data, g) }
-      : { title: tr('Позиция'), cmp: (g, t) => (g.pos === t.pos ? 'hit' : Math.abs(g.pos - t.pos) === 1 ? 'near' : 'miss'),
-          arrow: (g, t) => (g.pos === t.pos ? '' : t.pos > g.pos ? '↑' : '↓'), view: (g) => `${g.pos} · ${roleText(data, g)}` },
+      : kind === 'pos' ? { title: tr('Позиция'), cmp: (g, t) => (g.pos === t.pos ? 'hit' : Math.abs(g.pos - t.pos) === 1 ? 'near' : 'miss'),
+          arrow: (g, t) => (g.pos === t.pos ? '' : t.pos > g.pos ? '↑' : '↓'), view: (g) => `${g.pos} · ${roleText(data, g)}` } : null,
     { title: tr('Возраст'), cmp: (g, t) => (g.age === t.age ? 'hit' : g.age != null && t.age != null && Math.abs(g.age - t.age) <= 2 ? 'near' : 'miss'),
       arrow: (g, t) => (g.age == null || t.age == null || g.age === t.age ? '' : t.age > g.age ? '↑' : '↓'), view: (g) => (g.age ?? '?') },
     { title: tr(data.eventLabel), cmp: (g, t) => (g.events === t.events ? 'hit' : Math.abs(g.events - t.events) <= 1 ? 'near' : 'miss'),
       arrow: (g, t) => (g.events === t.events ? '' : t.events > g.events ? '↑' : '↓'), view: (g) => g.events },
-  ];
+  ].filter(Boolean);
 }
 
 export function mount(root, data, { seed, daily, label, day, filter = () => true, onFinish }) {
@@ -48,10 +48,11 @@ export function mount(root, data, { seed, daily, label, day, filter = () => true
     h('span', { class: 'chip hit' }, tr('зелёный')), tr(' — совпадает, '), h('span', { class: 'chip near' }, tr('жёлтый')), tr(' — близко (тот же регион, бывшая команда, ±2 года, ±1 турнир), стрелка показывает, больше или меньше.'));
   const searchWrap = h('div', { class: 'who-search' });
   const table = h('div', { class: 'who-table' });
+  table.style.setProperty('--cols', cols.length);
   const clueBox = h('div', { class: 'clues' });
   const footer = h('div', { class: 'mode-footer' });
   root.append(intro, searchWrap, clueBox, table, footer);
-  if (data.game === 'dota') root.append(h('p', { class: 'muted small' }, tr('* Команда — с последнего турнира игрока в базе (TI / EWC / Riyadh Masters).')));
+  if (data.cfg.teamNote) root.append(h('p', { class: 'muted small' }, data.cfg.teamNote));
 
   const save = () => saveKey && store.set(saveKey, state);
   const box = playerSearch(data, {
