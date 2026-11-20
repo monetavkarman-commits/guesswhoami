@@ -55,6 +55,19 @@ function buildCriteria(data, era) {
   return out;
 }
 
+// bipartite matching: can every cell get a different player?
+function solvable(answers) {
+  const owner = new Map();
+  const place = (k, seen) => {
+    for (const i of answers[k]) {
+      if (seen.has(i)) continue; seen.add(i);
+      if (!owner.has(i) || place(owner.get(i), seen)) { owner.set(i, k); return true; }
+    }
+    return false;
+  };
+  return answers.every((_, k) => place(k, new Set()));
+}
+
 export function generateGrid(data, seed, filter = () => true, era = null) {
   const r = rng(seed);
   const all = buildCriteria(data, era);
@@ -87,6 +100,7 @@ export function generateGrid(data, seed, filter = () => true, era = null) {
     const R = swap ? order : rows; const C = swap ? rows : order;
     const answers = [];
     for (const a of R) for (const b of C) answers.push(inter(a, b));
+    if (!solvable(answers)) continue; // a player fits only one cell, so every cell needs its own player
     return { rows: R, cols: C, answers };
   }
   throw new Error(tr('Не удалось собрать сетку'));
