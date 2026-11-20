@@ -53,7 +53,7 @@ export async function initAccountButton(btn) {
   if (!first && !back && Date.now() - last > 3 * 86400000) setTimeout(() => { if (!document.querySelector('.modal-back')) openAccount(sb, null, true); }, 700);
 }
 
-function openAccount(sb, user, welcome = false) {
+export function openAccount(sb, user, welcome = false) {
   const body = h('div', { class: 'stack account' });
   const close = modal(user ? tr('Аккаунт') : welcome ? tr('Добро пожаловать!') : tr('Вход в аккаунт'), body, () => { if (welcome) store.set('loginPrompt', Date.now()); });
   if (user) {
@@ -104,9 +104,23 @@ function openAccount(sb, user, welcome = false) {
     msg.textContent = tr('Ссылка для входа отправлена на {0}.', [em]);
   } }, tr('Войти по ссылке на почту, без пароля'));
   draw();
+  const social = h('div', { class: 'stack social' });
+  providers().then((list) => list.forEach((pv) => social.append(h('button', { class: 'btn ghost social-btn', type: 'button', onclick: async () => {
+    const { error } = await sb.auth.signInWithOAuth({ provider: pv.id, options: { redirectTo: location.origin + '/' } });
+    if (error) msg.textContent = tr('Ошибка: {0}', [error.message]);
+  } }, h('b', {}, pv.icon), ' ' + tr('Продолжить через {0}', [pv.name])))));
   if (welcome) body.append(h('p', {}, tr('Создайте аккаунт или войдите: ваши результаты попадут в общий рейтинг и сохранятся на всех устройствах.')));
-  body.append(tabs, email, nick, pass, submit, magic, msg,
+  body.append(social, tabs, email, nick, pass, submit, magic, msg,
     h('p', { class: 'muted small' }, tr('Аккаунт не обязателен: играть можно и без него. Он нужен, чтобы попасть в рейтинг.')));
   if (welcome) body.append(h('button', { class: 'btn ghost', onclick: close }, tr('Играть без входа')));
   setTimeout(() => email.focus(), 0);
+}
+
+// only the sign-in providers that are switched on in Supabase get a button
+const KNOWN = { google: ['Google', 'G'], discord: ['Discord', '◆'], github: ['GitHub', '⌥'] };
+let provP = null;
+function providers() {
+  if (!provP) provP = fetch(SUPABASE_URL + '/auth/v1/settings', { headers: { apikey: SUPABASE_ANON_KEY } }).then((r) => r.json())
+    .then((j) => Object.keys(KNOWN).filter((k) => j.external && j.external[k]).map((k) => ({ id: k, name: KNOWN[k][0], icon: KNOWN[k][1] }))).catch(() => []);
+  return provP;
 }

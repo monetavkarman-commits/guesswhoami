@@ -90,6 +90,7 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
       else x.e = Math.max(x.s + 200, ...later.map((y) => y.e || 0));
     });
     if (!uniq.length || !o.en) continue;
+    if (sport === 'football' && ([...o.ccs][0] || [...o.cc][0]) === 'JP') continue; // owner's request: no Japanese footballers
     if (needPos && !Object.keys(o.pos).length) continue; // e.g. officials or actors listed as footballers
     const stints = uniq.map((x) => [T(x.team), x.s, x.e]);
     const current = uniq.filter((x) => x.e >= NOW).sort((a, b) => b.s - a.s)[0];

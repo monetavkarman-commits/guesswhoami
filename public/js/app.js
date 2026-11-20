@@ -1,10 +1,12 @@
 import { tr } from './i18n.js';
-import { loadGame, today, h, GAMES, filtersFor, store } from './core.js';
+import { loadGame, today, h, GAMES, filtersFor, store, modal, toast } from './core.js';
 import { lang, setLang } from './i18n.js';
 import * as grid from './grid.js';
 import * as whoami from './whoami.js';
 import * as chain from './chain.js';
 import * as items from './items.js';
+import { askConsent } from './consent.js';
+import { startAnalytics, track, sendReport } from './analytics.js';
 import { renderHome } from './home.js';
 import { openProfile } from './achievements.js';
 import { initAccountButton } from './account.js';
@@ -163,5 +165,18 @@ async function render() {
   }
 }
 
+// legal links, cookie settings and the "wrong data" report
+const foot = h('p', { class: 'foot-links' },
+  h('a', { href: 'privacy.html' }, tr('Политика конфиденциальности')), ' · ',
+  h('a', { href: 'terms.html' }, tr('Условия использования')), ' · ',
+  h('a', { href: '#', onclick: (e) => { e.preventDefault(); askConsent(true); } }, tr('Настройки cookies')), ' · ',
+  h('a', { href: '#', onclick: (e) => { e.preventDefault(); openReport(); } }, tr('Сообщить об ошибке в данных')));
+document.querySelector('.site-footer').prepend(foot);
+function openReport() {
+  const box = h('textarea', { class: 'search-input report-box', maxlength: 380, rows: 4, placeholder: tr('Что не так? Укажите игрока и что неверно (клуб, страна, года…)') });
+  const close = modal(tr('Сообщить об ошибке в данных'), h('div', { class: 'stack' }, box,
+    h('button', { class: 'btn', type: 'button', onclick: async () => { if (box.value.trim().length < 5) return; if (await sendReport(box.value.trim())) { close(); toast(tr('Спасибо, мы проверим!')); } else toast(tr('Не удалось отправить')); } }, tr('Отправить'))));
+}
+askConsent(); startAnalytics();
 window.addEventListener('hashchange', render);
 render();
