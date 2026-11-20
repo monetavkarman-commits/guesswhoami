@@ -52,7 +52,7 @@ async function render() {
     const data = await loadGame(game);
     sourceNote.textContent = `${data.sourceNote}. Обновлено ${data.generated}. ${data.players.length} игроков.`;
     const seed = endless ? `${game}:${mode}:free:${endlessSeed}` : `${game}:${mode}:${key}`;
-    MODES[mode].mod.mount(root, data, { seed, daily: !endless, label: endless ? '∞' : `№${num}` });
+    MODES[mode].mod.mount(root, data, { seed, daily: !endless, day: num, label: endless ? '∞' : `№${num}` });
   } catch (e) {
     root.innerHTML = '';
     root.append(h('div', { class: 'error' }, 'Ошибка: ' + e.message, h('br'), 'Откройте сайт через локальный сервер (см. README), а не как файл.'));

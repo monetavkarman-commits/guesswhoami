@@ -2,6 +2,7 @@
 // Own twist: every correct answer scores "rarity" points: the fewer events a player has among all
 // valid answers for that cell, the more points.
 import { rng, shuffle, h, flag, store, share, modal, playerSearch, playerLink, roleText, toast } from './core.js';
+import { recordResult, resultCard } from './stats.js';
 
 const GUESSES = 9;
 const SAME_KIND_FORBIDDEN = new Set(['country', 'age', 'events', 'status', 'pos']);
@@ -80,22 +81,29 @@ function rarity(data, cellAnswers, idx) {
   return Math.round(10 + 90 * (more / Math.max(1, evs.length - 1)));
 }
 
-export function mount(root, data, { seed, daily, label }) {
+export function mount(root, data, { seed, daily, label, day }) {
   const grid = generateGrid(data, seed);
   const saveKey = daily ? `grid:${seed}` : null;
-  const state = (saveKey && store.get(saveKey)) || { cells: Array(9).fill(null), left: GUESSES, wrong: [], done: false };
+  const state = (saveKey && store.get(saveKey)) || { cells: Array(9).fill(null), left: GUESSES, wrong: [], hints: {}, done: false };
+  state.hints = state.hints || {};
 
   root.innerHTML = '';
   const status = h('div', { class: 'status-line' });
   const board = h('div', { class: 'grid-board' });
   const footer = h('div', { class: 'mode-footer' });
   root.append(h('p', { class: 'mode-intro' }, 'Впишите в каждую клетку игрока, который подходит под условие строки и столбца. ',
-    'У вас 9 попыток, каждый игрок только один раз. Чем менее «очевидный» игрок, тем больше очков уникальности.'), status, board, footer);
+    'У вас 9 попыток, каждый игрок только один раз. Очки: до 100 за клетку (чем менее очевидный игрок, тем больше), +100 за сетку без ошибок. Подсказка в клетке стоит одну попытку.'), status, board, footer);
 
   const head = (c) => h('div', { class: 'grid-head' }, c.cc ? flag(c.cc) : null, h('small', {}, c.sub), h('span', {}, c.label));
 
   const save = () => saveKey && store.set(saveKey, state);
-  const score = () => state.cells.reduce((s, c) => s + (c ? c.pts : 0), 0);
+  const correctN = () => state.cells.filter(Boolean).length;
+  const bonus = () => (correctN() === 9 && !state.wrong.length ? 100 : 0);
+  const score = () => state.cells.reduce((s, c) => s + (c ? c.pts : 0), 0) + bonus();
+  const finish = () => {
+    state.done = true;
+    if (daily) recordResult(data.game, 'grid', day, { won: correctN() >= 5, score: score(), detail: { correct: correctN() } });
+  };
 
   function render() {
     board.innerHTML = '';
@@ -118,12 +126,15 @@ export function mount(root, data, { seed, daily, label }) {
     const correct = state.cells.filter(Boolean).length;
     status.innerHTML = '';
     status.append(h('span', {}, `Попытки: `, h('b', {}, String(state.left))), h('span', {}, `Угадано: `, h('b', {}, `${correct}/9`)),
-      h('span', {}, `Уникальность: `, h('b', {}, String(score()))));
+      h('span', {}, `Очки: `, h('b', {}, String(score()))));
     footer.innerHTML = '';
     if (state.done) {
-      footer.append(h('div', { class: 'result' }, h('h3', {}, correct === 9 ? 'Идеальная сетка!' : `Готово: ${correct}/9`),
-        h('p', {}, `Очки уникальности: ${score()} из 900. Нажмите на пустую клетку, чтобы увидеть ответы.`),
-        h('button', { class: 'btn', onclick: () => share(shareText()) }, 'Поделиться')));
+      footer.append(resultCard({
+        title: correct === 9 ? (bonus() ? 'Идеальная сетка!' : 'Сетка собрана!') : `Готово: ${correct}/9`,
+        score: score(), daily, game: data.game, mode: 'grid',
+        lines: [bonus() ? 'Без единой ошибки: +100 очков.' : null, correct < 9 ? 'Нажмите на пустую клетку, чтобы увидеть ответы.' : null],
+        onShare: () => share(shareText()),
+      }));
     } else {
       footer.append(h('button', { class: 'btn ghost', onclick: giveUp }, 'Сдаться'));
     }
@@ -131,7 +142,7 @@ export function mount(root, data, { seed, daily, label }) {
 
   function shareText() {
     const rows = [0, 1, 2].map((r) => [0, 1, 2].map((c) => (state.cells[r * 3 + c] ? '🟩' : '⬛')).join('')).join('\n');
-    return `GuessWhoAmI · ${data.cfg.short} · Сетка ${label}\n${rows}\nУникальность: ${score()}`;
+    return `GuessWhoAmI · ${data.cfg.short} · Сетка ${label}\n${rows}\nОчки: ${score()} · ошибок: ${state.wrong.length}`;
   }
 
   function ask(k, row, col) {
@@ -143,17 +154,29 @@ export function mount(root, data, { seed, daily, label }) {
         state.left--;
         if (row.test(p) && col.test(p)) state.cells[k] = { idx: p.idx, pts: rarity(data, grid.answers[k], p.idx) };
         else state.wrong.push(p.idx), flash(`${p.id} не подходит`);
-        if (state.left <= 0 || state.cells.every(Boolean)) state.done = true;
+        if (state.left <= 0 || state.cells.every(Boolean)) finish();
         save(); render();
       },
     });
-    const close = modal(`${row.sub}: ${row.label} × ${col.sub}: ${col.label}`, h('div', {}, box.el));
+    const hintBox = h('div', { class: 'hint-box' });
+    const showHint = () => {
+      const p = data.players[grid.answers[k][state.hints[k]]];
+      hintBox.innerHTML = '';
+      hintBox.append(h('div', { class: 'clue' }, '💡 Один из ответов: ник на «', h('b', {}, p.id[0].toUpperCase()), `», ${p.id.length} симв., страна `, flag(p.cc), ' ', p.country));
+    };
+    if (state.hints[k] != null) showHint();
+    else if (state.left > 1) hintBox.append(h('button', { class: 'btn ghost small', onclick: () => {
+      const unused = grid.answers[k].filter((i) => !used.has(i));
+      if (!unused.length) return;
+      state.hints[k] = grid.answers[k].indexOf(unused[unused.length - 1]); state.left--; save(); render(); showHint();
+    } }, 'Подсказка (−1 попытка)'));
+    const close = modal(`${row.sub}: ${row.label} × ${col.sub}: ${col.label}`, h('div', { class: 'stack' }, box.el, hintBox));
     box.focus();
   }
 
   function flash(msg) { status.classList.add('shake'); setTimeout(() => status.classList.remove('shake'), 500); toast(msg); }
 
-  function giveUp() { state.done = true; save(); render(); }
+  function giveUp() { finish(); save(); render(); }
 
   function showAnswers(k) {
     const list = grid.answers[k].map((i) => data.players[i]).sort((a, b) => b.events - a.events);

@@ -1,6 +1,10 @@
 // "Кто я?" — Wordle-style: guess the hidden player; each guess shows per-attribute hints.
 // Own twist: after 4 misses you can open a clue card (a former team, then the real-name initials).
 import { rng, pick, h, flag, store, share, playerSearch, playerLink, roleText, toast } from './core.js';
+import { recordResult, resultCard } from './stats.js';
+
+// 1000 for a first-try guess, -100 per extra guess, -150 per opened clue, at least 100 for any win
+export const whoScore = (st) => (st.won ? Math.max(100, 1000 - 100 * (st.guesses.length - 1) - 150 * st.clues) : 0);
 
 const MAX = 8;
 
@@ -30,7 +34,7 @@ function columns(data) {
   ];
 }
 
-export function mount(root, data, { seed, daily, label }) {
+export function mount(root, data, { seed, daily, label, day }) {
   const pool = data.players.filter((p) => p.top && p.age != null);
   const target = pick(rng(seed), pool);
   const cols = columns(data);
@@ -55,17 +59,11 @@ export function mount(root, data, { seed, daily, label }) {
       state.guesses.push(p.idx);
       if (p.idx === target.idx) { state.done = true; state.won = true; }
       else if (state.guesses.length >= MAX) state.done = true;
-      if (state.done && daily) recordStats(state.won, state.guesses.length);
+      if (state.done && daily) recordResult(data.game, 'whoami', day, { won: state.won, score: whoScore(state), detail: { guesses: state.guesses.length, clues: state.clues } });
       save(); render();
     },
   });
   searchWrap.append(box.el);
-
-  function recordStats(won, n) {
-    const s = store.get(`stats:who:${data.game}`, { played: 0, won: 0, streak: 0, best: 0, last: null });
-    s.played++; if (won) { s.won++; s.streak = s.last === seed ? s.streak : s.streak + 1; s.best = Math.max(s.best, s.streak); } else s.streak = 0;
-    s.last = seed; store.set(`stats:who:${data.game}`, s);
-  }
 
   function clueList() {
     const former = target.teams.map((t) => data.teams[t]).filter((t) => t !== target.team);
@@ -92,21 +90,22 @@ export function mount(root, data, { seed, daily, label }) {
     const misses = state.guesses.length - (state.won ? 1 : 0);
     const clues = clueList();
     if (!state.done && misses >= 4 && state.clues < clues.length) {
-      clueBox.append(h('button', { class: 'btn ghost small', onclick: () => { state.clues++; save(); render(); } }, `Открыть подсказку (${state.clues + 1}/${clues.length})`));
+      clueBox.append(h('button', { class: 'btn ghost small', onclick: () => { state.clues++; save(); render(); } }, `Открыть подсказку ${state.clues + 1}/${clues.length} (−150 очков)`));
     }
     clues.slice(0, state.clues).forEach((c) => clueBox.append(h('div', { class: 'clue' }, '💡 ', c)));
 
     footer.innerHTML = '';
     searchWrap.style.display = state.done ? 'none' : '';
     if (state.done) {
-      const s = store.get(`stats:who:${data.game}`, null);
-      footer.append(h('div', { class: 'result' },
-        h('h3', {}, state.won ? `Угадано за ${state.guesses.length}!` : 'Не угадали'),
-        h('p', {}, 'Это ', flag(target.cc), ' ', playerLink(target), ` — ${target.name}, ${target.team || 'без команды'}.`),
-        daily && s ? h('p', { class: 'muted' }, `Сыграно: ${s.played} · Побед: ${s.won} · Серия: ${s.streak} · Лучшая: ${s.best}`) : null,
-        h('button', { class: 'btn', onclick: () => share(shareText()) }, 'Поделиться')));
+      footer.append(resultCard({
+        title: state.won ? `Угадано за ${state.guesses.length}!` : 'Не угадали',
+        score: whoScore(state), daily, game: data.game, mode: 'whoami',
+        lines: [h('span', {}, 'Это ', flag(target.cc), ' ', playerLink(target), ` — ${target.name}, ${target.team || 'без команды'}.`),
+          state.clues ? `Подсказок открыто: ${state.clues} (−${150 * state.clues} очков)` : null],
+        onShare: () => share(shareText()),
+      }));
     } else {
-      footer.append(h('span', { class: 'muted' }, `Попытка ${state.guesses.length + 1} из ${MAX}`));
+      footer.append(h('span', { class: 'muted' }, `Попытка ${state.guesses.length + 1} из ${MAX} · сейчас на кону ${Math.max(100, 1000 - 100 * state.guesses.length - 150 * state.clues)} очков`));
       setTimeout(() => box.focus(), 0);
     }
   }
@@ -114,7 +113,7 @@ export function mount(root, data, { seed, daily, label }) {
   function shareText() {
     const em = { hit: '🟩', near: '🟨', miss: '⬛' };
     const lines = state.guesses.map((gi) => cols.map((c) => em[c.cmp(data.players[gi], target)]).join(''));
-    return `GuessWhoAmI · ${data.cfg.short} · Кто я? ${label} ${state.won ? state.guesses.length : 'X'}/${MAX}\n${lines.join('\n')}`;
+    return `GuessWhoAmI · ${data.cfg.short} · Кто я? ${label} ${state.won ? state.guesses.length : 'X'}/${MAX}${state.clues ? ' 💡'.repeat(state.clues) : ''}\n${lines.join('\n')}\nОчки: ${whoScore(state)}`;
   }
 
   render();
