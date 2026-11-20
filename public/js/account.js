@@ -39,7 +39,7 @@ export async function initAccountButton(btn) {
   const sb = await client(); if (!sb) return;
   btn.hidden = false;
   // the button is highlighted while nobody is logged in
-  const paint = (user) => { btn.textContent = user ? '👤' : tr('Войти'); btn.classList.toggle('text', !user); btn.classList.toggle('cta', !user); btn.title = user ? nameOf(user) : ''; };
+  const paint = (user) => { btn.textContent = user ? '👤 ' + nameOf(user).slice(0, 12) : tr('Войти'); btn.classList.toggle('cta', !user); btn.title = user ? nameOf(user) : ''; };
   const first = await currentUser();
   paint(first);
   sb.auth.onAuthStateChange((ev, session) => {
@@ -47,10 +47,15 @@ export async function initAccountButton(btn) {
     if (ev === 'SIGNED_IN' && session) { saveProfile(sb, session.user); document.dispatchEvent(new CustomEvent('gwai:auth')); }
   });
   btn.addEventListener('click', async () => openAccount(sb, await currentUser()));
-  // first visit: offer to log in right away (not again for 3 days after it was closed, never when coming back from an email link)
-  const back = /access_token|error_description|type=(signup|magiclink|recovery)/.test(location.hash);
-  const last = +store.get('loginPrompt', 0);
-  if (!first && !back && Date.now() - last > 3 * 86400000) setTimeout(() => { if (!document.querySelector('.modal-back')) openAccount(sb, null, true); }, 700);
+  // a visitor who plays without an account is offered one after the third answer (any game); not again for 3 days once it was closed
+  let asked = false;
+  document.addEventListener('gwai:answer', async () => {
+    if (asked || !accountsEnabled()) return;
+    const n = +store.get('answers', 0) + 1; store.set('answers', n);
+    if (n < 3 || (await currentUser())) return;
+    if (Date.now() - +store.get('loginPrompt', 0) < 3 * 86400000 || document.querySelector('.modal-back')) return;
+    asked = true; setTimeout(() => { if (!document.querySelector('.modal-back')) openAccount(sb, null, true); }, 900);
+  });
 }
 
 export function openAccount(sb, user, welcome = false) {

@@ -71,7 +71,7 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
 
   function choose(it) {
     input.value = ''; items = []; renderList();
-    state.guesses.push(it.id);
+    state.guesses.push(it.id); document.dispatchEvent(new CustomEvent('gwai:answer'));
     if (it.id === target.id) { state.done = true; state.won = true; } else if (state.guesses.length >= MAX) state.done = true;
     if (state.done) {
       if (daily) recordResult(gameData.game, mode, day, { won: state.won, score: itemScore(state), detail: { guesses: state.guesses.length } });

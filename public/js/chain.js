@@ -84,6 +84,7 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
     placeholder: tr('Тиммейт последнего игрока…'),
     exclude: (p) => state.path.includes(p.idx) || p.idx === game.end,
     onPick: (p) => {
+      document.dispatchEvent(new CustomEvent('gwai:answer'));
       const l = last();
       if (!l.mateMap.has(p.idx)) { state.errors++; save(); render(); toast(tr('{0} не играл вместе с {1}', [p.id, l.id])); return; }
       state.path.push(p.idx);

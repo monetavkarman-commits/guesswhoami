@@ -171,7 +171,7 @@ export function mount(root, data, { seed, daily, label, day, filter, era, onFini
       exclude: (p) => used.has(p.idx),
       onPick: (p) => {
         close();
-        state.left--;
+        state.left--; document.dispatchEvent(new CustomEvent('gwai:answer'));
         if (row.test(p) && col.test(p)) state.cells[k] = { idx: p.idx, pts: rarity(data, grid.answers[k], p.idx) };
         else state.wrong.push(p.idx), flash(tr('{0} не подходит', [p.id]));
         if (state.left <= 0 || state.cells.every(Boolean)) finish();

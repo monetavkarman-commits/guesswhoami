@@ -61,7 +61,7 @@ export function mount(root, data, { seed, daily, label, day, filter = () => true
     placeholder: tr('Ваша догадка…'),
     exclude: (p) => state.guesses.includes(p.idx),
     onPick: (p) => {
-      state.guesses.push(p.idx);
+      state.guesses.push(p.idx); document.dispatchEvent(new CustomEvent('gwai:answer'));
       if (p.idx === target.idx) { state.done = true; state.won = true; }
       else if (state.guesses.length >= MAX) state.done = true;
       if (state.done && daily) recordResult(data.game, 'whoami', day, { won: state.won, score: whoScore(state), detail: { guesses: state.guesses.length, clues: state.clues } });
