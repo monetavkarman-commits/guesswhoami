@@ -30,6 +30,7 @@ jobs:
         run: |
           if git diff --quiet -- data/raw; then echo "No changes in the source data."; exit 0; fi
           node scripts/build-dataset.mjs
+          node scripts/validate-data.mjs   # a broken refresh stops here and is never published
           git config user.name "data-refresh[bot]"
           git config user.email "data-refresh@users.noreply.github.com"
           git add data/raw public/data

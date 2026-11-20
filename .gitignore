@@ -1,3 +1,7 @@
 data/cache/
 node_modules/
 .DS_Store
+
+# generated at deploy time by scripts/build-seo.mjs
+public/catalog/
+public/sitemap.xml

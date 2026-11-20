@@ -1,5 +1,5 @@
 import { tr } from './i18n.js';
-import { loadGame, today, h, GAMES, filtersFor, store, modal, toast, gameBadge } from './core.js';
+import { loadGame, ensureMates, today, h, GAMES, filtersFor, store, modal, toast, gameBadge } from './core.js';
 import { lang, setLang } from './i18n.js';
 import * as grid from './grid.js';
 import * as whoami from './whoami.js';
@@ -55,10 +55,10 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http') && !loc
 const MODES = {
   grid: { title: tr('Сетка'), icon: '▦', mod: grid },
   whoami: { title: tr('Кто я?'), icon: '👤', mod: whoami },
-  chain: { title: tr('Цепочка'), icon: '⛓', mod: chain },
+  chain: { title: tr('Цепочка'), icon: '⛓', mod: chain, needsMates: true },
   items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), lol: tr('Чемпионы'), deadlock: tr('Герои'), tennis: tr('Теннисисты'), hockey: tr('Хоккеисты'), mma: tr('Бойцы'), boxing: tr('Боксёры') } },
   team: { title: tr('Команда'), icon: '🏷', mod: team, noFilter: true, gameTitle: Object.fromEntries(['cs', 'dota', 'valorant', 'lol', 'football', 'basket'].map((g) => [g, tr('Угадай команду')])) },
-  lineup: { title: tr('Состав'), icon: '👥', mod: lineup, noFilter: true, gameTitle: Object.fromEntries(['cs', 'dota', 'valorant', 'lol', 'football', 'basket'].map((g) => [g, tr('Угадай состав')])) },
+  lineup: { title: tr('Состав'), icon: '👥', mod: lineup, needsMates: true, noFilter: true, gameTitle: Object.fromEntries(['cs', 'dota', 'valorant', 'lol', 'football', 'basket'].map((g) => [g, tr('Угадай состав')])) },
   maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
   gear: { title: tr('Предметы'), icon: '🛡', mod: items, set: 'gear', gameTitle: { dota: tr('Предметы'), lol: tr('Предметы'), deadlock: tr('Предметы') } },
 };
@@ -115,7 +115,7 @@ const sourceNote = document.getElementById('source-note');
 
 let endlessSeed = null;
 // Duels are switched off for now; set to true to bring back challenge links and the duel panel.
-const DUELS = false;
+const DUELS = true;
 
 // #cs-grid · #cs-grid-free · #cs-grid-duel-<id>[-s<rival score>][-f<filter>]
 function parseHash() {
@@ -137,6 +137,22 @@ function nav(game, mode, endless) {
 function currentFilter(game) {
   const f = store.get(`filter:${game}`, 'all');
   return filtersFor(game)[f] ? f : 'all';
+}
+
+// short rules for every mode: the ? button next to the day switch, shown once by itself the first time a mode is opened
+const HELP = () => ({
+  grid: [tr('Сетка'), [tr('В каждую клетку впиши игрока, который подходит и строке, и столбцу сразу.'), tr('У вас 12 попыток, каждый игрок только один раз. Очки: до 100 за клетку (чем менее очевидный игрок, тем больше), +100 за сетку без ошибок.'), tr('Подсказка в клетке стоит одну попытку.')]],
+  whoami: [tr('Кто я?'), [tr('Угадай загаданного игрока. После каждой попытки цвета показывают, что совпало: страна, роль, возраст, команда.'), tr('Зелёный: совпадает, жёлтый: близко, серый: нет. Стрелки показывают, больше или меньше.'), tr('1000 очков за угадывание с первой попытки, −100 за каждую следующую. После 4 промахов можно открыть подсказку, она стоит 150 очков.')]],
+  chain: [tr('Цепочка'), [tr('Соедини двух игроков через тех, с кем они играли в одной команде.'), tr('Чем короче цепочка, тем больше очков.')]],
+  items: [tr('Предметы и герои'), [tr('Угадай героя, оружие или предмет по подсказкам и описанию.')]],
+  maps: [tr('Карты'), [tr('Угадай карту по подсказкам.')]],
+  gear: [tr('Предметы'), [tr('Угадай предмет по подсказкам.')]],
+  team: [tr('Угадай команду'), [tr('По подсказкам об игроках и командах угадай, о какой команде идёт речь.')]],
+  lineup: [tr('Угадай состав'), [tr('Собери состав команды: впиши игроков, которые за неё играли.'), tr('Можно выбрать год состава: тогда нужны игроки, которые были в команде в этом году.')]],
+});
+function showHelp(mode) {
+  const [title, lines] = HELP()[mode] || [tr('Как играть'), []];
+  modal(tr('Как играть') + ': ' + title, h('div', { class: 'stack' }, lines.map((l) => h('p', {}, l)), h('p', { class: 'muted small' }, tr('Новые загадки каждый день в 00:00. Играть можно без аккаунта.'))));
 }
 
 function filterSelect(game) {
@@ -188,9 +204,10 @@ async function render() {
       h('button', { class: endless ? '' : 'active', onclick: () => nav(game, mode, false) }, tr('Ежедневная №{0}', [num])),
       h('button', { class: endless && !duel ? 'active' : '', onclick: () => nav(game, mode, true) }, tr('Бесконечная')),
       duel ? h('button', { class: 'active' }, '⚔ ', tr('Дуэль')) : ''),
-    h('div', { class: 'bar-right' }, duel || MODES[mode].set || MODES[mode].noFilter ? '' : filterSelect(game),
+    h('div', { class: 'bar-right' }, HELP()[mode] ? h('button', { class: 'btn ghost small', type: 'button', 'aria-label': tr('Как играть'), title: tr('Как играть'), onclick: () => showHelp(mode) }, '?') : '', duel || MODES[mode].set || MODES[mode].noFilter ? '' : filterSelect(game),
       endless ? h('button', { class: 'btn small', onclick: () => { if (duel) nav(game, mode, true); else { endlessSeed = null; render(); } } }, tr('Новая игра')) : ''));
 
+  if (!endless && HELP()[mode] && !store.get('helpSeen:' + mode, false) && store.get('howtoSeen', false)) { store.set('helpSeen:' + mode, true); setTimeout(() => { if (!document.querySelector('.modal-back')) showHelp(mode); }, 700); }
   root.innerHTML = tr('<div class="loading">Загрузка игроков…</div>');
   try {
     const data = GAMES[game].itemsOnly ? { game, cfg: GAMES[game] } : await loadGame(game);
@@ -207,6 +224,7 @@ async function render() {
       const blocked = r ? !r.ok : done.length >= FREE_GAMES && !done.includes(seed);
       if (blocked) { root.innerHTML = ''; root.append(gateCard()); return; }
     }
+    if (MODES[mode].needsMates) await ensureMates(data);
     MODES[mode].mod.mount(root, data, {
       seed, daily: !endless, day: num, mode, set: MODES[mode].set, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test, era: filtersFor(game)[fid].era,
       // endless and duel games end with a challenge link carrying the same puzzle id

@@ -82,6 +82,22 @@ export function filtersFor(game) {
 }
 
 const cache = {};
+function setMates(p, mates) {
+  p.mates = mates;
+  p.mateMap = new Map(mates.map((m) => [m[0], m[1]]));
+  p.mateInfo = new Map(mates.map((m) => [m[0], m]));
+}
+
+// big datasets keep the teammate lists in a separate file; chain and lineup call this before they start
+export async function ensureMates(data) {
+  if (!data.matesFile || data.matesLoaded) return;
+  const res = await fetch(data.matesFile);
+  if (!res.ok) throw new Error(tr('Не удалось загрузить {0}', [data.matesFile]));
+  const all = await res.json();
+  data.players.forEach((p, i) => setMates(p, all[i] || []));
+  data.matesLoaded = true;
+}
+
 export async function loadGame(game) {
   if (cache[game]) return cache[game];
   const res = await fetch(`data/${game}.json`);
@@ -93,8 +109,7 @@ export async function loadGame(game) {
     p.teamSet = new Set(p.teams);
     p.eraSets = Object.fromEntries(Object.entries(p.eraTeams || {}).map(([k, v]) => [k, new Set(v)]));
     // mates: [playerIndex, teamIndex, fromYear, toYear]; toYear 0 = still together
-    p.mateMap = new Map(p.mates.map((m) => [m[0], m[1]]));
-    p.mateInfo = new Map(p.mates.map((m) => [m[0], m]));
+    if (p.mates) setMates(p, p.mates);
     p.age = p.birth ? ageOn(p.birth, now) : null;
     p.byear = p.birth ? +p.birth.slice(0, 4) : null;
     p.search = fold(p.id + ' ' + p.name);
@@ -246,13 +261,23 @@ export function shareImage(text) {
 export async function share(text) {
   const link = 'https://guesswhoami.eu';
   const full = text + '\n' + link;
+  let blob = null;
   try {
-    const blob = await shareImage(text);
+    blob = await shareImage(text);
     const file = blob && new File([blob], 'guesswhoami.png', { type: 'image/png' });
     if (file && navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text: full }); return; }
   } catch (e) { if (e && e.name === 'AbortError') return; }
-  try { await navigator.clipboard.writeText(full); toast(tr('Результат скопирован')); }
-  catch { prompt(tr('Скопируйте результат:'), full); }
+  // no native sharing (desktop): a window with the picture, download, copy and links to the main messengers
+  const url = blob ? URL.createObjectURL(blob) : null;
+  const enc = encodeURIComponent;
+  const a = (href, label) => h('a', { class: 'btn ghost small', href, target: '_blank', rel: 'noopener' }, label);
+  const body = h('div', { class: 'stack share-box' },
+    url ? h('img', { class: 'share-img', src: url, alt: '' }) : null,
+    h('div', { class: 'row-acts' },
+      url ? h('a', { class: 'btn small', href: url, download: 'guesswhoami.png' }, tr('Скачать картинку')) : null,
+      h('button', { class: 'btn small', type: 'button', onclick: async () => { try { await navigator.clipboard.writeText(full); toast(tr('Результат скопирован')); } catch { /* ignore */ } } }, tr('Копировать текст')),
+      a(`https://t.me/share/url?url=${enc(link)}&text=${enc(text)}`, 'Telegram'), a(`https://twitter.com/intent/tweet?text=${enc(text)}&url=${enc(link)}`, 'X'), a(`https://wa.me/?text=${enc(full)}`, 'WhatsApp')));
+  modal(tr('Поделиться'), body, () => { if (url) URL.revokeObjectURL(url); });
 }
 
 export function playerLink(p) {

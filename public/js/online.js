@@ -2,7 +2,7 @@
 // the shared database the page gets as a Claude artifact (claude.use("db")), or Supabase on our own domain
 // (see js/config.js and supabase/schema.sql). Without either everything here quietly reports "offline".
 import { tr } from './i18n.js';
-import { h, modal, toast, GAMES } from './core.js';
+import { h, modal, toast, store, GAMES } from './core.js';
 import { accountsEnabled, client, currentUser } from './account.js';
 
 const MODE_NAMES = () => ({ grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы'), maps: tr('Карты'), gear: tr('Предметы'), team: tr('Команда'), lineup: tr('Состав') });
@@ -115,10 +115,6 @@ export async function fillLeaderboard(body, game, day, withMine = true) {
   catch { body.append(h('p', { class: 'muted' }, tr('Не получилось загрузить рейтинг. Попробуйте позже.'))); return; }
   const name = await names(on, rows.map((r) => r.id));
 
-  const todayRows = rows.map((r) => ({ id: r.id, score: Object.keys(MODE_NAMES()).reduce((s, m) => s + (r.scores?.[`${game}:${m}:${day}`] || 0), 0) }))
-    .filter((r) => r.score > 0).sort((a, b) => b.score - a.score).slice(0, 20);
-  const allRows = rows.filter((r) => r.total > 0).sort((a, b) => b.total - a.total).slice(0, 20);
-
   const table = (list, field, sub) => (list.length
     ? h('ol', { class: 'board' }, list.map((r, i) => h('li', { class: r.id === on.uid ? 'me' : '' },
       h('span', { class: 'rank' }, String(i + 1)), h('span', { class: 'who' }, name(r.id), r.id === on.uid ? tr(' (вы)') : ''),
@@ -136,8 +132,30 @@ export async function fillLeaderboard(body, game, day, withMine = true) {
       h('div', { class: 'stat-tiles' }, stat(place + ' / ' + ranked.length, tr('место в рейтинге')), stat(mine.total, tr('очков всего')), stat(mine.games || 0, tr('сыграно игр')), stat(Math.round(mine.total / Math.max(1, mine.games || 1)), tr('среднее за игру'))),
       by.length ? h('ul', { class: 'pages' }, by.map(([g, v]) => h('li', {}, h('span', {}, (GAMES[g] ? GAMES[g].short : g) + ' · ' + tr('{0} игр', [v.n]) + ' · ' + tr('рекорд {0}', [v.best])), h('b', {}, String(v.t))))) : null);
   }
-  body.append(h('h4', {}, tr('Сегодня · {0} · все режимы', [GAMES[game].short])), table(todayRows, 'score'),
-    h('h4', {}, tr('Общий рейтинг · все игры')), table(allRows, 'total', (r) => tr('{0} игр · ср. {1}', [r.games || 0, Math.round(r.total / Math.max(1, r.games || 1))])));
+  // period (today / week / all time) and game filter; scores keep 14 days of detail, all-time per game comes from the per-game totals
+  let period = store.get('boardPeriod', 'all'), gsel = store.get('boardGame', 'all');
+  const list = h('div', {});
+  const periodBar = h('div', { class: 'seg' }), gameBar = h('select', { class: 'search-input small', 'aria-label': tr('Игра') });
+  gameBar.append(h('option', { value: 'all' }, tr('Все игры')), ...Object.keys(GAMES).map((g) => h('option', { value: g }, GAMES[g].short)));
+  gameBar.value = GAMES[gsel] ? gsel : 'all'; gsel = gameBar.value;
+  const scoreOf = (r) => {
+    const sc = r.scores || {};
+    if (period === 'all') return gsel === 'all' ? (r.total || 0) : (r.by?.[gsel]?.t || 0);
+    const from = period === 'today' ? day : day - 6;
+    let t = 0;
+    for (const k in sc) { const [g, , d] = k.split(':'); if (+d >= from && +d <= day + 1 && (gsel === 'all' || g === gsel)) t += sc[k]; }
+    return t;
+  };
+  const drawList = () => {
+    periodBar.innerHTML = '';
+    [['today', tr('Сегодня')], ['week', tr('Неделя')], ['all', tr('Всё время')]].forEach(([k, l]) => periodBar.append(h('button', { class: k === period ? 'active' : '', onclick: () => { period = k; store.set('boardPeriod', k); drawList(); } }, l)));
+    const top = rows.map((r) => ({ ...r, v: scoreOf(r) })).filter((r) => r.v > 0).sort((a, b) => b.v - a.v).slice(0, 20);
+    list.innerHTML = '';
+    list.append(table(top, 'v', period === 'all' && gsel === 'all' ? (r) => tr('{0} игр · ср. {1}', [r.games || 0, Math.round(r.total / Math.max(1, r.games || 1))]) : null));
+  };
+  gameBar.addEventListener('change', () => { gsel = gameBar.value; store.set('boardGame', gsel); drawList(); });
+  body.append(h('h4', {}, tr('Рейтинг')), h('div', { class: 'range' }, periodBar, gameBar), list);
+  drawList();
 }
 
 // the player's own place and totals (for the profile window); null when logged out or the board is unavailable

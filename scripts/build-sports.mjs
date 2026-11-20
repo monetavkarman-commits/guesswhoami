@@ -4,6 +4,7 @@
 //
 //   node scripts/build-sports.mjs
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { splitMates } from './split-mates.mjs';
 import { createHash } from 'node:crypto';
 import { COUNTRIES, REGIONS } from './countries.mjs';
 import { bestOverlap } from './overlap.mjs';
@@ -188,6 +189,7 @@ const builds = [
 for (const [name, fn] of builds) {
   const r = fn(); if (!r) { console.log(name, 'no raw data'); continue; }
   writeFileSync(ROOT + `public/data/${name}.json`, JSON.stringify(r.out));
+  if (name === 'football') splitMates('football');   // teammate lists load on demand (chain, lineup)
   const P = r.out.players;
   console.log(`${name}: ${P.length} players, ${r.out.teams.length} teams, top ${P.filter((p) => p.top).length}, with team now ${P.filter((p) => p.team).length}, with pos ${P.filter((p) => p.pos).length}`);
   if (r.missing.size) console.warn('  ISO codes missing from countries.mjs:', [...r.missing].join(', '));

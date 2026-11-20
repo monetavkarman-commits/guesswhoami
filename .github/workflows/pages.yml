@@ -20,6 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Check the player data and build the search-engine pages
+        run: |
+          node scripts/validate-data.mjs
+          node scripts/build-seo.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public

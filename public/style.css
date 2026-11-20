@@ -498,3 +498,7 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .admin textarea{width:100%;min-height:70px}.utable{width:100%;border-collapse:collapse;font-size:.88rem}.utable th,.utable td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}.utable .acts{display:flex;flex-wrap:wrap;gap:4px}
 .xscroll{overflow-x:auto}.row-acts{display:flex;gap:8px;flex-wrap:wrap}
 .perms{display:flex;flex-direction:column;gap:4px;margin:8px 0}.perm{font-size:14px}
+
+.hero-streak{display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:700;flex-wrap:wrap}
+.share-img{width:100%;max-width:340px;border-radius:14px;align-self:center;border:1px solid var(--line)}
+.seo .btn{text-decoration:none}.catalog-links{font-size:13px;line-height:1.8}

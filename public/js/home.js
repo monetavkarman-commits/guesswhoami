@@ -32,6 +32,11 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
   let total = 0, got = 0;
   for (const g of Object.keys(GAMES)) for (const [k] of modesOf(g)) { total++; if (done(g, k)) got++; }
 
+  // day streak: consecutive days with at least one finished daily game (today may still be open)
+  const playedDays = new Set();
+  for (const g of Object.keys(GAMES)) for (const [k] of modesOf(g)) Object.keys(getStats(g, k).days).forEach((d) => playedDays.add(+d));
+  let streak = 0; for (let d = playedDays.has(num) ? num : num - 1; playedDays.has(d); d--) streak++;
+
   const pickRandom = () => {
     const open = [];
     for (const g of Object.keys(GAMES)) for (const [k] of modesOf(g)) if (!done(g, k)) open.push([g, k]);
@@ -73,6 +78,7 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
       h('div', { class: 'hero-side' },
         h('div', { class: 'hero-count' }, h('b', {}, got), ' / ' + total, h('span', {}, tr('сегодня сыграно'))),
         bar,
+        h('div', { class: 'hero-streak' }, h('span', {}, '🔥 ' + tr('Серия: {0} дн.', [streak])), h('span', { class: 'muted' }, total - got > 0 ? tr('осталось сегодня: {0}', [total - got]) : tr('сегодня всё пройдено'))),
         h('button', { class: 'btn hero-btn', type: 'button', onclick: pickRandom }, '🎲 ' + tr('Случайная загадка')),
         h('div', { class: 'hero-links' },
           h('button', { class: 'btn ghost small', type: 'button', onclick: howTo }, '❓ ' + tr('Как играть')),
