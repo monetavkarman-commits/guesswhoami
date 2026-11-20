@@ -35,3 +35,7 @@ create policy "docs insert own" on public.docs for insert with check (
     (collection = 'board' and id = auth.uid()::text) or
     (collection = 'duels' and id like '%-' || auth.uid()::text)));
 create policy "docs update own" on public.docs for update using (owner = auth.uid()) with check (owner = auth.uid());
+
+-- the site talks to these tables through the Data API: logged-out visitors read, logged-in players write (RLS above limits what)
+grant select on public.profiles, public.docs to anon, authenticated;
+grant insert, update on public.profiles, public.docs to authenticated;
