@@ -15,8 +15,9 @@ function columns(data) {
     { title: tr('Страна'), cmp: (g, t) => (g.cc && g.cc === t.cc ? 'hit' : g.region && g.region === t.region ? 'near' : 'miss'),
       view: (g) => h('span', {}, flag(g.cc), ' ', countryName(g)) },
     { title: data.cfg.teamLabel, cmp: (g, t) => {
-        if (g.team && g.team === t.team) return 'hit';
-        const ti = data.teams.indexOf(g.team); const gi = data.teams.indexOf(t.team);
+        const ge = g.team || g.last; const te = t.team || t.last; // a player without a club is compared by the last one
+        if (ge && ge === te) return 'hit';
+        const ti = data.teams.indexOf(ge); const gi = data.teams.indexOf(te);
         if ((ti >= 0 && t.teamSet.has(ti)) || (gi >= 0 && g.teamSet.has(gi))) return 'near';
         return 'miss';
       }, view: (g) => h('span', { class: 'with-logo' }, logo(data, g.team || g.last), teamText(g)) },
