@@ -1,7 +1,7 @@
 // Optional accounts on our own domain: sign up or log in with email (password or a one-time link).
 // Playing never requires an account; it only puts your daily scores on the leaderboard.
 import { tr } from './i18n.js';
-import { h, modal, toast } from './core.js';
+import { h, modal, toast, store } from './core.js';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
 
 export const accountsEnabled = () => !!(SUPABASE_URL && SUPABASE_ANON_KEY) && !window.claude;
@@ -38,18 +38,24 @@ export async function initAccountButton(btn) {
   if (!btn || !accountsEnabled()) return;
   const sb = await client(); if (!sb) return;
   btn.hidden = false;
-  const paint = (user) => { btn.textContent = user ? '👤' : tr('Войти'); btn.classList.toggle('text', !user); btn.title = user ? nameOf(user) : ''; };
-  paint(await currentUser());
+  // the button is highlighted while nobody is logged in
+  const paint = (user) => { btn.textContent = user ? '👤' : tr('Войти'); btn.classList.toggle('text', !user); btn.classList.toggle('cta', !user); btn.title = user ? nameOf(user) : ''; };
+  const first = await currentUser();
+  paint(first);
   sb.auth.onAuthStateChange((ev, session) => {
     paint(session && session.user);
     if (ev === 'SIGNED_IN' && session) { saveProfile(sb, session.user); document.dispatchEvent(new CustomEvent('gwai:auth')); }
   });
   btn.addEventListener('click', async () => openAccount(sb, await currentUser()));
+  // first visit: offer to log in right away (not again for 3 days after it was closed, never when coming back from an email link)
+  const back = /access_token|error_description|type=(signup|magiclink|recovery)/.test(location.hash);
+  const last = +store.get('loginPrompt', 0);
+  if (!first && !back && Date.now() - last > 3 * 86400000) setTimeout(() => { if (!document.querySelector('.modal-back')) openAccount(sb, null, true); }, 700);
 }
 
-function openAccount(sb, user) {
+function openAccount(sb, user, welcome = false) {
   const body = h('div', { class: 'stack account' });
-  const close = modal(user ? tr('Аккаунт') : tr('Вход в аккаунт'), body);
+  const close = modal(user ? tr('Аккаунт') : welcome ? tr('Добро пожаловать!') : tr('Вход в аккаунт'), body, () => { if (welcome) store.set('loginPrompt', Date.now()); });
   if (user) {
     body.append(h('p', {}, tr('Вы вошли как '), h('b', {}, nameOf(user)), h('br'), h('span', { class: 'muted' }, user.email)),
       h('p', { class: 'muted' }, tr('Ваши результаты ежедневок попадают в рейтинг.')),
@@ -98,7 +104,9 @@ function openAccount(sb, user) {
     msg.textContent = tr('Ссылка для входа отправлена на {0}.', [em]);
   } }, tr('Войти по ссылке на почту, без пароля'));
   draw();
+  if (welcome) body.append(h('p', {}, tr('Создайте аккаунт или войдите: ваши результаты попадут в общий рейтинг и сохранятся на всех устройствах.')));
   body.append(tabs, email, nick, pass, submit, magic, msg,
     h('p', { class: 'muted small' }, tr('Аккаунт не обязателен: играть можно и без него. Он нужен, чтобы попасть в рейтинг.')));
+  if (welcome) body.append(h('button', { class: 'btn ghost', onclick: close }, tr('Играть без входа')));
   setTimeout(() => email.focus(), 0);
 }

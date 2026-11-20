@@ -225,3 +225,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 760px) { .tab .full { display: none; } .tab .short { display: inline; } .game-row .tab { padding: 7px 9px; } }
 [hidden] { display: none !important; }
 .account-seg { display: flex; } .account-seg button { flex: 1; }
+
+/* highlighted login button */
+.icon-pill.cta { background: var(--accent); border-color: var(--accent); color: #fff; padding: 0 14px; animation: cta-pulse 2.4s ease-out 3; }
+@keyframes cta-pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 90, 54, .6); } 70% { box-shadow: 0 0 0 10px rgba(255, 90, 54, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 90, 54, 0); } }
+@media (prefers-reduced-motion: reduce) { .icon-pill.cta { animation: none; } }
