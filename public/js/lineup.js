@@ -18,7 +18,8 @@ export function mount(root, data, opts) {
       const ys = pres.get(t);
       for (let y = from; y <= (to || thisYear); y++) {
         if (!ys.has(y)) ys.set(y, new Set());
-        ys.get(y).add(p.idx); ys.get(y).add(j);
+        // sanity: nobody under 14 in that year (youth stints and bad source dates)
+        for (const i of [p.idx, j]) { const b = data.players[i].byear; if (!b || y - b >= 14) ys.get(y).add(i); }
       }
     }
   });

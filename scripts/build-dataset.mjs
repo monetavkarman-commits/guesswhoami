@@ -65,7 +65,7 @@ function buildCS() {
       const note = rest.join('|').replace(/^link=[^|]*\|?/, '').trim().toLowerCase();
       const link = (rest.join('|').match(/^link=([^|]+)/) || [])[1];
       if (!['', 'loan', 'substitute', 'sub'].includes(note)) { if (note.includes('inactive')) benched++; continue; }
-      const [a, b] = dates.split('—'); const st = pd(a, false); if (st === null) continue;
+      const [a, b] = dates.split(/\s+[—–-]\s+/); const st = pd(a, false); if (st === null) continue;
       out.push([(link || team).trim(), st, pd(b, true)]);
     }
     return out;
