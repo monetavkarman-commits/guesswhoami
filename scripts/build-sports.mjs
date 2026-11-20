@@ -26,7 +26,7 @@ const commonsPath = (file) => {
   const md5 = createHash('md5').update(name).digest('hex');
   return `${md5[0]}/${md5.slice(0, 2)}/${name}`;
 };
-const QIDS = { football: { p: [], t: {} }, basket: { p: [], t: {} }, tennis: { p: [], t: {} } };
+const QIDS = { football: { p: [], t: {} }, hockey: { p: [], t: {} }, basket: { p: [], t: {} }, tennis: { p: [], t: {} } };
 
 function load(sport) {
   const f = ROOT + `data/raw/${sport}-wd.json`;

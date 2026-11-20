@@ -41,3 +41,9 @@
 ## Esports photos and logos (added)
 - `data/raw/esports-wd.json` = Wikidata: professional gamers with a photo (P18) and esports teams with a logo (P154), fetched in the owner's browser from query.wikidata.org (see `scripts/apply-esports-img.mjs` for the shape). `node scripts/build-dataset.mjs` applies it (nickname must match exactly one person; birth year must agree). Coverage is partial: Commons has few free esports photos.
 - Also added: legal pages (privacy.html, terms.html), cookie consent, anonymous analytics (`js/analytics.js`, table `events`), dashboard `admin.html`, social sign-in (providers shown automatically when enabled in Supabase), server-checked scores (`supabase/scores.sql`), and a 4-hourly Liquipedia refresh (`.github/workflows/refresh-data.yml`, CS and Dota only).
+
+## Hockey, MMA, boxing (added)
+- All three are item-style games like tennis (`itemsOnly`): `scripts/build-fighters.mjs` builds `public/data/{hockey,mma,boxing}-items.json` from `data/raw/{hockey-wd,hockey-extra,fighters-wd}.json` (Wikidata, fetched in the owner's browser; Wikidata is rate-limited, so queries run in chunks of 60-150 ids with a pause and retry on 429).
+- Hockey has no grid/who/chain because Wikidata gives club careers without dates (only about 9% of the stints have a start).
+- MMA weight class is derived from weight (the Wikidata class labels for MMA are unusable); boxing uses the division label, else the weight.
+- `supabase/scores.sql` accepts any game id (regex), so new games need no SQL change; re-run it once after updating.

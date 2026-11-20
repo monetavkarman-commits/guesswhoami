@@ -5,7 +5,7 @@ import { getStats } from './stats.js';
 
 const LOOK = {
   cs: ['#f5a524', '🔫'], dota: ['#e0463a', '🛡'], valorant: ['#ff4655', '🎯'], lol: ['#c89b3c', '⚔'], deadlock: ['#8b6cff', '👁'],
-  football: ['#2fa36b', '⚽'], basket: ['#ff7a2f', '🏀'], tennis: ['#b7d63a', '🎾'],
+  football: ['#2fa36b', '⚽'], basket: ['#ff7a2f', '🏀'], tennis: ['#b7d63a', '🎾'], hockey: ['#3a8fe0', '🏒'], mma: ['#d4373d', '🥋'], boxing: ['#c0302e', '🥊'],
 };
 
 // install prompt of the browser (Chrome/Edge/Android); iOS Safari has no event, so it gets a short hint

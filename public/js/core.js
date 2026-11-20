@@ -43,7 +43,10 @@ export const GAMES = {
     eras: { early: tr('Играли до 2010'), late: tr('Играли с 2016') }, activeEra: 'late',
     teamNote: tr('* Клубы и даты переходов — из Wikidata, там бывают пробелы.'),
   },
+  hockey: { title: tr('Хоккей'), tab: '🏒 ' + tr('Хоккей'), short: '🏒 ' + tr('Хоккей'), sport: true, itemsOnly: true, eras: {} },
   deadlock: { title: 'Deadlock', tab: 'Deadlock', short: 'Deadlock', itemsOnly: true, eras: {} },
+  mma: { title: 'MMA', tab: '🥋 MMA', short: '🥋 MMA', sport: true, itemsOnly: true, eras: {} },
+  boxing: { title: tr('Бокс'), tab: '🥊 ' + tr('Бокс'), short: '🥊 ' + tr('Бокс'), sport: true, itemsOnly: true, eras: {} },
   tennis: { title: tr('Теннис'), tab: '🎾 ' + tr('Теннис'), short: '🎾 ' + tr('Теннис'), sport: true, itemsOnly: true, eras: {} },
 };
 
