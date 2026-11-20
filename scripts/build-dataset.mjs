@@ -68,7 +68,13 @@ function buildCS() {
       if (hit) a.mates.push([j, hit[0]]);
     });
   });
-  players.forEach((p) => { p.top = p.events >= 2; delete p._stints; });
+  // eras: CS:GO up to Sep 2023, CS2 from Oct 2023 (only real playing stints count)
+  players.forEach((p) => {
+    p.era = [];
+    if (p._stints.some(([, st]) => st <= 202309)) p.era.push('csgo');
+    if (p._stints.some(([, , e]) => e >= 202310)) p.era.push('cs2');
+    p.top = p.events >= 2; delete p._stints;
+  });
 
   return { missing, out: {
     game: 'cs', title: 'Counter-Strike', eventLabel: 'Мэйджоры', generated: today, source: SOURCE,
@@ -106,6 +112,7 @@ function buildDota() {
       hero: hero ? hero[0].toUpperCase() + hero.slice(1) : null,
       events: new Set(mine.filter((a) => a.ev.startsWith('The International')).map((a) => a.ev)).size,
       teams: [...new Set(mine.map((a) => a.t))],
+      era: [...new Set(mine.map((a) => (a.yr <= 2022 ? 'early' : 'late')))],
       mates: [],
     };
   });

@@ -167,3 +167,5 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .countdown { display: block; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
 .stack { display: flex; flex-direction: column; gap: 10px; }
 .hint-box { display: flex; justify-content: center; }
+.bar-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.select { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font: inherit; }

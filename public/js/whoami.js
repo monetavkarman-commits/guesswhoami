@@ -34,8 +34,9 @@ function columns(data) {
   ];
 }
 
-export function mount(root, data, { seed, daily, label, day }) {
-  const pool = data.players.filter((p) => p.top && p.age != null);
+export function mount(root, data, { seed, daily, label, day, filter = () => true }) {
+  let pool = data.players.filter((p) => p.top && p.age != null && filter(p));
+  if (pool.length < 10) pool = data.players.filter((p) => p.age != null && filter(p));
   const target = pick(rng(seed), pool);
   const cols = columns(data);
   const saveKey = daily ? `who:${seed}` : null;

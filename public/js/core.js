@@ -15,6 +15,19 @@ export const GAMES = {
   },
 };
 
+// Difficulty / era filters: they narrow who can be the answer, any matching player is still accepted.
+export function filtersFor(game) {
+  const cs = game === 'cs';
+  return {
+    all: { label: 'Все игроки', test: () => true },
+    top: { label: 'Только звёзды', test: (p) => p.events >= (cs ? 3 : 2) },
+    active: { label: 'Актуальные составы', test: cs ? (p) => p.status === 'active' && !!p.team && p.era.includes('cs2') : (p) => p.status === 'active' && p.era.includes('late') },
+    ...(cs
+      ? { csgo: { label: 'Эра CS:GO', test: (p) => p.era.includes('csgo') }, cs2: { label: 'Эра CS2', test: (p) => p.era.includes('cs2') } }
+      : { early: { label: 'TI 2019–2022', test: (p) => p.era.includes('early') }, late: { label: 'TI 2023–2025', test: (p) => p.era.includes('late') } }),
+  };
+}
+
 const cache = {};
 export async function loadGame(game) {
   if (cache[game]) return cache[game];

@@ -41,10 +41,11 @@ function buildCriteria(data) {
   return out;
 }
 
-export function generateGrid(data, seed) {
+export function generateGrid(data, seed, filter = () => true) {
   const r = rng(seed);
   const all = buildCriteria(data);
-  all.forEach((c) => { c.set = new Set(data.players.filter(c.test).map((p) => p.idx)); });
+  // cells need 2+ answers among the players allowed by the difficulty filter
+  all.forEach((c) => { c.set = new Set(data.players.filter((p) => filter(p) && c.test(p)).map((p) => p.idx)); });
   const inter = (a, b) => [...a.set].filter((i) => b.set.has(i));
   const clash = (a, b) => a.kind === b.kind && (SAME_KIND_FORBIDDEN.has(a.kind) || a.key === b.key);
   const teams = all.filter((c) => c.kind === 'team');
@@ -81,8 +82,8 @@ function rarity(data, cellAnswers, idx) {
   return Math.round(10 + 90 * (more / Math.max(1, evs.length - 1)));
 }
 
-export function mount(root, data, { seed, daily, label, day }) {
-  const grid = generateGrid(data, seed);
+export function mount(root, data, { seed, daily, label, day, filter }) {
+  const grid = generateGrid(data, seed, filter);
   const saveKey = daily ? `grid:${seed}` : null;
   const state = (saveKey && store.get(saveKey)) || { cells: Array(9).fill(null), left: GUESSES, wrong: [], hints: {}, done: false };
   state.hints = state.hints || {};

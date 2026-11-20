@@ -21,10 +21,11 @@ function pathTo(prev, from, to) {
   return path;
 }
 
-export function generateChain(data, seed) {
+export function generateChain(data, seed, filter = () => true) {
   const r = rng(seed);
   const minEvents = data.game === 'cs' ? 3 : 2;
-  const pool = data.players.filter((p) => p.events >= minEvents).map((p) => p.idx);
+  let pool = data.players.filter((p) => p.events >= minEvents && filter(p)).map((p) => p.idx);
+  if (pool.length < 20) pool = data.players.filter(filter).map((p) => p.idx);
   for (const s of shuffle(r, pool)) {
     const { dist } = bfs(data, s);
     // 2 intermediate players (distance 3) is the sweet spot; fall back to 4
@@ -36,8 +37,8 @@ export function generateChain(data, seed) {
   throw new Error('Не удалось собрать цепочку');
 }
 
-export function mount(root, data, { seed, daily, label, day }) {
-  const game = generateChain(data, seed);
+export function mount(root, data, { seed, daily, label, day, filter }) {
+  const game = generateChain(data, seed, filter);
   const S = data.players[game.start]; const E = data.players[game.end];
   const saveKey = daily ? `chain:${seed}` : null;
   const state = (saveKey && store.get(saveKey)) || { path: [game.start], errors: 0, hints: 0, done: false, gaveUp: false };
