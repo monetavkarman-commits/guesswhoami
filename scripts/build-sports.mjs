@@ -133,6 +133,9 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
     const q = nameQ.get(n); if (!q) return; QIDS[sport].t[q] = n;
     const lg = IMGS.t[q] && commonsPath(IMGS.t[q]); if (lg) logos[i] = lg;
   });
+  // hand-supplied logos (public/img/teams, data/logos-local.json) where Commons has none
+  const local = existsSync(ROOT + 'data/logos-local.json') ? JSON.parse(readFileSync(ROOT + 'data/logos-local.json', 'utf8'))[sport] || {} : {};
+  teamList.forEach((t, i) => { if (!logos[i] && local[t]) logos[i] = local[t]; });
   console.log(`  ${sport}: photos ${players.filter((p) => p.ph).length}/${players.length}, logos ${Object.keys(logos).length}/${teamList.length}`);
   return { missing, out: { game: sport, title, eventLabel, generated: today, source: SOURCE, sourceNote, regions: REGIONS, teams: teamList, logos, players } };
 }
