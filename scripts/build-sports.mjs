@@ -31,7 +31,7 @@ function merge(raw, posOf) {
     const o = out.get(r.p) || { p: r.p, en: r.en || MUL[r.p], ru: r.ru, b: r.b, ccs: new Set(), cc: new Set(), pos: {}, hands: new Set(), start: r.start, sex: r.sex, h: r.h, sl: sl.get(r.p) || 0 };
     if (r.hand) o.hands.add(r.hand);
     if (r.ccs) o.ccs.add(r.ccs); if (r.cc) o.cc.add(r.cc);
-    const p = posOf ? posOf(r.pos) : null; if (p) o.pos[p] = (o.pos[p] || 0) + 1;
+    const p = posOf ? POS_FIX[r.p] || posOf(r.pos) : null; if (p) o.pos[p] = (o.pos[p] || 0) + 1;
     if (r.start && (!o.start || r.start < o.start)) o.start = r.start;
     out.set(r.p, o);
   }
@@ -129,8 +129,12 @@ function latin(s) {
 const monthsBetween = (a, b) => (Math.floor(b / 100) - Math.floor(a / 100)) * 12 + (b % 100) - (a % 100);
 
 const footballPos = (l) => { l = (l || '').toLowerCase(); if (!l) return null;
-  if (l.includes('goalkeeper')) return 1; if (/back|defender|sweeper|libero/.test(l)) return 2;
-  if (/midfield|playmaker/.test(l)) return 3; if (/forward|striker|winger|attacker/.test(l)) return 4; return null; };
+  if (/goalkeeper|goaltender/.test(l)) return 1; if (/back|defender|sweeper|libero|stopper/.test(l)) return 2;
+  if (/midfield|playmaker|centerhalf/.test(l)) return 3;
+  // Wikidata labels the winger position of many modern players (Neymar, Bale, Di María) as "wing half"
+  if (/forward|striker|winger|attacker|wing half/.test(l)) return 4; return null; };
+// a few star players whose position on Wikidata is broken (e.g. Lewandowski's reads "gate")
+const POS_FIX = { Q151269: 4, Q196219: 3 };
 const basketPos = (l) => { l = (l || '').toLowerCase(); if (!l) return null;
   if (l.includes('point guard')) return 1; if (l.includes('shooting guard')) return 2; if (l.includes('small forward')) return 3;
   if (l.includes('power forward')) return 4; if (l.includes('center') || l.includes('centre')) return 5;
