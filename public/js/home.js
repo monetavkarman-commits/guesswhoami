@@ -1,12 +1,30 @@
 // Home hub: pick a game, see today's progress at a glance.
 import { tr } from './i18n.js';
-import { h } from './core.js';
+import { h, store, modal } from './core.js';
 import { getStats } from './stats.js';
 
 const LOOK = {
   cs: ['#f5a524', '🔫'], dota: ['#e0463a', '🛡'], valorant: ['#ff4655', '🎯'], lol: ['#c89b3c', '⚔'], deadlock: ['#8b6cff', '👁'],
   football: ['#2fa36b', '⚽'], basket: ['#ff7a2f', '🏀'], tennis: ['#b7d63a', '🎾'],
 };
+
+// install prompt of the browser (Chrome/Edge/Android); iOS Safari has no event, so it gets a short hint
+let installEvent = null;
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvent = e; });
+const standalone = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+const isIos = () => /iphone|ipad|ipod/i.test(navigator.userAgent) && !standalone();
+
+const HOWTO = () => [
+  ['▦', tr('Сетка'), tr('В каждую клетку впиши игрока, который подходит и строке, и столбцу. Попыток 12.')],
+  ['?', tr('Кто я?'), tr('Угадай загаданного игрока. После каждой попытки цвета подсказывают, что совпало: страна, роль, возраст, команда.')],
+  ['⛓', tr('Цепочка'), tr('Соедини двух игроков через тех, с кем они играли в одной команде. Чем короче цепочка, тем больше очков.')],
+  ['◆', tr('Предметы и герои'), tr('Угадай героя, оружие или предмет по подсказкам и описанию.')],
+];
+function howTo() {
+  const body = h('div', { class: 'stack howto-list' }, HOWTO().map(([i, t, d]) => h('div', { class: 'howto-row' }, h('span', { class: 'howto-ic' }, i), h('div', {}, h('b', {}, t), h('p', { class: 'muted' }, d)))),
+    h('p', { class: 'muted small' }, tr('Новые загадки каждый день в 00:00. Играть можно без аккаунта.')));
+  modal(tr('Как играть'), body);
+}
 
 export function renderHome(root, { GAMES, MODES, nav, num }) {
   const modesOf = (game) => Object.entries(MODES).filter(([, m]) => !((m.gameTitle && !m.gameTitle[game]) || (GAMES[game].itemsOnly && !m.set)));
@@ -46,6 +64,7 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
   const bar = h('div', { class: 'hub-bar' }, h('i', {}));
   bar.firstChild.style.width = pct + '%';
   root.innerHTML = '';
+  if (!store.get('howtoSeen', false)) { store.set('howtoSeen', true); setTimeout(() => { if (!document.querySelector('.modal-back') && /^(#?)$/.test(location.hash)) howTo(); }, 2500); }
   root.append(
     h('div', { class: 'hero' },
       h('div', {},
@@ -54,7 +73,13 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
       h('div', { class: 'hero-side' },
         h('div', { class: 'hero-count' }, h('b', {}, got), ' / ' + total, h('span', {}, tr('сегодня сыграно'))),
         bar,
-        h('button', { class: 'btn hero-btn', type: 'button', onclick: pickRandom }, '🎲 ' + tr('Случайная загадка')))),
+        h('button', { class: 'btn hero-btn', type: 'button', onclick: pickRandom }, '🎲 ' + tr('Случайная загадка')),
+        h('div', { class: 'hero-links' },
+          h('button', { class: 'btn ghost small', type: 'button', onclick: howTo }, '❓ ' + tr('Как играть')),
+          !standalone() && (installEvent || isIos()) ? h('button', { class: 'btn ghost small', type: 'button', onclick: async () => {
+            if (installEvent) { installEvent.prompt(); installEvent = null; }
+            else modal(tr('Установка'), h('p', {}, tr('Нажмите «Поделиться» в Safari и выберите «На экран Домой»: сайт появится как приложение.')));
+          } }, '📲 ' + tr('Установить')) : null))),
     section(tr('🎮 Киберспорт'), false),
     section(tr('🏟 Спорт'), true));
 }

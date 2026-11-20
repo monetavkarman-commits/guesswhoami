@@ -194,9 +194,39 @@ export function toast(msg) {
   setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2200);
 }
 
+// draws the result as a picture (for Telegram, Instagram, X …) from the same text that is copied
+export function shareImage(text) {
+  const lines = text.split('\n'); const W = 1080; const H = 1080;
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  const grad = g.createLinearGradient(0, 0, W, H); grad.addColorStop(0, '#0b0e17'); grad.addColorStop(1, '#2a1630'); g.fillStyle = grad; g.fillRect(0, 0, W, H);
+  g.fillStyle = '#ff5a36'; g.fillRect(0, 0, W, 14);
+  g.fillStyle = '#ff5a36'; g.beginPath(); g.roundRect(70, 70, 90, 90, 22); g.fill();
+  g.fillStyle = '#fff'; g.font = '800 64px system-ui, sans-serif'; g.textAlign = 'center'; g.fillText('?', 115, 136);
+  g.textAlign = 'left'; g.font = '800 54px system-ui, sans-serif'; g.fillStyle = '#eef1fa'; g.fillText('GuessWhoAmI', 185, 130);
+  let y = 290; g.font = '600 46px system-ui, sans-serif';
+  lines.forEach((l, i) => {
+    const emoji = /^[\u2B1B\u2B1C\u{1F7E5}-\u{1F7EB}]+$/u.test(l.trim());
+    g.font = emoji ? '88px system-ui, "Apple Color Emoji", "Segoe UI Emoji", sans-serif' : (i === 0 ? '700 44px system-ui, sans-serif' : '600 46px system-ui, sans-serif');
+    g.fillStyle = i === 0 ? '#ffc247' : '#eef1fa';
+    if (g.measureText(l).width > W - 140 && !emoji) { g.font = '600 34px system-ui, sans-serif'; }
+    if (emoji && !/^[\u2B1B\u2B1C\u{1F7E5}-\u{1F7EB}]+$/u.test((lines[i - 1] || '').trim())) y += 40;
+    if (!emoji && /^[\u2B1B\u2B1C\u{1F7E5}-\u{1F7EB}]+$/u.test((lines[i - 1] || '').trim())) y += 50;
+    g.fillText(i === 0 ? l.replace(/^GuessWhoAmI · /, '') : l, 70, y); y += emoji ? 66 : 72;
+  });
+  g.font = '700 44px system-ui, sans-serif'; g.fillStyle = '#8f9bb8'; g.fillText('guesswhoami.eu', 70, H - 70);
+  return new Promise((res) => c.toBlob(res, 'image/png'));
+}
+
 export async function share(text) {
-  try { await navigator.clipboard.writeText(text); toast(tr('Результат скопирован')); }
-  catch { prompt(tr('Скопируйте результат:'), text); }
+  const link = 'https://guesswhoami.eu';
+  const full = text + '\n' + link;
+  try {
+    const blob = await shareImage(text);
+    const file = blob && new File([blob], 'guesswhoami.png', { type: 'image/png' });
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text: full }); return; }
+  } catch (e) { if (e && e.name === 'AbortError') return; }
+  try { await navigator.clipboard.writeText(full); toast(tr('Результат скопирован')); }
+  catch { prompt(tr('Скопируйте результат:'), full); }
 }
 
 export function playerLink(p) {
