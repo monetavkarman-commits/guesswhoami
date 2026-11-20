@@ -378,3 +378,11 @@ body.is-home .mode-root { background: none; border: 0; box-shadow: none; padding
 .tab.active .gico { background: #fff; color: var(--gc); box-shadow: none; }
 .gico.big { min-width: 34px; height: 34px; font-size: 15px; border-radius: 10px; margin: 0; }
 .gc-icon:has(.gico) { background: none; box-shadow: none; }
+.gico.has-img { background: none; box-shadow: none; padding: 0; min-width: 0; }
+.gico .gimg { height: 22px; width: auto; max-width: 64px; border-radius: 5px; display: block; }
+.gico.g-cs .gimg, .gico.g-dota .gimg, .gico.g-deadlock .gimg { width: 22px; object-fit: cover; }
+.gico.g-lol .gimg { height: 16px; }
+.tab.active .gico.has-img { background: none; }
+.gico.big.has-img .gimg { height: 36px; max-width: 80px; border-radius: 9px; }
+.gico.big.g-cs .gimg, .gico.big.g-dota .gimg, .gico.big.g-deadlock .gimg { width: 36px; }
+.gico.big.g-lol .gimg { height: 24px; }

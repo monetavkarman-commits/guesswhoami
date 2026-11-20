@@ -52,9 +52,22 @@ export const GAMES = {
 
 // small badge for the esports games (own monogram in the game's colour; sports use an emoji instead)
 export const GAME_BADGE = { cs: ['CS', '#f5a524'], dota: ['D2', '#e0463a'], valorant: ['V', '#ff4655'], lol: ['LoL', '#c89b3c'], deadlock: ['DL', '#8b6cff'] };
+// official icons where they are freely available (Steam's own app icons, Commons for VALORANT and LoL); the monogram is the fallback
+const STEAM = 'https://shared.fastly.steamstatic.com/community_assets/images/apps/';
+const GAME_IMG = {
+  cs: () => STEAM + '730/8dbc71957312bbd3baea65848b545be9eae2a355.jpg', dota: () => STEAM + '570/48eb825bb93787945065b460bdc109e395384ebf.jpg',
+  deadlock: () => STEAM + '1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg',
+  valorant: () => wmUrl('f/fc/Valorant_logo_-_pink_color_version.svg', 96), lol: () => wmUrl('d/d8/League_of_Legends_2019_vector.svg', 120),
+};
 export function gameBadge(game, cls = 'gico') {
   const b = GAME_BADGE[game]; if (!b) return null;
-  const el = h('span', { class: cls, 'aria-hidden': 'true' }, b[0]); el.style.setProperty('--gc', b[1]); return el;
+  const el = h('span', { class: cls, 'aria-hidden': 'true' }, b[0]); el.style.setProperty('--gc', b[1]);
+  if (GAME_IMG[game]) {
+    const img = new Image(); img.className = 'gimg'; img.alt = ''; img.decoding = 'async'; img.referrerPolicy = 'no-referrer';
+    img.onload = () => { el.textContent = ''; el.classList.add('has-img', 'g-' + game); el.append(img); }; // until the picture arrives the monogram shows
+    img.src = GAME_IMG[game]();
+  }
+  return el;
 }
 
 // Difficulty / era filters: they narrow who can be the answer, any matching player is still accepted.
