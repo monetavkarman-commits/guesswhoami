@@ -192,7 +192,7 @@ function badge(name, cls) {
 }
 const teamLogo = (data, i, cls) => {
   if (i == null || i < 0 || !data.teams[i]) return null;
-  return data.logos && data.logos[i] ? pic(wmUrl(data.logos[i], 60), cls) : badge(data.teams[i], cls);
+  return data.logos && data.logos[i] ? pic(/^img\//.test(data.logos[i]) ? data.logos[i] : wmUrl(data.logos[i], 60), cls) : badge(data.teams[i], cls);
 };
 export const logo = (data, name, cls = 'pic logo') => (name ? teamLogo(data, data.teams.indexOf(name), cls) : null);
 export const logoAt = (data, i, cls = 'pic logo') => teamLogo(data, i, cls);

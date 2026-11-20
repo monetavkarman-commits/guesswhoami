@@ -34,6 +34,9 @@ for (const game of ['cs', 'dota', 'valorant', 'lol']) {
   }
   d.logos = {};
   d.teams.forEach((t, i) => { const file = teamBy.get(fold(t)); if (file) d.logos[i] = path(file); });
+  // logos supplied by hand (files under public/img/teams, listed in data/logos-local.json); Commons logos win where both exist
+  const local = existsSync(ROOT + 'data/logos-local.json') ? JSON.parse(readFileSync(ROOT + 'data/logos-local.json', 'utf8'))[game] || {} : {};
+  d.teams.forEach((t, i) => { if (!d.logos[i] && local[t]) d.logos[i] = local[t]; });
   writeFileSync(f, JSON.stringify(d));
   console.log(`  ${game}: photos ${pn}/${d.players.length}, logos ${Object.keys(d.logos).length}/${d.teams.length}`);
 }
