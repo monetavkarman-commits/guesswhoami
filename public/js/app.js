@@ -65,7 +65,21 @@ const FREE_GAMES = 3;
 let signedIn = false;
 currentUser().then((u) => { signedIn = !!u; });
 document.addEventListener('gwai:auth', (e) => { const was = signedIn; signedIn = !!(e.detail && e.detail.user); if (signedIn !== was) render(); });
-let resultWatch = null;
+let currentSeed = null;
+async function guestCheck(seed, register) {
+  try {
+    const sb = await client(); if (!sb) return null;
+    const { data, error } = await sb.rpc('guest_play', { p_seed: seed, p_register: register });
+    return error ? null : data;
+  } catch { return null; }
+}
+// the first answer of a guest's puzzle uses up one of the free puzzles
+document.addEventListener('gwai:answer', async () => {
+  if (!accountsEnabled() || signedIn || !currentSeed) return;
+  const seed = currentSeed; const d = store.get('guestDone', []);
+  if (!d.includes(seed)) store.set('guestDone', [...d, seed]);
+  await guestCheck(seed, true);
+});
 
 function gateCard() {
   return h('div', { class: 'gate' },
@@ -182,14 +196,13 @@ async function render() {
     const suffix = fid === 'all' ? '' : `:${fid}`;
     const seed = (endless ? `${game}:${mode}:free:${endlessSeed}` : `${game}:${mode}:${key}`) + suffix;
     const id = endlessSeed;
-    if (resultWatch) { resultWatch.disconnect(); resultWatch = null; }
+    currentSeed = seed;
     if (accountsEnabled() && !signedIn) {
+      // the server counts guest puzzles per network + browser; if it cannot be reached, the browser's own count is used
+      const r = await guestCheck(seed, false);
       const done = store.get('guestDone', []);
-      if (done.length >= FREE_GAMES && !done.includes(seed)) { root.innerHTML = ''; root.append(gateCard()); return; }
-      // a finished puzzle (its result card shows up) counts once
-      const count = () => { const d = store.get('guestDone', []); if (!d.includes(seed)) store.set('guestDone', [...d, seed]); };
-      resultWatch = new MutationObserver(() => { if (root.querySelector('.result')) { count(); resultWatch.disconnect(); resultWatch = null; } });
-      resultWatch.count = count;
+      const blocked = r ? !r.ok : done.length >= FREE_GAMES && !done.includes(seed);
+      if (blocked) { root.innerHTML = ''; root.append(gateCard()); return; }
     }
     MODES[mode].mod.mount(root, data, {
       seed, daily: !endless, day: num, mode, set: MODES[mode].set, label: duel ? '⚔' : endless ? '∞' : tr('№{0}', [num]), filter: filtersFor(game)[fid].test, era: filtersFor(game)[fid].era,
@@ -199,7 +212,6 @@ async function render() {
         root.append(duelPanel({ game, mode, id, filter: fid, score, rival: duel ? rival : null }));
       } : null,
     });
-    if (resultWatch) { if (root.querySelector('.result')) { resultWatch.count(); resultWatch = null; } else resultWatch.observe(root, { childList: true, subtree: true }); }
   } catch (e) {
     root.innerHTML = '';
     root.append(h('div', { class: 'error' }, tr('Ошибка: ') + e.message, h('br'), tr('Откройте сайт через локальный сервер (см. README), а не как файл.')));
