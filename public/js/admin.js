@@ -31,8 +31,11 @@ async function draw(sb) {
         tile(data.visits, 'заходов (сессий)'), tile(data.users, 'аккаунтов всего'), tile(data.users_new, 'новых аккаунтов')),
       h('h3', {}, 'Посетители по ' + (bucket === 'hour' ? 'часам' : 'дням')),
       h('div', { class: 'bars' }, data.series.length ? data.series.map((x) => { const b = h('div', { class: 'bar', title: `${fmt(x.t, bucket)}: ${x.unique} уникальных, ${x.visits} заходов` }, h('i', {}), h('small', {}, fmt(x.t, bucket))); b.firstChild.style.height = Math.max(3, (x.unique / max) * 100) + '%'; return b; }) : h('p', { class: 'muted' }, 'За этот период данных нет.')),
-      h('h3', {}, 'Популярные разделы (по активности)'),
-      h('ul', { class: 'pages' }, data.pages.map((p) => h('li', {}, h('span', {}, p.page), h('b', {}, String(p.n))))),
+      h('h3', {}, 'Время в разделах (минут активности)'),
+      h('ul', { class: 'pages' }, data.pages.map((p) => h('li', {}, h('span', {}, p.page + ' · ' + p.people + ' чел.'), h('b', {}, p.n + ' мин')))),
+      h('h3', {}, 'Посетители'),
+      h('table', { class: 'visitors' }, h('tr', {}, ...['Имя', 'Минут', 'Заходов', 'Последний раз', 'Чаще всего'].map((t) => h('th', {}, t))),
+        ...data.visitors.map((v) => h('tr', {}, h('td', {}, v.name || 'гость'), h('td', {}, String(v.minutes)), h('td', {}, String(v.visits)), h('td', {}, new Date(v.last_seen).toLocaleString('ru-RU')), h('td', {}, v.top_page || '—')))),
       h('h3', {}, 'Сообщения об ошибках в данных'),
       data.reports.length ? h('ul', { class: 'reports' }, data.reports.map((r) => h('li', {}, h('small', { class: 'muted' }, new Date(r.created_at).toLocaleString('ru-RU') + ' · ' + r.path), h('div', {}, r.info)))) : h('p', { class: 'muted' }, 'Пока нет.'),
       h('p', { class: 'muted small' }, 'В статистику попадают только посетители, согласившиеся на аналитику. Реальных людей немного больше.'));

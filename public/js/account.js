@@ -27,7 +27,7 @@ export async function currentUser() {
   return data.session ? data.session.user : null;
 }
 
-const nameOf = (u) => (u && (u.user_metadata?.name || u.email?.split('@')[0])) || tr('Игрок');
+export const nameOf = (u) => (u && (u.user_metadata?.name || u.email?.split('@')[0])) || tr('Игрок');
 
 // keeps the public nickname in the profiles table in step with the account
 async function saveProfile(sb, user) {

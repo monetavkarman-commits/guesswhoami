@@ -485,3 +485,4 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .gate h3 { margin: 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: -.03em; }
 .gate p { margin: 0; color: var(--muted); max-width: 46ch; }
 .gate .row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.visitors{width:100%;border-collapse:collapse;font-size:.9rem}.visitors th,.visitors td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line,rgba(128,128,128,.25))}
