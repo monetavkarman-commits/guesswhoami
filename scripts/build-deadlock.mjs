@@ -22,7 +22,7 @@ const heroes = Object.entries(raw.heroes).map(([name, text]) => {
     id: slug(name), name, sub: labs ? 'Hero Labs' : '', alias: name === 'Doorman' ? ['The Doorman'] : name === 'The Magnificent Sinclair' ? ['Sinclair'] : [],
     status: labs ? 'Hero Labs' : 'Основной состав',
     year: b.releasedate ? +b.releasedate.slice(0, 4) : null,
-    health: num(b.basehealth), speed: num(b.speedmove), stamina: num(b.stamina), bullet: num(b.damagebullet), ammo: num(b.ammo), dps: num(b.dps),
+    health: num(b.basehealth), speed: num(b.speedmove), stamina: num(b.stamina), bullet: num(b.damagebullet), ammo: num(b.ammo), dps: num(b.dps) ?? (num(b.damagebullet) && num(b.bps) ? Math.round(num(b.damagebullet) * num(b.bps)) : null), // the wiki leaves a few DPS blank: estimate = bullet damage x bullets per second
     url: url(name),
   };
 }).filter((h) => h.health != null).sort((a, b) => a.name.localeCompare(b.name));
@@ -53,28 +53,33 @@ const STAT = [['bonushp', 'Здоровье'], ['hp', 'Здоровье'], ['max
   ['bulletlifesteal', 'Вампиризм'], ['spiritlifesteal', 'Вампиризм'], ['sprinlifesteal', 'Вампиризм'], ['cdreduction', 'Откат умений'], ['stamina', 'Выносливость'], ['staminarecov', 'Выносливость'], ['staminarecovery', 'Выносливость'],
   ['meleedamage', 'Ближний бой'], ['meleedmg', 'Ближний бой'], ['velocity', 'Скорость пули'], ['debuffresist', 'Стойкость']];
 const items = [];
+const names = new Set(Object.keys(raw.items));
 for (const it of raw.itemList) {
   const text = raw.items[it.name]; if (!text) continue;
   const b = box(text, 'item');
-  const tier = TIER[it.cost]; if (!tier || !CAT[it.cat]) continue;
+  // tier and price are the ones on the item's own page (the navbox list still carries old prices); components = what the item is built from (its recipe)
+  const tier = num(b.tier) || TIER[it.cost]; const price = num(b.itemcost) || it.cost;
+  if (!tier || !CAT[it.cat]) continue;
   const stats = [...new Set(STAT.filter(([k]) => b[k] !== undefined && b[k] !== '').map(([, l]) => l))];
-  const parts = (text.match(/\|\s*topitem\d+\s*=\s*\S/g) || []).length;
+  const from = [...text.matchAll(/\|\s*bottomitem\d+\s*=\s*([^\n|}]+)/g)].map((m) => m[1].trim()).filter((n) => names.has(n));
   items.push({
-    id: slug(it.name), name: it.name, sub: CAT[it.cat], alias: [], cat: CAT[it.cat], tier, price: it.cost, stats,
-    active: /'''''Active'''''/i.test(text) ? 'Да' : 'Нет', parts, url: url(it.name),
+    id: slug(it.name), name: it.name, sub: CAT[it.cat], alias: [], cat: CAT[it.cat], tier, price, stats,
+    active: /'''''Active'''''/i.test(text) ? 'Да' : 'Нет', parts: from.length, from, url: url(it.name),
   });
 }
 items.sort((a, b) => a.name.localeCompare(b.name));
 write('public/data/deadlock-gear.json', {
   modeTitle: 'Предметы', nameTitle: 'Предмет', placeholder: 'Название предмета…',
-  intro: 'Угадайте предмет Deadlock по категории, уровню, бонусам, активной способности и числу компонентов улучшения. Зелёный — совпало, жёлтый — близко (бонусы пересекаются, уровень ±1), стрелка — больше или меньше.',
-  source: `Liquipedia Deadlock, инфобоксы предметов (${raw.fetched.slice(0, 10)}; цена по панели предметов)`,
+  intro: 'Угадайте предмет Deadlock по категории, уровню, бонусам, активной способности, цене и тому, из каких предметов он собирается. Зелёный — совпало, жёлтый — близко (бонусы или компоненты пересекаются, уровень ±1, цена ±500), стрелка — больше или меньше.',
+  source: `Liquipedia Deadlock, инфобоксы предметов (${raw.fetched.slice(0, 10)}; цена и уровень со страницы предмета)`,
   columns: [
     { key: 'cat', title: 'Категория', type: 'cat' },
     { key: 'tier', title: 'Уровень', type: 'num', near: 1 },
     { key: 'stats', title: 'Бонусы', type: 'set' },
     { key: 'active', title: 'Активка', type: 'cat' },
+    { key: 'price', title: 'Цена', type: 'num', near: 500 },
     { key: 'parts', title: 'Компонентов', type: 'num', near: 0 },
+    { key: 'from', title: 'Собирается из', type: 'set' },
   ],
   items,
 });
