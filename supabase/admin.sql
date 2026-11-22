@@ -225,3 +225,11 @@ do $$ declare f text; begin
     execute format('grant execute on function public.%s to authenticated', f);
   end loop;
 end $$;
+
+-- ---------- leaderboard members: every registered player (nickname only), also with 0 points; banned accounts are left out ----------
+create or replace function public.board_members() returns table (id uuid, name text)
+language sql stable security definer set search_path = public as $$
+  select p.id, p.name from profiles p where not exists (select 1 from banned_users b where b.id = p.id) order by p.name limit 1000;
+$$;
+revoke all on function public.board_members() from public;
+grant execute on function public.board_members() to anon, authenticated;

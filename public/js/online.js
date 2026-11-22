@@ -2,7 +2,8 @@
 // the shared database the page gets as a Claude artifact (claude.use("db")), or Supabase on our own domain
 // (see js/config.js and supabase/schema.sql). Without either everything here quietly reports "offline".
 import { tr } from './i18n.js';
-import { h, modal, toast, store, GAMES } from './core.js';
+import { h, modal, toast, store, today, GAMES } from './core.js';
+import { getStats } from './stats.js';
 import { accountsEnabled, client, currentUser } from './account.js';
 
 const MODE_NAMES = () => ({ grid: tr('Сетка'), whoami: tr('Кто я?'), chain: tr('Цепочка'), items: tr('Предметы'), maps: tr('Карты'), gear: tr('Предметы'), team: tr('Команда'), lineup: tr('Состав') });
@@ -73,6 +74,11 @@ let writing = Promise.resolve();
 export function submitDaily({ game, mode, day, score }) {
   writing = writing.then(async () => {
     const on = await init(); if (!on || !on.uid) return;
+    if (on.rpc) {   // our own domain: the server checks and stores the score (supabase/scores.sql); one result per game, mode and day
+      const { error } = await on.rpc('submit_score', { p_game: game, p_mode: mode, p_day: day, p_score: Math.round(score) });
+      if (error && !/banned|bad day/.test(error.message)) console.warn('leaderboard write failed', error.message);
+      return;
+    }
     const ref = on.db.doc(`board/${on.uid}`);
     const snap = await ref.get();
     const cur = snap.exists ? structuredClone(snap.data()) : { scores: {}, total: 0, games: 0 };
@@ -91,6 +97,25 @@ export function submitDaily({ game, mode, day, score }) {
 }
 
 document.addEventListener('gwai:result', (e) => submitDaily(e.detail));
+
+// once per session after login: send today's and yesterday's finished games again (the server ignores the ones it already has)
+let synced = null;
+async function syncRecent() {
+  const on = await init(); if (!on || !on.uid || !on.rpc || synced === on.uid) return;
+  synced = on.uid;
+  const { num } = today();
+  for (const game of Object.keys(GAMES)) for (const mode of Object.keys(MODE_NAMES())) {
+    const days = getStats(game, mode).days;
+    for (const d of [num - 1, num]) if (days[d] && days[d].score > 0) await submitDaily({ game, mode, day: d, score: days[d].score });
+  }
+}
+document.addEventListener('gwai:auth', () => setTimeout(syncRecent, 1500));
+setTimeout(syncRecent, 3000);
+
+// every registered player (nickname only), also those without points yet; banned accounts are left out by the server
+async function members(on) {
+  try { const { data } = await on.rpc('board_members'); return data || []; } catch { return []; }
+}
 
 async function names(on, ids) {
   try { const ps = await on.user.profiles(ids); return (id) => (ps[id] && ps[id].name) || tr('Игрок'); }
@@ -113,7 +138,13 @@ export async function fillLeaderboard(body, game, day, withMine = true) {
   let rows;
   try { rows = (await on.db.collection('board').limit(500).get()).docs.map((d) => ({ id: d.id, ...d.data() })); }
   catch { body.append(h('p', { class: 'muted' }, tr('Не получилось загрузить рейтинг. Попробуйте позже.'))); return; }
-  const name = await names(on, rows.map((r) => r.id));
+  // everyone registered is listed, even before the first point: members without a board row are added with zero
+  const mem = on.rpc ? await members(on) : [];
+  const memName = new Map(mem.map((m) => [m.id, m.name]));
+  const have = new Set(rows.map((r) => r.id));
+  mem.forEach((m) => { if (!have.has(m.id)) rows.push({ id: m.id, total: 0, games: 0, scores: {}, by: {} }); });
+  const fallback = await names(on, rows.map((r) => r.id));
+  const name = (id) => memName.get(id) || fallback(id);
 
   const table = (list, field, sub) => (list.length
     ? h('ol', { class: 'board' }, list.map((r, i) => h('li', { class: r.id === on.uid ? 'me' : '' },
@@ -149,7 +180,8 @@ export async function fillLeaderboard(body, game, day, withMine = true) {
   const drawList = () => {
     periodBar.innerHTML = '';
     [['today', tr('Сегодня')], ['week', tr('Неделя')], ['all', tr('Всё время')]].forEach(([k, l]) => periodBar.append(h('button', { class: k === period ? 'active' : '', onclick: () => { period = k; store.set('boardPeriod', k); drawList(); } }, l)));
-    const top = rows.map((r) => ({ ...r, v: scoreOf(r) })).filter((r) => r.v > 0).sort((a, b) => b.v - a.v).slice(0, 20);
+    const everyone = period === 'all' && gsel === 'all';   // the overall table lists all members, also those with 0 points
+    const top = rows.map((r) => ({ ...r, v: scoreOf(r) })).filter((r) => r.v > 0 || (everyone && memName.has(r.id))).sort((a, b) => b.v - a.v || String(name(a.id)).localeCompare(String(name(b.id)))).slice(0, 50);
     list.innerHTML = '';
     list.append(table(top, 'v', period === 'all' && gsel === 'all' ? (r) => tr('{0} игр · ср. {1}', [r.games || 0, Math.round(r.total / Math.max(1, r.games || 1))]) : null));
   };
