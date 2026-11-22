@@ -348,6 +348,8 @@ const EN = {
   'GuessWhoAmI · {0} · Команда {1} {2}/{3}\n{4}\nОчки: {5}': 'GuessWhoAmI · {0} · Team {1} {2}/{3}\n{4}\nScore: {5}',
   'Установка': 'Install',
   'Установить': 'Install',
+  'Реклама': 'Advertisement',
+  'Реклама на сайте': 'Advertise on the Site',
   'Рейтинг сейчас недоступен.': 'The leaderboard is unavailable right now.',
   'Войдите в аккаунт, чтобы ваши ежедневки попадали в рейтинг.': 'Log in to put your daily results on the leaderboard.',
   'с {0} по сей день': 'since {0}',

@@ -166,7 +166,7 @@ declare a admins%rowtype;
 begin
   if not public.is_admin() then raise exception 'forbidden'; end if;
   select * into a from admins where lower(email) = lower(coalesce(auth.jwt() ->> 'email', ''));
-  return json_build_object('role', a.role, 'perms', case when a.role = 'owner' then array['stats','reports','users','announce','data','backup'] else a.perms end);
+  return json_build_object('role', a.role, 'perms', case when a.role = 'owner' then array['stats','reports','users','announce','data','backup','ads'] else a.perms end);
 end $$;
 create or replace function public.admin_team() returns json
 language plpgsql security definer set search_path = public as $$
@@ -181,7 +181,7 @@ language plpgsql security definer set search_path = public as $$
 begin
   if not public.has_perm('owner') then raise exception 'forbidden'; end if;
   if p_email !~ '^\S+@\S+\.\S+$' or char_length(p_email) > 120 then raise exception 'bad email'; end if;
-  if not (p_perms <@ array['stats','reports','users','announce','data','backup']) then raise exception 'bad permission'; end if;
+  if not (p_perms <@ array['stats','reports','users','announce','data','backup','ads']) then raise exception 'bad permission'; end if;
   if exists (select 1 from admins where lower(email) = lower(p_email) and role = 'owner') then raise exception 'the owner cannot be changed'; end if;
   insert into admins (email, role, perms) values (lower(trim(p_email)), 'staff', p_perms)
     on conflict (email) do update set perms = excluded.perms where admins.role = 'staff';

@@ -12,6 +12,7 @@ import { startAnalytics, track, sendReport } from './analytics.js';
 import { renderHome } from './home.js';
 import { openPlayer, openProfile } from './profile.js';
 import { showNotice } from './notice.js';
+import { refreshAds } from './ads.js';
 import { initAccountButton, accountsEnabled, currentUser, client, openAccount } from './account.js';
 import { openLeaderboard, duelPanel, newDuelId, onlineReady } from './online.js';
 
@@ -166,6 +167,7 @@ function filterSelect(game) {
 async function render() {
   const { home, game, mode, endless, duel, rival, duelFilter } = parseHash();
   document.body.classList.toggle('is-home', home);
+  refreshAds(home);
   window.scrollTo(0, 0);
   if (home) {
     document.title = lang === 'en' ? 'GuessWhoAmI — guess the player' : 'GuessWhoAmI — угадай игрока';
@@ -244,6 +246,7 @@ async function render() {
 const foot = h('p', { class: 'foot-links' },
   h('a', { href: 'privacy.html' }, tr('Политика конфиденциальности')), ' · ',
   h('a', { href: 'terms.html' }, tr('Условия использования')), ' · ',
+  h('a', { href: 'advertise.html' }, tr('Реклама на сайте')), ' · ',
   h('a', { href: '#', onclick: (e) => { e.preventDefault(); askConsent(true); } }, tr('Настройки cookies')), ' · ',
   h('a', { href: '#', onclick: (e) => { e.preventDefault(); openReport(); } }, tr('Сообщить об ошибке в данных')));
 document.querySelector('.site-footer').prepend(foot);

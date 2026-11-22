@@ -5,8 +5,8 @@ import { client, currentUser, openAccount } from './account.js';
 
 const root = document.getElementById('admin');
 const PERIODS = [['1ч', 3600e3, 'hour'], ['24ч', 864e5, 'hour'], ['7 дней', 7 * 864e5, 'day'], ['30 дней', 30 * 864e5, 'day'], ['90 дней', 90 * 864e5, 'day']];
-const TABS = [['stats', 'Статистика', 'stats'], ['reports', 'Жалобы', 'reports'], ['users', 'Пользователи', 'users'], ['data', 'Данные', 'data'], ['settings', 'Настройки', '*'], ['team', 'Команда', 'owner']];
-const PERMS = [['stats', 'Статистика'], ['reports', 'Жалобы'], ['users', 'Пользователи (ники, бан, сброс очков)'], ['announce', 'Объявление на сайте'], ['data', 'Данные'], ['backup', 'Скачивание копии']];
+const TABS = [['stats', 'Статистика', 'stats'], ['reports', 'Жалобы', 'reports'], ['users', 'Пользователи', 'users'], ['data', 'Данные', 'data'], ['ads', 'Реклама', 'ads'], ['settings', 'Настройки', '*'], ['team', 'Команда', 'owner']];
+const PERMS = [['stats', 'Статистика'], ['reports', 'Жалобы'], ['users', 'Пользователи (ники, бан, сброс очков)'], ['announce', 'Объявление на сайте'], ['data', 'Данные'], ['backup', 'Скачивание копии'], ['ads', 'Реклама (баннеры и статистика)']];
 let me = { role: 'staff', perms: [] };
 const can = (p) => me.role === 'owner' || me.perms.includes(p);
 const tabOk = (p) => (p === '*' ? can('announce') || can('backup') || me.role === 'owner' : p === 'owner' ? me.role === 'owner' : can(p));
@@ -158,6 +158,66 @@ async function settingsTab(sb, box) {
     } }, 'Скачать копию сейчас'));
 }
 
+// ---------- ads: direct sponsor banners (shown on the site only while the global switch is on) ----------
+const SLOTS = { home: 'Главная (под играми)', game: 'Страницы игр (под игрой)', footer: 'Подвал (везде)' };
+async function adsTab(sb, box) {
+  const { data, error } = await sb.rpc('admin_ads');
+  if (error) { box.append(err(error)); return; }
+  const op = await fetch('legal/operator.json', { cache: 'no-cache' }).then((r) => r.json()).catch(() => ({}));
+  const opOk = !!(op.name && op.email);
+  const call = async (fn, args, ok) => { const { error: e } = await sb.rpc(fn, args); toast(e ? e.message : ok); if (!e) show(sb); };
+  const on = h('input', { type: 'checkbox' }); on.checked = data.enabled;
+  on.addEventListener('change', () => call('admin_set_ads_enabled', { p_on: on.checked }, on.checked ? 'Реклама включена' : 'Реклама выключена'));
+  box.append(h('h3', {}, 'Реклама на сайте'),
+    h('label', {}, on, ' показывать рекламу посетителям (общий выключатель)'),
+    opOk ? null : h('p', { class: 'error' }, 'Перед включением заполните данные оператора в legal/operator.json (имя и почта): они показываются на юридических страницах и обязательны для коммерческого сайта.'),
+    h('p', { class: 'muted small' }, 'Баннеры показываются с пометкой «Реклама», без cookie и без слежки: сервер считает только показы и клики по каждому баннеру. Ссылки только https.'));
+
+  // form (create or edit)
+  const f = { id: '', slot: 'home', title: '', body: '', url: 'https://', advertiser: '', img: '', active: true, starts: '', ends: '', weight: 1 };
+  const form = h('div', { class: 'stack' });
+  const inp = (key, ph, type = 'text', max = 200) => { const i = h('input', { class: 'search-input', type, placeholder: ph, maxlength: max, value: f[key] ?? '' }); i.addEventListener('input', () => { f[key] = i.value; }); return i; };
+  const preview = h('div', { class: 'ad-row' });
+  const drawPreview = () => { preview.innerHTML = ''; if (f.title) preview.append(h('span', { class: 'ad-label' }, 'Реклама' + (f.advertiser ? ' · ' + f.advertiser : '')), h('span', { class: 'ad-card' }, f.img ? h('img', { class: 'ad-img', src: f.img, alt: '' }) : null, h('span', { class: 'ad-text' }, h('b', {}, f.title), f.body ? h('small', {}, f.body) : null))); };
+  const slot = h('select', { class: 'search-input' }, Object.entries(SLOTS).map(([k, l]) => h('option', { value: k }, l))); slot.value = f.slot; slot.addEventListener('change', () => { f.slot = slot.value; });
+  const file = h('input', { type: 'file', accept: 'image/png,image/jpeg,image/webp' });
+  file.addEventListener('change', async () => {
+    const fl = file.files[0]; if (!fl) return;
+    const bmp = await createImageBitmap(fl); const k = Math.min(1, 600 / bmp.width, 200 / bmp.height);
+    const c = document.createElement('canvas'); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k); c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+    let q = 0.9, d = c.toDataURL('image/webp', q); while (d.length > 190000 && q > 0.4) { q -= 0.1; d = c.toDataURL('image/webp', q); }
+    if (d.length > 190000) { toast('Картинка слишком тяжёлая'); return; }
+    f.img = d; drawPreview();
+  });
+  const active = h('input', { type: 'checkbox' }); active.checked = true; active.addEventListener('change', () => { f.active = active.checked; });
+  const fill = (a) => { Object.assign(f, { id: a.id, slot: a.slot, title: a.title, body: a.body || '', url: a.url, advertiser: a.advertiser || '', img: a.img || '', active: a.active, starts: a.starts || '', ends: a.ends || '', weight: a.weight }); drawForm(); window.scrollTo(0, 0); };
+  const drawForm = () => {
+    form.innerHTML = '';
+    const t = inp('title', 'Заголовок (до 80 символов)', 'text', 80), b = inp('body', 'Описание (до 160 символов, необязательно)', 'text', 160), u = inp('url', 'Ссылка https://…', 'url', 300), adv = inp('advertiser', 'Рекламодатель (показывается рядом с «Реклама», необязательно)', 'text', 80);
+    [t, b, u, adv].forEach((i) => i.addEventListener('input', drawPreview));
+    const st = inp('starts', 'Начало', 'date'), en = inp('ends', 'Конец', 'date'), w = inp('weight', 'Вес 1–10', 'number', 2);
+    slot.value = f.slot; active.checked = f.active;
+    form.append(h('h4', {}, f.id ? 'Изменить баннер №' + f.id : 'Новый баннер'), h('label', { class: 'muted small' }, 'Место'), slot, t, b, u, adv,
+      h('label', { class: 'muted small' }, 'Картинка (необязательно, сожмётся до 600×200)'), file,
+      h('div', { class: 'range' }, h('span', { class: 'muted' }, 'с'), st, h('span', { class: 'muted' }, 'по'), en, h('span', { class: 'muted' }, 'вес'), w),
+      h('label', {}, active, ' включён'), preview,
+      h('div', { class: 'row-acts' }, h('button', { class: 'btn', onclick: () => {
+        if (!/^https:\/\//.test(f.url)) { toast('Ссылка должна начинаться с https://'); return; }
+        if (!f.title.trim()) { toast('Нужен заголовок'); return; }
+        call('admin_save_ad', { p_ad: { ...f, id: f.id || null, weight: +f.weight || 1 } }, 'Баннер сохранён');
+      } }, 'Сохранить баннер'), f.id ? h('button', { class: 'btn ghost', onclick: () => { Object.assign(f, { id: '', title: '', body: '', url: 'https://', advertiser: '', img: '', starts: '', ends: '', weight: 1 }); drawForm(); } }, 'Отмена') : null));
+    drawPreview();
+  };
+  drawForm();
+  box.append(form, h('h3', {}, 'Баннеры'),
+    data.ads.length ? h('div', { class: 'xscroll' }, h('table', { class: 'utable' }, h('tr', {}, ...['Баннер', 'Место', 'Период', 'Показы', 'Клики', 'CTR', ''].map((x) => h('th', {}, x))),
+      ...data.ads.map((a) => h('tr', {}, h('td', {}, a.title, a.active ? '' : h('span', { class: 'chip' }, 'выкл')), h('td', {}, SLOTS[a.slot] || a.slot), h('td', {}, (a.starts || '…') + ' → ' + (a.ends || '…')),
+        h('td', {}, String(a.impressions)), h('td', {}, String(a.clicks)), h('td', {}, a.impressions ? (100 * a.clicks / a.impressions).toFixed(1) + '%' : '—'),
+        h('td', {}, h('div', { class: 'acts' }, h('button', { class: 'btn ghost small', onclick: () => fill(a) }, 'Изменить'),
+          h('button', { class: 'btn ghost small', onclick: () => call('admin_save_ad', { p_ad: { ...a, active: !a.active } }, a.active ? 'Выключен' : 'Включён') }, a.active ? 'Выкл' : 'Вкл'),
+          h('button', { class: 'btn ghost small danger', onclick: () => { if (confirm('Удалить баннер «' + a.title + '»?')) call('admin_delete_ad', { p_id: a.id }, 'Удалён'); } }, 'Удалить'))))))) : h('p', { class: 'muted' }, 'Пока нет баннеров.'));
+}
+
 // ---------- team (owner only): who may enter the panel and what they may do ----------
 async function teamTab(sb, box) {
   const { data, error } = await sb.rpc('admin_team');
@@ -188,7 +248,7 @@ async function show(sb) {
   const tabs = h('div', { class: 'seg admin-tabs' }, allowed.map(([k, l]) => h('button', { class: k === tab ? 'active' : '', onclick: () => { tab = k; store.set('adminTab', k); show(sb); } }, l)));
   root.innerHTML = '';
   root.append(h('h1', {}, 'Управление'), tabs, box);
-  const fn = { stats: statsTab, reports: reportsTab, users: usersTab, data: dataTab, settings: settingsTab, team: teamTab }[tab] || statsTab;
+  const fn = { stats: statsTab, reports: reportsTab, users: usersTab, data: dataTab, settings: settingsTab, ads: adsTab, team: teamTab }[tab] || statsTab;
   await fn(sb, box);
 }
 
