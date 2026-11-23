@@ -7,7 +7,7 @@ import { localStatsBlock, achievementsBlock, overallLocal, unlocked, ACHIEVEMENT
 import { askConsent, consent } from './consent.js';
 
 const AVATARS = ['🎮', '🎯', '🦊', '🐺', '🐯', '🦁', '🐼', '🦉', '🐙', '🚀', '⚡', '🔥', '👑', '🧠', '🎧', '⚽', '🏀', '🏒'];
-const SITE_VERSION = '67';
+const SITE_VERSION = '66';
 const tile = (v, l) => h('div', { class: 'stat-tile' }, h('b', {}, String(v)), h('span', {}, l));
 export const avatarOf = (u) => (u && u.user_metadata && u.user_metadata.avatar) || '🎮';
 
@@ -82,8 +82,10 @@ function profileSettings(sb, user, loginCta, rerender) {
       out.push(h('h4', {}, tr('Профиль')), h('label', { class: 'muted small' }, tr('Ник в рейтинге')), nick, h('label', { class: 'muted small' }, tr('Аватар')), av, save,
         h('h4', {}, tr('Безопасность')), p1, pbtn);
     } else out.push(loginCta());
+    const themeBtn = document.getElementById('theme-btn');
     out.push(h('h4', {}, tr('Сайт')),
       h('div', { class: 'row-between' }, h('span', {}, tr('Язык')), h('button', { class: 'btn ghost small', onclick: () => setLang(lang === 'ru' ? 'en' : 'ru') }, lang === 'ru' ? 'Русский → English' : 'English → Русский')),
+      h('div', { class: 'row-between' }, h('span', {}, tr('Тема')), h('button', { class: 'btn ghost small', onclick: () => { themeBtn.click(); toast(themeBtn.title); } }, tr('Переключить'))),
       h('div', { class: 'row-between' }, h('span', {}, tr('Анонимная статистика') + ': ' + (consent() === 'yes' ? tr('включена') : tr('выключена'))), h('button', { class: 'btn ghost small', onclick: () => askConsent(true) }, tr('Изменить'))));
     if (user) {
       out.push(h('h4', {}, tr('Аккаунт')),

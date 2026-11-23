@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" data-theme="dark">
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,8 @@
   <link rel="canonical" href="https://guesswhoami.eu/">
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#14110e">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4efe6">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14110e">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
@@ -22,6 +23,7 @@
       <div class="top-right">
         <div class="tools">
           <button id="lang-btn" class="icon-pill text" type="button" aria-label="Язык / Language">EN</button>
+          <button id="theme-btn" class="icon-pill" type="button" aria-label="Тема">◐</button>
           <button id="board-btn" class="icon-pill" type="button" aria-label="Рейтинг" title="Рейтинг">🏅</button>
           <button id="profile-btn" class="icon-pill" type="button" aria-label="Игрок: статистика и рейтинг" title="Игрок">🏆</button>
         </div>
