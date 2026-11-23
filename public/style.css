@@ -519,7 +519,7 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .hx-ringline { fill: none; stroke: rgba(54,214,255,.16); stroke-width: .3; }
 @keyframes hx-flow { to { stroke-dashoffset: -5.6; } }
 @keyframes hx-spin { to { transform: rotate(360deg); } }
-.hx-play { position: absolute; left: 50%; top: 50%; width: 29%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 0; cursor: pointer; color: var(--hx-ink); font-family: inherit; padding: 0; display: grid; place-items: center; text-align: center;
+.hx-play { position: absolute; left: 50%; top: 50%; width: 28%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 0; cursor: pointer; color: var(--hx-ink); font-family: inherit; padding: 0; display: grid; place-items: center; text-align: center;
   background: radial-gradient(circle at 50% 40%, rgba(54,214,255,.34), rgba(4,22,38,.92) 70%); box-shadow: 0 0 0 2px rgba(54,214,255,.9), 0 0 0 10px rgba(54,214,255,.08), 0 0 60px 6px rgba(54,214,255,.5), inset 0 0 40px rgba(54,214,255,.35); transition: transform .2s, box-shadow .2s; }
 .hx-play:hover { transform: translate(-50%, -50%) scale(1.03); box-shadow: 0 0 0 2px #fff, 0 0 0 10px rgba(54,214,255,.14), 0 0 80px 10px rgba(54,214,255,.7), inset 0 0 50px rgba(54,214,255,.5); }
 .hx-play:active { transform: translate(-50%, -50%) scale(.98); }
@@ -528,13 +528,13 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .hx-in { position: relative; z-index: 1; display: grid; gap: 3px; padding: 0 8%; }
 .hx-play b { font-size: clamp(22px, 7cqw, 50px); font-weight: 900; letter-spacing: .05em; text-transform: uppercase; line-height: 1; text-shadow: 0 0 20px rgba(54,214,255,.8); }
 .hx-play small { font-size: clamp(10px, 1.8cqw, 14px); color: #bfeaff; font-weight: 600; }
-.hx-node { position: absolute; width: 17.5%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; display: grid; place-items: center; text-align: center; cursor: pointer; color: var(--hx-ink); font-family: inherit; padding: 0;
+.hx-node { position: absolute; width: 13.6%; z-index: 2; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; display: grid; place-items: center; text-align: center; cursor: pointer; color: var(--hx-ink); font-family: inherit; padding: 0;
   background: radial-gradient(circle at 50% 35%, rgba(54,214,255,.16), rgba(3,14,26,.92) 72%); border: 1.5px solid var(--hx-line); box-shadow: 0 0 22px -4px rgba(54,214,255,.55), inset 0 0 22px rgba(54,214,255,.14); transition: transform .18s, box-shadow .18s, border-color .18s; }
 .hx-node::before { content: ""; position: absolute; inset: 6%; border-radius: 50%; border: 1px dashed rgba(54,214,255,.28); }
 .hx-node:hover { transform: translate(-50%, -50%) scale(1.08); border-color: #fff; box-shadow: 0 0 34px 0 rgba(54,214,255,.8), inset 0 0 26px rgba(54,214,255,.3); }
 .hx-node .hx-in { gap: 1px; padding: 0 6%; }
-.hx-node b { font-size: clamp(11px, 2.7cqw, 19px); font-weight: 800; line-height: 1.1; overflow-wrap: anywhere; }
-.hx-st { font-size: clamp(9px, 1.55cqw, 12px); color: var(--hx-dim); font-weight: 600; }
+.hx-node b { font-size: clamp(10px, 2.1cqw, 16px); font-weight: 800; line-height: 1.1; overflow-wrap: anywhere; }
+.hx-st { font-size: clamp(8.5px, 1.3cqw, 11px); color: var(--hx-dim); font-weight: 600; }
 .hx-node.part .hx-st { color: var(--hx-warn); }
 .hx-node.done { border-color: rgba(61,255,176,.8); box-shadow: 0 0 22px -4px rgba(61,255,176,.6), inset 0 0 22px rgba(61,255,176,.14); }
 .hx-node.done .hx-st { color: var(--hx-ok); }
@@ -609,3 +609,28 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .hx-orbit.going .hx-node:not(.go) { opacity: .55; }
 .hx-node.go { border-color: #3dffb0; box-shadow: 0 0 38px 2px rgba(61,255,176,.85), inset 0 0 28px rgba(61,255,176,.35); transition-delay: .3s; }
 @media (prefers-reduced-motion: reduce) { .hx-mline { animation: none; stroke-dashoffset: 0; } }
+
+/* v71: mode circles behind the chosen game */
+.hx-orbit svg { z-index: 0; }
+.hx-play { z-index: 2; }
+.hx-sat { position: absolute; z-index: 1; width: 7.8%; aspect-ratio: 1; transform: translate(-50%, -50%) scale(.3); opacity: 0; pointer-events: none; border-radius: 50%; display: grid; place-items: center; text-align: center; padding: 3px; font-weight: 700; font-size: clamp(8px, 1.3cqw, 11px); line-height: 1.12; font-family: inherit; color: #c6efff; cursor: pointer;
+  background: radial-gradient(circle at 50% 35%, rgba(54,214,255,.12), rgba(3,14,26,.9) 74%); border: 1px solid rgba(54,214,255,.4); box-shadow: 0 0 16px -6px rgba(54,214,255,.5); transition: opacity .35s, transform .4s cubic-bezier(.3,1.4,.5,1), border-color .15s, box-shadow .15s; overflow-wrap: anywhere; }
+.hx-sat.in { opacity: .9; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
+.hx-sat:hover, .hx-sat:focus-visible { opacity: 1; border-color: #fff; box-shadow: 0 0 24px 0 rgba(54,214,255,.8); outline: none; }
+.hx-sat.done { border-color: rgba(61,255,176,.7); color: #9dffd6; }
+.hx-sat.go { border-color: #3dffb0; box-shadow: 0 0 34px 2px rgba(61,255,176,.85), inset 0 0 22px rgba(61,255,176,.35); color: #fff; opacity: 1; }
+.hx-conn { stroke: rgba(54,214,255,.4); stroke-width: .3; stroke-dasharray: .9 1.3; stroke-linecap: round; opacity: 0; transition: opacity .35s; }
+.hx-conn.in { opacity: 1; }
+.hx-node.open { border-color: #3dffb0; box-shadow: 0 0 34px 0 rgba(61,255,176,.7), inset 0 0 22px rgba(61,255,176,.25); transform: translate(-50%, -50%) scale(1.06); }
+.hx-orbit.sel .hx-node:not(.open) { opacity: .5; }
+.hx-orbit.sel .hx-spoke:not(.hx-lit) { opacity: .2; }
+.hx-hint { text-align: center; color: var(--hx-dim); font-size: 13px; margin: 6px 0 0; }
+.hx-sheet { display: none; margin-top: 12px; }
+.hx-sheet h4 { margin: 0 0 10px; font-size: 16px; font-weight: 800; color: var(--hx-cy); }
+.hx-sgrid { display: flex; flex-wrap: wrap; gap: 10px; }
+.hx-sgrid .hx-sat { position: relative; transform: none; width: 92px; font-size: 12px; opacity: .95; pointer-events: auto; }
+@media (max-width: 640px) {
+  .hx-sheet.on { display: block; }
+  .hx-orbit .hx-node.open { transform: scale(1.04); }
+}
+.hx-node b { font-size: clamp(9px, 1.9cqw, 15px); overflow-wrap: normal; word-break: normal; }

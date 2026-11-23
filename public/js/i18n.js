@@ -586,6 +586,7 @@ const EN = {
   'сегодня сыграно': 'played today',
   'Случайная загадка': 'Random puzzle',
   'Играть': 'Play',
+  'Нажми на игру, затем выбери режим': 'Tap a game, then pick a mode',
   'ещё {0}': '{0} left',
   '🏟 Спорт': '🏟 Sports',
   'Раздел': 'Section',
