@@ -78,13 +78,22 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
   svg.setAttribute('viewBox', '0 0 100 100'); svg.setAttribute('aria-hidden', 'true');
   const ring = (r) => { const c = document.createElementNS(NS, 'circle'); c.setAttribute('class', 'hx-ringline'); c.setAttribute('cx', 50); c.setAttribute('cy', 50); c.setAttribute('r', r); svg.append(c); };
   ring(R); ring(24);
+  // click: light the spoke from the centre out to the ring, then open the game
+  let going = false;
+  const go = (btn, line, open) => {
+    if (going) return; going = true;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const linesShown = getComputedStyle(svg).display !== 'none';
+    btn.classList.add('go'); line.classList.add('go'); line.setAttribute('pathLength', '100'); orbit.classList.add('going');
+    setTimeout(open, reduced ? 0 : linesShown ? 600 : 260);
+  };
   const nodes = keys.map((game, i) => {
     const a = (-90 + (i * 360) / keys.length) * Math.PI / 180, x = 50 + R * Math.cos(a), y = 50 + R * Math.sin(a);
     const ln = document.createElementNS(NS, 'line');
     ln.setAttribute('class', 'hx-spoke'); ln.setAttribute('x1', 50); ln.setAttribute('y1', 50); ln.setAttribute('x2', x.toFixed(2)); ln.setAttribute('y2', y.toFixed(2)); svg.append(ln);
     const modes = modesOf(game), rest = modes.filter(([k]) => !done(game, k)).length;
     const state = !rest ? 'done' : rest < modes.length ? 'part' : '';
-    const b = h('button', { class: 'hx-node ' + state, type: 'button', 'aria-label': GAMES[game].title, onclick: () => nav(game, modes[0][0], false) },
+    const b = h('button', { class: 'hx-node ' + state, type: 'button', 'aria-label': GAMES[game].title, onclick: () => go(b, ln, () => nav(game, modes[0][0], false)) },
       h('span', { class: 'hx-tick', 'aria-hidden': 'true' }, '✓'),
       h('span', { class: 'hx-in' }, h('b', {}, GAMES[game].short || GAMES[game].title), h('span', { class: 'hx-st' }, rest ? tr('ещё {0}', [rest]) : '✓')));
     b.title = GAMES[game].title;
