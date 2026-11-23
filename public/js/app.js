@@ -32,17 +32,7 @@ const langBtn = document.getElementById('lang-btn');
 langBtn.textContent = lang === 'ru' ? 'EN' : 'RU';
 langBtn.addEventListener('click', () => setLang(lang === 'ru' ? 'en' : 'ru'));
 
-const THEMES = ['auto', 'dark', 'light'];
-const themeBtn = document.getElementById('theme-btn');
-function applyTheme(t) {
-  if (t === 'auto') document.documentElement.removeAttribute('data-theme');
-  else document.documentElement.setAttribute('data-theme', t);
-  themeBtn.textContent = { auto: '◐', dark: '☾', light: '☀' }[t];
-  themeBtn.title = { auto: tr('Тема: как в системе'), dark: tr('Тема: тёмная'), light: tr('Тема: светлая') }[t];
-}
-let theme = store.get('theme', 'auto');
-applyTheme(theme);
-themeBtn.addEventListener('click', () => { theme = THEMES[(THEMES.indexOf(theme) + 1) % 3]; store.set('theme', theme); applyTheme(theme); });
+document.documentElement.setAttribute('data-theme', 'dark');
 
 if (lang === 'en') {
   document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Athletes from <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a> (CC0). Player photos and club logos come from Wikimedia Commons (authors and licences are on each file page), some esports team logos from <a href="https://logos.fandom.com/" target="_blank" rel="noopener">Logopedia</a>; logos remain trademarks of the clubs. Dota 2 hero and item icons belong to Valve, League of Legends champion and item icons to Riot Games, loaded from their servers. Not affiliated with Liquipedia, Valve, Riot Games, leagues or tournament organisers.';
