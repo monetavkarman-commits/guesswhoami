@@ -149,7 +149,7 @@ async function settingsTab(sb, box) {
       wh.set ? h('button', { class: 'btn ghost', onclick: async () => { if (await call('admin_set_webhook', { p_url: '' }, 'Уведомления выключены')) show(sb); } }, 'Выключить') : null));
   if (can('backup')) box.append(
     h('h3', {}, 'Резервная копия'),
-    h('p', { class: 'muted small' }, 'Файл со всеми аккаунтами, никами, очками рейтинга, жалобами и событиями за 30 дней. Автоматически копия делается раз в сутки через GitHub Actions (workflow «Backup», хранится 30 дней). Пароли в копию не попадают.'),
+    h('p', { class: 'muted small' }, 'Файл со всеми аккаунтами, никами, очками рейтинга, жалобами и событиями за 30 дней. Автоматически копия делается раз в 4 часа через GitHub Actions (workflow «Backup», хранится 30 дней). Пароли в копию не попадают.'),
     h('button', { class: 'btn', onclick: async () => {
       const { data, error } = await sb.rpc('admin_export');
       if (error) { toast(error.message); return; }

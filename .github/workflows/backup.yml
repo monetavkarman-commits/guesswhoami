@@ -1,10 +1,10 @@
-# Daily backup of the Supabase data (accounts, nicknames, leaderboard, reports, 30 days of events) as a private workflow artifact kept for 30 days.
+# Backup every 4 hours of the Supabase data (accounts, nicknames, leaderboard, reports, 30 days of events) as a private workflow artifact kept for 30 days.
 # One-time setup: repository → Settings → Secrets and variables → Actions → New repository secret: SUPABASE_ACCESS_TOKEN (a token from supabase.com/dashboard/account/tokens).
 # The repository is public, so the copy is NOT committed to it: artifacts are visible only to people with access to the repository settings.
 name: Backup
 on:
   schedule:
-    - cron: '30 2 * * *'
+    - cron: '30 */4 * * *'
   workflow_dispatch:
 permissions:
   contents: read
