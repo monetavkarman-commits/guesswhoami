@@ -637,3 +637,15 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 
 /* v72: dialogs sit above the cookie notice */
 .modal-back { z-index: 50; }
+
+/* v73: game logos inside the hub rings */
+.hx-node .hx-in { gap: 2px; }
+.hx-logo { margin: 0 auto 2px; }
+.hx-logo.gico { margin-right: auto; min-width: 26px; height: 26px; font-size: 12px; vertical-align: baseline; }
+.hx-logo.gico.has-img { height: auto; min-width: 0; }
+.hx-logo .gimg { height: 26px; width: auto; max-width: 52px; }
+.hx-logo.gico.g-cs .gimg, .hx-logo.gico.g-dota .gimg, .hx-logo.gico.g-deadlock .gimg { width: 26px; height: 26px; }
+.hx-logo.gico.g-lol .gimg { height: 20px; }
+.hx-emo { display: block; font-size: clamp(16px, 3cqw, 24px); line-height: 1; }
+@media (max-width: 640px) { .hx-logo.gico { min-width: 32px; height: 32px; } .hx-logo .gimg { height: 32px; } .hx-logo.gico.g-cs .gimg, .hx-logo.gico.g-dota .gimg, .hx-logo.gico.g-deadlock .gimg { width: 32px; height: 32px; } .hx-emo { font-size: 26px; } }
+@media (max-width: 640px) { .hx-orbit .hx-node b { font-size: 14px; } .hx-orbit .hx-st { font-size: 11px; } }

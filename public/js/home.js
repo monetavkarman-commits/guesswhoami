@@ -126,12 +126,17 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
       });
     });
   };
+  // game logo above the name: the badge/picture used in the tabs, or the sport's emoji
+  const shortOf = (game) => GAMES[game].short || GAMES[game].title;
+  const emojiOf = (game) => { const m = shortOf(game).match(/^(\S+)\s(.+)$/u); return GAMES[game].sport && m ? m[1] : null; };
+  const nameOf = (game) => { const m = shortOf(game).match(/^(\S+)\s(.+)$/u); return GAMES[game].sport && m ? m[2] : shortOf(game); };
+  const logoOf = (game) => { const b = gameBadge(game, 'gico hx-logo'); return b || h('span', { class: 'hx-logo hx-emo', 'aria-hidden': 'true' }, emojiOf(game) || '?'); };
   keys.forEach((game, i) => {
     const p = pts[i], modes = modesOf(game), rest = modes.filter(([k]) => !done(game, k)).length;
     el('line', { class: 'hx-spoke', x1: 50, y1: 50, x2: p.x, y2: p.y });
     const b = h('button', { class: 'hx-node ' + (!rest ? 'done' : rest < modes.length ? 'part' : ''), type: 'button', 'aria-label': GAMES[game].title, onclick: (ev) => { ev.stopPropagation(); openGame(i); } },
       h('span', { class: 'hx-tick', 'aria-hidden': 'true' }, '✓'),
-      h('span', { class: 'hx-in' }, h('b', {}, GAMES[game].short || GAMES[game].title), h('span', { class: 'hx-st' }, rest ? tr('ещё {0}', [rest]) : '✓')));
+      h('span', { class: 'hx-in' }, logoOf(game), h('b', {}, nameOf(game)), h('span', { class: 'hx-st' }, rest ? tr('ещё {0}', [rest]) : '✓')));
     b.title = GAMES[game].title;
     b.style.left = p.x + '%'; b.style.top = p.y + '%';
     nodes.push(b);
