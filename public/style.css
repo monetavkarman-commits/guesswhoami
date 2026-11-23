@@ -600,12 +600,3 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 :root[data-theme="dark"] .card-soft { background: rgba(54,214,255,.05); border-color: var(--line); border-radius: 16px; }
 :root[data-theme="dark"] a { color: var(--accent-2); }
 :root[data-theme="dark"] .consent { background: #05111e; border-color: var(--accent); }
-
-/* v70: click feedback on the hub */
-.hx-spoke.go { stroke: #fff; stroke-width: .7; stroke-dasharray: 100 100; stroke-dashoffset: 100; animation: hx-draw .5s ease-out forwards; filter: drop-shadow(0 0 1.6px #36d6ff) drop-shadow(0 0 3px #36d6ff); }
-@keyframes hx-draw { to { stroke-dashoffset: 0; } }
-.hx-orbit.going .hx-spoke:not(.go) { opacity: .25; }
-.hx-orbit.going .hx-node:not(.go) { opacity: .55; }
-.hx-node.go { border-color: #fff; box-shadow: 0 0 40px 2px rgba(54,214,255,.95), inset 0 0 30px rgba(54,214,255,.45); transition-delay: .35s; }
-.hx-orbit.going .hx-play { box-shadow: 0 0 0 2px #fff, 0 0 0 10px rgba(54,214,255,.2), 0 0 90px 12px rgba(54,214,255,.8), inset 0 0 50px rgba(54,214,255,.5); }
-@media (prefers-reduced-motion: reduce) { .hx-spoke.go { animation: none; stroke-dashoffset: 0; } }
