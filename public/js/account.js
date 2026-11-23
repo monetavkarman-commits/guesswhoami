@@ -57,6 +57,14 @@ export async function initAccountButton(btn) {
     if (Date.now() - +store.get('loginPrompt', 0) < 3 * 86400000 || document.querySelector('.modal-back')) return;
     asked = true; setTimeout(() => { if (!document.querySelector('.modal-back')) openAccount(sb, null, true); }, 900);
   });
+  // on entry: a visitor without an account is invited to log in or sign up (skipped right after an OAuth redirect; not again for 3 days once closed)
+  if (!first && !/access_token|refresh_token|error_description|[?&]code=/.test(location.hash + location.search)) {
+    setTimeout(async () => {
+      if (asked || document.querySelector('.modal-back') || (await currentUser())) return;
+      if (Date.now() - +store.get('loginPrompt', 0) < 3 * 86400000) return;
+      asked = true; openAccount(sb, null, true);
+    }, 1200);
+  }
 }
 
 export function openAccount(sb, user, welcome = false) {

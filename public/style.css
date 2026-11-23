@@ -634,3 +634,6 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
   .hx-orbit .hx-node.open { transform: scale(1.04); }
 }
 .hx-node b { font-size: clamp(9px, 1.9cqw, 15px); overflow-wrap: normal; word-break: normal; }
+
+/* v72: dialogs sit above the cookie notice */
+.modal-back { z-index: 50; }
