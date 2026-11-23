@@ -7,7 +7,7 @@ import { localStatsBlock, achievementsBlock, overallLocal, unlocked, ACHIEVEMENT
 import { askConsent, consent } from './consent.js';
 
 const AVATARS = ['🎮', '🎯', '🦊', '🐺', '🐯', '🦁', '🐼', '🦉', '🐙', '🚀', '⚡', '🔥', '👑', '🧠', '🎧', '⚽', '🏀', '🏒'];
-const SITE_VERSION = '72';
+const SITE_VERSION = '73';
 const tile = (v, l) => h('div', { class: 'stat-tile' }, h('b', {}, String(v)), h('span', {}, l));
 export const avatarOf = (u) => (u && u.user_metadata && u.user_metadata.avatar) || '🎮';
 

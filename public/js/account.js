@@ -1,4 +1,4 @@
-// Optional accounts on our own domain: sign up or log in with email (password or a one-time link).
+// Optional accounts on our own domain: sign up or log in with email and password (or a social provider).
 // Playing never requires an account; it only puts your daily scores on the leaderboard.
 import { tr } from './i18n.js';
 import { h, modal, toast, store } from './core.js';
@@ -110,13 +110,6 @@ export function openAccount(sb, user, welcome = false) {
       close(); toast(tr('Вы вошли'));
     }
   });
-  const magic = h('button', { class: 'btn ghost small', onclick: async () => {
-    const em = email.value.trim();
-    if (!/^\S+@\S+\.\S+$/.test(em)) { msg.textContent = tr('Сначала впишите почту.'); return; }
-    const { error } = await sb.auth.signInWithOtp({ email: em, options: { emailRedirectTo: location.origin + location.pathname } });
-    if (error) return fail(error);
-    msg.textContent = tr('Ссылка для входа отправлена на {0}.', [em]);
-  } }, tr('Войти по ссылке на почту, без пароля'));
   draw();
   const social = h('div', { class: 'stack social' });
   providers().then((list) => list.forEach((pv) => social.append(h('button', { class: 'btn ghost social-btn', type: 'button', onclick: async () => {
@@ -124,7 +117,7 @@ export function openAccount(sb, user, welcome = false) {
     if (error) msg.textContent = tr('Ошибка: {0}', [error.message]);
   } }, h('b', {}, pv.icon), ' ' + tr('Продолжить через {0}', [pv.name])))));
   if (welcome) body.append(h('p', {}, tr('Создайте аккаунт или войдите: ваши результаты попадут в общий рейтинг и сохранятся на всех устройствах.')));
-  body.append(social, tabs, email, nick, pass, submit, magic, msg,
+  body.append(social, tabs, email, nick, pass, submit, msg,
     h('p', { class: 'muted small' }, tr('Аккаунт не обязателен: играть можно и без него. Он нужен, чтобы попасть в рейтинг.')));
   if (welcome) body.append(h('button', { class: 'btn ghost', onclick: close }, tr('Играть без входа')));
   setTimeout(() => email.focus(), 0);
