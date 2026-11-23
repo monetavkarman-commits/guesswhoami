@@ -585,6 +585,7 @@ const EN = {
   'Каждый день новые загадки по киберспорту и спорту. Выбери игру и режим.': 'New esports and sports puzzles every day. Pick a game and a mode.',
   'сегодня сыграно': 'played today',
   'Случайная загадка': 'Random puzzle',
+  'Играть': 'Play',
   'ещё {0}': '{0} left',
   '🏟 Спорт': '🏟 Sports',
   'Раздел': 'Section',

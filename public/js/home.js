@@ -70,22 +70,41 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
   bar.firstChild.style.width = pct + '%';
   root.innerHTML = '';
   if (!store.get('howtoSeen', false)) { store.set('howtoSeen', true); setTimeout(() => { if (!document.querySelector('.modal-back') && /^(#?)$/.test(location.hash)) howTo(); }, 2500); }
+  // holographic hub: big play button in the centre, one ring per game around it
+  const keys = Object.keys(GAMES), R = 37, NS = 'http://www.w3.org/2000/svg';
+  const left = total - got;
+  const orbit = h('div', { class: 'hx-orbit' });
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 100 100'); svg.setAttribute('aria-hidden', 'true');
+  const ring = (r) => { const c = document.createElementNS(NS, 'circle'); c.setAttribute('class', 'hx-ringline'); c.setAttribute('cx', 50); c.setAttribute('cy', 50); c.setAttribute('r', r); svg.append(c); };
+  ring(R); ring(24);
+  const nodes = keys.map((game, i) => {
+    const a = (-90 + (i * 360) / keys.length) * Math.PI / 180, x = 50 + R * Math.cos(a), y = 50 + R * Math.sin(a);
+    const ln = document.createElementNS(NS, 'line');
+    ln.setAttribute('class', 'hx-spoke'); ln.setAttribute('x1', 50); ln.setAttribute('y1', 50); ln.setAttribute('x2', x.toFixed(2)); ln.setAttribute('y2', y.toFixed(2)); svg.append(ln);
+    const modes = modesOf(game), rest = modes.filter(([k]) => !done(game, k)).length;
+    const state = !rest ? 'done' : rest < modes.length ? 'part' : '';
+    const b = h('button', { class: 'hx-node ' + state, type: 'button', 'aria-label': GAMES[game].title, onclick: () => nav(game, modes[0][0], false) },
+      h('span', { class: 'hx-tick', 'aria-hidden': 'true' }, '✓'),
+      h('span', { class: 'hx-in' }, h('b', {}, GAMES[game].short || GAMES[game].title), h('span', { class: 'hx-st' }, rest ? tr('ещё {0}', [rest]) : '✓')));
+    b.title = GAMES[game].title;
+    b.style.left = x.toFixed(2) + '%'; b.style.top = y.toFixed(2) + '%';
+    return b;
+  });
+  const playBtn = h('button', { class: 'hx-play', type: 'button', onclick: pickRandom },
+    h('span', { class: 'hx-in' }, h('b', {}, tr('Играть')), h('small', {}, left > 0 ? tr('осталось сегодня: {0}', [left]) : tr('сегодня всё пройдено'))));
+  orbit.append(svg, playBtn, ...nodes);
   root.append(
-    h('div', { class: 'hero' },
-      h('div', {},
-        h('h1', {}, tr('Угадай игрока')),
-        h('p', {}, tr('Каждый день новые загадки по киберспорту и спорту. Выбери игру и режим.'))),
-      h('div', { class: 'hero-side' },
-        h('div', { class: 'hero-count' }, h('b', {}, got), ' / ' + total, h('span', {}, tr('сегодня сыграно'))),
-        bar,
-        h('div', { class: 'hero-streak' }, h('span', {}, '🔥 ' + tr('Серия: {0} дн.', [streak])), h('span', { class: 'muted' }, total - got > 0 ? tr('осталось сегодня: {0}', [total - got]) : tr('сегодня всё пройдено'))),
-        h('button', { class: 'btn hero-btn', type: 'button', onclick: pickRandom }, '🎲 ' + tr('Случайная загадка')),
-        h('div', { class: 'hero-links' },
-          h('button', { class: 'btn ghost small', type: 'button', onclick: howTo }, '❓ ' + tr('Как играть')),
-          !standalone() && (installEvent || isIos()) ? h('button', { class: 'btn ghost small', type: 'button', onclick: async () => {
-            if (installEvent) { installEvent.prompt(); installEvent = null; }
-            else modal(tr('Установка'), h('p', {}, tr('Нажмите «Поделиться» в Safari и выберите «На экран Домой»: сайт появится как приложение.')));
-          } }, '📲 ' + tr('Установить')) : null))),
-    section(tr('🎮 Киберспорт'), false),
-    section(tr('🏟 Спорт'), true));
+    h('div', { class: 'hx' },
+      h('div', { class: 'hx-frame' }, orbit,
+        h('div', { class: 'hx-floor', 'aria-hidden': 'true' }, h('i'), h('i'), h('i')),
+        h('div', { class: 'hx-meta' },
+          h('span', {}, '🔥 ' + tr('Серия: {0} дн.', [streak])),
+          h('span', {}, h('b', {}, got), ' / ' + total + ' ', tr('сегодня сыграно')),
+          h('span', { class: 'hx-links' },
+            h('button', { class: 'hx-chip', type: 'button', onclick: howTo }, '❓ ' + tr('Как играть')),
+            !standalone() && (installEvent || isIos()) ? h('button', { class: 'hx-chip', type: 'button', onclick: async () => {
+              if (installEvent) { installEvent.prompt(); installEvent = null; }
+              else modal(tr('Установка'), h('p', {}, tr('Нажмите «Поделиться» в Safari и выберите «На экран Домой»: сайт появится как приложение.')));
+            } }, '📲 ' + tr('Установить')) : null)))));
 }
