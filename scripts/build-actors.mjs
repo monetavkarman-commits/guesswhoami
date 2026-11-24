@@ -155,6 +155,7 @@ console.log('sex', by('sex'), '\noscar', by('oscar'), '\ngenre', by('genre'), '\
   const shared = [...cast.entries()].filter(([f, l]) => l.length >= 2 && (filmInfo.get(f).ru || filmInfo.get(f).en)).sort((x, y) => filmInfo.get(y[0]).sl - filmInfo.get(x[0]).sl);
   const tidx = new Map(shared.map(([f], i) => [f, i]));
   const teams = shared.map(([f]) => { const fi = filmInfo.get(f); return fi.ru || fi.en || f; });
+  writeFileSync(ROOT + 'data/raw/actors-film-qids.json', JSON.stringify(shared.map(([f]) => f)));
   const year = new Map();
   for (const [p, f, y] of raw.films) if (tidx.has(f) && y && (!year.has(f) || y < year.get(f))) year.set(f, +y);
   const pidx = new Map(chosen.map((a, i) => [a.id, i]));
