@@ -52,8 +52,34 @@ function merge(raw, posOf) {
   return out;
 }
 
+// Country = the senior national team the player represented (the latest one, e.g. Diego Costa: Brazil, then Spain).
+// Wikidata's citizenship / "country for sport" often hold several values in no order, which put Hakimi under Spain,
+// Rakitić under Switzerland or Crespo under Italy. Without a national team: one of the sport-country values (P1532), else citizenship.
+const NAT_NAME = { England: 'GB', Scotland: 'GB', Wales: 'GB', 'Northern Ireland': 'GB', 'Great Britain': 'GB', 'Republic of Ireland': 'IE',
+  'West Germany': 'DE', 'Soviet Union': 'RU', 'CIS': 'RU', 'Czechoslovakia': 'CZ', 'Serbia and Montenegro': 'RS', 'FR Yugoslavia': 'YU',
+  'Yugoslavia': 'YU', 'Korea Republic': 'KR', 'United States': 'US', 'USA': 'US', 'Ivory Coast': 'CI', "Côte d'Ivoire": 'CI', 'DR Congo': 'CD',
+  'Congo DR': 'CD', 'China PR': 'CN', 'Czech Republic': 'CZ', 'Bosnia and Herzegovina': 'BA', 'North Macedonia': 'MK', 'Turkey': 'TR' };
+const ISO_BY_EN = Object.fromEntries(Object.entries(COUNTRIES).map(([en, [iso]]) => [en, iso]));
+function natTeams(raw) {
+  const out = new Map(); // player -> [{iso, s}]
+  for (const [p, , label, nat, s] of raw.teams) {
+    if (!nat || !label) continue;
+    const m = label.match(/^(.+?)(?: men's)? national (?:association )?(?:football|soccer|basketball|ice hockey) team$/i);
+    if (!m || /under|U-?\d|\bB$|olympic|amateur|youth|junior/i.test(m[1])) continue;
+    const iso = NAT_NAME[m[1]] || ISO_BY_EN[m[1]]; if (!iso) continue;
+    const list = out.get(p) || []; list.push({ iso, s: ym(s) || 0 }); out.set(p, list);
+  }
+  return out;
+}
+// a few players with several sport countries on Wikidata and no national team there
+const COUNTRY_OVERRIDE = {
+  'Žydrūnas Ilgauskas': 'LT', 'Chris Kaman': 'DE', 'Toni Kukoč': 'HR', 'Carlos Delfino': 'AR', 'Jeremy Lin': 'US', 'Serge Ibaka': 'ES',
+  'Dikembe Mutombo': 'CD', 'Eric Gordon': 'US', 'Alex Len': 'UA', 'J. J. Barea': 'PR', 'Jordan Farmar': 'US', 'Žan Tabak': 'HR', 'Geoffrey Kondogbia': 'CF',
+};
+
 function country(o, missing) {
-  const iso = [...o.ccs][0] || [...o.cc][0];
+  const nat = o.nat && [...o.nat].sort((a, b) => b.s - a.s)[0];
+  const iso = COUNTRY_OVERRIDE[o.en] || (nat && nat.iso) || [...o.ccs][0] || [...o.cc][0];
   const c = iso && BY_ISO[iso];
   if (!c) { if (iso) missing.add(iso); return { cc: (iso || '').toLowerCase() === 'xx' ? '' : iso || '', country: '—', countryEn: '—', region: '' }; }
   return { cc: iso, country: c.ru, countryEn: c.en, region: c.region };
@@ -63,6 +89,7 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
   const raw = load(sport); if (!raw) return null;
   const missing = new Set();
   const people = merge(raw, posOf);
+  const nats = natTeams(raw); for (const o of people.values()) o.nat = nats.get(o.p);
   const teamList = []; const teamIdx = new Map();
   const T = (label) => { if (!teamIdx.has(label)) { teamIdx.set(label, teamList.length); teamList.push(label); } return teamIdx.get(label); };
 
@@ -91,7 +118,7 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
       else x.e = Math.max(x.s + 200, ...later.map((y) => y.e || 0));
     });
     if (!uniq.length || !o.en) continue;
-    if (sport === 'football' && ([...o.ccs][0] || [...o.cc][0]) === 'JP') continue; // owner's request: no Japanese footballers
+    if (sport === 'football' && country(o, new Set()).cc === 'JP') continue; // owner's request: no Japanese footballers
     if (needPos && !Object.keys(o.pos).length) continue; // e.g. officials or actors listed as footballers
     const stints = uniq.map((x) => [T(x.team), x.s, x.e]);
     const current = uniq.filter((x) => x.e >= NOW).sort((a, b) => b.s - a.s)[0];

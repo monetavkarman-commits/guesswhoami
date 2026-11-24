@@ -226,7 +226,7 @@ export function flag(cc) {
   img.addEventListener('error', () => img.replaceWith(h('span', { class: 'flag flag-text' }, cc)));
   return h('span', { class: 'flag', title: cc }, img);
 }
-const FLAGS = /^(?!YU|XK)[A-Za-z]{2}$/;
+const FLAGS = /^[A-Za-z]{2}$/; // every code used in the data has a file in flags/ (XK Kosovo and YU Yugoslavia included)
 
 export function toast(msg) {
   const t = h('div', { class: 'toast' }, msg);

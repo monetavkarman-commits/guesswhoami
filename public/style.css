@@ -649,3 +649,11 @@ h1, h2, h3, .logo, .gc-title, .hero-count b { font-family: var(--font); letter-s
 .hx-emo { display: block; font-size: clamp(16px, 3cqw, 24px); line-height: 1; }
 @media (max-width: 640px) { .hx-logo.gico { min-width: 32px; height: 32px; } .hx-logo .gimg { height: 32px; } .hx-logo.gico.g-cs .gimg, .hx-logo.gico.g-dota .gimg, .hx-logo.gico.g-deadlock .gimg { width: 32px; height: 32px; } .hx-emo { font-size: 26px; } }
 @media (max-width: 640px) { .hx-orbit .hx-node b { font-size: 14px; } .hx-orbit .hx-st { font-size: 11px; } }
+
+/* v74: selects (year of the lineup, difficulty, leaderboard game). Safari and Chrome on macOS draw a native light control and a white
+   option list when the background is translucent, so the light text vanished ("all white"). Own arrow, opaque colors, styled options. */
+select, .select, :root[data-theme] select { -webkit-appearance: none; appearance: none; padding-right: 32px; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+.select, :root[data-theme="dark"] select { background-color: var(--panel); color: var(--text); }
+select option, select optgroup { background-color: var(--panel); color: var(--text); }

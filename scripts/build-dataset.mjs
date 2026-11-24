@@ -31,22 +31,41 @@ function status(s) {
   return s === 'retired' ? 'retired' : s === 'inactive' ? 'inactive' : 'active';
 }
 
+// With `merge`, spellings of one organisation share one entry: "NRG", "NRG Esports" and "NRG eSports", "Complexity Gaming" and
+// "compLexity Gaming", "MIBR" and "Mibr" were separate teams before, so "played for NRG" missed most of NRG's players.
+// The most used spelling is shown (call finish() once every name has been added).
+const GENERIC = new Set(['phoenix', 'dream', 'unity', 'echo', 'prospects', 'wizards', 'paradox', 'infinite', 'infinity', 'tba', 'undefined', 'secret']);
+export const teamKey = (name) => {
+  const k = name.toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g, '')
+    .replace(/^(team|ex)(?=.{3})/, '').replace(/(esportsclub|esportclub|esports|esport|gaming|clan)$/, '');
+  return k.length >= 3 && !GENERIC.has(k) ? k : name;
+};
 class TeamTable {
-  constructor(aliases = {}) { this.list = []; this.idx = new Map(); this.aliases = aliases; }
+  constructor(aliases = {}, merge = false) { this.list = []; this.idx = new Map(); this.aliases = aliases; this.merge = merge; this.seen = []; }
+  key(name) { return this.merge ? teamKey(name) : name; }
   id(raw) {
-    const name = teamLabel(this.aliases[raw] || raw);
-    if (!this.idx.has(name)) { this.idx.set(name, this.list.length); this.list.push(name); }
-    return this.idx.get(name);
+    const name = teamLabel(this.aliases[raw] || raw); const k = this.key(name);
+    if (!this.idx.has(k)) { this.idx.set(k, this.list.length); this.list.push(name); this.seen.push(new Map()); }
+    const i = this.idx.get(k); this.seen[i].set(name, (this.seen[i].get(name) || 0) + 1);
+    return i;
   }
+  finish() { this.seen.forEach((m, i) => { this.list[i] = [...m].sort((a, b) => b[1] - a[1])[0][0]; }); }
+  // the shown spelling for any name of a known team (a player's current team is written by hand on Liquipedia)
+  label(name) { if (!name) return name; const i = this.idx.get(this.key(teamLabel(this.aliases[name] || name))); return i == null ? name : this.list[i]; }
 }
 
 // ---------- Counter-Strike ----------
 function buildCS() {
   const raw = JSON.parse(readFileSync(ROOT + 'data/raw/cs.json', 'utf8'));
   const missing = new Set();
-  const teams = new TeamTable({ 'mousesports': 'MOUZ', 'Team EnVyUs': 'Team Envy', 'Heroic': 'HEROIC', 'Complexity': 'Complexity Gaming' });
+  const teams = new TeamTable({ 'mousesports': 'MOUZ', 'Team EnVyUs': 'Team Envy', 'Heroic': 'HEROIC', 'Complexity': 'Complexity Gaming',
+    'Team SoloMid': 'TSM', 'team-imperial': 'Imperial Esports', 'w7m esports': 'W7M Gaming', 'BC.Game': 'BC.Game Esports', 'bc.game': 'BC.Game Esports' }, true);
   const PLAYER_ROLES = ['awp', 'igl', 'rifle', 'entry', 'lurker', 'support'];
-  const FORMER_IGL = new Set(['Gla1ve', 'Xizt', 'TaZ', 'NBK-', 'AZR', 'Snappi', 'Gade', 'TiziaN']);
+  // Liquipedia lists only the CURRENT role: players who became coaches, casters or analysts lost their playing role
+  // (Zeus, GuardiaN, dupreeh, f0rest...). Their career roles are kept here; Liquipedia wins again once they play.
+  const CAREER = JSON.parse(readFileSync(ROOT + 'data/raw/cs-career-roles.json', 'utf8')).roles;
+  // one fixed order everywhere (labels, the "Who am I" comparison): leader, special roles, then rifler, then the current job
+  const ROLE_ORDER = ['igl', 'awp', 'entry', 'lurker', 'support', 'rifle', 'coach', 'staff'];
 
   // Team history with stint notes (data/raw/cs-th.json, {{TH|dates|team|note}} per player page).
   // Benched ("Inactive") stints are dropped: a benched player did not play for the team then.
@@ -78,17 +97,21 @@ function buildCS() {
     if (!roles.length && p.r.some((r) => r.includes('coach'))) roles = ['coach'];
     // former players who now work as casters, analysts, managers or streamers
     if (!roles.length && p.r.some((r) => /caster|analyst|observer|manager|streamer|interviewer/.test(r))) roles = ['staff'];
-    // Liquipedia lists only the CURRENT role, so famous in-game leaders who moved to coaching lost their IGL role
-    if (roles.includes('coach') && FORMER_IGL.has(p.p)) roles = ['igl', 'coach'];
+    const career = CAREER[p.id] || CAREER[p.p];
+    if (career && !roles.some((r) => PLAYER_ROLES.includes(r))) roles = [...career, ...roles];
+    roles = [...new Set(roles)].sort((a, b) => ROLE_ORDER.indexOf(a) - ROLE_ORDER.indexOf(b));
     return {
       id: p.id, name: clean(p.n), url: 'https://liquipedia.net/counterstrike/' + encodeURI(p.p.replace(/ /g, '_')),
       ...countryOf(p.c, missing), birth: normBirth(p.b), status: status(p.s),
       team: p.t ? teamLabel(clean(p.t)) : null, roles, events: p.m,
       // the club of the latest stint, shown when the player has no current team
-      last: stints.length ? teams.list[[...stints].sort((a, b) => b[1] - a[1])[0][0]] : null,
+      last: stints.length ? [...stints].sort((a, b) => b[1] - a[1])[0][0] : null, // index for now, a name after teams.finish()
       teams: [...new Set(stints.map((s) => s[0]))], _stints: stints,
     };
   });
+
+  teams.finish();
+  players.forEach((p) => { p.last = p.last == null ? null : teams.list[p.last]; p.team = teams.label(p.team); });
 
   // teammates: overlapping stints (at least one month) on the same team;
   // stored as [playerIndex, teamIndex, fromYear, toYear] (toYear 0 = still together)

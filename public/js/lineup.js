@@ -49,7 +49,9 @@ export function mount(root, data, opts) {
   const yearSel = h('select', { class: 'select', 'aria-label': tr('Год состава'), onchange: (e) => { store.set(yearKey, e.target.value); mount(root, data, opts); } },
     h('option', { value: 0, selected: !year }, tr('Случайный год')), years.map((y) => h('option', { value: y, selected: y === year }, String(y))));
   const head = h('div', { class: 'lineup-team with-logo' }, logoAt(data, team, 'pic logo big'), h('b', {}, data.teams[team]), h('span', { class: 'chip near' }, String(yr)), h('span', { class: 'muted small' }, tr('Год состава:')), yearSel);
-  const intro = h('p', { class: 'mode-intro' }, tr('Назовите {0} лучших игроков команды в {1} году (по данным базы). Допускается {2} ошибок.', [n, yr, MISTAKES]));
+  const intro = h('p', { class: 'mode-intro' }, tr('Назовите {0} лучших игроков команды в {1} году (по данным базы). Допускается {2} ошибок.', [n, yr, MISTAKES]),
+    // roles come from the players' current profiles, so for an older roster they can differ from the role played that year
+    yr < thisYear && data.cfg.kind === 'roles' ? [' ', h('span', { class: 'muted' }, tr('Роли указаны текущие.'))] : null);
   const searchWrap = h('div', { class: 'who-search' });
   const slots = h('div', { class: 'lineup-slots' });
   const wrongBox = h('div', { class: 'team-guesses' });
