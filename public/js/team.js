@@ -34,8 +34,13 @@ export function mount(root, data, { seed, daily, label, day, onFinish }) {
   const ages = roster.filter((p) => p.age != null).map((p) => p.age);
   const avgAge = ages.length ? Math.round(ages.reduce((s, a) => s + a, 0) / ages.length) : null;
   const evSum = roster.reduce((s, p) => s + (p.events || 0), 0);
-  const region = data.regions[roster[0].region] || '';
-  const regionOf = (i) => { const p = rosters.get(i)?.[0]; return p ? data.regions[p.region] || '' : ''; };
+  // the region most of the roster comes from (the first player alone made the Lakers a European team)
+  const mainRegion = (list) => {
+    const n = new Map(); list.forEach((p) => p.region && n.set(p.region, (n.get(p.region) || 0) + 1));
+    const top = [...n].sort((a, b) => b[1] - a[1])[0]; return top ? data.regions[top[0]] || '' : '';
+  };
+  const region = mainRegion(roster);
+  const regionOf = (i) => (rosters.has(i) ? mainRegion(rosters.get(i)) : '');
 
   const clues = [
     () => tr('Регион: {0}. В базе игроков этой команды: {1}.', [region || '—', roster.length]),
@@ -65,7 +70,11 @@ export function mount(root, data, { seed, daily, label, day, onFinish }) {
   const list = h('ul', { class: 'search-list', role: 'listbox' });
   const wrap = h('div', { class: 'search' }, input, list);
   let items = []; let active = 0;
-  const names = data.teams.map((t, i) => ({ i, t, f: fold(t) }));
+  // short names people type: "navi", "vp", "nip", "eg", "psg"…
+  const SHORT = { 'Natus Vincere': 'navi', 'Virtus.pro': 'vp', 'Ninjas in Pyjamas': 'nip', 'Evil Geniuses': 'eg', 'Paris Saint-Germain F.C.': 'psg',
+    'Paris Saint-Germain': 'psg', 'Manchester United F.C.': 'mu manutd', 'Manchester United': 'mu manutd', 'Team Spirit': 'ts', 'Gambit Esports': 'gmb',
+    'Los Angeles Lakers': 'lal', 'Golden State Warriors': 'gsw' };
+  const names = data.teams.map((t, i) => ({ i, t, f: fold(t) + (SHORT[t] ? ' ' + SHORT[t] : '') }));
   const draw = () => {
     list.innerHTML = '';
     items.forEach((x, k) => {
@@ -79,7 +88,7 @@ export function mount(root, data, { seed, daily, label, day, onFinish }) {
     const q = fold(input.value.trim());
     if (!q) { items = []; draw(); return; }
     const taken = new Set(state.guesses);
-    const a = names.filter((x) => !taken.has(x.i) && x.f.startsWith(q)); const b = names.filter((x) => !taken.has(x.i) && !x.f.startsWith(q) && x.f.includes(q));
+    const a = names.filter((x) => !taken.has(x.i) && (x.f.startsWith(q) || x.f.split(' ').includes(q))); const b = names.filter((x) => !taken.has(x.i) && !x.f.startsWith(q) && x.f.includes(q));
     // teams with a roster in the base come first
     const rank = (x) => (rosters.has(x.i) ? 0 : 1);
     items = [...a.sort((x, y) => rank(x) - rank(y)), ...b.sort((x, y) => rank(x) - rank(y))].slice(0, 8); active = 0; draw();

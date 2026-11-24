@@ -52,8 +52,34 @@ function merge(raw, posOf) {
   return out;
 }
 
+// Country = the senior national team the player represented (the latest one, e.g. Diego Costa: Brazil, then Spain).
+// Wikidata's citizenship / "country for sport" often hold several values in no order, which put Hakimi under Spain,
+// Rakitić under Switzerland or Crespo under Italy. Without a national team: one of the sport-country values (P1532), else citizenship.
+const NAT_NAME = { England: 'GB', Scotland: 'GB', Wales: 'GB', 'Northern Ireland': 'GB', 'Great Britain': 'GB', 'Republic of Ireland': 'IE',
+  'West Germany': 'DE', 'Soviet Union': 'RU', 'CIS': 'RU', 'Czechoslovakia': 'CZ', 'Serbia and Montenegro': 'RS', 'FR Yugoslavia': 'YU',
+  'Yugoslavia': 'YU', 'Korea Republic': 'KR', 'United States': 'US', 'USA': 'US', 'Ivory Coast': 'CI', "Côte d'Ivoire": 'CI', 'DR Congo': 'CD',
+  'Congo DR': 'CD', 'China PR': 'CN', 'Czech Republic': 'CZ', 'Bosnia and Herzegovina': 'BA', 'North Macedonia': 'MK', 'Turkey': 'TR' };
+const ISO_BY_EN = Object.fromEntries(Object.entries(COUNTRIES).map(([en, [iso]]) => [en, iso]));
+function natTeams(raw) {
+  const out = new Map(); // player -> [{iso, s}]
+  for (const [p, , label, nat, s] of raw.teams) {
+    if (!nat || !label) continue;
+    const m = label.match(/^(.+?)(?: men's)? national (?:association )?(?:football|soccer|basketball|ice hockey) team$/i);
+    if (!m || /under|U-?\d|\bB$|olympic|amateur|youth|junior/i.test(m[1])) continue;
+    const iso = NAT_NAME[m[1]] || ISO_BY_EN[m[1]]; if (!iso) continue;
+    const list = out.get(p) || []; list.push({ iso, s: ym(s) || 0 }); out.set(p, list);
+  }
+  return out;
+}
+// a few players with several sport countries on Wikidata and no national team there
+const COUNTRY_OVERRIDE = {
+  'Žydrūnas Ilgauskas': 'LT', 'Chris Kaman': 'DE', 'Toni Kukoč': 'HR', 'Carlos Delfino': 'AR', 'Jeremy Lin': 'US', 'Serge Ibaka': 'ES',
+  'Dikembe Mutombo': 'CD', 'Eric Gordon': 'US', 'Alex Len': 'UA', 'J. J. Barea': 'PR', 'Jordan Farmar': 'US', 'Žan Tabak': 'HR', 'Geoffrey Kondogbia': 'CF',
+};
+
 function country(o, missing) {
-  const iso = [...o.ccs][0] || [...o.cc][0];
+  const nat = o.nat && [...o.nat].sort((a, b) => b.s - a.s)[0];
+  const iso = COUNTRY_OVERRIDE[o.en] || (nat && nat.iso) || [...o.ccs][0] || [...o.cc][0];
   const c = iso && BY_ISO[iso];
   if (!c) { if (iso) missing.add(iso); return { cc: (iso || '').toLowerCase() === 'xx' ? '' : iso || '', country: '—', countryEn: '—', region: '' }; }
   return { cc: iso, country: c.ru, countryEn: c.en, region: c.region };
@@ -63,6 +89,7 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
   const raw = load(sport); if (!raw) return null;
   const missing = new Set();
   const people = merge(raw, posOf);
+  const nats = natTeams(raw); for (const o of people.values()) o.nat = nats.get(o.p);
   const teamList = []; const teamIdx = new Map();
   const T = (label) => { if (!teamIdx.has(label)) { teamIdx.set(label, teamList.length); teamList.push(label); } return teamIdx.get(label); };
 
@@ -91,7 +118,7 @@ function buildTeamSport({ sport, title, sourceNote, eventLabel, posOf, topShare,
       else x.e = Math.max(x.s + 200, ...later.map((y) => y.e || 0));
     });
     if (!uniq.length || !o.en) continue;
-    if (sport === 'football' && ([...o.ccs][0] || [...o.cc][0]) === 'JP') continue; // owner's request: no Japanese footballers
+    if (sport === 'football' && country(o, new Set()).cc === 'JP') continue; // owner's request: no Japanese footballers
     if (needPos && !Object.keys(o.pos).length) continue; // e.g. officials or actors listed as footballers
     const stints = uniq.map((x) => [T(x.team), x.s, x.e]);
     const current = uniq.filter((x) => x.e >= NOW).sort((a, b) => b.s - a.s)[0];
@@ -204,8 +231,21 @@ for (const [name, fn] of builds) {
     const HAND = { Q3039938: 'Правая', Q789447: 'Левая' };
     const BACKHAND = { Q14420039: 'Одноручный', Q14420068: 'Двуручный' };
     const items = [];
+    // Wikidata often has no playing hand / backhand even for stars (Federer, Świątek, Sinner...): R/L + 1/2 filled in where it is empty
+    const HB = { 'Roger Federer': 'R1', 'Maria Sharapova': 'R2', 'Jannik Sinner': 'R2', 'Carlos Alcaraz': 'R2', 'Stan Wawrinka': 'R1', 'Iga Świątek': 'R2',
+      'Aryna Sabalenka': 'R2', 'Gabriela Sabatini': 'R1', 'Daniil Medvedev': 'R2', 'Jim Courier': 'R2', 'Alexander Zverev': 'R2', 'Patrick Rafter': 'R1',
+      'Richard Gasquet': 'R1', 'Stefanos Tsitsipas': 'R1', 'Conchita Martínez': 'R1', 'Dominic Thiem': 'R1', 'James Blake': 'R1', 'Grigor Dimitrov': 'R1',
+      'Barbora Krejčíková': 'R2', 'Tommy Haas': 'R1', 'Fernando González': 'R1', 'Sofia Kenin': 'R2', 'Marcos Baghdatis': 'R2', 'Mikhail Youzhny': 'R1',
+      'Tommy Robredo': 'R1', 'Max Mirnyi': 'R1', 'Tim Henman': 'R1', 'Feliciano López': 'L1', 'Daria Kasatkina': 'R2', 'Nick Kyrgios': 'R2',
+      'Linda Nosková': 'R2', 'Andrey Rublev': 'R2', 'Bob Bryan': 'L', 'Mirra Andreeva': 'R2', 'Maria Sakkari': 'R2', 'Ivan Ljubičić': 'R1',
+      'Ivo Karlović': 'R1', 'Gastón Gaudio': 'R1', 'Jessica Pegula': 'R2', 'Mike Bryan': 'R', 'Borna Ćorić': 'R2', 'Casper Ruud': 'R2',
+      'Albert Costa': 'R1', 'Nicolas Mahut': 'R1', 'Mónica Puig': 'R2', 'Karen Khachanov': 'R2', 'Nicolás Almagro': 'R1', 'Philipp Kohlschreiber': 'R1',
+      'Amanda Anisimova': 'R2', 'Dayana Yastremska': 'R2', 'Matteo Berrettini': 'R2', 'Holger Rune': 'R2', 'Ana Konjuh': 'R2',
+      'Ajla Tomljanović': 'R2', 'Alex de Minaur': 'R2', 'Elena Rybakina': 'R2' };
+    // people who are on Wikidata as tennis players but are known for something else
+    const NOT_TENNIS = new Set(['Diego Forlán', 'Sarah Toscano', 'Redfoo']);
     for (const o of people.values()) {
-      if (!o.en || !o.b || !o.sex || !(o.hands.size || o.start)) continue;
+      if (!o.en || !o.b || !o.sex || !(o.hands.size || o.start) || NOT_TENNIS.has(o.en)) continue;
       const c = country(o, missing);
       items.push({
         id: o.p, name: latin(o.en), sub: [c.country, o.ru && o.ru !== o.en ? o.ru : ''].filter((x) => x && x !== '—').join(' · '),
@@ -218,6 +258,9 @@ for (const [name, fn] of builds) {
         url: `https://www.wikidata.org/wiki/${o.p}`,
         ...(IMGS.p[o.p] && commonsPath(IMGS.p[o.p]) ? { img: commonsPath(IMGS.p[o.p]) } : {}),
       });
+      const it = items[items.length - 1]; const fx = HB[o.en] || '';
+      if (!it.hand && fx[0]) it.hand = fx[0] === 'L' ? 'Левая' : 'Правая';
+      if (!it.backhand && fx[1]) it.backhand = fx[1] === '1' ? 'Одноручный' : 'Двуручный';
       QIDS.tennis.p.push(o.p);
     }
     items.sort((a, b) => b.fame - a.fame);

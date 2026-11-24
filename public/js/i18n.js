@@ -289,6 +289,7 @@ const EN = {
   'Год состава': 'Lineup year',
   'Случайный год': 'Random year',
   'Год состава:': 'Lineup year:',
+  'Роли указаны текущие.': 'Roles shown are the current ones.',
   'Назовите {0} лучших игроков команды в {1} году (по данным базы). Допускается {2} ошибок.': 'Name the {0} best players of the team in {1} (from our database). {2} mistakes allowed.',
   'Ник игрока…': 'Player nickname…',
   '{0} играет в команде, но в этой подборке его нет': '{0} plays for the team but is not in this selection',

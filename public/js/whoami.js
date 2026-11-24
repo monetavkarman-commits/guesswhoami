@@ -23,8 +23,8 @@ function columns(data) {
       }, view: (g) => h('span', { class: 'with-logo' }, logo(data, g.team || g.last), teamText(g)) },
     kind === 'roles'
       ? { title: tr('Роль'), cmp: (g, t) => {
-          const a = g.roles.join(); const b = t.roles.join();
-          if (a === b) return 'hit';
+          // same set of roles, in any order (Liquipedia lists them in no fixed order)
+          if (g.roles.length === t.roles.length && g.roles.every((r) => t.roles.includes(r))) return 'hit';
           return g.roles.some((r) => t.roles.includes(r)) ? 'near' : 'miss';
         }, view: (g) => roleText(data, g) }
       : kind === 'pos' ? { title: tr('Позиция'), cmp: (g, t) => (g.pos === t.pos ? 'hit' : Math.abs(g.pos - t.pos) === 1 ? 'near' : 'miss'),
