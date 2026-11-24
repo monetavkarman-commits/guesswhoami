@@ -1,5 +1,5 @@
 import { tr } from './i18n.js';
-import { loadGame, ensureMates, today, h, GAMES, filtersFor, store, modal, toast, gameBadge } from './core.js';
+import { loadGame, ensureMates, today, h, GAMES, filtersFor, store, modal, toast, gameBadge, sectionOf } from './core.js';
 import { lang, setLang } from './i18n.js';
 import * as grid from './grid.js';
 import * as whoami from './whoami.js';
@@ -45,7 +45,7 @@ applyTheme(theme);
 themeBtn.addEventListener('click', () => { theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length]; store.set('theme', theme); applyTheme(theme); });
 
 if (lang === 'en') {
-  document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Athletes from <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a> (CC0). Player photos and club logos come from Wikimedia Commons (authors and licences are on each file page), some esports team logos from <a href="https://logos.fandom.com/" target="_blank" rel="noopener">Logopedia</a>; logos remain trademarks of the clubs. Dota 2 hero and item icons belong to Valve, League of Legends champion and item icons to Riot Games, loaded from their servers. Not affiliated with Liquipedia, Valve, Riot Games, leagues or tournament organisers.';
+  document.getElementById('license-note').innerHTML = 'Player data from <a href="https://liquipedia.net/" target="_blank" rel="noopener">Liquipedia</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Athletes and actors from <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a> (CC0). Player and actor photos and club logos come from Wikimedia Commons (authors and licences are on each file page), some esports team logos from <a href="https://logos.fandom.com/" target="_blank" rel="noopener">Logopedia</a>; logos remain trademarks of the clubs. Dota 2 hero and item icons belong to Valve, League of Legends champion and item icons to Riot Games, loaded from their servers. Not affiliated with Liquipedia, Valve, Riot Games, leagues or tournament organisers.';
   document.title = 'WhoAmIGuess — guess the player';
 }
 
@@ -57,7 +57,7 @@ const MODES = {
   grid: { title: tr('Сетка'), icon: '▦', mod: grid },
   whoami: { title: tr('Кто я?'), icon: '👤', mod: whoami },
   chain: { title: tr('Цепочка'), icon: '⛓', mod: chain, needsMates: true },
-  items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), lol: tr('Чемпионы'), deadlock: tr('Герои'), tennis: tr('Теннисисты'), hockey: tr('Хоккеисты'), mma: tr('Бойцы'), boxing: tr('Боксёры') } },
+  items: { title: tr('Предметы'), icon: '◆', mod: items, set: 'items', gameTitle: { cs: tr('Оружие'), dota: tr('Герои'), lol: tr('Чемпионы'), deadlock: tr('Герои'), tennis: tr('Теннисисты'), hockey: tr('Хоккеисты'), mma: tr('Бойцы'), boxing: tr('Боксёры'), actors: tr('Угадай кто я?') }, gameIcon: { actors: '👤' } },
   team: { title: tr('Команда'), icon: '🏷', mod: team, noFilter: true, gameTitle: Object.fromEntries(['cs', 'dota', 'valorant', 'lol', 'football', 'basket'].map((g) => [g, tr('Угадай команду')])) },
   lineup: { title: tr('Состав'), icon: '👥', mod: lineup, needsMates: true, noFilter: true, gameTitle: Object.fromEntries(['cs', 'dota', 'valorant', 'lol', 'football', 'basket'].map((g) => [g, tr('Угадай состав')])) },
   maps: { title: tr('Карты'), icon: '⌖', mod: items, set: 'maps', gameTitle: { cs: tr('Карты') } },
@@ -175,26 +175,26 @@ async function render() {
     renderHome(root, { GAMES, MODES, nav, num: today().num });
     return;
   }
-  // two sections, esports and sports; only the games of the current section are listed
-  const section = GAMES[game].sport ? 'sport' : 'esport';
+  // three sections, esports, sports and cinema; only the games of the current section are listed
+  const section = sectionOf(GAMES[game]);
   store.set(`lastGame:${section}`, game);
   sectionTabs.innerHTML = '';
-  for (const [sec, label] of [['esport', tr('🎮 Киберспорт')], ['sport', tr('🏟 Спорт')]]) {
-    const first = Object.keys(GAMES).find((k) => !!GAMES[k].sport === (sec === 'sport'));
+  for (const [sec, label] of [['esport', tr('🎮 Киберспорт')], ['sport', tr('🏟 Спорт')], ['movie', tr('🎬 Кино')]]) {
+    const first = Object.keys(GAMES).find((k) => sectionOf(GAMES[k]) === sec);
     const target = store.get(`lastGame:${sec}`, first);
     sectionTabs.append(h('button', { class: sec === section ? 'active' : '', onclick: () => sec !== section && nav(GAMES[target] ? target : first, mode, endless) }, label));
   }
   gameTabs.innerHTML = '';
-  gameTabs.classList.toggle('sport', section === 'sport');
+  gameTabs.classList.toggle('sport', section !== 'esport');
   for (const [k, g] of Object.entries(GAMES)) {
-    if (!!g.sport !== (section === 'sport')) continue;
+    if (sectionOf(g) !== section) continue;
     gameTabs.append(h('button', { class: 'tab' + (k === game ? ' active' : ''), title: g.title, onclick: () => nav(k, mode, endless) }, gameBadge(k), h('span', { class: 'full' }, g.tab || g.title), h('span', { class: 'short' }, g.short)));
   }
   requestAnimationFrame(() => { gameTabs.querySelector('.tab.active')?.scrollIntoView({ inline: 'center', block: 'nearest' }); updateArrows(); });
   modeTabs.innerHTML = '';
   for (const [k, m] of Object.entries(MODES)) {
     if ((m.gameTitle && !m.gameTitle[game]) || (GAMES[game].itemsOnly && !m.set)) continue;
-    modeTabs.append(h('button', { class: 'mode-tab' + (k === mode ? ' active' : ''), onclick: () => nav(game, k, endless) }, h('span', { class: 'mode-icon' }, m.icon), m.gameTitle ? m.gameTitle[game] : m.title));
+    modeTabs.append(h('button', { class: 'mode-tab' + (k === mode ? ' active' : ''), onclick: () => nav(game, k, endless) }, h('span', { class: 'mode-icon' }, m.gameIcon?.[game] || m.icon), m.gameTitle ? m.gameTitle[game] : m.title));
   }
 
   const { key, num } = today();

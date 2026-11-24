@@ -1,11 +1,11 @@
 // Home hub: pick a game, see today's progress at a glance.
 import { tr } from './i18n.js';
-import { h, store, modal, gameBadge } from './core.js';
+import { h, store, modal, gameBadge, sectionOf } from './core.js';
 import { getStats } from './stats.js';
 
 const LOOK = {
   cs: ['#f5a524', '🔫'], dota: ['#e0463a', '🛡'], valorant: ['#ff4655', '🎯'], lol: ['#c89b3c', '⚔'], deadlock: ['#8b6cff', '👁'],
-  football: ['#2fa36b', '⚽'], basket: ['#ff7a2f', '🏀'], tennis: ['#b7d63a', '🎾'], hockey: ['#3a8fe0', '🏒'], mma: ['#d4373d', '🥋'], boxing: ['#c0302e', '🥊'],
+  football: ['#2fa36b', '⚽'], basket: ['#ff7a2f', '🏀'], tennis: ['#b7d63a', '🎾'], hockey: ['#3a8fe0', '🏒'], mma: ['#d4373d', '🥋'], boxing: ['#c0302e', '🥊'], actors: ['#e0b13a', '🎬'],
 };
 
 // install prompt of the browser (Chrome/Edge/Android); iOS Safari has no event, so it gets a short hint
@@ -61,11 +61,11 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
         h('span', { class: 'gc-left' + (left ? '' : ' all') }, left ? tr('ещё {0}', [left]) : '✓')),
       h('div', { class: 'gc-modes' }, modes.map(([k, m]) =>
         h('button', { type: 'button', class: 'gc-mode' + (done(game, k) ? ' done' : ''), onclick: () => nav(game, k, false) },
-          h('span', {}, m.icon), m.gameTitle ? m.gameTitle[game] : m.title, done(game, k) ? h('i', {}, '✓') : ''))));
+          h('span', {}, m.gameIcon?.[game] || m.icon), m.gameTitle ? m.gameTitle[game] : m.title, done(game, k) ? h('i', {}, '✓') : ''))));
     return c;
   };
-  const section = (label, sport) => h('section', { class: 'hub-sec' }, h('h2', {}, label),
-    h('div', { class: 'hub-cards' }, Object.keys(GAMES).filter((k) => !!GAMES[k].sport === sport).map(card)));
+  const section = (label, sec) => h('section', { class: 'hub-sec' }, h('h2', {}, label),
+    h('div', { class: 'hub-cards' }, Object.keys(GAMES).filter((k) => sectionOf(GAMES[k]) === sec).map(card)));
 
   const pct = total ? Math.round((got / total) * 100) : 0;
   const bar = h('div', { class: 'hub-bar' }, h('i', {}));
@@ -130,8 +130,8 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
   };
   // game logo above the name: the badge/picture used in the tabs, or the sport's emoji
   const shortOf = (game) => GAMES[game].short || GAMES[game].title;
-  const emojiOf = (game) => { const m = shortOf(game).match(/^(\S+)\s(.+)$/u); return GAMES[game].sport && m ? m[1] : null; };
-  const nameOf = (game) => { const m = shortOf(game).match(/^(\S+)\s(.+)$/u); return GAMES[game].sport && m ? m[2] : shortOf(game); };
+  const emojiOf = (game) => { const m = shortOf(game).match(/^(\S+)\s(.+)$/u); return sectionOf(GAMES[game]) !== 'esport' && m ? m[1] : null; };
+  const nameOf = (game) => { const m = shortOf(game).match(/^(\S+)\s(.+)$/u); return sectionOf(GAMES[game]) !== 'esport' && m ? m[2] : shortOf(game); };
   const logoOf = (game) => { const b = gameBadge(game, 'gico hx-logo'); return b || h('span', { class: 'hx-logo hx-emo', 'aria-hidden': 'true' }, emojiOf(game) || '?'); };
   keys.forEach((game, i) => {
     const p = pts[i], modes = modesOf(game), rest = modes.filter(([k]) => !done(game, k)).length;

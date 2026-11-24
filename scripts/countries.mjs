@@ -123,6 +123,18 @@ export const COUNTRIES = {
   'Laos': ['LA', 'Лаос', 'AS'],
   'Australia': ['AU', 'Австралия', 'OC'],
   'New Zealand': ['NZ', 'Новая Зеландия', 'OC'],
+  'Cuba': ['CU', 'Куба', 'AM'],
+  'Barbados': ['BB', 'Барбадос', 'AM'],
+  'Guyana': ['GY', 'Гайана', 'AM'],
+  'Bermuda': ['BM', 'Бермуды', 'AM'],
+  'United States Virgin Islands': ['VI', 'Виргинские острова (США)', 'AM'],
+  'Nepal': ['NP', 'Непал', 'AS'],
+  'Ethiopia': ['ET', 'Эфиопия', 'ME'],
+  'Somalia': ['SO', 'Сомали', 'ME'],
+  'Yemen': ['YE', 'Йемен', 'ME'],
+  'Oman': ['OM', 'Оман', 'ME'],
+  'Bahrain': ['BH', 'Бахрейн', 'ME'],
+  'Jersey': ['JE', 'Джерси', 'EU'],
 };
 
 export const REGIONS = {

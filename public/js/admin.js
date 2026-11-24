@@ -103,7 +103,7 @@ async function usersTab(sb, box) {
 }
 
 // ---------- data health ----------
-const DATASETS = ['cs', 'dota', 'valorant', 'lol', 'football', 'basket', 'hockey', 'mma', 'boxing', 'tennis'];
+const DATASETS = ['cs', 'dota', 'valorant', 'lol', 'football', 'basket', 'hockey', 'mma', 'boxing', 'tennis', 'actors'];
 async function dataTab(sb, box) {
   box.append(h('p', { class: 'muted' }, 'Загрузка…'));
   const rows = [];
