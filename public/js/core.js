@@ -49,7 +49,12 @@ export const GAMES = {
   boxing: { title: tr('Бокс'), tab: '🥊 ' + tr('Бокс'), short: '🥊 ' + tr('Бокс'), sport: true, itemsOnly: true, eras: {} },
   tennis: { title: tr('Теннис'), tab: '🎾 ' + tr('Теннис'), short: '🎾 ' + tr('Теннис'), sport: true, itemsOnly: true, eras: {} },
   // cinema (Wikidata): its own section after sports
-  actors: { title: tr('Актёры'), tab: '🎬 ' + tr('Актёры'), short: '🎬 ' + tr('Актёры'), section: 'movie', itemsOnly: true, eras: {} },
+  // films stand in for teams in the grid and the chain; the genre is the "position"; no player "Кто я?" (the item-style one is used)
+  actors: {
+    title: tr('Актёры'), tab: '🎬 ' + tr('Актёры'), short: '🎬 ' + tr('Актёры'), section: 'movie', movie: true, kind: 'pos', modes: ['grid', 'chain', 'items'],
+    posLabels: Object.fromEntries(['Мультфильм', 'Ужасы', 'Фантастика', 'Фэнтези', 'Вестерн', 'Военный', 'Мюзикл', 'Криминал', 'Триллер', 'Боевик', 'Приключения', 'Мелодрама', 'Комедия', 'Драма'].map((g, i) => [i + 1, tr(g)])),
+    teamLabel: tr('Фильм'), ev3: tr('50+ фильмов'), ev1: tr('Меньше 25 фильмов'), evHi: 50, evLo: 24, topMin: null, minTeam: [4, 3], eras: {},
+  },
 };
 // section of a game: esports, sports or cinema
 export const sectionOf = (g) => g.section || (g.sport ? 'sport' : 'esport');
@@ -78,9 +83,9 @@ export function gameBadge(game, cls = 'gico') {
 export function filtersFor(game) {
   const cfg = GAMES[game];
   return {
-    all: { label: tr('Все игроки'), test: () => true },
-    top: { label: tr('Только звёзды'), test: (p) => (cfg.topMin == null ? p.top : p.events >= cfg.topMin) },
-    active: { label: tr('Актуальные составы'), era: cfg.activeEra, test: (p) => p.status === 'active' && !!p.team && p.era.includes(cfg.activeEra) },
+    all: { label: cfg.movie ? tr('Все актёры') : tr('Все игроки'), test: () => true },
+    top: { label: cfg.movie ? tr('Только самые известные') : tr('Только звёзды'), test: (p) => (cfg.topMin == null ? p.top : p.events >= cfg.topMin) },
+    ...(cfg.activeEra ? { active: { label: tr('Актуальные составы'), era: cfg.activeEra, test: (p) => p.status === 'active' && !!p.team && p.era.includes(cfg.activeEra) } } : {}),
     ...Object.fromEntries(Object.entries(cfg.eras).map(([k, label]) => [k, { label, era: k, test: (p) => p.era.includes(k) }])),
   };
 }
@@ -292,7 +297,7 @@ export function playerLink(p) {
 // search ignores case and accents: "ozil" finds Özil, "gueler" is not needed, "guler" finds Güler
 export const fold = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').replace(/ø/g, 'o').replace(/ß/g, 'ss').replace(/đ/g, 'd').replace(/ł/g, 'l').toLowerCase();
 
-export function playerSearch(data, { placeholder = tr('Введите ник игрока…'), exclude = () => false, onPick }) {
+export function playerSearch(data, { placeholder = data.cfg?.movie ? tr('Имя актёра или актрисы…') : tr('Введите ник игрока…'), exclude = () => false, onPick }) {
   const input = h('input', { type: 'text', class: 'search-input', placeholder, autocomplete: 'off', spellcheck: 'false' });
   const list = h('ul', { class: 'search-list', role: 'listbox' });
   const wrap = h('div', { class: 'search' }, input, list);

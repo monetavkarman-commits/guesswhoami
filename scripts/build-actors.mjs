@@ -9,7 +9,7 @@
 //   node scripts/build-actors.mjs
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { COUNTRIES } from './countries.mjs';
+import { COUNTRIES, REGIONS } from './countries.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const RAW = ROOT + 'data/raw/actors-wd.json';
@@ -109,7 +109,7 @@ for (const o of people.values()) {
   const known = [...done].sort((a, b) => filmInfo.get(b[0]).sl - filmInfo.get(a[0]).sl).slice(0, 3).map(([f]) => filmInfo.get(f).ru || filmInfo.get(f).en).filter(Boolean);
   list.push({
     id: o.p, name: o.en, ru: o.ru && o.ru !== o.en ? o.ru : '', cc: isos[0], country: c.ru, region: c.region || null, sex, byear,
-    dead: !!o.d, films: done.map(([f]) => f), count: done.length, debut: Math.min(...years), last: Math.max(...years), genre,
+    birth: String(o.b).slice(0, 10), dead: !!o.d, films: done.map(([f]) => f), count: done.length, debut: Math.min(...years), last: Math.max(...years), genre,
     oscar: oscar.get(o.p) === 'w' ? 'Есть' : oscar.get(o.p) === 'n' ? 'Номинация' : 'Нет', known,
     fame: +o.sl, img: o.img && commonsPath(o.img),
   });
@@ -146,3 +146,37 @@ writeFileSync(ROOT + 'public/data/actors-items.json', JSON.stringify(data));
 const by = (k) => Object.entries(items.reduce((m, x) => ((m[x[k]] = (m[x[k]] || 0) + 1), m), {})).sort((a, b) => b[1] - a[1]);
 console.log(`actors: ${items.length} of ${list.length} candidates, photos ${items.filter((x) => x.img).length}, films ${fidx.size}; skipped`, skipped);
 console.log('sex', by('sex'), '\noscar', by('oscar'), '\ngenre', by('genre'), '\ncountries', by('country').slice(0, 25));
+
+// ---------- the same actors as a "player" dataset for the grid and the chain: films play the part of teams ----------
+// Only films with two or more of the chosen actors matter (a shared film links two actors; a grid row needs several).
+{
+  const cast = new Map();
+  for (const a of chosen) for (const f of new Set(a.films)) { if (!cast.has(f)) cast.set(f, []); cast.get(f).push(a); }
+  const shared = [...cast.entries()].filter(([f, l]) => l.length >= 2 && (filmInfo.get(f).ru || filmInfo.get(f).en)).sort((x, y) => filmInfo.get(y[0]).sl - filmInfo.get(x[0]).sl);
+  const tidx = new Map(shared.map(([f], i) => [f, i]));
+  const teams = shared.map(([f]) => { const fi = filmInfo.get(f); return fi.ru || fi.en || f; });
+  const year = new Map();
+  for (const [p, f, y] of raw.films) if (tidx.has(f) && y && (!year.has(f) || y < year.get(f))) year.set(f, +y);
+  const pidx = new Map(chosen.map((a, i) => [a.id, i]));
+  const genreNo = Object.fromEntries(ORDER.map((g, i) => [g, i + 1]));
+  const players = chosen.map((a, i) => {
+    const films = [...new Set(a.films)].filter((f) => tidx.has(f));
+    const mates = [];
+    for (const f of films) for (const b of cast.get(f)) if (b.id !== a.id) { const y = year.get(f) || 0; mates.push([pidx.get(b.id), tidx.get(f), y, y]); }
+    // one link per co-star: their best-known shared film
+    const best = new Map();
+    for (const m of mates) if (!best.has(m[0]) || m[1] < best.get(m[0])[1]) best.set(m[0], m);
+    const c = BY_ISO[a.cc];
+    return {
+      id: a.name, name: a.ru || a.name, url: `https://www.wikidata.org/wiki/${a.id}`, cc: a.cc, country: a.country, countryEn: c.en, region: a.region,
+      birth: a.birth, status: a.dead ? 'retired' : 'active', team: null, last: null, pos: genreNo[a.genre], roles: [], events: a.count, fame: a.fame,
+      oscar: a.oscar === 'Есть' ? 2 : a.oscar === 'Номинация' ? 1 : 0, sex: a.sex, teams: films.map((f) => tidx.get(f)).sort((x, y) => x - y), top: i < TOP,
+      mates: [...best.values()].sort((x, y) => x[0] - y[0]), era: [], eraTeams: {}, ...(a.img ? { ph: a.img } : {}),
+    };
+  });
+  const out = { game: 'actors', title: 'Актёры', eventLabel: 'Фильмов', generated: today, source: { name: 'Wikidata', license: 'CC0', url: 'https://www.wikidata.org/' },
+    sourceNote: 'Самые известные актёры и актрисы (Wikidata)', regions: REGIONS, genres: ORDER, teams, logos: {}, players };
+  writeFileSync(ROOT + 'public/data/actors.json', JSON.stringify(out));
+  const links = players.reduce((n, p) => n + p.mates.length, 0) / 2;
+  console.log(`actors (grid/chain): ${players.length} actors, ${teams.length} shared films, ${links} co-star links, alone ${players.filter((p) => !p.mates.length).length}`);
+}
