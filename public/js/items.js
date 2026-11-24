@@ -3,7 +3,7 @@
 // 'shared' (how many entries of the list the guess shares with the answer, e.g. films two actors made together; any is yellow).
 // A column with `flag` shows the flag of that field (a country code) before the value.
 import { tr } from './i18n.js';
-import { rng, pick, h, store, share, pic, wmUrl, fold, flag } from './core.js';
+import { rng, pick, h, store, share, pic, imgSrc, fold, flag } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const MAX = 7;
@@ -45,7 +45,19 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
   const byId = new Map(data.items.map((x) => [x.id, x]));
   // item icons come from the official CDN named in the data file (imgBase)
   // (tennis players carry Wikimedia Commons photos instead: data.imgWm)
-  const icon = (it, cls = 'pic') => (!it.img ? null : data.imgWm ? pic(wmUrl(it.img, 120), `${cls} round`) : data.imgBase ? pic(data.imgBase + it.img, cls) : null);
+  const icon = (it, cls = 'pic') => (!it.img ? null : data.imgWm ? pic(imgSrc(it.img, 120), `${cls} round`) : data.imgBase ? pic(data.imgBase + it.img, cls) : null);
+
+  // "shared" column: the picture of the best-known shared film, when the data file has one (data.filmImg: index -> [path, name, rank])
+  const sharedPic = (col, g, t) => {
+    if (!data.filmImg) return null;
+    const B = new Set(t[col.key] || []);
+    const best = (g[col.key] || []).filter((x) => B.has(x) && data.filmImg[x]).sort((a, b) => data.filmImg[a][2] - data.filmImg[b][2])[0];
+    if (best == null) return null;
+    const [src, name] = data.filmImg[best];
+    const el = pic(src, 'pic logo ' + (/^img\/films\/p/.test(src) ? 'poster' : 'wordmark'));
+    if (el) el.title = name;
+    return el;
+  };
 
   root.innerHTML = '';
   const input = h('input', { type: 'text', id: 'item-input', class: 'search-input', placeholder: tr(data.placeholder), autocomplete: 'off', spellcheck: 'false' });
@@ -94,7 +106,7 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
         data.columns.map((c) => {
           const { res, arrow } = cmp(c, g, target);
           const val = c.type === 'shared' ? (g.id === target.id ? '✓' : String(sharedCount(c, g, target))) : show(c, g[c.key]);
-          return h('div', { class: 'who-cell ' + res }, c.flag && g[c.flag] ? flag(g[c.flag]) : null, val, arrow ? h('span', { class: 'arrow' }, arrow) : null);
+          return h('div', { class: 'who-cell ' + res }, c.flag && g[c.flag] ? flag(g[c.flag]) : null, c.type === 'shared' && g.id !== target.id ? sharedPic(c, g, target) : null, val, arrow ? h('span', { class: 'arrow' }, arrow) : null);
         })));
     });
     footer.innerHTML = '';

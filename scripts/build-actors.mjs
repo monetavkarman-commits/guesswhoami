@@ -20,6 +20,8 @@ const MUL = existsSync(ROOT + 'data/raw/actors-mul.json') ? JSON.parse(readFileS
 // birth places that Wikidata files under a former state: map to today's country
 Object.assign(raw.countries, { Q713750: 'DE', Q16957: 'DE', Q2415901: 'DE' });
 for (const [q, c] of Object.entries(raw.countries)) if (c === 'DD') raw.countries[q] = 'DE';
+// photos and film pictures stored in the site (scripts/apply-actors-img.mjs); without them the Commons path is used
+const IMG = existsSync(ROOT + 'data/raw/actors-img.json') ? JSON.parse(readFileSync(ROOT + 'data/raw/actors-img.json', 'utf8')) : { actors: {}, films: {} };
 const today = new Date().toISOString().slice(0, 10);
 const YEAR = +today.slice(0, 4);
 const SIZE = 300;      // only the best-known actors (owner's request: "самые известные")
@@ -122,8 +124,12 @@ for (const a of chosen) for (const f of a.films) if (!fidx.has(f)) fidx.set(f, f
 const items = chosen.map((a) => ({
   id: a.id, name: a.name, sub: [a.country, a.ru].filter(Boolean).join(' · '), alias: a.ru ? [a.ru] : [],
   sex: a.sex, cc: a.cc, country: a.country, region: a.region, byear: a.byear, count: a.count, debut: a.debut, last: a.last, genre: a.genre, oscar: a.oscar,
-  films: [...new Set(a.films.map((f) => fidx.get(f)))], fame: a.fame, url: `https://www.wikidata.org/wiki/${a.id}`, ...(a.img ? { img: a.img } : {}),
+  films: [...new Set(a.films.map((f) => fidx.get(f)))], fame: a.fame, url: `https://www.wikidata.org/wiki/${a.id}`,
+  ...(IMG.actors[a.id] ? { img: IMG.actors[a.id].src } : a.img ? { img: a.img } : {}),
 }));
+// film pictures for the "shared films" column: index -> [path, name, rank by fame]
+const filmImg = {};
+for (const [f, i] of fidx) if (IMG.films[f]) { const fi = filmInfo.get(f); filmImg[i] = [IMG.films[f].src, fi.ru || fi.en, -fi.sl]; }
 const HOW = 'Зелёный — совпало, жёлтый — близко (тот же регион мира, ±2 года, ±5 фильмов, есть общие фильмы), стрелка — больше или меньше.';
 const data = {
   modeTitle: 'Актёры', nameTitle: 'Актёр', placeholder: 'Имя актёра или актрисы…',
@@ -140,6 +146,7 @@ const data = {
     { key: 'oscar', title: '«Оскар»', type: 'cat' },
     { key: 'films', title: 'Общих фильмов', type: 'shared' },
   ],
+  filmImg,
   items,
 };
 writeFileSync(ROOT + 'public/data/actors-items.json', JSON.stringify(data));
@@ -155,6 +162,9 @@ console.log('sex', by('sex'), '\noscar', by('oscar'), '\ngenre', by('genre'), '\
   const shared = [...cast.entries()].filter(([f, l]) => l.length >= 2 && (filmInfo.get(f).ru || filmInfo.get(f).en)).sort((x, y) => filmInfo.get(y[0]).sl - filmInfo.get(x[0]).sl);
   const tidx = new Map(shared.map(([f], i) => [f, i]));
   const teams = shared.map(([f]) => { const fi = filmInfo.get(f); return fi.ru || fi.en || f; });
+  writeFileSync(ROOT + 'data/raw/actors-film-qids.json', JSON.stringify(shared.map(([f]) => f)));
+  const logos = {};
+  shared.forEach(([f], i) => { if (IMG.films[f]) logos[i] = IMG.films[f].src; });
   const year = new Map();
   for (const [p, f, y] of raw.films) if (tidx.has(f) && y && (!year.has(f) || y < year.get(f))) year.set(f, +y);
   const pidx = new Map(chosen.map((a, i) => [a.id, i]));
@@ -171,12 +181,48 @@ console.log('sex', by('sex'), '\noscar', by('oscar'), '\ngenre', by('genre'), '\
       id: a.name, name: a.ru || a.name, url: `https://www.wikidata.org/wiki/${a.id}`, cc: a.cc, country: a.country, countryEn: c.en, region: a.region,
       birth: a.birth, status: a.dead ? 'retired' : 'active', team: null, last: null, pos: genreNo[a.genre], roles: [], events: a.count, fame: a.fame,
       oscar: a.oscar === 'Есть' ? 2 : a.oscar === 'Номинация' ? 1 : 0, sex: a.sex, teams: films.map((f) => tidx.get(f)).sort((x, y) => x - y), top: i < TOP,
-      mates: [...best.values()].sort((x, y) => x[0] - y[0]), era: [], eraTeams: {}, ...(a.img ? { ph: a.img } : {}),
+      mates: [...best.values()].sort((x, y) => x[0] - y[0]), era: [], eraTeams: {}, ...(IMG.actors[a.id] ? { ph: IMG.actors[a.id].src } : a.img ? { ph: a.img } : {}),
     };
   });
   const out = { game: 'actors', title: 'Актёры', eventLabel: 'Фильмов', generated: today, source: { name: 'Wikidata', license: 'CC0', url: 'https://www.wikidata.org/' },
-    sourceNote: 'Самые известные актёры и актрисы (Wikidata)', regions: REGIONS, genres: ORDER, teams, logos: {}, players };
+    sourceNote: 'Самые известные актёры и актрисы (Wikidata)', regions: REGIONS, genres: ORDER, teams, logos, players };
   writeFileSync(ROOT + 'public/data/actors.json', JSON.stringify(out));
   const links = players.reduce((n, p) => n + p.mates.length, 0) / 2;
   console.log(`actors (grid/chain): ${players.length} actors, ${teams.length} shared films, ${links} co-star links, alone ${players.filter((p) => !p.mates.length).length}`);
+}
+
+// ---------- credits page for the photos and film pictures stored in the site (authors and licences, as Commons asks) ----------
+{
+  const esc = (s) => String(s || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const byQ = new Map(list.map((a) => [a.id, a]));
+  const row = (who, m) => `<li><b>${esc(who)}</b>: <a href="${esc(m.page)}" rel="noopener">${esc(m.file)}</a>${m.artist ? `, ${esc(m.artist)}` : ''}${m.lic ? `, ${m.licUrl ? `<a href="${esc(m.licUrl)}" rel="noopener">${esc(m.lic)}</a>` : esc(m.lic)}` : ''}</li>`;
+  const actors = Object.entries(IMG.actors).filter(([q]) => byQ.has(q)).map(([q, m]) => row(byQ.get(q).name, m));
+  const films = Object.entries(IMG.films).filter(([q]) => filmInfo.has(q)).map(([q, m]) => row(filmInfo.get(q).en || filmInfo.get(q).ru || q, m));
+  if (actors.length || films.length) {
+    const html = `<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Фото актёров и картинки фильмов / Actor photos and film images — WhoAmIGuess</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top"><div class="wrap top-inner"><a class="logo" href="./"><span class="logo-mark">?</span><span>Who Am I <b>Guess</b></span></a><a class="muted" href="./">← На сайт / Back</a></div></header>
+  <main class="wrap legal">
+    <h1>Фото актёров и картинки фильмов</h1>
+    <p>Все изображения взяты с <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (выбраны через Wikidata), уменьшены и хранятся на сайте. Ниже для каждого файла указаны страница на Commons, автор и лицензия. Логотипы и постеры фильмов остаются товарными знаками или произведениями их правообладателей и показываются только для узнавания фильма. Если вы правообладатель и хотите убрать изображение, напишите нам (контакты на странице <a href="terms.html">Условия</a>).</p>
+    <p class="muted">All images come from Wikimedia Commons (selected via Wikidata), downsized and stored on this site. The Commons page, author and licence of each file are listed below. Updated ${today}.</p>
+    <h2>Актёры / Actors (${actors.length})</h2>
+    <ul>${actors.join('\n')}</ul>
+    <h2>Фильмы / Films (${films.length})</h2>
+    <ul>${films.join('\n')}</ul>
+  </main>
+</body>
+</html>
+`;
+    writeFileSync(ROOT + 'public/credits-actors.html', html);
+    console.log(`credits: ${actors.length} actor photos, ${films.length} film images`);
+  }
 }

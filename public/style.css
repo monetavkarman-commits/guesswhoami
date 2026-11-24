@@ -662,3 +662,13 @@ select option, select optgroup { background-color: var(--panel); color: var(--te
 .lineup-team .select { max-width: 100%; }
 .lineup-team .year-pick { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; max-width: 100%; }
 .lineup-team .year-pick .select, .lineup-team .year-pick .muted { margin-left: 0; }
+
+/* film pictures (Actors): a tall poster or a wide title logo instead of the round initials badge */
+.pic.logo.poster { width: 20px; height: 30px; object-fit: cover; border-radius: 3px; background: var(--panel-2); }
+.pic.big.logo.poster { width: 28px; height: 42px; }
+.pic.logo.wordmark { width: 56px; height: 28px; object-fit: cover; border-radius: 4px; }
+.pic.big.logo.wordmark { width: 76px; height: 38px; }
+.with-logo .pic.poster { width: 16px; height: 24px; }
+.with-logo .pic.wordmark { width: 44px; height: 22px; }
+.who-cell .pic.poster { width: 18px; height: 27px; }
+.who-cell .pic.wordmark { width: 40px; height: 20px; }
