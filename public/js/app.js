@@ -125,7 +125,7 @@ function parseHash() {
   const s = rest.find((x) => /^s\d+$/.test(x)); const f = rest.find((x) => /^f\w+$/.test(x));
   const home = !GAMES[g];
   const game = GAMES[g] ? g : 'cs';
-  const okMode = (k) => MODES[k] && (!MODES[k].gameTitle || MODES[k].gameTitle[game]) && (!GAMES[game].itemsOnly || MODES[k].set);
+  const okMode = (k) => MODES[k] && (!MODES[k].gameTitle || MODES[k].gameTitle[game]) && (!GAMES[game].itemsOnly || MODES[k].set) && (!GAMES[game].modes || GAMES[game].modes.includes(k));
   return { home, game, mode: okMode(m) ? m : GAMES[game].itemsOnly ? 'items' : 'grid', endless: e === 'free' || e === 'duel' || !!duel, duel,
     rival: s ? +s.slice(1) : null, duelFilter: f ? f.slice(1) : null };
 }
@@ -193,7 +193,7 @@ async function render() {
   requestAnimationFrame(() => { gameTabs.querySelector('.tab.active')?.scrollIntoView({ inline: 'center', block: 'nearest' }); updateArrows(); });
   modeTabs.innerHTML = '';
   for (const [k, m] of Object.entries(MODES)) {
-    if ((m.gameTitle && !m.gameTitle[game]) || (GAMES[game].itemsOnly && !m.set)) continue;
+    if ((m.gameTitle && !m.gameTitle[game]) || (GAMES[game].itemsOnly && !m.set) || (GAMES[game].modes && !GAMES[game].modes.includes(k))) continue;
     modeTabs.append(h('button', { class: 'mode-tab' + (k === mode ? ' active' : ''), onclick: () => nav(game, k, endless) }, h('span', { class: 'mode-icon' }, m.gameIcon?.[game] || m.icon), m.gameTitle ? m.gameTitle[game] : m.title));
   }
 
@@ -213,7 +213,7 @@ async function render() {
   root.innerHTML = tr('<div class="loading">Загрузка игроков…</div>');
   try {
     const data = GAMES[game].itemsOnly ? { game, cfg: GAMES[game] } : await loadGame(game);
-    sourceNote.textContent = data.players ? tr('{0}. Обновлено {1}. {2} игроков.', [tr(data.sourceNote), data.generated, data.players.length]) : '';
+    sourceNote.textContent = data.players ? tr(GAMES[game].movie ? '{0}. Обновлено {1}. {2} актёров.' : '{0}. Обновлено {1}. {2} игроков.', [tr(data.sourceNote), data.generated, data.players.length]) : '';
     const fid = GAMES[game].itemsOnly ? 'all' : duel ? (filtersFor(game)[duelFilter] ? duelFilter : 'all') : currentFilter(game);
     const suffix = fid === 'all' ? '' : `:${fid}`;
     const seed = (endless ? `${game}:${mode}:free:${endlessSeed}` : `${game}:${mode}:${key}`) + suffix;

@@ -29,7 +29,7 @@ function howTo() {
 }
 
 export function renderHome(root, { GAMES, MODES, nav, num }) {
-  const modesOf = (game) => Object.entries(MODES).filter(([, m]) => !((m.gameTitle && !m.gameTitle[game]) || (GAMES[game].itemsOnly && !m.set)));
+  const modesOf = (game) => Object.entries(MODES).filter(([k, m]) => !((m.gameTitle && !m.gameTitle[game]) || (GAMES[game].itemsOnly && !m.set) || (GAMES[game].modes && !GAMES[game].modes.includes(k))));
   const done = (game, k) => !!getStats(game, k).days[num];
   let total = 0, got = 0;
   for (const g of Object.keys(GAMES)) for (const [k] of modesOf(g)) { total++; if (done(g, k)) got++; }

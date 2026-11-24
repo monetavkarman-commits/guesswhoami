@@ -26,6 +26,7 @@ function linkText(data, a, b) {
   const m = data.players[a].mateInfo.get(b);
   if (!m) return '';
   const y = years(m);
+  if (data.cfg.movie) return `«${data.teams[m[1]]}»` + (y ? ` (${y})` : '');
   return data.teams[m[1]] + (y ? ', ' + y : '');
 }
 
@@ -58,8 +59,11 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
   const state = (saveKey && store.get(saveKey)) || { path: [game.start], errors: 0, hints: 0, done: false, gaveUp: false };
 
   root.innerHTML = '';
-  root.append(h('p', { class: 'mode-intro' }, tr('Соедините двух игроков через тиммейтов. Каждый следующий игрок должен был играть в одной команде '),
-    tr('одновременно с предыдущим. Цепочка готова, когда последний игрок — тиммейт финального. '), h('b', {}, tr('Минимум звеньев: {0}.', [game.par - 1]))));
+  const movie = !!data.cfg.movie; // actors: a link is a film both of them played in
+  root.append(h('p', { class: 'mode-intro' }, movie
+    ? tr('Соедините двух актёров через общие фильмы. Каждый следующий актёр должен сниматься в одном фильме с предыдущим. Цепочка готова, когда последний актёр снимался вместе с финальным. ')
+    : [tr('Соедините двух игроков через тиммейтов. Каждый следующий игрок должен был играть в одной команде '), tr('одновременно с предыдущим. Цепочка готова, когда последний игрок — тиммейт финального. ')],
+  h('b', {}, tr('Минимум звеньев: {0}.', [game.par - 1]))));
   const ends = h('div', { class: 'chain-ends' });
   const chainEl = h('div', { class: 'chain' });
   const searchWrap = h('div', { class: 'chain-search' });
@@ -69,7 +73,7 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
 
   ends.append(card(S, tr('Старт')), h('div', { class: 'chain-arrow' }, '⟶'), card(E, tr('Финиш')));
   function card(p, cap) {
-    return h('div', { class: 'chain-card' }, h('small', {}, cap), h('div', { class: 'big' }, flag(p.cc), ' ', p.id), h('small', { class: 'muted' }, teamText(p)));
+    return h('div', { class: 'chain-card' }, h('small', {}, cap), h('div', { class: 'big' }, flag(p.cc), ' ', p.id), h('small', { class: 'muted' }, movie ? tr('Фильмов: {0}', [p.events]) : teamText(p)));
   }
 
   const save = () => saveKey && store.set(saveKey, state);
@@ -81,12 +85,12 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
   const last = () => data.players[state.path[state.path.length - 1]];
 
   const box = playerSearch(data, {
-    placeholder: tr('Тиммейт последнего игрока…'),
+    placeholder: movie ? tr('Партнёр последнего актёра по фильму…') : tr('Тиммейт последнего игрока…'),
     exclude: (p) => state.path.includes(p.idx) || p.idx === game.end,
     onPick: (p) => {
       document.dispatchEvent(new CustomEvent('gwai:answer'));
       const l = last();
-      if (!l.mateMap.has(p.idx)) { state.errors++; save(); render(); toast(tr('{0} не играл вместе с {1}', [p.id, l.id])); return; }
+      if (!l.mateMap.has(p.idx)) { state.errors++; save(); render(); toast(movie ? tr('{0} не снимался вместе с {1}', [p.id, l.id]) : tr('{0} не играл вместе с {1}', [p.id, l.id])); return; }
       state.path.push(p.idx);
       if (p.mateMap.has(game.end)) { state.path.push(game.end); finish(); }
       save(); render();
@@ -129,7 +133,7 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
             h('ol', {}, best.slice(1).map((b, k) => {
               const a = best[k];
               return h('li', {}, playerLink(data.players[a]), ' → ', playerLink(data.players[b]),
-                h('span', { class: 'muted' }, ' · ', tr('вместе в {0}', [linkText(data, a, b)])));
+                h('span', { class: 'muted' }, ' · ', movie ? tr('вместе в фильме {0}', [linkText(data, a, b)]) : tr('вместе в {0}', [linkText(data, a, b)])));
             })))],
         onShare: state.gaveUp ? null : () => share(shareText(links)),
       }));
@@ -138,12 +142,12 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
 
   function hint() {
     const { prev, dist } = bfs(data, last().idx);
-    if (!dist.has(game.end)) { toast(tr('От этого игрока до финиша не добраться — отмените шаг')); return; }
+    if (!dist.has(game.end)) { toast(movie ? tr('От этого актёра до финиша не добраться — отмените шаг') : tr('От этого игрока до финиша не добраться — отмените шаг')); return; }
     const path = pathTo(prev, last().idx, game.end);
     const nextP = data.players[path[1]];
     const team = linkText(data, last().idx, nextP.idx);
     state.hints++; save(); render();
-    toast(tr('Следующий шаг: тиммейт по {0}, {1} (−150 очков)', [team, countryName(nextP)]));
+    toast(movie ? tr('Следующий шаг: партнёр по фильму {0}, {1} (−150 очков)', [team, countryName(nextP)]) : tr('Следующий шаг: тиммейт по {0}, {1} (−150 очков)', [team, countryName(nextP)]));
   }
 
   function shareText(links) {

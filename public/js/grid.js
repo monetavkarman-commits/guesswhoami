@@ -6,7 +6,7 @@ import { countryName, rng, shuffle, h, flag, store, share, modal, playerSearch, 
 import { recordResult, resultCard } from './stats.js';
 
 const GUESSES = 12;
-const SAME_KIND_FORBIDDEN = new Set(['country', 'age', 'events', 'status', 'pos', 'region']);
+const SAME_KIND_FORBIDDEN = new Set(['country', 'age', 'events', 'status', 'pos', 'region', 'oscar', 'sex']);
 
 function buildCriteria(data, era) {
   // with an era filter, "played for" only counts stints inside that era
@@ -21,7 +21,7 @@ function buildCriteria(data, era) {
   const known = (p) => (data.cfg.topMin == null ? p.top : p.events >= 2);
   P.filter(known).forEach((p) => tset(p).forEach((t) => teamCounts.set(t, (teamCounts.get(t) || 0) + 1)));
   for (const [t, n] of teamCounts) if (n >= minTeam) {
-    out.push({ key: 't' + t, kind: 'team', tidx: t, label: data.teams[t], sub: era ? tr('играл за в эту эру') : tr('играл за'), test: (p) => tset(p).has(t) });
+    out.push({ key: 't' + t, kind: 'team', tidx: t, label: data.teams[t], sub: data.cfg.movie ? tr('снимался в') : era ? tr('играл за в эту эру') : tr('играл за'), test: (p) => tset(p).has(t) });
   }
   const countries = new Map();
   P.forEach((p) => p.cc && countries.set(p.cc, (countries.get(p.cc) || 0) + 1));
@@ -41,10 +41,23 @@ function buildCriteria(data, era) {
       if (count(test) >= 15) out.push({ key: 'g' + rg, kind: 'region', label: tr(name), sub: tr('регион'), test });
     }
   } else if (data.cfg.kind === 'pos') {
-    for (const pos of [1, 2, 3, 4, 5]) out.push({ key: 'p' + pos, kind: 'pos', label: data.cfg.posLabels[pos], sub: tr('позиция'), test: (p) => p.pos === pos });
+    for (const pos of Object.keys(data.cfg.posLabels).map(Number)) {
+      const test = (p) => p.pos === pos;
+      if (!data.cfg.movie || count(test) >= 8) out.push({ key: 'p' + pos, kind: 'pos', label: data.cfg.posLabels[pos], sub: data.cfg.movie ? tr('главный жанр') : tr('позиция'), test });
+    }
   }
-  out.push({ key: 'e3', kind: 'events', label: data.cfg.ev3, sub: data.cfg.sport ? tr('карьера') : tr('турниры'), test: (p) => p.events >= (data.cfg.evHi ?? 3) });
-  out.push({ key: 'e1', kind: 'events', label: data.cfg.ev1, sub: data.cfg.sport ? tr('карьера') : tr('турниры'), test: (p) => p.events <= (data.cfg.evLo ?? 1) });
+  const evSub = data.cfg.movie ? tr('фильмография') : data.cfg.sport ? tr('карьера') : tr('турниры');
+  out.push({ key: 'e3', kind: 'events', label: data.cfg.ev3, sub: evSub, test: (p) => p.events >= (data.cfg.evHi ?? 3) });
+  out.push({ key: 'e1', kind: 'events', label: data.cfg.ev1, sub: evSub, test: (p) => p.events <= (data.cfg.evLo ?? 1) });
+  if (data.cfg.movie) {
+    out.push({ key: 'ow', kind: 'oscar', label: tr('Получил «Оскар»'), sub: tr('награды'), test: (p) => p.oscar === 2 });
+    out.push({ key: 'on', kind: 'oscar', label: tr('Номинировался на «Оскар»'), sub: tr('награды'), test: (p) => p.oscar >= 1 });
+    out.push({ key: 'sf', kind: 'sex', label: tr('Актриса'), sub: tr('пол'), test: (p) => p.sex === 'Ж' });
+    out.push({ key: 'sm', kind: 'sex', label: tr('Актёр'), sub: tr('пол'), test: (p) => p.sex === 'М' });
+    out.push({ key: 'a50', kind: 'age', label: tr('Родился до 1950'), sub: tr('возраст'), test: (p) => p.byear && p.byear < 1950 });
+    out.push({ key: 'a80', kind: 'age', label: tr('Родился в 1980+'), sub: tr('возраст'), test: (p) => p.byear && p.byear >= 1980 });
+    return out;
+  }
   if (P.some((p) => p.titles)) { // F1
     out.push({ key: 'wc', kind: 'titles', label: tr('Чемпион мира'), sub: tr('титулы'), test: (p) => p.titles > 0 });
     out.push({ key: 'w1', kind: 'wins', label: tr('Побеждал в гонке'), sub: tr('победы'), test: (p) => p.wins > 0 });
@@ -124,7 +137,7 @@ export function mount(root, data, { seed, daily, label, day, filter, era, onFini
   const status = h('div', { class: 'status-line' });
   const board = h('div', { class: 'grid-board' });
   const footer = h('div', { class: 'mode-footer' });
-  root.append(h('p', { class: 'mode-intro' }, tr('Впишите в каждую клетку игрока, который подходит под условие строки и столбца. '),
+  root.append(h('p', { class: 'mode-intro' }, data.cfg.movie ? tr('Впишите в каждую клетку актёра или актрису, которые подходят под условие строки и столбца. ') : tr('Впишите в каждую клетку игрока, который подходит под условие строки и столбца. '),
     tr('У вас 12 попыток, каждый игрок только один раз. Очки: до 100 за клетку (чем менее очевидный игрок, тем больше), +100 за сетку без ошибок. Подсказка в клетке стоит одну попытку.')), status, board, footer);
 
   const head = (c) => h('div', { class: 'grid-head' }, c.cc ? flag(c.cc) : null, c.tidx != null ? logoAt(data, c.tidx, 'pic logo big') : null, h('small', {}, c.sub), h('span', {}, c.label));
@@ -196,7 +209,7 @@ export function mount(root, data, { seed, daily, label, day, filter, era, onFini
     const showHint = () => {
       const p = data.players[grid.answers[k][state.hints[k]]];
       hintBox.innerHTML = '';
-      hintBox.append(h('div', { class: 'clue' }, tr('💡 Один из ответов: ник на «'), h('b', {}, p.id[0].toUpperCase()), tr('», {0} симв., страна ', [p.id.length]), flag(p.cc), ' ', countryName(p)));
+      hintBox.append(h('div', { class: 'clue' }, data.cfg.movie ? tr('💡 Один из ответов: имя на «') : tr('💡 Один из ответов: ник на «'), h('b', {}, p.id[0].toUpperCase()), tr('», {0} симв., страна ', [p.id.length]), flag(p.cc), ' ', countryName(p)));
     };
     if (state.hints[k] != null) showHint();
     else if (state.left > 1) hintBox.append(h('button', { class: 'btn ghost small', onclick: () => {
