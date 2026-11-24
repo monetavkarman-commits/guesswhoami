@@ -52,6 +52,6 @@
   }
   el.addEventListener('click', finish);
   document.addEventListener('keydown', function onKey(e) { if (e.key === 'Escape') { document.removeEventListener('keydown', onKey); finish(); } });
-  // The opening of the window (CSS) ends at ~3.2 s; then fade the overlay away.
-  setTimeout(finish, 3200);
+  // The opening of the window (CSS) ends at ~3.1 s; then fade the overlay away.
+  setTimeout(finish, 3100);
 })();
