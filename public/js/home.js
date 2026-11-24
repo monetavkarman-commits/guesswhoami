@@ -9,6 +9,8 @@ const LOOK = {
 };
 
 // install prompt of the browser (Chrome/Edge/Android); iOS Safari has no event, so it gets a short hint
+// SHOW_INSTALL: the install button is hidden for now; set to true to bring it back (manifest and service worker stay)
+const SHOW_INSTALL = false;
 let installEvent = null;
 window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvent = e; });
 const standalone = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
@@ -155,7 +157,7 @@ export function renderHome(root, { GAMES, MODES, nav, num }) {
           h('span', {}, h('b', {}, got), ' / ' + total + ' ', tr('сегодня сыграно')),
           h('span', { class: 'hx-links' },
             h('button', { class: 'hx-chip', type: 'button', onclick: howTo }, '❓ ' + tr('Как играть')),
-            !standalone() && (installEvent || isIos()) ? h('button', { class: 'hx-chip', type: 'button', onclick: async () => {
+            SHOW_INSTALL && !standalone() && (installEvent || isIos()) ? h('button', { class: 'hx-chip', type: 'button', onclick: async () => {
               if (installEvent) { installEvent.prompt(); installEvent = null; }
               else modal(tr('Установка'), h('p', {}, tr('Нажмите «Поделиться» в Safari и выберите «На экран Домой»: сайт появится как приложение.')));
             } }, '📲 ' + tr('Установить')) : null)))));
