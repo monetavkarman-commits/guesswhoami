@@ -203,7 +203,9 @@ export function wmUrl(path, w = 120) {
   const name = path.split('/').pop();
   return `${WM}${path}/${w}px-${name}${/\.svg$/i.test(name) ? '.png' : ''}`;
 }
-export const photo = (p, cls = 'pic round') => (p && p.ph ? pic(wmUrl(p.ph, 120), cls) : null);
+// a photo stored in the site itself ("img/...") is used as is, otherwise it is a Commons path
+export const imgSrc = (path, w = 120) => (/^img\//.test(path) ? path : wmUrl(path, w));
+export const photo = (p, cls = 'pic round') => (p && p.ph ? pic(imgSrc(p.ph, 120), cls) : null);
 // Club badge: the Commons logo when the club has one there, otherwise a round badge with the club's initials
 // (the logos of many big clubs are not free, so they are not on Commons).
 function badge(name, cls) {
@@ -216,7 +218,13 @@ function badge(name, cls) {
 }
 const teamLogo = (data, i, cls) => {
   if (i == null || i < 0 || !data.teams[i]) return null;
-  return data.logos && data.logos[i] ? pic(/^img\//.test(data.logos[i]) ? data.logos[i] : wmUrl(data.logos[i], 60), cls) : badge(data.teams[i], cls);
+  const src = data.logos && data.logos[i];
+  if (!src) return badge(data.teams[i], cls);
+  // film pictures: a poster (img/films/p…, tall) or a title logo (img/films/l…, wide)
+  const shape = /^img\/films\/p/.test(src) ? ' poster' : /^img\/films\/l/.test(src) ? ' wordmark' : '';
+  const el = pic(imgSrc(src, 60), cls + shape);
+  if (shape) el.title = data.teams[i];
+  return el;
 };
 export const logo = (data, name, cls = 'pic logo') => (name ? teamLogo(data, data.teams.indexOf(name), cls) : null);
 export const logoAt = (data, i, cls = 'pic logo') => teamLogo(data, i, cls);

@@ -60,3 +60,10 @@
 - Ник рейтинга хранится в `profiles.name` (Supabase), меняется через RPC `set_my_nick`; статус для окна профиля даёт `my_nick()` (`supabase/nick.sql`, уже применён).
 - Триггер `profiles_nick_guard` не даёт сменить ник чаще раза в 7 дней (`name_changed_at`), админы (`is_admin()`) без ограничений. Ник при регистрации и первая смена у старых аккаунтов (поле пустое) не ограничены.
 - При входе `account.js` только создаёт строку профиля, если её нет, и больше не перезаписывает ник.
+
+## Актёры: фото и картинки фильмов (24.11.2026)
+- Фото всех 300 актёров (Wikidata P18 самого актёра, поэтому человек тот самый) и картинки 457 фильмов (постер P3383, иначе логотип-название P154; P18 у фильмов не берём, там случайные фото) лежат на сайте: `public/img/actors/<QID>.webp` (96×96), `public/img/films/p<QID>.webp` (постер 64×96) и `l<QID>.webp` (логотип 128×64 на подложке). Всего ~1,5 МБ, грузятся лениво, sw.js кэширует `/img/` по принципу cache-first.
+- Где видно: поиск, строки догадок, ответ, клетки сетки, цепочка (фото); заголовки сетки и звенья цепочки (картинка фильма вместо значка с буквами); колонка «Общих фильмов» (картинка самого известного общего фильма, `filmImg` в `actors-items.json`).
+- Авторы и лицензии: страница `public/credits-actors.html` (её пишет `build-actors.mjs`), ссылка в подвале.
+- Как обновить: в браузере Арта на commons.wikimedia.org (оттуда разрешены fetch к query.wikidata.org, upload.wikimedia.org и raw.githubusercontent.com) взять `data/raw/actors-film-qids.json` и `public/data/actors-items.json`, запросить P3383/P154, метаданные через Commons API (`iiurlwidth`, `extmetadata`), уменьшить в canvas до webp и скачать JSON; затем `node scripts/apply-actors-img.mjs <файл> && node scripts/build-actors.mjs`. Скачивание из встроенного браузера кладёт файл в ~/Downloads под скрытым именем `.Q6L2SF6YDW.com.anthropic.claudefordesktop.*`.
+- Отсеяны вручную (список `DROP` в `apply-actors-img.mjs`): не картинка фильма или нечитаемо маленьким.
