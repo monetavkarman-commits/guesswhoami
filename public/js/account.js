@@ -29,9 +29,9 @@ export async function currentUser() {
 
 export const nameOf = (u) => (u && (u.user_metadata?.name || u.email?.split('@')[0])) || tr('Игрок');
 
-// keeps the public nickname in the profiles table in step with the account
+// creates the public nickname row on the first sign-in; later changes go through set_my_nick (once per 7 days, checked by the server)
 async function saveProfile(sb, user) {
-  try { await sb.from('profiles').upsert({ id: user.id, name: nameOf(user).slice(0, 24) }); } catch { /* not fatal */ }
+  try { await sb.from('profiles').upsert({ id: user.id, name: nameOf(user).slice(0, 24) }, { onConflict: 'id', ignoreDuplicates: true }); } catch { /* not fatal */ }
 }
 
 export async function initAccountButton(btn) {

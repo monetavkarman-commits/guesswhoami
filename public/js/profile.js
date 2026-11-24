@@ -7,8 +7,18 @@ import { localStatsBlock, achievementsBlock, overallLocal, unlocked, ACHIEVEMENT
 import { askConsent, consent } from './consent.js';
 
 const AVATARS = ['🎮', '🎯', '🦊', '🐺', '🐯', '🦁', '🐼', '🦉', '🐙', '🚀', '⚡', '🔥', '👑', '🧠', '🎧', '⚽', '🏀', '🏒'];
-const SITE_VERSION = '76';
+const SITE_VERSION = '77';
 const tile = (v, l) => h('div', { class: 'stat-tile' }, h('b', {}, String(v)), h('span', {}, l));
+// "you can change it now" or "next change in 3 d 5 h (28.11, 14:00)"
+function nickWhen(nextAt) {
+  const t = nextAt ? new Date(nextAt).getTime() : 0;
+  const left = t - Date.now();
+  if (!t || !(left > 0)) return tr('Ник можно сменить сейчас (раз в 7 дней).');
+  const d = Math.floor(left / 86400000), hr = Math.floor((left % 86400000) / 3600000), m = Math.max(1, Math.ceil((left % 3600000) / 60000));
+  const span = d ? tr('{0} дн. {1} ч', [d, hr]) : hr ? tr('{0} ч {1} мин', [hr, m]) : tr('{0} мин', [m]);
+  const at = new Date(t).toLocaleString(lang === 'en' ? 'en-GB' : 'ru-RU', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  return tr('Следующая смена ника через {0} ({1}).', [span, at]);
+}
 export const avatarOf = (u) => (u && u.user_metadata && u.user_metadata.avatar) || '🎮';
 
 export async function openPlayer(startTab = 'stats', ctx = {}) {
@@ -59,17 +69,38 @@ function profileSettings(sb, user, loginCta, rerender) {
     const msg = h('p', { class: 'muted small' });
     if (user) {
       const nick = h('input', { class: 'search-input', maxlength: 24, value: user.user_metadata?.name || nameOf(user) });
+      // the nickname is stored in the profiles table; the server allows one change per 7 days (admins: any time)
+      const nickNote = h('p', { class: 'muted small' });
+      let saved = null;   // { name, next_at, admin } from my_nick()
+      const showNick = (st, sync = true) => {
+        saved = st; if (!st) return;
+        if (st.name && document.activeElement !== nick) nick.value = st.name;
+        nickNote.textContent = st.admin ? tr('Вы админ: ник можно менять без ограничений.') : nickWhen(st.next_at);
+        // keep the account name (shown on the button) in step with the stored nickname, e.g. after a change on another device
+        if (sync && st.name && st.name !== user.user_metadata?.name) sb.auth.updateUser({ data: { name: st.name } }).then(({ data }) => { if (data && data.user) user = data.user; });
+      };
+      sb.rpc('my_nick').then(({ data }) => showNick(data), () => {});
       let avatar = avatarOf(user);
       const av = h('div', { class: 'avatar-pick' }, AVATARS.map((a) => { const b = h('button', { type: 'button', class: a === avatar ? 'on' : '', onclick: () => { avatar = a; av.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x.textContent === a)); } }, a); return b; }));
       const save = h('button', { class: 'btn', onclick: async () => {
         const name = nick.value.trim().slice(0, 24);
         if (name.length < 2) { msg.textContent = tr('Ник должен быть не короче 2 символов.'); return; }
-        save.disabled = true;
+        save.disabled = true; msg.textContent = '';
+        const current = saved ? saved.name : user.user_metadata?.name;
+        if (name !== current) {
+          const r = await sb.rpc('set_my_nick', { p_name: name });
+          if (r.error) {
+            save.disabled = false;
+            if (/nick_cooldown/.test(r.error.message)) { msg.textContent = tr('Ник можно менять раз в 7 дней.') + ' ' + nickWhen(r.error.details); if (saved) nick.value = saved.name; }
+            else msg.textContent = tr('Ошибка: {0}', [r.error.message]);
+            return;
+          }
+          showNick(r.data, false);
+        }
         const { data, error } = await sb.auth.updateUser({ data: { name, avatar } });
         save.disabled = false;
         if (error) { msg.textContent = tr('Ошибка: {0}', [error.message]); return; }
         user = data.user;
-        try { await sb.from('profiles').upsert({ id: user.id, name }); } catch { /* not fatal */ }
         toast(tr('Сохранено')); rerender(user);
       } }, tr('Сохранить'));
       const p1 = h('input', { class: 'search-input', type: 'password', autocomplete: 'new-password', placeholder: tr('Новый пароль (от 8 символов)'), maxlength: 72 });
@@ -79,7 +110,7 @@ function profileSettings(sb, user, loginCta, rerender) {
         if (error) { msg.textContent = tr('Ошибка: {0}', [error.message]); return; }
         p1.value = ''; toast(tr('Пароль изменён'));
       } }, tr('Сменить пароль'));
-      out.push(h('h4', {}, tr('Профиль')), h('label', { class: 'muted small' }, tr('Ник в рейтинге')), nick, h('label', { class: 'muted small' }, tr('Аватар')), av, save,
+      out.push(h('h4', {}, tr('Профиль')), h('label', { class: 'muted small' }, tr('Ник в рейтинге')), nick, nickNote, h('label', { class: 'muted small' }, tr('Аватар')), av, save,
         h('h4', {}, tr('Безопасность')), p1, pbtn);
     } else out.push(loginCta());
     const themeBtn = document.getElementById('theme-btn');
