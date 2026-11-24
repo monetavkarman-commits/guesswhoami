@@ -108,7 +108,7 @@ export function mount(root, data, opts) {
 
   function shareText() {
     const row = '🟩'.repeat(state.found.length) + '⬜'.repeat(n - state.found.length) + ' ' + '🟥'.repeat(state.wrong.length);
-    return tr('GuessWhoAmI · {0} · Состав {1} · {2}\n{3}\nОчки: {4}', [data.cfg.short, label, yr, row, lineupScore(state, n)]);
+    return tr('WhoAmIGuess · {0} · Состав {1} · {2}\n{3}\nОчки: {4}', [data.cfg.short, label, yr, row, lineupScore(state, n)]);
   }
 
   render();

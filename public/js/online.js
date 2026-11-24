@@ -220,7 +220,7 @@ export function duelPanel({ game, mode, id, score, rival, filter }) {
   const link = duelLink(game, mode, id, score, filter);
   const linkInput = h('input', { class: 'search-input small', id: 'duel-link', readonly: true, value: link, onfocus: (e) => e.target.select() });
   const copy = async () => {
-    try { await navigator.clipboard.writeText(tr('Сыграй со мной в GuessWhoAmI ({0} · {1}). Я набрал {2}. Побьёшь? {3}', [GAMES[game].short, MODE_NAMES()[mode], score, link])); toast(tr('Ссылка скопирована')); }
+    try { await navigator.clipboard.writeText(tr('Сыграй со мной в WhoAmIGuess ({0} · {1}). Я набрал {2}. Побьёшь? {3}', [GAMES[game].short, MODE_NAMES()[mode], score, link])); toast(tr('Ссылка скопирована')); }
     catch { linkInput.focus(); linkInput.select(); }
   };
   box.append(h('h3', {}, '⚔ ', tr('Дуэль')));

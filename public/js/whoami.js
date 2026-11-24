@@ -120,7 +120,7 @@ export function mount(root, data, { seed, daily, label, day, filter = () => true
   function shareText() {
     const em = { hit: '🟩', near: '🟨', miss: '⬛' };
     const lines = state.guesses.map((gi) => cols.map((c) => em[c.cmp(data.players[gi], target)]).join(''));
-    return tr('GuessWhoAmI · {0} · Кто я? {1} {2}/{3}{4}\n{5}\nОчки: {6}', [data.cfg.short, label, state.won ? state.guesses.length : 'X', MAX, state.clues ? ' 💡'.repeat(state.clues) : '', lines.join('\n'), whoScore(state)]);
+    return tr('WhoAmIGuess · {0} · Кто я? {1} {2}/{3}{4}\n{5}\nОчки: {6}', [data.cfg.short, label, state.won ? state.guesses.length : 'X', MAX, state.clues ? ' 💡'.repeat(state.clues) : '', lines.join('\n'), whoScore(state)]);
   }
 
   render();

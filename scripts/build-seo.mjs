@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
-const SITE = 'https://guesswhoami.eu';
+const SITE = 'https://whoamiguess.com';
 const GAMES = [
   ['cs', 'Counter-Strike', 'liquipedia'], ['dota', 'Dota 2', 'liquipedia'], ['valorant', 'VALORANT', 'liquipedia'], ['lol', 'League of Legends', 'liquipedia'],
   ['football', 'Футбол', 'wikidata'], ['basket', 'Баскетбол', 'wikidata'],
@@ -30,9 +30,9 @@ const page = ({ dir, file, title, desc, h1, body, source }) => {
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${SITE}/${path}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="website">
 <link rel="stylesheet" href="${up}style.css"></head>
-<body><header class="top"><div class="wrap top-inner"><a class="logo" href="${up}index.html"><span>Guess<b>Who</b>AmI</span></a></div></header>
+<body><header class="top"><div class="wrap top-inner"><a class="logo" href="${up}index.html"><span>WhoAmI<b>Guess</b></span></a></div></header>
 <main class="wrap seo"><h1>${esc(h1)}</h1>${body}
-<p><a class="btn" href="${up}index.html#${dir.split('/')[0]}-whoami">Сыграть в GuessWhoAmI: угадай игрока</a></p>
+<p><a class="btn" href="${up}index.html#${dir.split('/')[0]}-whoami">Сыграть в WhoAmIGuess: угадай игрока</a></p>
 <p class="muted small">${source}</p></main></body></html>`);
   urls.push(`${SITE}/${path}`);
 };
@@ -61,7 +61,7 @@ for (const [game, gtitle, src] of GAMES) {
     const body = `<p>${esc(bits.join(' '))}</p>` +
       (teams.length ? `<h2>Команды</h2><p>${teams.map(tlink).join(', ')}</p>` : '') +
       (mates.length ? `<h2>Играл вместе с</h2><p>${mates.map(link).join(', ')}</p>` : '');
-    page({ dir: game, file: s + '.html', title: `${p.id}${p.name && p.name !== p.id ? ` (${p.name})` : ''} — ${gtitle}: команды и партнёры | GuessWhoAmI`, desc: bits.join(' ').slice(0, 200), h1: p.id, body, source: SRC[src] });
+    page({ dir: game, file: s + '.html', title: `${p.id}${p.name && p.name !== p.id ? ` (${p.name})` : ''} — ${gtitle}: команды и партнёры | WhoAmIGuess`, desc: bits.join(' ').slice(0, 200), h1: p.id, body, source: SRC[src] });
   }
   for (const [t, s] of tslug) {
     const now = P.map((p, i) => [p, i]).filter(([p]) => p.team === T[t]);
@@ -71,13 +71,13 @@ for (const [game, gtitle, src] of GAMES) {
     const intro = `${T[t]} — команда в категории «${gtitle}». В нашей базе ${count.get(t)} игроков, связанных с этой командой${top3 ? `; чаще всего это игроки из стран: ${top3}` : ''}.`;
     const body = `<p>${esc(intro)}</p>` + (now.length ? `<h2>Сейчас в команде</h2><p>${now.map(([, i]) => link(i)).join(', ')}</p>` : '') +
       (before.length ? `<h2>Выступали за команду</h2><p>${before.map(([, i]) => link(i)).join(', ')}</p>` : '');
-    page({ dir: game, file: s + '.html', title: `${T[t]} — состав и игроки (${gtitle}) | GuessWhoAmI`, desc: intro.slice(0, 200), h1: T[t], body, source: SRC[src] });
+    page({ dir: game, file: s + '.html', title: `${T[t]} — состав и игроки (${gtitle}) | WhoAmIGuess`, desc: intro.slice(0, 200), h1: T[t], body, source: SRC[src] });
   }
   const topTeams = [...tslug].slice(0, 80);
-  const hub = `<p>Каталог игроков и команд «${esc(gtitle)}» из базы GuessWhoAmI: ${tslug.size} команд и ${pslug.size} известных игроков.</p><h2>Команды</h2><p>${topTeams.map(([t, s]) => `<a href="${s}.html">${esc(T[t])}</a>`).join(', ')}</p>` +
+  const hub = `<p>Каталог игроков и команд «${esc(gtitle)}» из базы WhoAmIGuess: ${tslug.size} команд и ${pslug.size} известных игроков.</p><h2>Команды</h2><p>${topTeams.map(([t, s]) => `<a href="${s}.html">${esc(T[t])}</a>`).join(', ')}</p>` +
     `<h2>Игроки</h2><p>${[...pslug].map(([i, s]) => `<a href="${s}.html">${esc(P[i].id)}</a>`).join(', ')}</p>` +
     `<h2>Другие игры</h2><p>${GAMES.filter((g) => g[0] !== game).map(([g, n]) => `<a href="../${g}/index.html">${esc(n)}</a>`).join(', ')}</p>`;
-  page({ dir: game, file: 'index.html', title: `${gtitle}: игроки и команды — каталог | GuessWhoAmI`, desc: `Каталог игроков и команд: ${gtitle}. Составы, партнёры по командам и ежедневная игра «Угадай игрока».`, h1: `${gtitle}: игроки и команды`, body: hub, source: SRC[src] });
+  page({ dir: game, file: 'index.html', title: `${gtitle}: игроки и команды — каталог | WhoAmIGuess`, desc: `Каталог игроков и команд: ${gtitle}. Составы, партнёры по командам и ежедневная игра «Угадай игрока».`, h1: `${gtitle}: игроки и команды`, body: hub, source: SRC[src] });
   console.log(game, pslug.size, 'players,', tslug.size, 'teams');
 }
 

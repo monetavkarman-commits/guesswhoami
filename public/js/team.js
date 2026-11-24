@@ -145,7 +145,7 @@ export function mount(root, data, { seed, daily, label, day, onFinish }) {
 
   function shareText() {
     const squares = Array.from({ length: MAX }, (_, k) => (k < state.used - 1 ? '🟥' : k === state.used - 1 ? (state.won ? '🟩' : '🟥') : '⬜')).join('');
-    return tr('GuessWhoAmI · {0} · Команда {1} {2}/{3}\n{4}\nОчки: {5}', [data.cfg.short, label, state.won ? state.used : 'X', MAX, squares, teamScore(state)]);
+    return tr('WhoAmIGuess · {0} · Команда {1} {2}/{3}\n{4}\nОчки: {5}', [data.cfg.short, label, state.won ? state.used : 'X', MAX, squares, teamScore(state)]);
   }
 
   render();

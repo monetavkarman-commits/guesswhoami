@@ -1,4 +1,4 @@
--- GuessWhoAmI: run once in Supabase → SQL Editor → New query → Run.
+-- WhoAmIGuess: run once in Supabase → SQL Editor → New query → Run.
 -- Public nicknames for the leaderboard.
 create table if not exists public.profiles (
   id uuid primary key references auth.users on delete cascade,

@@ -147,7 +147,7 @@ export function mount(root, data, { seed, daily, label, day, filter, onFinish })
   }
 
   function shareText(links) {
-    return tr('GuessWhoAmI · {0} · Цепочка {1}\n{2} → {3} → {4}\nЗвеньев: {5} (минимум {6}) · ошибок: {7} · подсказок: {8}\nОчки: {9}', [data.cfg.short, label, S.id, '🔗'.repeat(links), E.id, links, game.par - 1, state.errors, state.hints, chainScore(state, game.par)]);
+    return tr('WhoAmIGuess · {0} · Цепочка {1}\n{2} → {3} → {4}\nЗвеньев: {5} (минимум {6}) · ошибок: {7} · подсказок: {8}\nОчки: {9}', [data.cfg.short, label, S.id, '🔗'.repeat(links), E.id, links, game.par - 1, state.errors, state.hints, chainScore(state, game.par)]);
   }
 
   render();

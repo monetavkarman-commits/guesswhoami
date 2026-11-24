@@ -104,7 +104,7 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
   function shareText() {
     const em = { hit: '🟩', near: '🟨', miss: '⬛' };
     const lines = state.guesses.map((id) => data.columns.map((c) => em[cmp(c, byId.get(id), target).res]).join(''));
-    return tr('GuessWhoAmI · {0} · {1} {2} {3}/{4}\n{5}', [gameData.cfg.short, tr(data.modeTitle), label, state.won ? state.guesses.length : 'X', MAX, lines.join('\n')]);
+    return tr('WhoAmIGuess · {0} · {1} {2} {3}/{4}\n{5}', [gameData.cfg.short, tr(data.modeTitle), label, state.won ? state.guesses.length : 'X', MAX, lines.join('\n')]);
   }
 
   render();

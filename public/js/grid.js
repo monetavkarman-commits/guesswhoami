@@ -176,7 +176,7 @@ export function mount(root, data, { seed, daily, label, day, filter, era, onFini
 
   function shareText() {
     const rows = [0, 1, 2].map((r) => [0, 1, 2].map((c) => (state.cells[r * 3 + c] ? '🟩' : '⬛')).join('')).join('\n');
-    return tr('GuessWhoAmI · {0} · Сетка {1}\n{2}\nОчки: {3} · ошибок: {4}', [data.cfg.short, label, rows, score(), state.wrong.length]);
+    return tr('WhoAmIGuess · {0} · Сетка {1}\n{2}\nОчки: {3} · ошибок: {4}', [data.cfg.short, label, rows, score(), state.wrong.length]);
   }
 
   function ask(k, row, col) {

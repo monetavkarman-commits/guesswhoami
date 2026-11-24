@@ -1,4 +1,4 @@
--- GuessWhoAmI: statistics and the owner's dashboard. Run once in Supabase → SQL Editor → New query → Run.
+-- WhoAmIGuess: statistics and the owner's dashboard. Run once in Supabase → SQL Editor → New query → Run.
 -- Visitors (also logged-out) may only ADD rows; nobody can read them through the public API. The dashboard reads through admin_stats(), which checks the admins table.
 create table if not exists public.events (
   id bigint generated always as identity primary key,

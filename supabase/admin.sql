@@ -1,4 +1,4 @@
--- GuessWhoAmI: management tools for the owner (reports with status, users, bans, announcement, notifications, backup export).
+-- WhoAmIGuess: management tools for the owner (reports with status, users, bans, announcement, notifications, backup export).
 -- Safe to run again. Everything here is readable/writable only through functions that check is_admin() (see analytics.sql).
 create extension if not exists pg_net with schema extensions;
 
@@ -148,12 +148,12 @@ create or replace function public.admin_test_webhook() returns void
 language plpgsql security definer set search_path = public as $$
 begin
   if not public.has_perm('owner') then raise exception 'forbidden'; end if;
-  perform public.send_notification('✅ GuessWhoAmI: уведомления работают.');
+  perform public.send_notification('✅ WhoAmIGuess: уведомления работают.');
 end $$;
 create or replace function public.notify_report() returns trigger
 language plpgsql security definer set search_path = public as $$
 begin
-  if new.kind = 'report' then perform public.send_notification('🐞 Новая жалоба на guesswhoami.eu' || E'\n' || coalesce(new.path, '') || E'\n' || coalesce(new.info, '')); end if;
+  if new.kind = 'report' then perform public.send_notification('🐞 Новая жалоба на whoamiguess.com' || E'\n' || coalesce(new.path, '') || E'\n' || coalesce(new.info, '')); end if;
   return new;
 end $$;
 drop trigger if exists events_notify on public.events;
