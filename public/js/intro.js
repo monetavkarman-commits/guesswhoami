@@ -1,4 +1,4 @@
-// Intro splash (~2 s): the logo glows in on black inside a dark window with a cyan
+// Intro splash (~3 s): the logo glows in on black inside a dark window with a cyan
 // glowing rim, then gives way to a "Guess the player" screen, and the window opens
 // onto the site. Plain script (not a module) so it covers the page before first paint.
 // TEST MODE: while INTRO_TEST is true it only plays when the URL has ?intro.
@@ -52,6 +52,6 @@
   }
   el.addEventListener('click', finish);
   document.addEventListener('keydown', function onKey(e) { if (e.key === 'Escape') { document.removeEventListener('keydown', onKey); finish(); } });
-  // The opening of the window (CSS) ends at ~2.1 s; then fade the overlay away.
-  setTimeout(finish, 2100);
+  // The opening of the window (CSS) ends at ~3.2 s; then fade the overlay away.
+  setTimeout(finish, 3200);
 })();
