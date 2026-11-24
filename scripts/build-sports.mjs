@@ -231,8 +231,21 @@ for (const [name, fn] of builds) {
     const HAND = { Q3039938: 'Правая', Q789447: 'Левая' };
     const BACKHAND = { Q14420039: 'Одноручный', Q14420068: 'Двуручный' };
     const items = [];
+    // Wikidata often has no playing hand / backhand even for stars (Federer, Świątek, Sinner...): R/L + 1/2 filled in where it is empty
+    const HB = { 'Roger Federer': 'R1', 'Maria Sharapova': 'R2', 'Jannik Sinner': 'R2', 'Carlos Alcaraz': 'R2', 'Stan Wawrinka': 'R1', 'Iga Świątek': 'R2',
+      'Aryna Sabalenka': 'R2', 'Gabriela Sabatini': 'R1', 'Daniil Medvedev': 'R2', 'Jim Courier': 'R2', 'Alexander Zverev': 'R2', 'Patrick Rafter': 'R1',
+      'Richard Gasquet': 'R1', 'Stefanos Tsitsipas': 'R1', 'Conchita Martínez': 'R1', 'Dominic Thiem': 'R1', 'James Blake': 'R1', 'Grigor Dimitrov': 'R1',
+      'Barbora Krejčíková': 'R2', 'Tommy Haas': 'R1', 'Fernando González': 'R1', 'Sofia Kenin': 'R2', 'Marcos Baghdatis': 'R2', 'Mikhail Youzhny': 'R1',
+      'Tommy Robredo': 'R1', 'Max Mirnyi': 'R1', 'Tim Henman': 'R1', 'Feliciano López': 'L1', 'Daria Kasatkina': 'R2', 'Nick Kyrgios': 'R2',
+      'Linda Nosková': 'R2', 'Andrey Rublev': 'R2', 'Bob Bryan': 'L', 'Mirra Andreeva': 'R2', 'Maria Sakkari': 'R2', 'Ivan Ljubičić': 'R1',
+      'Ivo Karlović': 'R1', 'Gastón Gaudio': 'R1', 'Jessica Pegula': 'R2', 'Mike Bryan': 'R', 'Borna Ćorić': 'R2', 'Casper Ruud': 'R2',
+      'Albert Costa': 'R1', 'Nicolas Mahut': 'R1', 'Mónica Puig': 'R2', 'Karen Khachanov': 'R2', 'Nicolás Almagro': 'R1', 'Philipp Kohlschreiber': 'R1',
+      'Amanda Anisimova': 'R2', 'Dayana Yastremska': 'R2', 'Matteo Berrettini': 'R2', 'Holger Rune': 'R2', 'Ana Konjuh': 'R2',
+      'Ajla Tomljanović': 'R2', 'Alex de Minaur': 'R2', 'Elena Rybakina': 'R2' };
+    // people who are on Wikidata as tennis players but are known for something else
+    const NOT_TENNIS = new Set(['Diego Forlán', 'Sarah Toscano', 'Redfoo']);
     for (const o of people.values()) {
-      if (!o.en || !o.b || !o.sex || !(o.hands.size || o.start)) continue;
+      if (!o.en || !o.b || !o.sex || !(o.hands.size || o.start) || NOT_TENNIS.has(o.en)) continue;
       const c = country(o, missing);
       items.push({
         id: o.p, name: latin(o.en), sub: [c.country, o.ru && o.ru !== o.en ? o.ru : ''].filter((x) => x && x !== '—').join(' · '),
@@ -245,6 +258,9 @@ for (const [name, fn] of builds) {
         url: `https://www.wikidata.org/wiki/${o.p}`,
         ...(IMGS.p[o.p] && commonsPath(IMGS.p[o.p]) ? { img: commonsPath(IMGS.p[o.p]) } : {}),
       });
+      const it = items[items.length - 1]; const fx = HB[o.en] || '';
+      if (!it.hand && fx[0]) it.hand = fx[0] === 'L' ? 'Левая' : 'Правая';
+      if (!it.backhand && fx[1]) it.backhand = fx[1] === '1' ? 'Одноручный' : 'Двуручный';
       QIDS.tennis.p.push(o.p);
     }
     items.sort((a, b) => b.fame - a.fame);

@@ -657,3 +657,8 @@ select, .select, :root[data-theme] select { -webkit-appearance: none; appearance
   background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
 .select, :root[data-theme="dark"] select { background-color: var(--panel); color: var(--text); }
 select option, select optgroup { background-color: var(--panel); color: var(--text); }
+/* the lineup header wraps on phones so the year picker no longer sticks out of the screen */
+.lineup-team { flex-wrap: wrap; row-gap: 6px; }
+.lineup-team .select { max-width: 100%; }
+.lineup-team .year-pick { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; max-width: 100%; }
+.lineup-team .year-pick .select, .lineup-team .year-pick .muted { margin-left: 0; }
