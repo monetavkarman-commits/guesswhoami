@@ -3,7 +3,7 @@
 // 'shared' (how many entries of the list the guess shares with the answer, e.g. films two actors made together; any is yellow).
 // A column with `flag` shows the flag of that field (a country code) before the value.
 import { tr } from './i18n.js';
-import { rng, pick, h, store, share, pic, wmUrl, imgSrc, fold, flag } from './core.js';
+import { rng, pick, h, store, share, pic, imgSrc, fold, flag } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const MAX = 7;
