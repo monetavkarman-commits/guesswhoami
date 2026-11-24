@@ -28,6 +28,7 @@ export const GAMES = {
     eras: { early: 'Worlds 2021–2023', late: 'Worlds 2024–2026' }, activeEra: 'late',
     teamNote: tr('* Команда — с последнего турнира игрока в базе (Worlds / MSI).'),
   },
+  deadlock: { title: 'Deadlock', tab: 'Deadlock', short: 'Deadlock', itemsOnly: true, eras: {} },
   // sports (Wikidata): no event counts, so "top" means well-known (many Wikipedia articles), "events" = number of clubs
   football: {
     title: tr('Футбол'), tab: '⚽ ' + tr('Футбол'), short: '⚽ ' + tr('Футбол'), sport: true, kind: 'pos',
@@ -44,7 +45,6 @@ export const GAMES = {
     teamNote: tr('* Клубы и даты переходов — из Wikidata, там бывают пробелы.'),
   },
   hockey: { title: tr('Хоккей'), tab: '🏒 ' + tr('Хоккей'), short: '🏒 ' + tr('Хоккей'), sport: true, itemsOnly: true, eras: {} },
-  deadlock: { title: 'Deadlock', tab: 'Deadlock', short: 'Deadlock', itemsOnly: true, eras: {} },
   mma: { title: 'MMA', tab: '🥋 MMA', short: '🥋 MMA', sport: true, itemsOnly: true, eras: {} },
   boxing: { title: tr('Бокс'), tab: '🥊 ' + tr('Бокс'), short: '🥊 ' + tr('Бокс'), sport: true, itemsOnly: true, eras: {} },
   tennis: { title: tr('Теннис'), tab: '🎾 ' + tr('Теннис'), short: '🎾 ' + tr('Теннис'), sport: true, itemsOnly: true, eras: {} },
