@@ -4,7 +4,7 @@
 //  - gzip, batched queries (50 titles per request), at most 1 request per ~2.5 s
 //  - every response is cached in data/cache/, so re-runs don't hit the API again
 //
-//   LIQUIPEDIA_UA="GuessWhoAmI/1.0 (https://your-site; you@example.com)" node scripts/fetch-liquipedia.mjs [cs|dota]
+//   LIQUIPEDIA_UA="WhoAmIGuess/1.0 (https://your-site; you@example.com)" node scripts/fetch-liquipedia.mjs [cs|dota]
 //   then: node scripts/build-dataset.mjs
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';

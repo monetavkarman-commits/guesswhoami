@@ -1,4 +1,4 @@
-# GuessWhoAmI
+# WhoAmIGuess
 
 Ежедневные мини-игры на знание игроков: киберспорт (**Counter-Strike**, **Dota 2**, **VALORANT**, **League of Legends**) и спорт (**футбол**, **баскетбол**, **Формула-1**, **теннис**). Статический сайт без сервера и сборки:
 все данные лежат в готовых JSON-файлах, собранных с [Liquipedia](https://liquipedia.net/).
@@ -63,7 +63,7 @@ python3 -m http.server 8000
 Обновление:
 
 ```bash
-LIQUIPEDIA_UA="GuessWhoAmI/1.0 (https://ваш-сайт; ваша@почта)" node scripts/fetch-liquipedia.mjs
+LIQUIPEDIA_UA="WhoAmIGuess/1.0 (https://ваш-сайт; ваша@почта)" node scripts/fetch-liquipedia.mjs
 node scripts/build-dataset.mjs
 ```
 

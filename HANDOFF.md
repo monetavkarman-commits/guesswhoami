@@ -1,6 +1,7 @@
-# GuessWhoAmI: где остановились (20.11.2026)
+# WhoAmIGuess: где остановились
 
-- Живой сайт: https://guesswhoami.eu (GitHub Pages, запасной адрес https://monetavkarman-commits.github.io/guesswhoami/, деплой из `public/` по пушу в main) и https://claude.ai/artifact/XEQV83uqdWp7RRhgZFTYHa (Claude Artifact, там работает рейтинг).
+- С 24.11.2026 сайт называется WhoAmIGuess, основной домен https://whoamiguess.com (куплен и DNS в Cloudflare). Старый guesswhoami.eu оставлен как редирект. Репозиторий и почта поддержки пока со старым именем.
+- Живой сайт: https://whoamiguess.com (GitHub Pages, запасной адрес https://monetavkarman-commits.github.io/guesswhoami/, деплой из `public/` по пушу в main) и https://claude.ai/artifact/XEQV83uqdWp7RRhgZFTYHa (Claude Artifact, там работает рейтинг).
 - Код: эта папка и GitHub monetavkarman-commits/guesswhoami (публичный). Сайт целиком в `public/`, данные собираются скриптами в `scripts/`.
 - Публикация: скопировать `public/.` в папку артефакта и опубликовать `artifact.html` по ссылке выше, поднять VERSION в `public/sw.js`.
 - Тесты: `cd public && python3 -m http.server 8765`, затем Playwright-скрипты (фазз сеток и цепочек по всем играм, 60 сидов на фильтр).

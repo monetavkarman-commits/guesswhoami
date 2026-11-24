@@ -1,4 +1,4 @@
--- GuessWhoAmI: leaderboard scores can only be written through submit_score(), which checks them. Run once in Supabase → SQL Editor → Run.
+-- WhoAmIGuess: leaderboard scores can only be written through submit_score(), which checks them. Run once in Supabase → SQL Editor → Run.
 -- After this, a logged-in player can no longer edit their own board row directly (so nobody can put in a made-up total).
 drop policy if exists "docs insert own" on public.docs;
 drop policy if exists "docs update own" on public.docs;

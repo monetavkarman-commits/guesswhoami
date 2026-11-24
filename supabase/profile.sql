@@ -1,4 +1,4 @@
--- GuessWhoAmI: lets a logged-in player delete their own account (button in Профиль → Настройки). Run once in Supabase → SQL Editor → Run.
+-- WhoAmIGuess: lets a logged-in player delete their own account (button in Профиль → Настройки). Run once in Supabase → SQL Editor → Run.
 create or replace function public.delete_my_account() returns void
 language plpgsql security definer set search_path = public as $$
 declare uid uuid := auth.uid();

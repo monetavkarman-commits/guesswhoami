@@ -1,6 +1,6 @@
 {
-  "name": "GuessWhoAmI",
-  "short_name": "GuessWhoAmI",
+  "name": "WhoAmIGuess",
+  "short_name": "WhoAmIGuess",
   "description": "Ежедневные игры: угадай игрока по киберспорту и спорту / Daily esports and sports guessing games",
   "start_url": "./",
   "scope": "./",

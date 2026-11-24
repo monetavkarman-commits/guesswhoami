@@ -22,7 +22,7 @@ jobs:
           node-version: 22
       - name: Fetch from Liquipedia
         env:
-          LIQUIPEDIA_UA: 'GuessWhoAmI/1.0 (https://guesswhoami.eu; https://github.com/monetavkarman-commits/guesswhoami/issues)'
+          LIQUIPEDIA_UA: 'WhoAmIGuess/1.0 (https://whoamiguess.com; https://github.com/monetavkarman-commits/guesswhoami/issues)'
         run: |
           node scripts/fetch-liquipedia.mjs cs
           node scripts/fetch-liquipedia.mjs dota

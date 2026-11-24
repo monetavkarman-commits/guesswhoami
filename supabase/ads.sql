@@ -1,4 +1,4 @@
--- GuessWhoAmI: direct (sponsor) advertising. Run after analytics.sql and admin.sql; safe to run again.
+-- WhoAmIGuess: direct (sponsor) advertising. Run after analytics.sql and admin.sql; safe to run again.
 -- Ads are off until the owner switches them on in the admin panel (Реклама). Counting is anonymous: only totals per ad, no visitor data.
 create table if not exists public.ads (
   id bigint generated always as identity primary key,

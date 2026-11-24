@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://guesswhoami.eu/sitemap.xml
+Sitemap: https://whoamiguess.com/sitemap.xml

@@ -243,7 +243,7 @@ export function shareImage(text) {
   g.fillStyle = '#ff5a36'; g.fillRect(0, 0, W, 14);
   g.fillStyle = '#ff5a36'; g.beginPath(); g.roundRect(70, 70, 90, 90, 22); g.fill();
   g.fillStyle = '#fff'; g.font = '800 64px system-ui, sans-serif'; g.textAlign = 'center'; g.fillText('?', 115, 136);
-  g.textAlign = 'left'; g.font = '800 54px system-ui, sans-serif'; g.fillStyle = '#eef1fa'; g.fillText('GuessWhoAmI', 185, 130);
+  g.textAlign = 'left'; g.font = '800 54px system-ui, sans-serif'; g.fillStyle = '#eef1fa'; g.fillText('WhoAmIGuess', 185, 130);
   let y = 290; g.font = '600 46px system-ui, sans-serif';
   lines.forEach((l, i) => {
     const emoji = /^[\u2B1B\u2B1C\u{1F7E5}-\u{1F7EB}]+$/u.test(l.trim());
@@ -252,19 +252,19 @@ export function shareImage(text) {
     if (g.measureText(l).width > W - 140 && !emoji) { g.font = '600 34px system-ui, sans-serif'; }
     if (emoji && !/^[\u2B1B\u2B1C\u{1F7E5}-\u{1F7EB}]+$/u.test((lines[i - 1] || '').trim())) y += 40;
     if (!emoji && /^[\u2B1B\u2B1C\u{1F7E5}-\u{1F7EB}]+$/u.test((lines[i - 1] || '').trim())) y += 50;
-    g.fillText(i === 0 ? l.replace(/^GuessWhoAmI · /, '') : l, 70, y); y += emoji ? 66 : 72;
+    g.fillText(i === 0 ? l.replace(/^WhoAmIGuess · /, '') : l, 70, y); y += emoji ? 66 : 72;
   });
-  g.font = '700 44px system-ui, sans-serif'; g.fillStyle = '#8f9bb8'; g.fillText('guesswhoami.eu', 70, H - 70);
+  g.font = '700 44px system-ui, sans-serif'; g.fillStyle = '#8f9bb8'; g.fillText('whoamiguess.com', 70, H - 70);
   return new Promise((res) => c.toBlob(res, 'image/png'));
 }
 
 export async function share(text) {
-  const link = 'https://guesswhoami.eu';
+  const link = 'https://whoamiguess.com';
   const full = text + '\n' + link;
   let blob = null;
   try {
     blob = await shareImage(text);
-    const file = blob && new File([blob], 'guesswhoami.png', { type: 'image/png' });
+    const file = blob && new File([blob], 'whoamiguess.png', { type: 'image/png' });
     if (file && navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text: full }); return; }
   } catch (e) { if (e && e.name === 'AbortError') return; }
   // no native sharing (desktop): a window with the picture, download, copy and links to the main messengers
@@ -274,7 +274,7 @@ export async function share(text) {
   const body = h('div', { class: 'stack share-box' },
     url ? h('img', { class: 'share-img', src: url, alt: '' }) : null,
     h('div', { class: 'row-acts' },
-      url ? h('a', { class: 'btn small', href: url, download: 'guesswhoami.png' }, tr('Скачать картинку')) : null,
+      url ? h('a', { class: 'btn small', href: url, download: 'whoamiguess.png' }, tr('Скачать картинку')) : null,
       h('button', { class: 'btn small', type: 'button', onclick: async () => { try { await navigator.clipboard.writeText(full); toast(tr('Результат скопирован')); } catch { /* ignore */ } } }, tr('Копировать текст')),
       a(`https://t.me/share/url?url=${enc(link)}&text=${enc(text)}`, 'Telegram'), a(`https://twitter.com/intent/tweet?text=${enc(text)}&url=${enc(link)}`, 'X'), a(`https://wa.me/?text=${enc(full)}`, 'WhatsApp')));
   modal(tr('Поделиться'), body, () => { if (url) URL.revokeObjectURL(url); });

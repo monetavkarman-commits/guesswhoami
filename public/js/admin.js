@@ -153,7 +153,7 @@ async function settingsTab(sb, box) {
     h('button', { class: 'btn', onclick: async () => {
       const { data, error } = await sb.rpc('admin_export');
       if (error) { toast(error.message); return; }
-      const a = h('a', { href: URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' })), download: 'guesswhoami-backup-' + new Date().toISOString().slice(0, 10) + '.json' });
+      const a = h('a', { href: URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' })), download: 'whoamiguess-backup-' + new Date().toISOString().slice(0, 10) + '.json' });
       document.body.append(a); a.click(); a.remove();
     } }, 'Скачать копию сейчас'));
 }
