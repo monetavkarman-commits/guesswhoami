@@ -4,7 +4,7 @@
 // TEST MODE: while INTRO_TEST is true it only plays when the URL has ?intro.
 // Flip it to false to show it to everyone once per browser session.
 (function () {
-  var INTRO_TEST = true;
+  var INTRO_TEST = false;
   var KEY = 'gwai:intro-seen';
   var params = new URLSearchParams(location.search);
   var forced = params.has('intro');
