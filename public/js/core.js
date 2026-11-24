@@ -48,7 +48,11 @@ export const GAMES = {
   mma: { title: 'MMA', tab: '🥋 MMA', short: '🥋 MMA', sport: true, itemsOnly: true, eras: {} },
   boxing: { title: tr('Бокс'), tab: '🥊 ' + tr('Бокс'), short: '🥊 ' + tr('Бокс'), sport: true, itemsOnly: true, eras: {} },
   tennis: { title: tr('Теннис'), tab: '🎾 ' + tr('Теннис'), short: '🎾 ' + tr('Теннис'), sport: true, itemsOnly: true, eras: {} },
+  // cinema (Wikidata): its own section after sports
+  actors: { title: tr('Актёры'), tab: '🎬 ' + tr('Актёры'), short: '🎬 ' + tr('Актёры'), section: 'movie', itemsOnly: true, eras: {} },
 };
+// section of a game: esports, sports or cinema
+export const sectionOf = (g) => g.section || (g.sport ? 'sport' : 'esport');
 
 // small badge for the esports games (own monogram in the game's colour; sports use an emoji instead)
 export const GAME_BADGE = { cs: ['CS', '#f5a524'], dota: ['D2', '#e0463a'], valorant: ['V', '#ff4655'], lol: ['LoL', '#c89b3c'], deadlock: ['DL', '#8b6cff'] };

@@ -48,3 +48,9 @@
 - Hockey has no grid/who/chain because Wikidata gives club careers without dates (only about 9% of the stints have a start).
 - MMA weight class is derived from weight (the Wikidata class labels for MMA are unusable); boxing uses the division label, else the weight.
 - `supabase/scores.sql` accepts any game id (regex), so new games need no SQL change; re-run it once after updating.
+
+## Актёры (24.11.2026)
+- Новый раздел «🎬 Кино» (третий после киберспорта и спорта, `section: 'movie'` в `GAMES`, `sectionOf()` в `core.js`), игра `actors`, режим «Угадай кто я?» (это item-режим `items`, как MMA/бокс, поэтому scores.sql не менялся).
+- Данные: `data/raw/actors-wd.json` + `data/raw/actors-mul.json` (Wikidata, скачаны в браузере Арта с query.wikidata.org), сборка `node scripts/build-actors.mjs` → `public/data/actors-items.json`.
+- Правила: 300 самых известных (по числу статей Википедии), загадываются топ-150; родившиеся на территории РФ исключены (по просьбе Арта); не-актёры (режиссёры, музыканты, политики) — список `NOT_ACTORS`; документальные и концертные фильмы не считаются; фильмы позже смерти+2 года (архивные кадры) не считаются.
+- Колонки: пол, страна рождения (флаг), год рождения, число фильмов, дебют, последний фильм, главный жанр (по известным фильмам, «драма» с весом 0.5), «Оскар» за актёрскую работу (есть/номинация/нет), общие фильмы с загаданным (новый тип колонки `shared` в `items.js`).

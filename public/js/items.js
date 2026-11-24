@@ -1,7 +1,9 @@
 // "Предметы": Wordle-style guessing of game items (Dota 2 heroes, CS weapons) from data/<game>-items.json.
-// Columns are declared in the data file: 'cat' (exact match), 'set' (overlap is yellow), 'num' (arrows, yellow when close).
+// Columns are declared in the data file: 'cat' (exact match), 'set' (overlap is yellow), 'num' (arrows, yellow when close),
+// 'shared' (how many entries of the list the guess shares with the answer, e.g. films two actors made together; any is yellow).
+// A column with `flag` shows the flag of that field (a country code) before the value.
 import { tr } from './i18n.js';
-import { rng, pick, h, store, share, pic, wmUrl, fold } from './core.js';
+import { rng, pick, h, store, share, pic, wmUrl, fold, flag } from './core.js';
 import { recordResult, resultCard } from './stats.js';
 
 const MAX = 7;
@@ -12,8 +14,10 @@ export async function loadItems(game, set = 'items') {
   return cache[f];
 }
 
+const sharedCount = (col, g, t) => { const B = new Set(t[col.key] || []); return (g[col.key] || []).filter((x) => B.has(x)).length; };
 function cmp(col, g, t) {
   const a = g[col.key]; const b = t[col.key];
+  if (col.type === 'shared') return { res: g.id === t.id ? 'hit' : sharedCount(col, g, t) ? 'near' : 'miss', arrow: '' };
   if (col.type === 'num') {
     if (a == null || b == null) return { res: 'miss', arrow: '' };
     if (a === b) return { res: 'hit', arrow: '' };
@@ -87,7 +91,11 @@ export async function mount(root, gameData, { seed, daily, label, day, onFinish,
     [...state.guesses].reverse().forEach((id) => {
       const g = byId.get(id); if (!g) return;
       table.append(h('div', { class: 'who-row items' }, h('div', { class: 'who-name ' + (id === target.id ? 'hit' : '') }, icon(g), g.name),
-        data.columns.map((c) => { const { res, arrow } = cmp(c, g, target); return h('div', { class: 'who-cell ' + res }, show(c, g[c.key]), arrow ? h('span', { class: 'arrow' }, arrow) : null); })));
+        data.columns.map((c) => {
+          const { res, arrow } = cmp(c, g, target);
+          const val = c.type === 'shared' ? (g.id === target.id ? '✓' : String(sharedCount(c, g, target))) : show(c, g[c.key]);
+          return h('div', { class: 'who-cell ' + res }, c.flag && g[c.flag] ? flag(g[c.flag]) : null, val, arrow ? h('span', { class: 'arrow' }, arrow) : null);
+        })));
     });
     footer.innerHTML = '';
     input.closest('.who-search').style.display = state.done ? 'none' : '';
