@@ -1,5 +1,5 @@
-// Intro splash (~2 s): the logo glows in on black inside a dark window with a warm
-// orange rim, then gives way to a "Guess the player" screen, and the window opens
+// Intro splash (~2 s): the logo glows in on black inside a dark window with a cyan
+// glowing rim, then gives way to a "Guess the player" screen, and the window opens
 // onto the site. Plain script (not a module) so it covers the page before first paint.
 // TEST MODE: while INTRO_TEST is true it only plays when the URL has ?intro.
 // Flip it to false to show it to everyone once per browser session.
@@ -22,7 +22,7 @@
 
   var mark = '<svg viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="19.5" fill="none" stroke="currentColor" stroke-width="2.5"/>' +
     '<path d="M13 21a8 8 0 0 1 16 0c0 4-3 5-5 6.5-.9.7-1 1.4-1 2.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' +
-    '<circle cx="23" cy="34.5" r="2.2" fill="#ff7a4d"/></svg>';
+    '<circle cx="23" cy="34.5" r="2.2" fill="#36d6ff"/></svg>';
 
   var el = document.createElement('div');
   el.className = 'intro';
