@@ -92,7 +92,9 @@ function buildCS() {
 
   const seen = new Set();
   const players = raw.players.filter((p) => !seen.has(p.p) && seen.add(p.p)).map((p) => {
-    const stints = history(p).map(([t, s, e]) => [teams.id(t), s, e || 209912]);
+    // a stint that starts before the player turned 14 is a Liquipedia typo or a kids' team (oBo b. 2003 "in 2016"): not a pro stint
+    const by = normBirth(p.b) ? +normBirth(p.b).slice(0, 4) : null;
+    const stints = history(p).filter(([, s]) => !by || Math.floor(s / 100) - by >= 14).map(([t, s, e]) => [teams.id(t), s, e || 209912]);
     let roles = p.r.filter((r) => PLAYER_ROLES.includes(r));
     if (!roles.length && p.r.some((r) => r.includes('coach'))) roles = ['coach'];
     // former players who now work as casters, analysts, managers or streamers
