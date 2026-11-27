@@ -139,7 +139,7 @@ function buildCS() {
   console.log('cs: dropped', benched, 'benched stints;', Object.keys(th).length, 'histories with notes');
   return { missing, out: {
     game: 'cs', title: 'Counter-Strike', eventLabel: 'Мэйджоры', generated: today, source: SOURCE,
-    sourceNote: 'Игроки 9 мэйджоров CS:GO/CS2 (Бостон 2018 – Остин 2025)', regions: REGIONS,
+    sourceNote: 'Игроки 12 мэйджоров CS:GO/CS2 (Бостон 2018 – Сингапур 2026) и топ-турниров 2026 года', regions: REGIONS,
     teams: teams.list, players,
   } };
 }
