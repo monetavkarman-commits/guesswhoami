@@ -1,5 +1,5 @@
 // Offline support: everything is network-first, so a new release shows up on the next visit; the cache is only the fallback when offline.
-const VERSION = 'gwai-v88';
+const VERSION = 'gwai-v89';
 const SHELL = ['./', 'index.html', 'style.css', 'intro.css', 'js/intro.js', 'manifest.webmanifest', 'js/app.js', 'js/home.js', 'js/consent.js', 'js/analytics.js', 'js/core.js', 'js/core-store.js', 'js/i18n.js',
   'js/grid.js', 'js/whoami.js', 'js/chain.js', 'js/team.js', 'js/lineup.js', 'js/stats.js', 'js/achievements.js', 'js/profile.js', 'js/notice.js', 'js/ads.js', 'js/online.js', 'js/items.js', 'js/account.js', 'js/config.js', 'icons/icon-192.png', 'icons/icon-512.png'];
 
