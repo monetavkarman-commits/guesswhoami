@@ -668,7 +668,7 @@ const EN = {
   'Угадайте чемпиона League of Legends по классу, ресурсу, типу атаки, дальности, скорости, здоровью на 1 уровне и сложности. Зелёный — совпало, жёлтый — близко (классы пересекаются, дальность ±50, скорость ±5, здоровье ±20, сложность ±1), стрелка — больше или меньше.': 'Guess the League of Legends champion by class, resource, attack type, range, move speed, level 1 health and difficulty. Green is a match, yellow is close (classes overlap, range ±50, speed ±5, health ±20, difficulty ±1), the arrow says higher or lower.',
   // dataset strings
   'Мэйджоры': 'Majors',
-  'Игроки 12 мэйджоров CS:GO/CS2 (Бостон 2018 – Сингапур 2026) и топ-турниров 2026 года': 'Players from 12 CS:GO/CS2 Majors (Boston 2018 – Singapore 2026) and the top events of 2026',
+  'Все игроки про-сцены CS:GO/CS2 с 2014 года: 24 мэйджора (Катовице 2014 – Сингапур 2026), S-tier турниры и отборочные': 'Every CS:GO/CS2 pro since 2014: 24 Majors (Katowice 2014 – Singapore 2026), S-tier events and qualifiers',
   'Игроки TI 2019–2025, Riyadh Masters 2023 и EWC 2025': 'Players from TI 2019–2025, Riyadh Masters 2023 and EWC 2025',
   // country names (from scripts/countries.mjs)
   'Кения': 'Kenya',
