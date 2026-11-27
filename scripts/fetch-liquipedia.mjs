@@ -30,33 +30,40 @@ async function api(wiki, params) {
   return json;
 }
 
-async function pages(wiki, titles) {
-  const out = [];
-  for (let i = 0; i < titles.length; i += 50) {
-    const r = await api(wiki, { action: 'query', prop: 'revisions', rvprop: 'content', rvslots: 'main', redirects: '1', titles: titles.slice(i, i + 50).join('|') });
+// Big pages (event pages are often several MB) can push a response over the API size limit: the API then returns
+// some pages without their content. Those are fetched again in smaller batches, down to one page per request.
+async function pages(wiki, titles, size = 50) {
+  const out = []; const again = [];
+  for (let i = 0; i < titles.length; i += size) {
+    const batch = titles.slice(i, i + size);
+    const r = await api(wiki, { action: 'query', prop: 'revisions', rvprop: 'content', rvslots: 'main', redirects: '1', titles: batch.join('|') });
     const redir = Object.fromEntries((r.query.redirects || []).map((x) => [x.to, x.from]));
     const norm = Object.fromEntries((r.query.normalized || []).map((x) => [x.to, x.from]));
     for (const p of r.query.pages) {
-      const from = redir[p.title] || p.title;
-      out.push({ title: p.title, from: norm[from] || from, text: p.missing ? null : p.revisions[0].slots.main.content });
+      const from = redir[p.title] || p.title; const asked = norm[from] || from;
+      if (p.missing || p.invalid) { out.push({ title: p.title, from: asked, text: null }); continue; }
+      if (!p.revisions) { if (size > 1) again.push(asked); else out.push({ title: p.title, from: asked, text: null }); continue; }
+      out.push({ title: p.title, from: asked, text: p.revisions[0].slots.main.content });
     }
   }
+  if (again.length) out.push(...await pages(wiki, again, Math.max(1, Math.floor(size / 5))));
   return out;
 }
 
 const field = (c, k) => { const m = c.match(new RegExp('\\n\\|' + k + '=([^\\n]*)')); return m ? m[1].replace(/<!--.*?-->/g, '').trim() : ''; };
 const up = (s) => s.charAt(0).toUpperCase() + s.slice(1).replace(/_/g, ' ');
 
-// ---------- CS: players of these Majors (plus this year's top events), with full team history from the infobox ----------
-const CS_MAJORS = ['ELEAGUE/2018/Major', 'IEM Katowice 2019', 'StarLadder/2019/Major', 'PGL/2021/Stockholm', 'PGL/2022/Antwerp',
-  'BLAST/Major/2023/Paris', 'PGL/2024/Copenhagen', 'Perfect World/Major/2024/Shanghai', 'BLAST/Major/2025/Austin',
+// ---------- CS: every player of the CS:GO/CS2 pro scene since 2014, with full team history from the infobox ----------
+// All Majors from Katowice 2014 on (only these count for the "Majors" column).
+const CS_MAJORS = ['ESL/Major Series One/2014/Katowice', 'ESL/One/2014/Cologne', 'DreamHack/2014/Winter', 'ESL/One/2015/Katowice',
+  'ESL/One/2015/Cologne', 'DreamHack/2015/Cluj-Napoca', 'MLG/2016/Columbus', 'ESL/One/2016/Cologne', 'ELEAGUE/2017/Major', 'PGL/2017/Krakow',
+  'ELEAGUE/2018/Major', 'FACEIT/2018/Major', 'IEM Katowice 2019', 'StarLadder/2019/Major', 'PGL/2021/Stockholm', 'PGL/2022/Antwerp',
+  'Intel Extreme Masters/2022/Rio', 'BLAST/Major/2023/Paris', 'PGL/2024/Copenhagen', 'Perfect World/Major/2024/Shanghai', 'BLAST/Major/2025/Austin',
   'StarLadder/2025/Major', 'Intel Extreme Masters/2026/Cologne', 'PGL/2026/Singapore'];
-// Current pros who have not reached a Major yet (Jorko and the like): players of the S-tier events of the last season.
-// They are added with 0 Majors; only the Majors count for the "Majors" column.
-const CS_EVENTS = ['Intel Extreme Masters/2026/Kraków', 'PGL/2026/Cluj-Napoca', 'ESL/Pro League/Season 23', 'Intel Extreme Masters/2026/Rio',
-  'PGL/2026/Bucharest', 'BLAST/Rivals/2026/Spring', 'PGL/2026/Astana', 'Intel Extreme Masters/2026/Atlanta', 'BLAST/Bounty/2026/Summer',
-  'Esports World Cup/2026', 'StarLadder/StarSeries/2026/Fall', 'ESL/Pro League/Season 24', 'PGL/2026/Masters', 'Intel Extreme Masters/2026/Beijing'];
-
+// Every other S-tier event since 2014 plus the Valve qualifiers (Minors, Major regional stages, RMR), from Liquipedia's
+// "S-Tier Tournaments" (2012-2023, Post 2023) and "Valve Tournaments" lists. Their players are added with the Majors they have
+// (0 if none). Add new events here (and new Majors above) as they are played.
+const CS_EVENTS = (await import('./cs-events.mjs')).CS_EVENTS;
 // Players of an event page. Older pages list rosters as {{TeamCard|p1=..}}, newer ones as
 // {{Opponent|Team|players={{Persons|{{Person|name|link=..|role=sub|played=false}}..}}}}: coaches and players who did not play are skipped.
 function eventPlayers(text) {
@@ -91,7 +98,7 @@ async function cs() {
     if (!e.text) { console.warn('missing event page', e.from); continue; }
     eventPlayers(e.text).forEach((n) => { if (!count.has(n)) count.set(n, 0); });
   }
-  const keep = (n) => ['', 'inactive', 'loan', 'substitute', 'inactive loan', 'sub'].includes(n.replace(/^link=[^|]*\|?/, '').toLowerCase());
+  const keep = (n) => ['', 'loan', 'substitute', 'sub'].includes(n.replace(/^link=[^|]*\|?/, '').toLowerCase());
   const pd = (s, end) => {
     s = (s || '').replace(/'''/g, '').trim(); if (/present/i.test(s)) return 0;
     const m = s.match(/(\d{4})-(\d\d|\?\?)/); if (!m) return end ? 0 : null;
