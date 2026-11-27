@@ -67,3 +67,7 @@
 - Авторы и лицензии: страница `public/credits-actors.html` (её пишет `build-actors.mjs`), ссылка в подвале.
 - Как обновить: в браузере Арта на commons.wikimedia.org (оттуда разрешены fetch к query.wikidata.org, upload.wikimedia.org и raw.githubusercontent.com) взять `data/raw/actors-film-qids.json` и `public/data/actors-items.json`, запросить P3383/P154, метаданные через Commons API (`iiurlwidth`, `extmetadata`), уменьшить в canvas до webp и скачать JSON; затем `node scripts/apply-actors-img.mjs <файл> && node scripts/build-actors.mjs`. Скачивание из встроенного браузера кладёт файл в ~/Downloads под скрытым именем `.Q6L2SF6YDW.com.anthropic.claudefordesktop.*`.
 - Отсеяны вручную (список `DROP` в `apply-actors-img.mjs`): не картинка фильма или нечитаемо маленьким.
+
+## CS: больше игроков, Dota: одна роль героя (27.11.2026)
+- CS: в `scripts/fetch-liquipedia.mjs` 12 мэйджоров (добавлены Будапешт 2025, Кёльн 2026, Сингапур 2026) и `CS_EVENTS` — S-tier турниры 2026 года, их игроки попадают в базу с 0 мэйджоров (так появился Jorko и другие текущие про). Новые страницы Liquipedia пишут составы как `{{Opponent|..|players={{Persons|{{Person|..}}}}}}`, парсер `eventPlayers` понимает оба формата. Клетка сетки теперь «Не больше 1 мэйджора». Новые турниры добавлять в эти списки.
+- Dota «Герои»: одна основная роль (Керри/Мидер/Оффлейнер/Саппорт) из ручной таблицы `MAIN_ROLE` в `scripts/build-items.mjs`; новый герой без записи останавливает сборку.
