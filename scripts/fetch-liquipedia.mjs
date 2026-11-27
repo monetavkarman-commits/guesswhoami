@@ -92,7 +92,8 @@ async function cs() {
   const count = new Map();
   for (const m of await pages('counterstrike', CS_MAJORS)) {
     if (!m.text) { console.warn('missing major page', m.from); continue; }
-    eventPlayers(m.text).forEach((n) => count.set(n, (count.get(n) || 0) + 1));
+    const ps = eventPlayers(m.text); console.log('major', m.title, ps.size, 'players', ps.has('ZywOo') ? '(ZywOo)' : '');
+    ps.forEach((n) => count.set(n, (count.get(n) || 0) + 1));
   }
   for (const e of await pages('counterstrike', CS_EVENTS)) {
     if (!e.text) { console.warn('missing event page', e.from); continue; }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-sy" viewBox="0 0 640 480">
+  <path fill="#000" d="M0 0h640v480H0z"/>
+  <path fill="#fff" d="M0 0h640v320H0z"/>
+  <path fill="#007a3d" d="M0 0h640v160H0z"/>
+  <g fill="#ce1126">
+    <path id="s" d="m161 191 11.6 35.7h37.5l-30.4 22 11.6 35.7L161 262.4l-30.4 22 11.6-35.7-30.4-22h37.6z"/>
+    <use href="#s" x="159"/><use href="#s" x="318"/>
+  </g>
+</svg>
