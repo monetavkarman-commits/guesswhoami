@@ -104,7 +104,7 @@ const EN = {
   'Райфлер': 'Rifler',
   'Результат скопирован': 'Result copied',
   'Рекорд': 'Record',
-  'Ровно 1 мэйджор': 'Exactly 1 Major',
+  'Не больше 1 мэйджора': 'At most 1 Major',
   'Родился в 2000+': 'Born 2000 or later',
   'Родился до 1995': 'Born before 1995',
   'Роль': 'Role',
@@ -393,7 +393,9 @@ const EN = {
   'Ответ: ': 'Answer: ',
   'Попытка {0} из {1}': 'Guess {0} of {1}',
   'Угадайте оружие CS2 по типу, стороне, цене, магазину, награде за убийство и стране-производителю. Зелёный — совпало, жёлтый — близко (цена ±$300, магазин ±5, награда ±$300), стрелка — больше или меньше.': 'Guess the CS2 weapon by type, side, price, magazine, kill reward and country of origin. Green is a match, yellow is close (price ±$300, magazine ±5, reward ±$300), the arrow says higher or lower.',
-  'Угадайте героя Dota 2 по атрибуту, типу атаки, ролям и характеристикам. Зелёный — совпало, жёлтый — близко (роли пересекаются, скорость ±10, дальность ±100, год ±2), стрелка — больше или меньше.': 'Guess the Dota 2 hero by attribute, attack type, roles and stats. Green is a match, yellow is close (roles overlap, speed ±10, range ±100, year ±2), the arrow says higher or lower.',
+  'Угадайте героя Dota 2 по атрибуту, типу атаки, роли и характеристикам. Зелёный — совпало, жёлтый — близко (скорость ±10, дальность ±100, год ±2), стрелка — больше или меньше.': 'Guess the Dota 2 hero by attribute, attack type, role and stats. Green is a match, yellow is close (speed ±10, range ±100, year ±2), the arrow says higher or lower.',
+  'Мидер': 'Midlaner',
+  'Оффлейнер': 'Offlaner',
   'Угадайте карту CS по статусу в маппуле CS2, сценарию, теме, стране, автору и размеру. Зелёный — совпало.': 'Guess the CS map by its CS2 map pool status, scenario, theme, country, author and size. Green is a match.',
   'Карты': 'Maps',
   'Карта': 'Map',
@@ -666,7 +668,7 @@ const EN = {
   'Угадайте чемпиона League of Legends по классу, ресурсу, типу атаки, дальности, скорости, здоровью на 1 уровне и сложности. Зелёный — совпало, жёлтый — близко (классы пересекаются, дальность ±50, скорость ±5, здоровье ±20, сложность ±1), стрелка — больше или меньше.': 'Guess the League of Legends champion by class, resource, attack type, range, move speed, level 1 health and difficulty. Green is a match, yellow is close (classes overlap, range ±50, speed ±5, health ±20, difficulty ±1), the arrow says higher or lower.',
   // dataset strings
   'Мэйджоры': 'Majors',
-  'Игроки 9 мэйджоров CS:GO/CS2 (Бостон 2018 – Остин 2025)': 'Players from 9 CS:GO/CS2 Majors (Boston 2018 – Austin 2025)',
+  'Игроки 12 мэйджоров CS:GO/CS2 (Бостон 2018 – Сингапур 2026) и топ-турниров 2026 года': 'Players from 12 CS:GO/CS2 Majors (Boston 2018 – Singapore 2026) and the top events of 2026',
   'Игроки TI 2019–2025, Riyadh Masters 2023 и EWC 2025': 'Players from TI 2019–2025, Riyadh Masters 2023 and EWC 2025',
   // country names (from scripts/countries.mjs)
   'Кения': 'Kenya',

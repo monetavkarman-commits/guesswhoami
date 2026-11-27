@@ -47,25 +47,49 @@ async function pages(wiki, titles) {
 const field = (c, k) => { const m = c.match(new RegExp('\\n\\|' + k + '=([^\\n]*)')); return m ? m[1].replace(/<!--.*?-->/g, '').trim() : ''; };
 const up = (s) => s.charAt(0).toUpperCase() + s.slice(1).replace(/_/g, ' ');
 
-// ---------- CS: players of these Majors, with full team history from the infobox ----------
+// ---------- CS: players of these Majors (plus this year's top events), with full team history from the infobox ----------
 const CS_MAJORS = ['ELEAGUE/2018/Major', 'IEM Katowice 2019', 'StarLadder/2019/Major', 'PGL/2021/Stockholm', 'PGL/2022/Antwerp',
-  'BLAST/Major/2023/Paris', 'PGL/2024/Copenhagen', 'Perfect World/Major/2024/Shanghai', 'BLAST/Major/2025/Austin'];
+  'BLAST/Major/2023/Paris', 'PGL/2024/Copenhagen', 'Perfect World/Major/2024/Shanghai', 'BLAST/Major/2025/Austin',
+  'StarLadder/2025/Major', 'Intel Extreme Masters/2026/Cologne', 'PGL/2026/Singapore'];
+// Current pros who have not reached a Major yet (Jorko and the like): players of the S-tier events of the last season.
+// They are added with 0 Majors; only the Majors count for the "Majors" column.
+const CS_EVENTS = ['Intel Extreme Masters/2026/Kraków', 'PGL/2026/Cluj-Napoca', 'ESL/Pro League/Season 23', 'Intel Extreme Masters/2026/Rio',
+  'PGL/2026/Bucharest', 'BLAST/Rivals/2026/Spring', 'PGL/2026/Astana', 'Intel Extreme Masters/2026/Atlanta', 'BLAST/Bounty/2026/Summer',
+  'Esports World Cup/2026', 'StarLadder/StarSeries/2026/Fall', 'ESL/Pro League/Season 24', 'PGL/2026/Masters', 'Intel Extreme Masters/2026/Beijing'];
+
+// Players of an event page. Older pages list rosters as {{TeamCard|p1=..}}, newer ones as
+// {{Opponent|Team|players={{Persons|{{Person|name|link=..|role=sub|played=false}}..}}}}: coaches and players who did not play are skipped.
+function eventPlayers(text) {
+  const seen = new Set();
+  for (const card of text.split('{{TeamCard\n').slice(1)) {
+    const body = card.split('\n}}')[0];
+    for (let k = 1; k <= 5; k++) {
+      const p = body.match(new RegExp('\\|p' + k + '=([^|\\n}]+)')); if (!p) continue;
+      const l = body.match(new RegExp('\\|p' + k + 'link=([^|\\n}]+)'));
+      seen.add(up((l ? l[1] : p[1]).trim()));
+    }
+  }
+  for (const blk of text.split('{{Opponent|').slice(1)) {
+    const i = blk.indexOf('players={{Persons'); if (i < 0) continue;
+    for (const m of blk.slice(i).split('\n}}')[0].matchAll(/\{\{Person\|([^{}]*)\}\}/g)) {
+      const kv = {}; const pos = [];
+      for (const a of m[1].split('|').map((x) => x.trim())) { const j = a.indexOf('='); if (j > 0) kv[a.slice(0, j).trim()] = a.slice(j + 1).trim(); else pos.push(a); }
+      if (!pos[0] || kv.played === 'false' || (kv.role && kv.role !== 'sub')) continue;
+      seen.add(up(kv.link || pos[0]));
+    }
+  }
+  return seen;
+}
 
 async function cs() {
-  const majors = await pages('counterstrike', CS_MAJORS);
   const count = new Map();
-  for (const m of majors) {
+  for (const m of await pages('counterstrike', CS_MAJORS)) {
     if (!m.text) { console.warn('missing major page', m.from); continue; }
-    const seen = new Set();
-    for (const card of m.text.split('{{TeamCard\n').slice(1)) {
-      const body = card.split('\n}}')[0];
-      for (let k = 1; k <= 5; k++) {
-        const p = body.match(new RegExp('\\|p' + k + '=([^|\\n}]+)')); if (!p) continue;
-        const l = body.match(new RegExp('\\|p' + k + 'link=([^|\\n}]+)'));
-        seen.add(up((l ? l[1] : p[1]).trim()));
-      }
-    }
-    seen.forEach((n) => count.set(n, (count.get(n) || 0) + 1));
+    eventPlayers(m.text).forEach((n) => count.set(n, (count.get(n) || 0) + 1));
+  }
+  for (const e of await pages('counterstrike', CS_EVENTS)) {
+    if (!e.text) { console.warn('missing event page', e.from); continue; }
+    eventPlayers(e.text).forEach((n) => { if (!count.has(n)) count.set(n, 0); });
   }
   const keep = (n) => ['', 'inactive', 'loan', 'substitute', 'inactive loan', 'sub'].includes(n.replace(/^link=[^|]*\|?/, '').toLowerCase());
   const pd = (s, end) => {
@@ -90,7 +114,7 @@ async function cs() {
       .map((x) => ({ rifler: 'rifle', awper: 'awp', lurk: 'lurker', entryfragger: 'entry' }[x] || x)).filter(Boolean))];
     players.push({ p: p.title, id: field(c, 'id'), n: field(c, 'romanized_name') || field(c, 'name'), c: field(c, 'country'),
       b: field(c, 'birth_date'), s: field(c, 'status').toLowerCase(), t: field(c, 'team') || undefined, r: roles,
-      m: Math.max(count.get(up(p.from)) || 0, count.get(p.title) || 0) || 1, h });
+      m: Math.max(count.get(up(p.from)) || 0, count.get(p.title) || 0), h });
   }
   writeFileSync(ROOT + 'data/raw/cs.json', JSON.stringify({ teams, players }));
   console.log('cs:', players.length, 'players');

@@ -5,7 +5,7 @@ export const GAMES = {
   cs: {
     title: 'Counter-Strike', short: 'CS', kind: 'roles',
     roleLabels: { awp: 'AWP', igl: tr('Капитан'), rifle: tr('Райфлер'), entry: tr('Энтри'), lurker: tr('Люркер'), support: tr('Саппорт'), coach: tr('Тренер'), staff: tr('Комментатор / менеджер') },
-    teamLabel: tr('Команда'), ev3: tr('3+ мэйджора'), ev1: tr('Ровно 1 мэйджор'), topMin: 3, chainMin: 3, minTeam: [8, 5],
+    teamLabel: tr('Команда'), ev3: tr('3+ мэйджора'), ev1: tr('Не больше 1 мэйджора'), topMin: 3, chainMin: 3, minTeam: [8, 5],
     eras: { csgo: tr('Эра CS:GO'), cs2: tr('Эра CS2') }, activeEra: 'cs2',
   },
   dota: {

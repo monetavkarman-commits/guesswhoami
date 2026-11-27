@@ -20,13 +20,20 @@ const write = (f, d) => {
 
 // ---------- Dota heroes ----------
 const ATTR = { Strength: 'Сила', Agility: 'Ловкость', Intelligence: 'Интеллект', Universal: 'Универсал' };
-const ROLE = { Carry: 'Керри', Support: 'Поддержка', Nuker: 'Нюкер', Disabler: 'Контроль', Durable: 'Танк', Escape: 'Побег', Pusher: 'Пушер', Initiator: 'Инициатор' };
+// One main position per hero, as the pro scene usually plays it (Liquipedia's role list has 3-6 tags per hero and reads as noise).
+// A new hero without an entry stops the build, so it gets a position before it is published.
+const MAIN_ROLE = Object.fromEntries(Object.entries({
+  Керри: 'alchemist anti-mage bloodseeker chaos-knight clinkz drow-ranger faceless-void gyrocopter juggernaut kez lifestealer lone-druid luna medusa monkey-king morphling muerta naga-siren phantom-assassin phantom-lancer slark spectre sven terrorblade troll-warlord ursa weaver wraith-king',
+  Мидер: 'arc-warden broodmother death-prophet dragon-knight ember-spirit huskar invoker kunkka leshrac lina meepo outworld-destroyer pangolier puck queen-of-pain razor shadow-fiend sniper storm-spirit templar-assassin tinker tiny viper void-spirit windranger zeus',
+  Оффлейнер: 'abaddon axe batrider beastmaster brewmaster bristleback centaur-warrunner dark-seer dawnbreaker doom enigma legion-commander lycan magnus mars nature-s-prophet necrophos night-stalker primal-beast sand-king slardar tidehunter timbersaw underlord visage',
+  Саппорт: 'ancient-apparition bane bounty-hunter chen clockwerk crystal-maiden dark-willow dazzle disruptor earth-spirit earthshaker elder-titan enchantress grimstroke hoodwink io jakiro keeper-of-the-light largo lich lion marci mirana nyx-assassin ogre-magi omniknight oracle phoenix pudge pugna riki ringmaster rubick shadow-demon shadow-shaman silencer skywrath-mage snapfire spirit-breaker techies treant-protector tusk undying vengeful-spirit venomancer warlock winter-wyvern witch-doctor',
+}).flatMap(([r, ids]) => ids.split(' ').map((id) => [id, r])));
 const heroes = Object.entries(raw.heroes).filter(([n]) => n !== 'Spirit Bear').map(([name, o]) => {
   const melee = o.rangetype === 'Melee';
   return {
     id: slug(name), name, sub: ATTR[o.primary],
     attr: ATTR[o.primary], atk: melee ? 'Ближний бой' : 'Дальний бой',
-    roles: (o.roles || '').split(',').map((r) => ROLE[r.trim()]).filter(Boolean),
+    role: MAIN_ROLE[slug(name)] || (() => { throw new Error('no main role for hero ' + name); })(),
     complexity: +o.complexity || null, speed: +o.movespeed || null,
     range: /^\d+$/.test(o.atkrange || '') ? +o.atkrange : melee ? 150 : null,
     year: o.released ? +o.released.slice(0, 4) : null,
@@ -36,12 +43,12 @@ const heroes = Object.entries(raw.heroes).filter(([n]) => n !== 'Spirit Bear').m
 }).sort((a, b) => a.name.localeCompare(b.name));
 write('public/data/dota-items.json', {
   modeTitle: 'Герои', nameTitle: 'Герой', placeholder: 'Имя героя…',
-  intro: 'Угадайте героя Dota 2 по атрибуту, типу атаки, ролям и характеристикам. Зелёный — совпало, жёлтый — близко (роли пересекаются, скорость ±10, дальность ±100, год ±2), стрелка — больше или меньше.',
+  intro: 'Угадайте героя Dota 2 по атрибуту, типу атаки, роли и характеристикам. Зелёный — совпало, жёлтый — близко (скорость ±10, дальность ±100, год ±2), стрелка — больше или меньше.',
   source: `Liquipedia, инфобоксы героев (${raw.fetched.slice(0, 10)})`,
   columns: [
     { key: 'attr', title: 'Атрибут', type: 'cat' },
     { key: 'atk', title: 'Атака', type: 'cat' },
-    { key: 'roles', title: 'Роли', type: 'set' },
+    { key: 'role', title: 'Роль', type: 'cat' },
     { key: 'complexity', title: 'Сложность', type: 'num', near: 0 },
     { key: 'speed', title: 'Скорость', type: 'num', near: 10 },
     { key: 'range', title: 'Дальность', type: 'num', near: 100 },
