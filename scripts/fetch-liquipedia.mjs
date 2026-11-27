@@ -30,17 +30,23 @@ async function api(wiki, params) {
   return json;
 }
 
-async function pages(wiki, titles) {
-  const out = [];
-  for (let i = 0; i < titles.length; i += 50) {
-    const r = await api(wiki, { action: 'query', prop: 'revisions', rvprop: 'content', rvslots: 'main', redirects: '1', titles: titles.slice(i, i + 50).join('|') });
+// Big pages (event pages are often several MB) can push a response over the API size limit: the API then returns
+// some pages without their content. Those are fetched again in smaller batches, down to one page per request.
+async function pages(wiki, titles, size = 50) {
+  const out = []; const again = [];
+  for (let i = 0; i < titles.length; i += size) {
+    const batch = titles.slice(i, i + size);
+    const r = await api(wiki, { action: 'query', prop: 'revisions', rvprop: 'content', rvslots: 'main', redirects: '1', titles: batch.join('|') });
     const redir = Object.fromEntries((r.query.redirects || []).map((x) => [x.to, x.from]));
     const norm = Object.fromEntries((r.query.normalized || []).map((x) => [x.to, x.from]));
     for (const p of r.query.pages) {
-      const from = redir[p.title] || p.title;
-      out.push({ title: p.title, from: norm[from] || from, text: p.missing ? null : p.revisions[0].slots.main.content });
+      const from = redir[p.title] || p.title; const asked = norm[from] || from;
+      if (p.missing || p.invalid) { out.push({ title: p.title, from: asked, text: null }); continue; }
+      if (!p.revisions) { if (size > 1) again.push(asked); else out.push({ title: p.title, from: asked, text: null }); continue; }
+      out.push({ title: p.title, from: asked, text: p.revisions[0].slots.main.content });
     }
   }
+  if (again.length) out.push(...await pages(wiki, again, Math.max(1, Math.floor(size / 5))));
   return out;
 }
 
